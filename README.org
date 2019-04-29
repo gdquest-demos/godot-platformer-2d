@@ -1,0 +1,160 @@
+#+TITLE: 2D "Metroidvania": Godot course demo project
+#+DESCRIPTION: A short platform/adventure demo project to teach how to create similar 2d games
+
+  # - Note taken on [2019-04-26 ven. 14:24] \\
+  #   Take the free series as an opportunity to boost the channel: "learn to create a game from scratch with Free Software" ?
+    
+* Summary
+   
+  A course based on a *short 2d game demo inspired by metroidvanias* split into a Free, beginner-friendly series and a paid, intermediate-level series that builds upon the Free one.
+   
+  #+caption: Momodora, a seemingly not so well-known, yet well-designed Metroidvania, recommended by the community
+  [[./img/momodora-2.png]]
+   
+* Our mission
+   
+  # - Note taken on [2019-04-29 lun. 09:02] \\
+  #   Copy of the main Mission node for the entire project
+     
+  - Help newcomers and Godot users alike to create games with Godot
+  - Help people to go beyond step-by-step content, to practice and learn transferable gamedev techniques
+  - Get people to work together and become contributors to open source project
+
+* Target
+
+  A game demo that offers a few minutes of gameplay, a small world composed of several interconnected rooms.
+  The base target is about *15 videos* for the Free series, *25* for the premium course. 40 in total.
+   
+  For each topic we cover, the Free course should cover the foundations, and the paid course should build upon them.
+
+  /For example, with the platforming mechanics:/
+
+  1. In free tutorials, cover ~KinematicBody2D~, setting up collisions, input, and simple motions up to jump and air control. Also, the foundations of a mechanic that's unique to the final game, e.g. simple wall jump.
+  2. In the paid course, show how to improve the moves, e.g. adding jump input detection before landing, the ability to jump soon after starting to fall, handling slopes, tightening the controls, adding the ability to combine wall jumps with wall run.
+   
+** Teaching goals
+    
+*** Metroidvania essentials
+     
+    - *Platforming character controller* and related code structure: behaviors, aggregation-based approach.
+    - *Level design*, creation workflow, and connecting frames. Guiding the player through the environment, looping, and branching paths.
+    - *Unlocking mechanics* through upgrades and controlling player progression.
+    - *Camera*: helping the player with a camera that moves ahead of the character and looks where the player wants to look.
+    
+*** Game design
+     
+   - *Using one mechanic for many purposes*: giving the player a versatile tool. 
+     
+*** Game creation
+    
+    - *Game creation workflow*: the process and broad steps to follow to get a game project started, prototyping, and getting the character controller, camera, etc. to feel right.
+    - *Making multiple behaviors interact together*: especially for the character controller, getting the different moves (/e.g. jump, wall jump, slide/) to flawlessly flow into one another.
+    
+* Teaching goals and philosophy for the course
+   
+  The Kickstarter campaign promised a Metroidvania. Some backers are likely to expect design decisions that are specific to what is considered traditional or essential in Metroidvanias: level design that works both through its world architecture and at a local level, with each room or area. Also, platforming and combat mechanics.
+   
+  #+caption: Flinthook offers a great reference for platforming controls
+  [[file:img/flinthook-4.png]]
+   
+  I would like the course to focus more on design and less on code than the previous one. Let's avoid complex UI or extras such as refined inventory and leveling systems. The game doesn't have to be a complete metroidvania: it would take too much time to develop a satisfying demo, while *our top priority is education*. Let's not get caught up creating a great, full game, as we have a lot on our plates.
+   
+
+** Keep It Short and Sweet
+    
+   We have limited time and money to produce the course. Also, *our priority is education*.
+    
+   The game should be as good as possible in hand and as far as its code is concerned. But it should not get big in scope or feature many different mechanics: content and feature creep are the best way to lengthen the project and lower the quality of our output.
+
+   Think of this game demo as a portfolio piece. A recruiter would take but a few seconds to look at each project you've worked on and judge your abilities based on that. So will the community.
+
+** The cornerstones of Metroidvanias
+
+
+   Metroidvanias are platform games with non-linear interconnected maps or worlds that guide the player towards his goal, typically blocking the player's progression at times until they unlocked new abilities.
+
+   I see two main characteristics in them:
+
+   1. *They're platform-adventure games*. The focus is on exploration and possibly telling a story through the world's design. They can have combat mechanics or leveling systems, but these aren't mandatory.
+   2. *The world's design is central to the game experience*. Metroidvanias tend to give the illusion of freedom through looping and interconnected paths. The areas can be fairly linear and guide the player through the level design.
+
+   We don't have the time to build a large, interconnected world, and to produce great levels at the same time. As such, we should focus our attention on the controls first and foremost, and design a small playable area with a few frames later.
+    
+   #+caption: Hollow Knight's combat mechanics are to the point: one melee attack that you can aim in 4 directions
+   [[file:img/hollow-knight-3.png]]
+
+
+
+   Watch this [[https://www.youtube.com/watch?v=NcbB09mjMGk][discussion on good Metroidvanias]] for more insights. Mark Brown (Game Maker's Toolkit) also has some great videos on the topic, although more focused on world design.
+
+   #+caption: Unlocking abilities to be able to further explore the worlds is a common pattern in Metroidvanias
+   [[./img/ori-2.png]]
+   
+** Open source from the start
+    
+   We're going to build the project Open Source from start to finish. The community can see our progress and contribute feedback, code... Part of our role will be to guide them and make it so everyone works towards the same goal: producing an excellent example of how to set up a Godot game project.
+
+   *All new features and sizeable tasks should be ticketed*: open an issue first, add it to the project board, and assign yourself to it before pushing a PR or a big commit. This is so the team and community members can see what's already in progress.
+    
+
+* Project organization
+   
+  /Roles and broad steps to build the project./
+   
+** Pre-production
+   
+   1. Share a form to get the students' feedback based on the jam. Offer a range of topics for the backers to vote on, and ask for qualitative feedback. /We will use their feedback and requests to complement the project./
+   2. Create and iterate over the game prototype.
+   3. Produce videos related to prototyping and the game creation process.
+   4. Outline and detail the topics covered in each course, create tasks.
+   
+** Production
+    
+   - Note taken on [2019-04-29 lun. 07:51] \\
+     Fill at the end of pre-production
+      
+* The team
+    
+  On top of the roles below, everyone can do tutoring work for their respective area of expertise.
+   
+** Lead development: Razvan
+   
+   Reponsible for the code structure and code quality, as well as the consistency of the codebase.
+   Tasks can include general programming, system design, code reviews, refactoring, as well as defining related tasks.
+
+** Game development: Guilherme
+     
+   Responsible for general development work, programming game mechanics and various systems.
+
+** Tool development and design: Henrique
+     
+   Responsible for the design and implementation of tools to help create the game more efficiently and/or comfortably. Also, reponsible for assisting with game and world design work.
+     
+** Project management and design direction: Nathan
+     
+   Responsible for organizing the project, design decisions to ensure the project stays coherent, moves in a clear direction, and that the game provides the necessary foundations to teach the topics we aim to cover.
+    
+    
+* Audience and pre-requisites
+   
+  - *List the resources* the students can use to get from ~0 to fitting the pre-requisites for the course.
+  - List the companion resources students can follow for each video that covers a given concept. E.g. the intro to signals, assignments, etc.
+     
+** Free series
+     
+   The Free courses are for /beginners-plus/: amateurs, young programming students, or developers in another domain, e.g. software developers, who have learned the basics of Godot, the basics of GDScript, and put all that in practice in a personal project. The viewer understands basic programming concepts up to what classes and objects are, what a node is at a basic level, and the viewer knows its way around the main areas of the interface.
+   
+   Although we'll do our best to help strengthen or push the student's understanding of basic concepts, we will focus on game design, implementing mechanics, programming patterns... our role is to help the students go beyond the basics, on their way to being independent developers.
+   
+** Premium courses
+   
+   The premium courses are for learners who want to go further, to acquire techniques on their path to working like professionals.
+
+   Persona: the learners of the premium course don't want to be spoon-fed ready-made solutions. They enjoy learning and are ready to put in some efforts to improve. They go further than watching the lessons, putting what they learned in practice. They expect quality learning material.
+    
+* TODO Pitch for the learners
+   
+  We do our best to teach good programming practices and to help you write professional code. Going from amateur code to professional takes focused practice and can be hard at first.
+   
+  If you struggle with a specific topic, and the companion resources were not enough, please tell us in details what you don't understand.
+    
