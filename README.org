@@ -152,9 +152,3 @@
 
    Persona: the learners of the premium course don't want to be spoon-fed ready-made solutions. They enjoy learning and are ready to put in some efforts to improve. They go further than watching the lessons, putting what they learned in practice. They expect quality learning material.
     
-* TODO Pitch for the learners
-   
-  We do our best to teach good programming practices and to help you write professional code. Going from amateur code to professional takes focused practice and can be hard at first.
-   
-  If you struggle with a specific topic, and the companion resources were not enough, please tell us in details what you don't understand.
-    
