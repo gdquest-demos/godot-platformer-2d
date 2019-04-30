@@ -32,25 +32,7 @@
   1. In free tutorials, cover ~KinematicBody2D~, setting up collisions, input, and simple motions up to jump and air control. Also, the foundations of a mechanic that's unique to the final game, e.g. simple wall jump.
   2. In the paid course, show how to improve the moves, e.g. adding jump input detection before landing, the ability to jump soon after starting to fall, handling slopes, tightening the controls, adding the ability to combine wall jumps with wall run.
    
-** Teaching goals
-    
-*** Metroidvania essentials
-     
-    - *Platforming character controller* and related code structure: behaviors, aggregation-based approach.
-    - *Level design*, creation workflow, and connecting frames. Guiding the player through the environment, looping, and branching paths.
-    - *Unlocking mechanics* through upgrades and controlling player progression.
-    - *Camera*: helping the player with a camera that moves ahead of the character and looks where the player wants to look.
-    
-*** Game design
-     
-   - *Using one mechanic for many purposes*: giving the player a versatile tool. 
-     
-*** Game creation
-    
-    - *Game creation workflow*: the process and broad steps to follow to get a game project started, prototyping, and getting the character controller, camera, etc. to feel right.
-    - *Making multiple behaviors interact together*: especially for the character controller, getting the different moves (/e.g. jump, wall jump, slide/) to flawlessly flow into one another.
-    
-* Teaching goals and philosophy for the course
+* Philosophy for the course
    
   The Kickstarter campaign promised a Metroidvania. Some backers are likely to expect design decisions that are specific to what is considered traditional or essential in Metroidvanias: level design that works both through its world architecture and at a local level, with each room or area. Also, platforming and combat mechanics.
    
@@ -59,7 +41,6 @@
    
   I would like the course to focus more on design and less on code than the previous one. Let's avoid complex UI or extras such as refined inventory and leveling systems. The game doesn't have to be a complete metroidvania: it would take too much time to develop a satisfying demo, while *our top priority is education*. Let's not get caught up creating a great, full game, as we have a lot on our plates.
    
-
 ** Keep It Short and Sweet
     
    We have limited time and money to produce the course. Also, *our priority is education*.
@@ -96,7 +77,6 @@
 
    *All new features and sizeable tasks should be ticketed*: open an issue first, add it to the project board, and assign yourself to it before pushing a PR or a big commit. This is so the team and community members can see what's already in progress.
     
-
 * Project organization
    
   /Roles and broad steps to build the project./
@@ -108,7 +88,7 @@
    3. Produce videos related to prototyping and the game creation process.
    4. Outline and detail the topics covered in each course, create tasks.
    
-** Production
+** TODO Production
     
    - Note taken on [2019-04-29 lun. 07:51] \\
      Fill at the end of pre-production
@@ -134,7 +114,6 @@
      
    Responsible for organizing the project, design decisions to ensure the project stays coherent, moves in a clear direction, and that the game provides the necessary foundations to teach the topics we aim to cover.
     
-    
 * Audience and pre-requisites
    
   - *List the resources* the students can use to get from ~0 to fitting the pre-requisites for the course.
@@ -142,7 +121,7 @@
      
 ** Free series
      
-   The Free courses are for /beginners-plus/: amateurs, young programming students, or developers in another domain, e.g. software developers, who have learned the basics of Godot, the basics of GDScript, and put all that in practice in a personal project. The viewer understands basic programming concepts up to what classes and objects are, what a node is at a basic level, and the viewer knows its way around the main areas of the interface.
+   The Free courses are for what I would call /beginners-plus/: amateurs, young programming students, or developers in another domain, e.g. software developers, who have learned the basics of Godot, the basics of GDScript, and put all that in practice in a personal project. The viewer understands basic programming concepts up to what classes and objects are, what a node is at a basic level, and the viewer knows its way around the main areas of the interface.
    
    Although we'll do our best to help strengthen or push the student's understanding of basic concepts, we will focus on game design, implementing mechanics, programming patterns... our role is to help the students go beyond the basics, on their way to being independent developers.
    

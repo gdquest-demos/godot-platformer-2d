@@ -1,0 +1,81 @@
+#+TITLE: Game Concept
+#+DESCRIPTION: Concept document for the 2d platform/adventure game demo we're creating as a base for the Kickstarter 2019 2d game creation course.
+#+AUTHOR: Nathan Lovato
+
+/The concept is still a living document so that we have a base for design discussions. At this stage, we can still change the core mechanic, if you have something that's as versatile and that can fit the teaching goals for the project. See the [[*Possible other uses][first note]] below/
+
+* Gameplay
+
+** Core mechanic: pulling yourself with the Hook
+
+    You use a *hook* to propel yourself *instantly* towards hookable targets and navigate the world fluidly, often without touching the ground.
+
+    The character's jump isn't powerful enough for you to reach most platforms. You mostly use it to hop over small gaps and obstacles, or to reach a hooking target that's slightly too far otherwise.
+   
+*** Possible other uses 
+    
+      - *Pull objects* and enemies towards you. E.g. pull rocks blocking the way, make an enemy off balance...
+      - Hold a button after throwing the hook to *propel the character like a cannon ball* and jump past the hooking point. Use it to go farther than usual or e.g. to break weak surfaces
+      - A blade so you can *plant the hook in e.g. wooden surfaces*, but not rock. Be it to pull yourself towards new places, or to pull objects with the hook.
+      - Use the hook as a *propeller* to glide over short distances
+      - /Combat/
+        - Pull shields or armor plates off enemies
+        - Hit enemies from mid-range, using the hook as a whip with the blade
+        - Charge onto enemies with the cannonball attack
+        - Lunge down on enemies and stun them if falling from above
+
+      - Note taken on [2019-04-30 mar. 17:49] \\
+    Hook would not only fit the need for giving the player a versatile tool: it would allow us to play with physics, vector math, and visually debugging the game. It also allows us to have related upgrades.
+    I'm open to any other mechanic or tool with the same potential, e.g. the spear from one of Shaun Spaulding's jams.
+    
+    - Note taken on [2019-05-01 mer. 07:29] \\
+      The ideas above are for reference, to give us paths to build upon the core mechanic and show its potential.
+      
+*** Controls
+     
+**** Mouse and keyboard
+     
+     Use the mouse to aim and to use the hook, the keyboard to move the character. Aim the hook with the mouse and <kbd>Left</kbd><kbd>Click</kbd> to throw. 
+     
+**** Gamepad
+     
+     The hook aims in the direction the player is moving, throw with the right bumper.
+     
+     - Note taken on [2019-05-01 mer. 07:39] \\
+       I've tested different control schemes:
+       
+       - Using the right joystick to aim the hook. It's too hard to use other buttons along with both joysticks.
+       - Using a key to toggle aiming the hook. Breaks the flow of the action.
+       - Using the 4 ABXY keys to throw the hook in the corresponding direction. It works, but it limits the buttons left for other purposes, e.g. jump is typically on A on an XBOX controller.
+       
+       Aiming where the player moves feels most natural so far.
+     
+**** Snapping
+     
+     Regardless of the control scheme, use a snapping system to help direct the player towards hooking points. Even on rails or long hookable surfaces, we might want to have a limited number of points, e.g. in the middle and on the sides, to help the player better hook using a gamepad.
+     
+* Course
+ 
+** Teaching goals
+*** Game design
+     
+   - *Using one mechanic for many purposes*: giving the player a versatile tool. 
+     
+*** Game creation
+    
+    - *Game creation workflow*: the process and broad steps to follow to get a game project started, prototyping, and getting the character controller, camera, etc. to feel right.
+    - *Making multiple behaviors interact together*: especially for the character controller, getting the different moves (/e.g. jump, wall jump, slide/) to flawlessly flow into one another.
+    
+*** Metroidvania essentials
+     
+    - *Platforming character controller* and related code structure: behaviors, aggregation-based approach.
+    - *Level design*, creation workflow, and connecting frames. Guiding the player through the environment, looping, and branching paths.
+    - *Unlocking mechanics* through upgrades and controlling player progression.
+    - *Camera*: helping the player with a camera that moves ahead of the character and looks where the player wants to look.
+    
+  
+* Prototypes
+** PROGRESS Base movement with the hook
+   
+   Explore controls and the game feel 
+
