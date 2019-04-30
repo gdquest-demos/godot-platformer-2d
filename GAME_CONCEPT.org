@@ -73,9 +73,28 @@
     - *Unlocking mechanics* through upgrades and controlling player progression.
     - *Camera*: helping the player with a camera that moves ahead of the character and looks where the player wants to look.
     
-  
 * Prototypes
 ** PROGRESS Base movement with the hook
    
-   Explore controls and the game feel 
-
+   Explore controls and game feel, allowing the player to move fluidly through template levels.
+   
+*** Questions
+   
+    1. How can we make the hook at the core of the platforming experience?
+    2. Which control scheme would work with kbd and mouse? With the gamepad?
+    3. How can we make the player feel both free in its movement while making the controls intuitive? Especially with the imprecise gamepad.
+   
+*** Answers from the prototype
+    
+    1. The jump should be weak compared to the hook.
+    2. See [[*Controls][Controls]]
+    3. I had to add a snapping system. Currently, it uses 2 Capsule shapes and a Raycast2D to detect snapping targets in the direction the player is looking (mouse) or moving (gamepad). It snaps to the closest target in that direction, meaning we should always space them. Also, upon hooking onto a point target, the target deactivates for a short amount of time, allowing you to hook onto the next target forward more reliably.
+** TODO Unlocking behaviors and code structure
+   
+   Figure out a good pattern to make new moves unlockable on the character.
+   
+*** Questions
+    
+    1. Most moves rely on the hook and will revolve around the same base input, to make the core control as versatile as possible. How can we make it modular, allow ourselves to /hook/ new mechanics onto it?
+    2. Can we find a pattern and code style that's both modular, i.e. uses aggregation, and that stays accessible to the students?
+    3. Which code pattern would work best for Godot?
