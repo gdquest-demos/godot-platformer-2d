@@ -35,7 +35,7 @@
      
 **** Mouse and keyboard
      
-     Use the mouse to aim and to use the hook, the keyboard to move the character. Aim the hook with the mouse and <kbd>Left</kbd><kbd>Click</kbd> to throw. 
+     Use the mouse to aim and to use the hook, the keyboard to move the character. Aim the hook with the mouse and ~<L-Mouse>~ to throw. 
      
 **** Gamepad
      
