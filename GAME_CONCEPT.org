@@ -78,6 +78,9 @@
    
    Explore controls and game feel, allowing the player to move fluidly through template levels.
    
+  #+caption: Movement prototype: raycast-based hook mechanic with snapping
+  [[file:./img/prototypes/hook!-prototype-3.png]]
+   
 *** Questions
    
     1. How can we make the hook at the core of the platforming experience?
