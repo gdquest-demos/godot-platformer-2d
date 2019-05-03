@@ -94,8 +94,13 @@
     2. See [[*Controls][Controls]]
     3. I had to add a snapping system. Currently, it uses 2 Capsule shapes and a Raycast2D to detect snapping targets in the direction the player is looking (mouse) or moving (gamepad). It snaps to the closest target in that direction, meaning we should always space them. Also, upon hooking onto a point target, the target deactivates for a short amount of time, allowing you to hook onto the next target forward more reliably.
 
-** PROGRESS Experiment with control schemes for the gamepad
+** DONE Experiment with control schemes for the gamepad
+   CLOSED: [2019-05-03 ven. 13:19]
 
+   Checkout to the ~gamepad_alternate_controls~ branch to test the controls.
+   
+   Henrique and another community member mentioned that only hooking in the direction the player is moving could take control away from the player. Although I did try alternate control schemes when creating the first prototype, 
+   
 *** Inspired by Ori's bash
 
    Use a key to stop or drastically slow down time and let the player aim with left stick. Instant hook upon hook input, or releasing the slow down time key?
@@ -103,6 +108,21 @@
 *** Using twin sticks again
 
     I didn't like the feel of the twin stick controls as you can't use the ABXY keys at the same time, unless you take your thumb off the right joystick. This leaves you only with the bumpers and triggers as extra controls, and prevents you from using A to jump.
+    
+    However, if we use the ABXY keys only outside of the action, e.g. to grab an item in a safe environment, to open a door, or to start a dialogue, this would be fine. As the hook should have many purposes, we shouldn't need too many keys to use it.
+
+*** Questions
+    
+    Can alternate input schemes retain the fluidity of the motion while giving the player more control?
+    
+*** Answers from the prototype
+    
+    Both approaches work. The slow down effect would need to be limited to retain some challenge in the motion, but using a single joystick to move in any direction is comfortable to me. We could limit it in a few ways:
+
+    - Making it a resource that depletes and refills gradually, or by touching some object in the environment. E.g. flowers that emit essence of time. This would force the player to still be fast and use the mechanic sparingly.
+    - Only allow the player to use it mid-air, once or twice only until the player touches the ground again. This would give you precise hook charges.
+
+    The twin stick setup also works. To me, it feels more technical, and less accessible. But it works.
 
 ** TODO Unlocking behaviors and code structure
 
