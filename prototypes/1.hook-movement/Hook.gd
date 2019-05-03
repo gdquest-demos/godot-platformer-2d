@@ -8,6 +8,7 @@ The raycast is updated manually for greater precision with where the player is a
 signal hooked_onto_target(pull_force)
 
 export var PULL_BASE_FORCE: = 2500.0
+export var use_right_stick: = false
 
 onready var ray: RayCast2D = $RayCast2D
 onready var arrow: = $Arrow
@@ -20,13 +21,30 @@ onready var length = ray.cast_to.length()
 
 const HOOKABLE_PHYSICS_LAYER: = 2
 
+var aim_mode: = false setget set_aim_mode
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("hook") and _can_hook():
 		cooldown.start()
 		arrow.hook_position = snap_detector.target.global_position if snap_detector.target else ray.get_collision_point()
+		if aim_mode:
+			self.aim_mode = false
 		emit_signal("hooked_onto_target", _calculate_pull_force())
+		get_tree().set_input_as_handled()
 
+	if event.is_action_pressed("aim"):
+		self.aim_mode = not aim_mode
+		get_tree().set_input_as_handled()
+
+
+func set_aim_mode(value:bool) -> void:
+	aim_mode = value
+
+	if aim_mode:
+		Engine.time_scale = 0.05
+	else:
+		Engine.time_scale = 1.0
 
 func _physics_process(delta: float) -> void:
 	ray.cast_to = _get_aim_direction() * length
@@ -64,8 +82,14 @@ func _calculate_pull_force() -> Vector2:
 func _get_aim_direction() -> Vector2:
 	match Settings.controls:
 		Settings.GAMEPAD:
-			return Vector2(
-				Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left"),
-				Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")).normalized()
+			# FIXME: axes should be 2 and 3, or RX and RY, is there a calibration issue with the gamepad?
+			var right_stick_direction: = Vector2(
+				Input.get_joy_axis(0, JOY_AXIS_3), 
+				Input.get_joy_axis(0, JOY_AXIS_4)).normalized()
+			var left_stick_direction: = Vector2(
+				Input.get_joy_axis(0, JOY_AXIS_0), 
+				Input.get_joy_axis(0, JOY_AXIS_1)).normalized()
+
+			return right_stick_direction if use_right_stick else left_stick_direction
 		Settings.KBD_MOUSE, _:
 			return (get_global_mouse_position() - global_position).normalized()
