@@ -1,0 +1,128 @@
+#+TITLE: Course feedback form report
+#+DESCRIPTION: Notes and report on the backers' feedback from the Google form
+#+AUTHOR: Nathan Lovato
+
+This report synthesizes the feedback the backers gave us on the course through the [[https://forms.gle/RwucG5CJpSrF7iFn9][form]], feedback that's relevant to our course, its scope, and our goals. See the repository's readme for more information.
+
+It's not a comprehensive list of everything we could teach: I've not included aspects we already plan to cover.
+
+* General stats
+
+  [[./img/01.gamedev.png]]
+
+  Close to 50% of the respondents are professional developers.
+
+  [[./img/02.dev.png]]
+
+  Regarding Godot, the students' experience varies a lot. Some backers have 0 experience with programming, Godot, and GDquest.
+
+  [[./img/03.godot.png]]
+
+  Most students want assignments! A few suggestions include offering projects or bits of code to complete, to fix, the instructor's solution, possibly in video, but also extra challenges for the student to go further on their own.
+
+  [[./img/04.assignments.png]]
+
+  Code structure, programming patterns, and in general, how to maintain a game project seem to be the main sources of questions and struggles for many viewers.
+
+  A lot of respondents are interested in game design (game feel and level design below).
+
+  [[./img/05.topics.png]]
+  
+* Expectations
+  
+  I've added personal comments following a backer's feedback /in italics/.
+  
+** Game design
+   
+   Learn different ways to create common elements of 2d platformers: =I would love to see you cover all different cases and ways to implement certain mechanics, rather than choosing one way and making a "complete" game.=
+
+   /It's not possible to cover all the ways to implement something, or even just the most common: there are too many, and there's a lot of overlap when it comes to programming fundamentals. But covering some alternative mechanics, focusing on the design and not on the code, could be valuable, to show that different options work, and how the theme and intention notes are useful to help filter decisions out./
+   
+** Project management
+   
+   Game creation workflow. /This one didn't seem clear in the respondents' mind. To me, it seems some people want to get a reliable structure or a clearer picture of how you get a game project started, pre-produce it, move into production, and take it to completion./
+   
+** Level design
+   
+   Design and placement of enemies, but also obstacles and hazards like spikes, moving platforms, etc.
+   
+   Combining Godot scenes or nodes with tilemaps. /I.e. how to add interactive objects efficiently in tilemap-based levels. We could cover things like automating the placements of e.g. spikes by processing the tilemap via code, using the tool mode or something else./
+
+** Character progression
+   
+   Unlocking new abilities and saving the game to the disk.
+
+** Code
+
+   How to structure the code. /Code architecture always comes back. It makes sense as finding a good structure requires abstract thinking, experience, and a great deal of refactoring. I think it's worth pointing out that you *will* produce some spaghetti code and that refactoring is part of keeping a good code structure./
+
+   Connecting game systems together, getting all the features to work as a cohesive whole.
+
+   Programming patterns and e.g. using compositions to avoid repeating code too much.
+
+   Publishing the final game, i.e. to the web. /Mobile comes back on top of desktop, maybe we should explain that trying to design a game for mobile + desktop is a terrible idea most of the time, for a number of reasons./
+
+* Struggles
+  
+  Managing the scope of project is one of the most common struggles. Keeping track of a project's individual components and keeping them ordered.
+  
+  Code structure is also common. Be it for professionals coming from other fields, as you can't apply the same patterns or models to Godot as you usually would (MVC, using a particular framework, ...), or for less experienced developers who don't have a clue about how to make code manageable or reusable.
+  
+  Making the character movement feel good. /We'll have to find a way to pin-point what gives you a great feel, and not just tell the viewer to rely on intuition. E.g. focusing on player feedback, responsiveness, but also teaching some tricks like registering and saving player input to use later or helping the player in subtle ways, which quite a few games that feel great do./
+  
+  Finding ideas, design ideas, and knowing which are worth focusing on.
+  
+  Project planning. /It's hard to plan until the end of pre-production, the design is an iterative and creative process. Pre-production, even on AAA games, takes about half of the game's creation time./
+  
+  Making UI in Godot. /It's true that although IMO it's super powerful, it takes some work to wrap your head around the UI system in Godot./
+  
+  Algorithms
+  
+  Knowing what is built-in, which nodes, built-in methods, or features exist. /If we can't cover everything that's available, I took note of that one because I think it'd be worth giving a broad overview of the key built-in classes and nodes to not reinvent the wheel, but also to help guide the more experienced devs getting started with Godot, e.g. RandomNumberGenerator, Camera, reading @GlobalScope, @GDscript, Object, and Node to get started, CanvasItem, etc. Also, we should invite people to browse the full list of nodes and resources to get a sense for available features in code./
+  
+  Profiling and working on performances. /We have to manage to put a machine on its knees to cover that, although just showing how and when to properly measure performances could make for a useful, self-contained tutorial./
+
+* Suggested improvements for tutorials
+
+  Making more project-driven series.
+  
+  Table of contents or overview of the tutorial at the start.
+  Show the resulting project of a tutorial at the start.
+
+  Creating series about complete game projects from start to finish. /A common request./
+
+  Cover what *not* to do or common pitfalls and how to fix them.
+
+  Extra links and external resources to go more in depth. /In particular, we could link to the relevant pages in the Godot manual, have resources as pre-requisites./
+
+  Questions and answers videos.
+
+  Audio quality varies depending on the tutor.
+  
+  Showing how things tie together in the context of a real game project. /That's where I'd like to get more people involved in our FOSS game projects, because you need to work on such projects, possibly as part of a team, to get it./
+
+  Have a private channel where people can share their work [on assignments] and hang out together as students of the course. /A forum or QA tool would be nice to keep answers around. Although it has a few issues: maintenance, getting people to use it and to e.g. up-vote good answers, and the backer mentions the Godot community is fragmented, and yet another platform would fragment it more. I'd like to build upon an existing channel or place to help it grow./
+
+  More visual feedback to support what's happening or what's being taught.
+
+  More advanced content: algorithms, complex topics.
+
+  Explain how to go further with given techniques, give paths and resources, but also clues of ways to use what you learn as you move forward or you grow.
+
+  Tutorials dedicated to certain key nodes, on the model of KidsCanCode's know your nodes series.
+
+  Filter out the code that's not relevant to the tutorial. /We're working on that already, but it's good to keep this as a reminder./
+
+  Structure the videos on the channel into clearer series, themes, and required skill levels.
+
+** Personal additions
+   
+   We lack pre-requisites at times. For individual videos they'd be a pain to maintain and if the tutorial answers a given question specifically it can be superfluous, but for series I think it's worth warning what people would need to know and which resources they can use to get up to speed.
+
+* Assignments
+  
+  A lot of people seem to want assignments, and I've seen a request for "challenges". Inviting the students to go further would be nice.
+
+  Code examples to fix or complete with the instructor showing the solution.
+  
+  "Maybe letting a game sort of incomplete after each chapter so we as students figure out how to complete the rest and the instructor share's his/her solution later on(?)."
