@@ -84,40 +84,60 @@ It's not a comprehensive list of everything we could teach: I've not included as
 
 * Suggested improvements for tutorials
 
-  Making more project-driven series.
-  
-  Table of contents or overview of the tutorial at the start.
-  Show the resulting project of a tutorial at the start.
+  Creating series about complete game projects from start to finish. /A common request./ Make more project-driven series.
+ 
+** Content
+   
+   - Include a *table of contents* or an overview of the tutorial's result and techniques covered at the start.
+   - Filter out the code that's not relevant to the tutorial. /We're working on that already, but it's good to keep this as a reminder./
+   - Include *visual feedback* to support what's happening or what's being taught.
+   - Cover what *not* to do or common pitfalls and how to fix them.
+   - Show how things tie together in the context of a real game project. /That's where I'd like to get more people involved in our FOSS game projects, because you need to work on such projects, possibly as part of a team, to get it./
+   - Include extra links and *external resources* to go more in depth. /In particular, we could link to the relevant pages in the Godot manual, have resources as pre-requisites./ Explain how to go further with given techniques, give paths and resources, but also clues of ways to use what you learn as you move forward or you grow.
+   - /Add *pre-requisites*, see [[*Personal additions][Personal additions]]/
 
-  Creating series about complete game projects from start to finish. /A common request./
+** Topics
 
-  Cover what *not* to do or common pitfalls and how to fix them.
+   - Cover more *advanced content*: algorithms, complex topics.
+   - Make tutorials dedicated to certain important nodes, on the model of KidsCanCode's know your nodes series.
+   - Make *Questions and Answers* videos.
+   - Structure the videos on the channel into clearer *series*, themes, and order by *required skill levels*.
+   
+** Community
+   
+   Have a *private channel* where people can share their work [on assignments] and hang out together as students of the course. /A forum or QA tool would be nice to keep answers around. Although it has a few issues: maintenance, getting people to use it and to e.g. up-vote good answers, and the backer mentions the Godot community is fragmented, and yet another platform would fragment it more. I'd like to build upon an existing channel or place to help it grow./
 
-  Extra links and external resources to go more in depth. /In particular, we could link to the relevant pages in the Godot manual, have resources as pre-requisites./
-
-  Questions and answers videos.
-
-  Audio quality varies depending on the tutor.
-  
-  Showing how things tie together in the context of a real game project. /That's where I'd like to get more people involved in our FOSS game projects, because you need to work on such projects, possibly as part of a team, to get it./
-
-  Have a private channel where people can share their work [on assignments] and hang out together as students of the course. /A forum or QA tool would be nice to keep answers around. Although it has a few issues: maintenance, getting people to use it and to e.g. up-vote good answers, and the backer mentions the Godot community is fragmented, and yet another platform would fragment it more. I'd like to build upon an existing channel or place to help it grow./
-
-  More visual feedback to support what's happening or what's being taught.
-
-  More advanced content: algorithms, complex topics.
-
-  Explain how to go further with given techniques, give paths and resources, but also clues of ways to use what you learn as you move forward or you grow.
-
-  Tutorials dedicated to certain key nodes, on the model of KidsCanCode's know your nodes series.
-
-  Filter out the code that's not relevant to the tutorial. /We're working on that already, but it's good to keep this as a reminder./
-
-  Structure the videos on the channel into clearer series, themes, and required skill levels.
+** Other
+   
+   Audio quality varies depending on the tutor.
 
 ** Personal additions
    
    We lack pre-requisites at times. For individual videos they'd be a pain to maintain and if the tutorial answers a given question specifically it can be superfluous, but for series I think it's worth warning what people would need to know and which resources they can use to get up to speed.
+
+** Tutorial checklist
+   
+   /Based on the feedback above, here's a checklist to follow for more satisfying tutorials:/
+   
+   1. *Goal and project-driven*: clearly define the teaching goals for the tutorial, explain what the viewer is meant to get out of the tutorial
+   2. *Give a summary* of the tutorial's teachings in the intro
+      - Explain and *show* what the viewer is going to learn
+      - Feature a table of contents with timecodes in the video description if the video covers multiple techniques or has distinct chapters
+   3. *Remind* the viewer what you covered at the end of the video
+   4. Mention *common pitfalls or limitations* of the tool/topic at hand and *provide solutions*
+
+*** Text-based content
+    
+    /I.e. companion text file, pinned comment, video description/
+    
+    1. *Pre-requisites*: link to content the viewer can use to get started in the description
+       - Briefly mention to the viewer they can find pre-requisites and tutorials to watch first in the description
+    2. Provide *resources to go further*
+       - Godot docs
+       - Great tutorials from other tutorial makers
+       - General article on the subject, if applicable
+    3. *Table of contents* and timecodes to jump to specific sections
+    4. Create *assignments* to help the viewer put what they learned in practice
 
 * Assignments
   
