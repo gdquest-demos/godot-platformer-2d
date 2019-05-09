@@ -17,6 +17,8 @@ onready var cooldown: Timer = $Cooldown
 
 onready var length = ray.cast_to.length()
 
+export var force := 500.0
+
 const HOOKABLE_PHYSICS_LAYER: = 2
 
 
