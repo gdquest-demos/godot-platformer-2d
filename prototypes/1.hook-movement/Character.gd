@@ -104,5 +104,11 @@ func _set_info_dict(value:Dictionary) -> void:
 	Events.emit_signal("player_info_updated", _info_dict)
 
 
-func _on_Hook_hooked_onto_target(force:Vector2) -> void:
-	_velocity += force
+# Hook reaction temporarily moved to the player to make it easier to customize the reaction
+# in different prototypes
+func _on_Hook_hooked_onto_target(target_position:Vector2) -> void:
+	var PULL_BASE_FORCE: = 2500.0
+	var to_target: = target_position - global_position
+	var direction: = to_target.normalized()
+	var distance: = to_target.length()
+	_velocity += direction * PULL_BASE_FORCE * pow(distance / hook.length, 0.3)

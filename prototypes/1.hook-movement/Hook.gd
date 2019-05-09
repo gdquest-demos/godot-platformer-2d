@@ -5,9 +5,8 @@ throws a raycast that can interact with Hookable bodies and calculate a pull vec
 The raycast is updated manually for greater precision with where the player is aiming
 """
 
-signal hooked_onto_target(pull_force)
+signal hooked_onto_target(target_position)
 
-export var PULL_BASE_FORCE: = 2500.0
 
 onready var ray: RayCast2D = $RayCast2D
 onready var arrow: = $Arrow
@@ -25,7 +24,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("hook") and _can_hook():
 		cooldown.start()
 		arrow.hook_position = snap_detector.target.global_position if snap_detector.target else ray.get_collision_point()
-		emit_signal("hooked_onto_target", _calculate_pull_force())
+		emit_signal("hooked_onto_target", _get_hook_position())
 
 
 func _physics_process(delta: float) -> void:
@@ -52,14 +51,8 @@ func _has_target() -> bool:
 func _can_hook() -> bool:
 	return _has_target() and cooldown.is_stopped()
 
-
-func _calculate_pull_force() -> Vector2:
-	var target_position: Vector2 = snap_detector.target.global_position if snap_detector.target else ray.get_collision_point()
-	var to_target: = target_position - global_position
-	var direction: = to_target.normalized()
-	var distance: = to_target.length()
-	return PULL_BASE_FORCE * pow(distance / length, 0.6) * direction
-
+func _get_hook_position() -> Vector2:
+	return snap_detector.target.global_position if snap_detector.target else ray.get_collision_point()
 
 func _get_aim_direction() -> Vector2:
 	match Settings.controls:
