@@ -1,6 +1,9 @@
 #+TITLE: Game Concept
 #+DESCRIPTION: Concept document for the 2d platform/adventure game demo we're creating as a base for the Kickstarter 2019 2d game creation course.
+#+COLUMNS: %5TODO %25ITEM %1PRIORITY %8Effort(Effort){:} %TAGS
+#+PROPERTY: Effort_ALL 0:30 1:00 1:30 2:00 3:00 4:00 6:00 8:00
 #+AUTHOR: Nathan Lovato
+
 
 /The concept is still a living document so that we have a base for design discussions. At this stage, we can still change the core mechanic, if you have something that's as versatile and that can fit the teaching goals for the project. See the [[*Possible other uses][first note]] below/
 
@@ -125,6 +128,9 @@
     The twin stick setup also works. To me, it feels more technical, and less accessible. But it works.
 
 ** TODO Unlocking behaviors and code structure
+   :PROPERTIES:
+   :EFFORT:   4:00
+   :END:
 
    Figure out a good pattern/code structure to unlock and manage new moves on the playable character: e.g. wall-jump, new powers for the hook...
 
@@ -134,22 +140,67 @@
     2. Can we find a pattern and code style that's both modular, i.e. uses aggregation, and that stays accessible to the students?
     3. Which code pattern would work best for Godot?
 
+** TODO Test RigidBody2D instead of KinematicBody2D for the hook-based movement
+   :PROPERTIES:
+   :EFFORT:   3:00
+   :END:
+   
+   We have two options to handle the character's motion: controlling the physics ourselves with ~KinematicBody2D~, or relying on the Bullet physics engine with ~RigidBody2D~.
+
+   I expect that using Bullet will reduce our control on the character's motion, and that would lead to a different game feel and gameplay down the line: we could have the character hit objects, etc.
+   
+   It's worth trying only to see if we can't make a game that feels as good or to avoid some code-related challenges.
+   
+   You can use the existing hook mechanism almost as-is for this test, as it gives you a direction to hook to. The only element that has to change is the character.
+   
+*** Questions
+    
+    - What are the advantages of RigidBody2D in practice?
+    - What are its drawbacks and limitations?
+    - Is the code easier to write?
+
 ** TODO Improving movement
+   :PROPERTIES:
+   :EFFORT:   4:00
+   :END:
    
    The base movement is in place, but it does have some quirks. It's still easy to bump into a corner and to miss landing on a platform.
    
    Some issues:
    
-   1. Hooking to a node from up close barely pulls the character, making it not reach the hooking point.
+   1. Hooking doesn't reliably pull you to the hooking point
+      - Hooking to a node from up close barely pulls the character, making it not reach the hooking point.
+      - Hooking downwards accelerates your fall and often makes you miss your target.
+      - Hooking horizontally while falling doesn't slow down your descent, so it has almost no effect on your motion.
+     
    2. The air state has a higher horizontal speed limit than when walking on the ground, so the character accelerates horizontally upon jumping.
       - The speed cap should be dynamic, depending on whether the player used the hook or not.
       - It's the hook that should provide a maximum speed boost?
+
    3. If the player misses getting on a platform by a small shot, we could have the character climb on it using the ledge.
       - The intention behind the design being to offer a fluid experience with motion, it's not fun to miss a platform by a few pixels, and the character being agile, it could make sense for it to climb ledges automatically.
       - The goal isn't to remove challenge or to babysit the player, but to have serious challenge in other parts of the level design/gameplay, and not break the flow of the motion for a small imprecision.
       - See Dead Cells for an example
    
+** TODO Design level loops
+   :PROPERTIES:
+   :EFFORT:   6:00
+   :END:
+   
+   We have some core movement and controls in place. We now need to work on level design loops that we can combine to create complete rooms. E.g. having a ledge, a pit, and a distant platform down the character that's only accessible using the hook: the loop involves falling and using the hook mid-air going down.
+   
+   [[./img/prototypes/level-design-loops-illustration.png]]
+   
+   These loops should push the possibilities offered by the hook and explore ways to combine them. It's also an opportunity to figure out its limitations and ways to improve the movement.
+   
+   You can add new mechanics or obstacles as part of this, like moving platforms, but be sure to focus on level design and to try to reuse each element as much as possible.
+   
+   Use a new node branch for each chunk, and separate collision bodies so we can save the best ones as reusable scenes.
+   
 ** TODO Predicting player motion
+   :PROPERTIES:
+   :EFFORT:   3:00
+   :END:
    
    It's hard to track how a hook will pull the character. It'd be nice to have tools to visually debug the characters projected arcs of motion, to get a sense for what the hook will do.
 
