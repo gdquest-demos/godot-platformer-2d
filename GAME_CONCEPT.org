@@ -161,6 +161,52 @@
     - What are its drawbacks and limitations?
     - Is the code easier to write?
 
+*** Test results
+**** Using impulse for the hook
+     /I took the notes in this section while creating the controller so we could have a better idea of some pitfalls I encountered/
+     - Seems to be the more logical option
+     - Using it alone causes unexpected behaviors when the player is already moving
+       - When falling and hooking upwards, the player keeps falling
+       - Hooking towards the current move direction speeds the player up a lot
+     - To fix the issues, setting the velocity to zero and then applying the impulse seems to do the trick
+     - Switching back from air state seems to be a "challenge" since there's no easy way to check collisions and collision points. Raycasts were tested and they aren't a good option
+     - No access to delta inside of ~_integrate_forces~, I believe it can lead to different player speeds in different computers
+       - Since we are modifying the player's ~linear_velocity~ this has to be done inside of this function
+
+
+
+**** Problems
+     - Sometimes the player is not able to move for one frame after hitting the ground. Couldn't find a solution for this one
+     - Found a bug with collision here:
+       - [[https://i.imgur.com/rq1p8SL.png]]
+       - I'm not sure what's causing it, neither what's the real problem. When the error is triggered, it's impossible to jump.
+     Here's the error:
+     #+BEGIN_SRC
+     E 0:01:16:0371   Condition ' !area_in && !E ' is true.
+     <C Source>     scene/2d/area_2d.cpp:264 @ _area_inout()
+     #+END_SRC
+
+
+**** Conclusion
+
+     *Quick disclaimer:* I didn't look at razvan's code because I didn't want to get biased to go down the same route that he went, so maybe some of the problems that I found here could be fixed by his solution. 
+
+     To me it seems that we are trying to make a ~RigidBody~ behave more as ~KinematicBody~ while trying to have more control over it. Also, if our final game is to have slopes, it might cause some problems as we won't be able to easily snap the player to them. There are more inherited problems that you have to fix than you would've if we went with a ~KinematicBody~. For my LD44 game there was also a simple hook mechanic and I used a ~KinematicBody~ and managed to put it together relatively quickly.
+
+     We get some advantages because of the physics engine taking care of some things, like the impulse for the hook, but we lose a lot of responsiveness from the player controller itself. I believe that the ~RigidBody~ approach would be better if we wanted our player to _swing_ with the hook, as we would be able to use ~Joints~ along with it. But for what I've seen this is not the intent. It's also easier to control damping as it's taken care for us by the engine, but this isn't something super hard to achieve by code.
+
+     I didn't want to spend too much time tweaking variables but I'm certain we could achieve better results by playing around with both the ~PhysicsMaterial~ and the ~RigidBody~'s properties - which is probably something we'll have to do for the "real" game, even if we go down the ~KinematicBody~ route. 
+
+     It's also important to note that I was using [[https://store.steampowered.com/app/401710/Flinthook/][Flinthook]] as reference while creating the code. 
+     
+     #+BEGIN_QUOTE
+     we could have the character hit objects and make them fall using physics, etc.
+     #+END_QUOTE
+     
+     Can't this be achieved using a ~KinematicBody2D~? It's just not affected by physics, but it affects others bodies. 
+
+
+
 ** TODO Improving movement
    :PROPERTIES:
    :EFFORT:   4:00
