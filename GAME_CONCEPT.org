@@ -147,11 +147,13 @@
    
    We have two options to handle the character's motion: controlling the physics ourselves with ~KinematicBody2D~, or relying on the Bullet physics engine with ~RigidBody2D~.
 
-   I expect that using Bullet will reduce our control on the character's motion, and that would lead to a different game feel and gameplay down the line: we could have the character hit objects, etc.
+   I expect that using Bullet will reduce our control on the character's motion, and that would lead to a different game feel and gameplay down the line: we could have the character hit objects and make them fall using physics, etc.
    
    It's worth trying only to see if we can't make a game that feels as good or to avoid some code-related challenges.
    
    You can use the existing hook mechanism almost as-is for this test, as it gives you a direction to hook to. The only element that has to change is the character.
+   
+   The goal is to see if we can build a good hook movement with rigidbody2d, as good as with KinematicBody2D. See the questions below.
    
 *** Questions
     
