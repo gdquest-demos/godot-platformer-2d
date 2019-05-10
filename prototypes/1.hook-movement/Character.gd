@@ -1,16 +1,20 @@
 extends KinematicBody2D
 
 onready var hook: = $Hook
+onready var ledge_detector: = $LedgeDetector
+onready var floor_detector: RayCast2D = $FloorDetector
 
 enum {
 	IDLE,
 	RUN,
 	AIR,
+	LEDGE
 	}
 var states_strings: = {
 	IDLE: "idle",
 	RUN: "run",
 	AIR: "air",
+	LEDGE: "ledge",
 	}
 
 const FLOOR_NORMAL: = Vector2(0, -1)
@@ -30,7 +34,8 @@ var _state: int = IDLE
 onready var _transitions: = {
 		IDLE: [RUN, AIR],
 		RUN: [IDLE, AIR],
-		AIR: [IDLE],
+		AIR: [IDLE, LEDGE],
+		LEDGE: [IDLE],
 	}
 
 
@@ -61,12 +66,15 @@ func _physics_process(delta):
 			_velocity.x += air_acceleration * move_direction.x * delta
 			if abs(_velocity.x) > air_max_speed:
 				_velocity.x = air_max_speed * sign(_velocity.x)
+			if ledge_detector.is_against_ledge():
+				change_state(LEDGE)
 	
 	# Vertical movement
-	_velocity.y += gravity * delta
-	_velocity.y = clamp(_velocity.y, air_max_speed_vertical.x, air_max_speed_vertical.y)
-	var slide_velocity: = move_and_slide(_velocity, FLOOR_NORMAL)
-	_velocity.y = slide_velocity.y
+	if _state != LEDGE:
+		_velocity.y += gravity * delta
+		_velocity.y = clamp(_velocity.y, air_max_speed_vertical.x, air_max_speed_vertical.y)
+		var slide_velocity: = move_and_slide(_velocity, FLOOR_NORMAL)
+		_velocity.y = slide_velocity.y
 	self._info_dict["velocity"] = _velocity
 
 	# State updates after movement
@@ -88,6 +96,11 @@ func enter_state() -> void:
 	match _state:
 		IDLE:
 			_velocity.x = 0.0
+		LEDGE:
+			_velocity = Vector2.ZERO
+			global_position = ledge_detector.ray_top.global_position + Vector2(ledge_detector.ray_length * ledge_detector.look_direction, 0.0)
+			global_position = floor_detector.get_floor_position()
+			change_state(IDLE)
 		_:
 			return
 
@@ -107,8 +120,12 @@ func _set_info_dict(value:Dictionary) -> void:
 # Hook reaction temporarily moved to the player to make it easier to customize the reaction
 # in different prototypes
 func _on_Hook_hooked_onto_target(target_position:Vector2) -> void:
-	var PULL_BASE_FORCE: = 2500.0
+	var PULL_BASE_FORCE: = 2200.0
 	var to_target: = target_position - global_position
 	var direction: = to_target.normalized()
 	var distance: = to_target.length()
-	_velocity += direction * PULL_BASE_FORCE * pow(distance / hook.length, 0.3)
+	if direction.y > 0.0:
+		_velocity.y = -1000.0
+	else:
+		_velocity.y = 0.0
+	_velocity += direction * PULL_BASE_FORCE * pow(distance / hook.length, 0.5)

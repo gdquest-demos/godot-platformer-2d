@@ -91,7 +91,7 @@ text = "Controls"
 script = SubResource( 2 )
 
 [node name="Character" parent="." instance=ExtResource( 4 )]
-position = Vector2( 280, 880 )
+position = Vector2( 880, 880 )
 collision_mask = 6
 
 [node name="LevelCollisions" type="StaticBody2D" parent="."]
@@ -106,6 +106,16 @@ polygon = PoolVector2Array( -291.064, 1080, -291.064, 840, 1552.34, 840, 1552.34
 
 [node name="2" type="CollisionPolygon2D" parent="LevelCollisions"]
 position = Vector2( -80, 80 )
+scale = Vector2( 1.23684, 1 )
+polygon = PoolVector2Array( 776.172, 560, 776.172, 520, 970.214, 520, 970.214, 560 )
+
+[node name="10" type="CollisionPolygon2D" parent="LevelCollisions"]
+position = Vector2( 1400, 0 )
+scale = Vector2( 1.23684, 1 )
+polygon = PoolVector2Array( 776.172, 560, 776.172, 520, 970.214, 520, 970.214, 560 )
+
+[node name="11" type="CollisionPolygon2D" parent="LevelCollisions"]
+position = Vector2( 1920, 240 )
 scale = Vector2( 1.23684, 1 )
 polygon = PoolVector2Array( 776.172, 560, 776.172, 520, 970.214, 520, 970.214, 560 )
 
@@ -144,6 +154,16 @@ position = Vector2( 880, 0 )
 scale = Vector2( 1.23684, 1 )
 polygon = PoolVector2Array( 711.489, 840, 711.491, -40, 840.853, -40, 840.851, 840 )
 
+[node name="LevelCollisions2" type="StaticBody2D" parent="."]
+position = Vector2( 4080, 600 )
+collision_layer = 2
+collision_mask = 0
+
+[node name="1" type="CollisionPolygon2D" parent="LevelCollisions2"]
+position = Vector2( -1080, -570 )
+scale = Vector2( 1.23684, 1 )
+polygon = PoolVector2Array( 1034.9, 570, 711.491, 570, 711.491, 530, 1034.9, 530 )
+
 [node name="HookableWall3" type="StaticBody2D" parent="."]
 editor/display_folded = true
 modulate = Color( 0, 0.54902, 0.992157, 1 )
@@ -167,6 +187,15 @@ polygon = PoolVector2Array( -40, -160, 0, -160, 0, 120, -40, 120 )
 
 [node name="HookTarget1" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1680, 480 )
+
+[node name="HookTarget4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 3360, 720 )
+
+[node name="HookTarget6" parent="." instance=ExtResource( 5 )]
+position = Vector2( 3880, 440 )
+
+[node name="HookTarget5" parent="." instance=ExtResource( 5 )]
+position = Vector2( 2964, 440 )
 
 [node name="HookTarget2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1960, 190 )
@@ -193,5 +222,3 @@ texture_mode = 8
 begin_cap_mode = 2
 end_cap_mode = 2
 
-
-[editable path="Character"]
