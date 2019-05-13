@@ -4,6 +4,8 @@ onready var hook: = $Hook
 onready var ledge_detector: = $LedgeDetector
 onready var floor_detector: RayCast2D = $FloorDetector
 
+onready var skin: Position2D = $Skin
+
 enum {
 	IDLE,
 	RUN,
@@ -45,6 +47,7 @@ onready var _transitions: = {
 
 func _ready() -> void:
 	hook.connect("hooked_onto_target", self, "_on_Hook_hooked_onto_target")
+	skin.connect("animation_finished", self, "_on_Skin_animation_finished")
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -103,13 +106,18 @@ func enter_state() -> void:
 			_velocity.x = 0.0
 		LEDGE:
 			# Move the character above the platform, then snap it down to the ground
+			var global_position_start: = global_position
 			global_position = ledge_detector.ray_top.global_position + Vector2(ledge_detector.ray_length * sign(_velocity.x), 0.0)
 			global_position = floor_detector.get_floor_position()
 			_velocity = Vector2.ZERO
-			change_state(IDLE)
-			return
+			skin.animate_ledge(global_position_start, global_position)
 		_:
 			return
+
+
+func _on_Skin_animation_finished(name:String) -> void:
+	if name == "ledge" and _state == LEDGE:
+		change_state(IDLE)
 
 
 func exit_state() -> void:
