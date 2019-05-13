@@ -141,8 +141,10 @@ func _set_info_dict(value:Dictionary) -> void:
 # Hook reaction temporarily moved to the player to make it easier to customize the reaction
 # in different prototypes
 func _on_Hook_hooked_onto_target(target_position:Vector2) -> void:
-	var PULL_BASE_FORCE: = 2200.0
 	var to_target: = target_position - global_position
+	if is_on_floor() and to_target.y > 0.0:
+		return
+	var PULL_BASE_FORCE: = 2200.0
 	var direction: = to_target.normalized()
 	var distance: = to_target.length()
 
