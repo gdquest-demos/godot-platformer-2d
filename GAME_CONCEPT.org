@@ -140,7 +140,7 @@
     2. Can we find a pattern and code style that's both modular, i.e. uses aggregation, and that stays accessible to the students?
     3. Which code pattern would work best for Godot?
 
-** TODO Test RigidBody2D instead of KinematicBody2D for the hook-based movement
+** DONE Test RigidBody2D instead of KinematicBody2D for the hook-based movement :guilherme:
    :PROPERTIES:
    :EFFORT:   3:00
    :END:
@@ -162,10 +162,12 @@
     - Is the code easier to write?
 
 *** Test results
+    
 **** Using impulse for the hook
+     
      /I took the notes in this section while creating the controller so we could have a better idea of some pitfalls I encountered/
-     - Seems to be the more logical option
-     - Using it alone causes unexpected behaviors when the player is already moving
+
+     - Using RigidBody2D alone causes unexpected behaviors when the player is already moving
        - When falling and hooking upwards, the player keeps falling
        - Hooking towards the current move direction speeds the player up a lot
      - To fix the issues, setting the velocity to zero and then applying the impulse seems to do the trick
@@ -173,19 +175,19 @@
      - No access to delta inside of ~_integrate_forces~, I believe it can lead to different player speeds in different computers
        - Since we are modifying the player's ~linear_velocity~ this has to be done inside of this function
 
-
-
 **** Problems
+     
      - Sometimes the player is not able to move for one frame after hitting the ground. Couldn't find a solution for this one
      - Found a bug with collision here:
        - [[https://i.imgur.com/rq1p8SL.png]]
        - I'm not sure what's causing it, neither what's the real problem. When the error is triggered, it's impossible to jump.
+
      Here's the error:
+     
      #+BEGIN_SRC
      E 0:01:16:0371   Condition ' !area_in && !E ' is true.
      <C Source>     scene/2d/area_2d.cpp:264 @ _area_inout()
      #+END_SRC
-
 
 **** Conclusion
 
@@ -205,9 +207,7 @@
      
      Can't this be achieved using a ~KinematicBody2D~? It's just not affected by physics, but it affects others bodies. 
 
-
-
-** TODO Improving movement
+** PROGRESS Improving movement
    :PROPERTIES:
    :EFFORT:   4:00
    :END:
