@@ -19,16 +19,19 @@ var states_strings: = {
 
 const FLOOR_NORMAL: = Vector2(0, -1)
 
-export var speed_ground: = 500.0
+export var max_speed_ground: = 500.0
 export var jump_force: = 900.0
 export var gravity: = 3000.0
 
 export var air_acceleration: = 3000.0
-export var air_max_speed: = 700.0
+export var air_max_speed_normal: float = max_speed_ground
+export var air_max_speed_hook: float = 700.0
 export var air_max_speed_vertical: = Vector2(-1500.0, 1500.0)
 
 var _velocity: = Vector2.ZERO
 var _info_dict: = {} setget _set_info_dict
+
+var _air_max_speed: = air_max_speed_normal
 
 
 var _state: int = IDLE
@@ -61,12 +64,12 @@ func _physics_process(delta):
 		RUN:
 			if not move_direction.x:
 				change_state(IDLE)
-			_velocity.x = move_direction.x * speed_ground
+			_velocity.x = move_direction.x * max_speed_ground
 
 		AIR:
 			_velocity.x += air_acceleration * move_direction.x * delta
-			if abs(_velocity.x) > air_max_speed:
-				_velocity.x = air_max_speed * sign(_velocity.x)
+			if abs(_velocity.x) > _air_max_speed:
+				_velocity.x = _air_max_speed * sign(_velocity.x)
 			if ledge_detector.is_against_ledge(sign(_velocity.x)):
 				change_state(LEDGE)
 	
@@ -88,6 +91,7 @@ func _physics_process(delta):
 func change_state(target_state:int) -> void:
 	if not target_state in _transitions[_state]:
 		return
+	exit_state()
 	_state = target_state
 	enter_state()
 	Events.emit_signal("player_state_changed", states_strings[_state])
@@ -103,8 +107,15 @@ func enter_state() -> void:
 			global_position = floor_detector.get_floor_position()
 			_velocity = Vector2.ZERO
 			change_state(IDLE)
+			return
 		_:
 			return
+
+
+func exit_state() -> void:
+	match _state:
+		AIR:
+			_air_max_speed = air_max_speed_normal
 
 
 func get_move_direction() -> Vector2:
@@ -126,8 +137,11 @@ func _on_Hook_hooked_onto_target(target_position:Vector2) -> void:
 	var to_target: = target_position - global_position
 	var direction: = to_target.normalized()
 	var distance: = to_target.length()
+
 	if direction.y > 0.0:
 		_velocity.y = -1000.0
 	else:
 		_velocity.y = 0.0
+
+	_air_max_speed = air_max_speed_hook
 	_velocity += direction * PULL_BASE_FORCE * pow(distance / hook.length, 0.5)

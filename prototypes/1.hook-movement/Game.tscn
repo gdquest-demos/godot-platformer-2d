@@ -34,7 +34,6 @@ func _on_Settings_controls_changed(controls:int) -> void:
 [node name="TopLayer" type="CanvasLayer" parent="."]
 
 [node name="UI" type="Control" parent="TopLayer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
