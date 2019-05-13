@@ -95,6 +95,10 @@ script = SubResource( 2 )
 position = Vector2( 712.25, 606.5 )
 collision_mask = 6
 mode = 2
+mass = 0.880612
+gravity_scale = 20.0
+move_speed = 600.0
+jump_force = 1000.0
 
 [node name="LevelCollisions" type="StaticBody2D" parent="."]
 editor/display_folded = true

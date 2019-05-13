@@ -30,6 +30,7 @@ export var air_max_speed_vertical: = Vector2(-1500.0, 1500.0)
 var _velocity: = Vector2.ZERO
 var _info_dict: = {} setget _set_info_dict
 
+
 var _state: int = IDLE
 onready var _transitions: = {
 		IDLE: [RUN, AIR],
@@ -66,7 +67,7 @@ func _physics_process(delta):
 			_velocity.x += air_acceleration * move_direction.x * delta
 			if abs(_velocity.x) > air_max_speed:
 				_velocity.x = air_max_speed * sign(_velocity.x)
-			if ledge_detector.is_against_ledge():
+			if ledge_detector.is_against_ledge(sign(_velocity.x)):
 				change_state(LEDGE)
 	
 	# Vertical movement
@@ -97,9 +98,10 @@ func enter_state() -> void:
 		IDLE:
 			_velocity.x = 0.0
 		LEDGE:
-			_velocity = Vector2.ZERO
-			global_position = ledge_detector.ray_top.global_position + Vector2(ledge_detector.ray_length * ledge_detector.look_direction, 0.0)
+			# Move the character above the platform, then snap it down to the ground
+			global_position = ledge_detector.ray_top.global_position + Vector2(ledge_detector.ray_length * sign(_velocity.x), 0.0)
 			global_position = floor_detector.get_floor_position()
+			_velocity = Vector2.ZERO
 			change_state(IDLE)
 		_:
 			return
