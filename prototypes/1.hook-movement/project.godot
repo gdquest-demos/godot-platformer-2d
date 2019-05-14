@@ -40,10 +40,12 @@ config/icon="res://icon.png"
 
 Settings="*res://Settings.gd"
 Events="*res://Events.gd"
+ControlUtils="*res://ControlUtils.gd"
 
 [debug]
 
 gdscript/warnings/enable=false
+testing/controls/use_right_stick=false
 
 [display]
 

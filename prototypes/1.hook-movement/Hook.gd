@@ -7,8 +7,6 @@ The raycast is updated manually for greater precision with where the player is a
 
 signal hooked_onto_target(target_position)
 
-export var use_right_stick: = false
-
 onready var ray: RayCast2D = $RayCast2D
 onready var arrow: = $Arrow
 onready var hint: = $TargetHint
@@ -75,14 +73,6 @@ func _get_hook_position() -> Vector2:
 func _get_aim_direction() -> Vector2:
 	match Settings.controls:
 		Settings.GAMEPAD:
-			# FIXME: axes should be 2 and 3, or RX and RY, is there a calibration issue with the gamepad?
-			var right_stick_direction: = Vector2(
-				Input.get_joy_axis(0, JOY_AXIS_3), 
-				Input.get_joy_axis(0, JOY_AXIS_4)).normalized()
-			var left_stick_direction: = Vector2(
-				Input.get_joy_axis(0, JOY_AXIS_0), 
-				Input.get_joy_axis(0, JOY_AXIS_1)).normalized()
-
-			return right_stick_direction if use_right_stick else left_stick_direction
+			return ControlUtils.get_aim_joystick_direction()
 		Settings.KBD_MOUSE, _:
 			return (get_global_mouse_position() - global_position).normalized()
