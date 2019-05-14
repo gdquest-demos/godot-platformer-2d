@@ -76,6 +76,70 @@
     - *Unlocking mechanics* through upgrades and controlling player progression.
     - *Camera*: helping the player with a camera that moves ahead of the character and looks where the player wants to look.
 
+** List of topics
+ 
+   /This is a list of topics that can be broken down or merged into more or fewer videos. From there, we should arrange them to form the 3 series (free, indie, pro) with clearer lists of topics and videos, and refine as we move forward with the project's pre-production./
+   
+   # Remember for teaching: copy paste code snippets instead of writing every line.
+   # Check e.g. Brilliant for learning examples.
+   
+*** Platforming and motion
+    
+    # - Note taken on [2019-05-14 mar. 13:33] \\
+    #   Can be covered more or less in isolation, before the rest of the game
+      
+    Basic motion and input: ground, air control
+    Basic hook
+    Simple lookahead camera: following the player's velocity
+    Scaling the hook's power based on distance (indie)
+    Wall jump (indie)
+    Ledge detection, grab ledge, and let the player jump (indie)
+    Ledge: teleport to the platform (pro)
+    Polish: Storing input before touching the ground (pro)
+    Polish: letting the player jump right after starting a fall (pro)
+    Refining the camera: better prediction of the player's motion (pro) (?)
+    Zero-gravity area (pro) (?)
+
+*** Hook
+    
+    Pulling objects
+    Breaking fragile surfaces
+    Removing armors from enemies with the hook
+    
+*** Game progression
+    
+    Unlocking new player abilities: code pattern -> can use a simple ability like double jump as an example
+
+*** Game design
+    
+    How to get a game project started: from 0 to a nice demo
+    How it's like to work as a game designer: a day in the life of an indie game designer
+
+*** Level Design
+    
+    Level loops: Exploring the possibilities of the core mechanic 
+    Designing frames with pre-made scenes, level loops, and tilemaps
+    How to architecture the map at a meta level to manage the player's progression
+    
+*** Audio
+
+    Adding BGM and sounds to the game
+
+*** Combat and AI
+    
+    Damaging enemies: e.g. hook pulls character to enemy and kills it, enemies use projectiles?
+    Pathfinding for flying enemies: Astar? Heatmap? Steering with follow path
+    Armor from one side
+
+*** Graphics
+    
+    Adding graphics, animation, and audio
+
+*** Code structure
+
+    Rundown of the project's code structure and abstractions
+    Patterns we use in the project
+
 * Prototypes
 ** DONE Base movement with the hook
    CLOSED: [2019-05-03 ven. 10:18]
