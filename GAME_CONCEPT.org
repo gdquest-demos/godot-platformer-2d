@@ -207,7 +207,8 @@
      
      Can't this be achieved using a ~KinematicBody2D~? It's just not affected by physics, but it affects others bodies. 
 
-** PROGRESS Improving movement
+** DONE Improving movement
+   CLOSED: [2019-05-14 mar. 08:40]
    :PROPERTIES:
    :EFFORT:   4:00
    :END:
@@ -230,6 +231,14 @@
       - The goal isn't to remove challenge or to babysit the player, but to have serious challenge in other parts of the level design/gameplay, and not break the flow of the motion for a small imprecision.
       - See Dead Cells for an example
    
+*** Results
+
+    The ledge state improves control quite a bit, it feels a lot more pleasant to have the character continue moving and not get stuck if you miss the platform by a few pixels.
+    
+    The character now slows down when hooking downwards during a fall. It makes it hop to the right or to the left, making the downward hook usable.
+    
+    There are fixes and improvements for all the points above, and overall it makes the controls feel more reliable and the motion feels more fluid to me. Now, we need to do level design work, get people to test the game and see how it works for them.
+    
 ** TODO Design level loops
    :PROPERTIES:
    :EFFORT:   6:00
