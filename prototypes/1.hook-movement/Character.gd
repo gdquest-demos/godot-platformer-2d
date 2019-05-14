@@ -23,7 +23,8 @@ const FLOOR_NORMAL: = Vector2(0, -1)
 
 export var max_speed_ground: = 500.0
 export var jump_force: = 900.0
-export var gravity: = 3000.0
+export var gravity_normal: = 3000.0
+
 
 export var air_acceleration: = 3000.0
 export var air_max_speed_normal: float = max_speed_ground
@@ -31,6 +32,7 @@ export var air_max_speed_hook: float = 700.0
 export var air_max_speed_vertical: = Vector2(-1500.0, 1500.0)
 
 var _velocity: = Vector2.ZERO
+var _gravity: = gravity_normal
 var _info_dict: = {} setget _set_info_dict
 
 var _air_max_speed: = air_max_speed_normal
@@ -78,7 +80,7 @@ func _physics_process(delta):
 	
 	# Vertical movement
 	if _state != LEDGE:
-		_velocity.y += gravity * delta
+		_velocity.y += _gravity * delta
 		_velocity.y = clamp(_velocity.y, air_max_speed_vertical.x, air_max_speed_vertical.y)
 		var slide_velocity: = move_and_slide(_velocity, FLOOR_NORMAL)
 		_velocity.y = slide_velocity.y

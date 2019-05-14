@@ -21,8 +21,8 @@ shape = SubResource( 1 )
 position = Vector2( 0, -30 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-visible = false
 position = Vector2( 0, -160 )
+current = true
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
 
