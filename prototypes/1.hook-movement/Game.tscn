@@ -221,6 +221,7 @@ position = Vector2( -1760, -40 )
 points = PoolVector2Array( 1760, -120, 1880, -40, 1760, -40 )
 width = 20.0
 default_color = Color( 0.796078, 0.129412, 0.380392, 1 )
+texture_mode = 250139424
 joint_mode = 2
 
 [node name="Line2D" type="Line2D" parent="Flag"]

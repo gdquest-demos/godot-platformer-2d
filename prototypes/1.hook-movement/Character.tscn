@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Character.gd" type="Script" id=1]
 [ext_resource path="res://Hook.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://FloorDetector.gd" type="Script" id=4]
 [ext_resource path="res://Skin.gd" type="Script" id=5]
 [ext_resource path="res://Body.gd" type="Script" id=6]
+[ext_resource path="res://CameraRig.gd" type="Script" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 30 )
@@ -19,12 +20,6 @@ shape = SubResource( 1 )
 
 [node name="Hook" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0, -30 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 0, -160 )
-current = true
-drag_margin_h_enabled = false
-drag_margin_v_enabled = false
 
 [node name="LedgeDetector" parent="." instance=ExtResource( 3 )]
 
@@ -46,4 +41,17 @@ color_fill = Color( 0, 0.431373, 0.717647, 1 )
 color_outline = Color( 0.231373, 0.145098, 0.584314, 1 )
 
 [node name="Tween" type="Tween" parent="Skin"]
+
+[node name="CameraRig" type="Position2D" parent="Skin"]
+position = Vector2( 0, -30 )
+script = ExtResource( 7 )
+
+[node name="Camera2D" type="Camera2D" parent="Skin/CameraRig"]
+current = true
+process_mode = 0
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+smoothing_enabled = true
+smoothing_speed = 6.0
+editor_draw_drag_margin = true
 

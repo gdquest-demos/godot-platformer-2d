@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 onready var hook: = $Hook
+onready var camera: = $Skin/CameraRig
 onready var ledge_detector: = $LedgeDetector
 onready var floor_detector: RayCast2D = $FloorDetector
 
@@ -85,6 +86,7 @@ func _physics_process(delta):
 		var slide_velocity: = move_and_slide(_velocity, FLOOR_NORMAL)
 		_velocity.y = slide_velocity.y
 	self._info_dict["velocity"] = _velocity
+	camera.update_position(_velocity)
 
 	# State updates after movement
 	if is_on_floor() and _state == AIR:
