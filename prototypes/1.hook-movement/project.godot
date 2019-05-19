@@ -12,17 +12,17 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "DrawingUtils",
 "language": "GDScript",
-"path": "res://DrawingUtils.gd"
+"path": "res://src/DrawingUtils.gd"
 }, {
 "base": "Position2D",
 "class": "Hook",
 "language": "GDScript",
-"path": "res://Hook.gd"
+"path": "res://src/Actors/Player/Hook/Hook.gd"
 }, {
 "base": "Area2D",
 "class": "HookTarget",
 "language": "GDScript",
-"path": "res://HookTarget.gd"
+"path": "res://src/HookTarget.gd"
 } ]
 _global_script_class_icons={
 "DrawingUtils": "",
@@ -33,14 +33,14 @@ _global_script_class_icons={
 [application]
 
 config/name="Hook! Movement Prototype"
-run/main_scene="res://Game.tscn"
+run/main_scene="res://src/Game.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Settings="*res://Settings.gd"
-Events="*res://Events.gd"
-ControlUtils="*res://ControlUtils.gd"
+Settings="*res://src/Settings.gd"
+Events="*res://src/Events.gd"
+ControlUtils="*res://src/ControlUtils.gd"
 
 [debug]
 
