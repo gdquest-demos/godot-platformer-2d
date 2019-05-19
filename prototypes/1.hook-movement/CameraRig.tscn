@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://CameraRig.gd" type="Script" id=1]
+
+[node name="CameraRig" type="Position2D"]
+position = Vector2( 0, -30 )
+script = ExtResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+process_mode = 0
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+smoothing_enabled = true
+smoothing_speed = 4.0
+editor_draw_drag_margin = true
+
