@@ -1,3 +1,4 @@
+extends Node
 """Global utility methods to extend what's available from the Input singleton"""
 
 

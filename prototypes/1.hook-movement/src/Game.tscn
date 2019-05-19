@@ -1,10 +1,11 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://assets/theme/gdquest.theme" type="Theme" id=1]
-[ext_resource path="res://src/UI/Title.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/UI/InfoLabel.gd" type="Script" id=3]
-[ext_resource path="res://src/Actors/Player/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/HookTarget.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Game.gd" type="Script" id=1]
+[ext_resource path="res://assets/theme/gdquest.theme" type="Theme" id=2]
+[ext_resource path="res://src/UI/Title.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/UI/InfoLabel.gd" type="Script" id=4]
+[ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/HookTarget.tscn" type="PackedScene" id=6]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Label
@@ -39,7 +40,6 @@ script = ExtResource( 1 )
 editor/display_folded = true
 
 [node name="UI" type="Control" parent="TopLayer"]
-editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -95,7 +95,7 @@ margin_bottom = 138.0
 text = "Controls"
 script = SubResource( 2 )
 
-[node name="Player" parent="." instance=ExtResource( 4 )]
+[node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 2080, -80 )
 collision_mask = 6
 
@@ -243,7 +243,6 @@ position = Vector2( 1960, 190 )
 position = Vector2( 1640, -240 )
 
 [node name="Flag" type="Node2D" parent="."]
-editor/display_folded = true
 position = Vector2( 2216, 0 )
 
 [node name="Line2D2" type="Line2D" parent="Flag"]
@@ -263,7 +262,6 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="ZeroGravityArea" type="Area2D" parent="."]
-editor/display_folded = true
 visible = false
 position = Vector2( 2720, -280 )
 __meta__ = {

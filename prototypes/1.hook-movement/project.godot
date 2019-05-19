@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Position2D",
 "class": "Hook",
 "language": "GDScript",
-"path": "res://src/Actors/Player/Hook/Hook.gd"
+"path": "res://src/Player/Hook/Hook.gd"
 }, {
 "base": "Area2D",
 "class": "HookTarget",
@@ -38,9 +38,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Settings="*res://src/Settings.gd"
-Events="*res://src/Events.gd"
-ControlUtils="*res://src/ControlUtils.gd"
+Settings="*res://src/singletons/Settings.gd"
+Events="*res://src/singletons/Events.gd"
+ControlUtils="*res://src/singletons/ControlUtils.gd"
 
 [debug]
 
@@ -113,6 +113,11 @@ aim={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":70,"unicode":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":2,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+restart={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"unicode":0,"echo":false,"script":null)
  ]
 }
 
