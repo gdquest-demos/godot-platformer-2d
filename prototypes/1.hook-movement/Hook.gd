@@ -23,16 +23,20 @@ var aim_mode: = false setget set_aim_mode
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("hook") and _can_hook():
-		cooldown.start()
-		arrow.hook_position = snap_detector.target.global_position if snap_detector.target else ray.get_collision_point()
-		if aim_mode:
-			self.aim_mode = false
-		emit_signal("hooked_onto_target", _get_hook_position())
+		_hook()
 		get_tree().set_input_as_handled()
 
 	if event.is_action_pressed("aim"):
 		self.aim_mode = not aim_mode
 		get_tree().set_input_as_handled()
+
+
+func _hook() -> void:
+	cooldown.start()
+	arrow.hook_position = snap_detector.target.global_position if snap_detector.target else ray.get_collision_point()
+	if aim_mode:
+		self.aim_mode = false
+	emit_signal("hooked_onto_target", _get_hook_position())
 
 
 func set_aim_mode(value:bool) -> void:
@@ -73,6 +77,21 @@ func _get_hook_position() -> Vector2:
 func _get_aim_direction() -> Vector2:
 	match Settings.controls:
 		Settings.GAMEPAD:
-			return ControlUtils.get_aim_joystick_direction()
+			return get_aim_joystick_direction()
 		Settings.KBD_MOUSE, _:
 			return (get_global_mouse_position() - global_position).normalized()
+
+
+# FIXME
+static func get_aim_joystick_direction() -> Vector2:
+	var use_right_stick: bool = ProjectSettings.get_setting('debug/testing/controls/use_right_stick')
+	
+	# FIXME: axes should be 2 and 3, or RX and RY, is there a calibration issue with the gamepad?
+	if use_right_stick:
+		return Vector2(
+			Input.get_joy_axis(0, JOY_AXIS_3), 
+			Input.get_joy_axis(0, JOY_AXIS_4)).normalized()
+	else:
+		return Vector2(
+			Input.get_joy_axis(0, JOY_AXIS_0), 
+			Input.get_joy_axis(0, JOY_AXIS_1)).normalized()
