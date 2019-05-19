@@ -318,6 +318,19 @@
    
    Use a new node branch for each chunk, and separate collision bodies so we can save the best ones as reusable scenes.
    
+** Refining the core movement
+   
+   After testing the level design work from Henrique, some problems with the game's controls are clearer:
+
+   - It's hard to catch a hook at times, as the character falls fast. You have to be too reactive with the input.
+   - The camera doesn't help enough in seeing the challenges ahead, especially with vertical level design.
+
+   This prototype is an attempt at solving these issues:
+   
+   - Camera design: the lookahead based on the mouse's position makes the camera jiggle too much. We've got to experiment working with the input direction and move direction of the character. Using the velocity alone makes it so the camera lags behind, while updating based on input instantly almost gives motion sickness.
+   - Store input: jump after fall start, or hook
+   - Allow the player to jump right after a fall started, and to hook if the input was right before actually the snap detector detected the hooking point. Maybe only when falling?
+
 ** TODO Predicting player motion
    :PROPERTIES:
    :EFFORT:   3:00

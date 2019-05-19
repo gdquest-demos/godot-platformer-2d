@@ -8,7 +8,6 @@
 [ext_resource path="res://src/Actors/Player/Body.gd" type="Script" id=6]
 [ext_resource path="res://src/Actors/Player/CameraRig.gd" type="Script" id=7]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 30 )
 
@@ -23,6 +22,8 @@ shape = SubResource( 1 )
 position = Vector2( 0, -30 )
 
 [node name="LedgeDetector" parent="." instance=ExtResource( 3 )]
+active = true
+ray_length = 30.0
 
 [node name="FloorDetector" type="RayCast2D" parent="."]
 position = Vector2( 0, -30 )

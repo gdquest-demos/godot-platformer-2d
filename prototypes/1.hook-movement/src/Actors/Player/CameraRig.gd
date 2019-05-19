@@ -21,4 +21,8 @@ func update_position(velocity:Vector2) -> void:
 			_camera.position = distance_ratio * mouse_position.normalized() * offset
 		
 		Settings.GAMEPAD:
-			_camera.position = ControlUtils.get_aim_joystick_direction() * offset
+			var joystick_direction: = get_aim_joystick_direction()
+			if Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left"):
+				_camera.position.x = sign(velocity.x) * offset.x
+			_camera.position.y = joystick_direction.y * offset.y
+
