@@ -32,4 +32,3 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Map/PushBox"]
 shape = SubResource( 1 )
-
