@@ -1,4 +1,5 @@
 """Global utility methods to extend what's available from the Input singleton"""
+extends Node
 
 
 static func get_aim_joystick_direction() -> Vector2:
