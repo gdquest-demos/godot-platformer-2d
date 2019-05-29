@@ -39,6 +39,12 @@ var _info_dict: = {} setget _set_info_dict
 
 var _air_max_speed: = air_max_speed_normal
 
+# Register jump input if the player presses jump before touching the ground
+var _air_input_delayed_jump: = false
+var _air_input_delayed_jump_duration: = 0.1
+
+# Allow the player to jump right after falling off a ledge
+var _idle_input_delayed_jump: = false
 
 var _state: int = IDLE
 onready var _transitions: = {
@@ -55,8 +61,19 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("jump") and is_on_floor():
-		_velocity.y -= jump_force
+	if event.is_action_pressed("jump"):
+		if _state == AIR:
+			# Falling from a ledge
+			if _idle_input_delayed_jump:
+				_idle_input_delayed_jump = false
+				_jump()
+			# End of a fall
+			else:
+				_air_input_delayed_jump = true
+				var timer: = get_tree().create_timer(_air_input_delayed_jump_duration)
+				timer.connect("timeout", self, 'set', ['_air_input_delayed_jump', false])
+		elif is_on_floor():
+			_jump()
 
 
 func _physics_process(delta):
@@ -131,6 +148,17 @@ func enter_state() -> void:
 	match _state:
 		IDLE:
 			_velocity.x = 0.0
+
+			if _air_input_delayed_jump:
+				_air_input_delayed_jump = false
+				_jump()
+
+		AIR:
+			# Allow the player to jump right after falling off a ledge
+			if _velocity.y >= 0.0:
+				_idle_input_delayed_jump = true
+				var timer: = get_tree().create_timer(_air_input_delayed_jump_duration)
+				timer.connect("timeout", self, 'set', ['_idle_input_delayed_jump', false])
 		
 		LEDGE:
 			# Move the character above the platform, then snap it down to the ground
@@ -155,6 +183,10 @@ func get_move_direction() -> Vector2:
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 		Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")
 	)
+
+
+func _jump():
+	_velocity.y -= jump_force
 
 
 func _set_info_dict(value: Dictionary) -> void:
