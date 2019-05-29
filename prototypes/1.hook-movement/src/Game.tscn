@@ -270,3 +270,4 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZeroGravityArea"]
 shape = SubResource( 3 )
+
