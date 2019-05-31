@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/objects/StaticPlatform.tscn" type="PackedScene" id=1]
-[ext_resource path="res://HookTarget.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/HookTarget.tscn" type="PackedScene" id=2]
 
 [node name="PlatformToTarget" type="Node2D"]
 __meta__ = {
@@ -13,3 +13,4 @@ __meta__ = {
 
 [node name="HookTarget" parent="." instance=ExtResource( 2 )]
 position = Vector2( 620, -440 )
+

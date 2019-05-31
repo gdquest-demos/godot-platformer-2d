@@ -4,6 +4,3 @@
 
 [node name="PassThroughHookableCeiling" index="0" instance=ExtResource( 1 )]
 
-[node name="1" parent="." index="0"]
-one_way_collision = true
-

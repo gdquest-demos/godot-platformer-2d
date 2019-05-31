@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://HookTarget.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/HookTarget.tscn" type="PackedScene" id=1]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Lift"

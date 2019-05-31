@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://HookTarget.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/HookTarget.tscn" type="PackedScene" id=1]
 
 [node name="RisingHookTargets" type="Node2D"]
 __meta__ = {
@@ -12,3 +12,4 @@ __meta__ = {
 
 [node name="HookTarget2" parent="." instance=ExtResource( 1 )]
 position = Vector2( -280, -240 )
+
