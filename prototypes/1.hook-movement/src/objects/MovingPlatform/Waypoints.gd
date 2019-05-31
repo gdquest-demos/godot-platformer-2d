@@ -35,16 +35,16 @@ func _draw() -> void:
 	var last_point: = Vector2.ZERO
 	for child in get_children():
 		assert child is Node2D
-		points.append(child.global_position)
+		points.append(child.position)
 		if points.size() > 1:
-			var center: Vector2 = (child.global_position + last_point) / 2
-			var angle: = last_point.angle_to_point(child.global_position)
+			var center: Vector2 = (child.position + last_point) / 2
+			var angle: = last_point.angle_to_point(child.position)
 			triangles.append({center=center, angle=angle})
-		last_point = child.global_position
+		last_point = child.position
 	
 	# Add last segment and arrow if in cycling mode
 	if mode == Mode.CYCLE:
-		var first_child_position: Vector2 = get_child(0).global_position
+		var first_child_position: Vector2 = get_child(0).position
 		points.append(first_child_position)
 		var center: = (first_child_position + last_point) / 2
 		var angle: = last_point.angle_to_point(first_child_position)

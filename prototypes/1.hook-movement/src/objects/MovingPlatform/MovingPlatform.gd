@@ -2,16 +2,17 @@
 extends KinematicBody2D
 
 onready var wait_timer: Timer = $Timer
-onready var waypoints: = get_node(waypoints_path)
+onready var waypoints: = $Waypoints
 
 export var speed: = 400.0
-export var waypoints_path: = NodePath()
 
 var target_position: = Vector2()
 
 
 func _ready() -> void:
 	if not waypoints:
+		print("Missing Waypoints node for %s: %s" % [name, get_path()])
+		assert waypoints
 		set_physics_process(false)
 		return
 	position = waypoints.get_start_position()
