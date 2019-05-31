@@ -60,6 +60,7 @@
 * Course
 
 ** Teaching goals
+   
 *** Game design
 
    - *Using one mechanic for many purposes*: giving the player a versatile tool.
@@ -112,10 +113,17 @@
 
 *** Game design
     
+    Metroidvania design analysis: what makes a Metroidvania?
+    /Include analyses of character movement, camera, etc. in other games/
+    
     How to get a game project started: from 0 to a nice demo
     How it's like to work as a game designer: a day in the life of an indie game designer
+    Teaching the player how to play through level design
+    
 
 *** Level Design
+    
+    Designing frames with tilemaps and pre-made scenes (hooking points, etc.)
     
     Level loops: Exploring the possibilities of the core mechanic 
     Designing frames with pre-made scenes, level loops, and tilemaps
@@ -127,6 +135,9 @@
 
 *** Combat and AI
     
+    Player health, taking damage on contact, and stagger state
+    Death and restarting the game
+    Basic patrol AI: detects gaps and walls, moves within a range
     Damaging enemies: e.g. hook pulls character to enemy and kills it, enemies use projectiles?
     Pathfinding for flying enemies: Astar? Heatmap? Steering with follow path
     Armor from one side
@@ -140,6 +151,18 @@
     Rundown of the project's code structure and abstractions
     Patterns we use in the project
 
+*** Extra video ideas
+
+    /Ideas of modules to extend the course/
+    
+**** Creating tools for debugging and testing the game efficiently
+     
+     Series on designing and creating good tools, be it in the viewport, as in the waypoint platform tutorial, or in-game, like a tool to fly through the world.
+     
+     Tools should always answer a need: figure out what costs you or what's going to cost you time, prioritize them, figure out solutions, and calculate the time they'd take you.
+     Tools for level design/testing/free camera
+     Tools for code/debug code
+   
 * Prototypes
 ** DONE Base movement with the hook
    CLOSED: [2019-05-03 ven. 10:18]
@@ -303,7 +326,8 @@
     
     There are fixes and improvements for all the points above, and overall it makes the controls feel more reliable and the motion feels more fluid to me. Now, we need to do level design work, get people to test the game and see how it works for them.
     
-** TODO Design level loops
+** DONE Design level loops
+   CLOSED: [2019-05-31 ven. 08:50]
    :PROPERTIES:
    :EFFORT:   6:00
    :END:
@@ -318,7 +342,8 @@
    
    Use a new node branch for each chunk, and separate collision bodies so we can save the best ones as reusable scenes.
    
-** Refining the core movement
+** DONE Refining the core movement
+   CLOSED: [2019-05-31 ven. 08:51]
    
    After testing the level design work from Henrique, some problems with the game's controls are clearer:
 
