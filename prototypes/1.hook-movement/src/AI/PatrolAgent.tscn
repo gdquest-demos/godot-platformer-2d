@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/AI/PatrolAgent.gd" type="Script" id=1]
+[ext_resource path="res://src/Player/Body.gd" type="Script" id=2]
+[ext_resource path="res://src/Player/FloorDetector.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 30, 30 )
+
+[node name="PatrolAgent" type="KinematicBody2D"]
+collision_mask = 2
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -30 )
+shape = SubResource( 1 )
+
+[node name="Body" type="Node2D" parent="."]
+position = Vector2( 0, -30 )
+script = ExtResource( 2 )
+size = Vector2( 50, 50 )
+outline = Vector2( 10, 10 )
+color_fill = Color( 0.894118, 0.203922, 0.396078, 1 )
+color_outline = Color( 0.670588, 0.0431373, 0.0431373, 1 )
+
+[node name="Pivot" type="Position2D" parent="."]
+
+[node name="FloorDetector" parent="Pivot" instance=ExtResource( 3 )]
+position = Vector2( 40, 0 )
+enabled = true
+

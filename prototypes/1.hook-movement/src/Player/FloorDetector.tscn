@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/Player/FloorDetector.gd" type="Script" id=1]
+
+[node name="FloorDetector" type="RayCast2D"]
+position = Vector2( 0, -30 )
+cast_to = Vector2( 0, 80 )
+collision_mask = 6
+script = ExtResource( 1 )
+
