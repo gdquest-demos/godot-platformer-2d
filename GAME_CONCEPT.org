@@ -64,6 +64,7 @@
 *** Game design
 
    - *Using one mechanic for many purposes*: giving the player a versatile tool.
+   - *Game feel*: making the game feel alive by adding life and feedback to the environment and the player's actions
 
 *** Game creation
 
@@ -81,8 +82,10 @@
  
    /This is a list of topics that can be broken down or merged into more or fewer videos. From there, we should arrange them to form the 3 series (free, indie, pro) with clearer lists of topics and videos, and refine as we move forward with the project's pre-production./
    
+   /This isn't a list of videos for the course: we should pick the scope from there./
+   
    # Remember for teaching: copy paste code snippets instead of writing every line.
-   # Check e.g. Brilliant for learning examples.
+   # Check e.g. Brilliant for assignment examples and text-based resources.
    
 *** Platforming and motion
     
@@ -110,16 +113,17 @@
 *** Game progression
     
     Unlocking new player abilities: code pattern -> can use a simple ability like double jump as an example
+    Transitioning from one scene to another
 
 *** Game design
     
     Metroidvania design analysis: what makes a Metroidvania?
-    /Include analyses of character movement, camera, etc. in other games/
+    Design analyses of character movement, camera, etc. in other platform games
     
-    How to get a game project started: from 0 to a nice demo
+    How to get a game project started: from 0 to a nice demo, /focus on the game creation workflow/
+    How to get started with game creation, /game design and programming/
     How it's like to work as a game designer: a day in the life of an indie game designer
     Teaching the player how to play through level design
-    
 
 *** Level Design
     
@@ -131,7 +135,10 @@
     
 *** Audio
 
+    Creating a game soundtrack with Free Software /Include the plugins, virtual instruments you found/
+    Doing sound design for your game with Free Software
     Adding BGM and sounds to the game
+    Sound design: how to choose the sounds and BGM for your game to improve the experience and game feel /Practical sound design tips like boosting basses, listening to the game the eyes closed.../
 
 *** Combat and AI
     
@@ -144,7 +151,8 @@
 
 *** Graphics
     
-    Adding graphics, animation, and audio
+    Integrating graphics, animation, and audio into the game
+    Designing game animations in Godot
 
 *** Code structure
 
@@ -155,6 +163,11 @@
 
     /Ideas of modules to extend the course/
     
+   Collecting keys and opening closed doors
+   Modular AI for enemies, different algorithms to find paths, flee the player...
+   Porting an algorithm to C or C++ with NativeScript/GDNative. E.g. a heatmap algorithm would run slowly in GDScript
+   Minimap: designing and implementing a map that updates as you explore new frames, and that can show unexplored areas
+   
 **** Creating tools for debugging and testing the game efficiently
      
      Series on designing and creating good tools, be it in the viewport, as in the waypoint platform tutorial, or in-game, like a tool to fly through the world.
