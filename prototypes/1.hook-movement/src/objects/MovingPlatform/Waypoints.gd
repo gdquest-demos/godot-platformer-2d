@@ -52,7 +52,7 @@ func _draw() -> void:
 
 	draw_polyline(points, line_color, line_width, true)
 	for triangle in triangles:
-		draw_triangle(triangle['center'], triangle['angle'], line_width * 2.0)
+		DrawingUtils.draw_triangle(self, triangle['center'], triangle['angle'], line_width * 2.0, triangle_color)
 
 
 func get_start_position() -> Vector2:
@@ -73,17 +73,6 @@ func get_next_point_position():
 				_direction *= -1
 			_active_point_index += _direction
 	return get_current_point_position()
-
-
-func draw_triangle(center:Vector2, angle:float, radius:float) -> void:
-	var points: = PoolVector2Array()
-	var colors: = PoolColorArray([triangle_color])
-	for i in range(3):
-		var angle_point: = angle + i * 2.0 * PI / 3.0 + PI
-		var offset: = Vector2(radius * cos(angle_point), radius * sin(angle_point))
-		var point: = center + offset
-		points.append(point)
-	draw_polygon(points, colors)
 
 
 func set_editor_process(value:bool) -> void:
