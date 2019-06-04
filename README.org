@@ -10,7 +10,8 @@
    
   #+caption: Momodora, a seemingly not so well-known, yet well-designed Metroidvania, recommended by the community
   [[./img/momodora-2.png]]
-   
+  /Reference game: Momodora, a seemingly not so well-known, yet well-designed Metroidvania, recommended by the community/
+  
 * Our mission
    
   # - Note taken on [2019-04-29 lun. 09:02] \\
@@ -63,13 +64,14 @@
     
    #+caption: Hollow Knight's combat mechanics are to the point: one melee attack that you can aim in 4 directions
    [[file:img/hollow-knight-3.png]]
-
+   /Reference game: Hollow Knight's combat mechanics are to the point: one melee attack that you can aim in 4 directions/
 
 
    Watch this [[https://www.youtube.com/watch?v=NcbB09mjMGk][discussion on good Metroidvanias]] for more insights. Mark Brown (Game Maker's Toolkit) also has some great videos on the topic, although more focused on world design.
 
    #+caption: Unlocking abilities to be able to further explore the worlds is a common pattern in Metroidvanias
    [[./img/ori-2.png]]
+   /Unlocking abilities to be able to further explore the worlds is a common pattern in Metroidvanias/
    
 ** Open source from the start
     
