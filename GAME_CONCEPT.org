@@ -87,78 +87,6 @@
    # Remember for teaching: copy paste code snippets instead of writing every line.
    # Check e.g. Brilliant for assignment examples and text-based resources.
    
-*** Platforming and motion
-    
-    # - Note taken on [2019-05-14 mar. 13:33] \\
-    #   Can be covered more or less in isolation, before the rest of the game
-      
-    Basic motion and input: ground, air control
-    Basic hook
-    Simple lookahead camera: following the player's velocity
-    Scaling the hook's power based on distance (indie)
-    Wall jump (indie)
-    Ledge detection, grab ledge, and let the player jump (indie)
-    Ledge: teleport to the platform (pro)
-    Polish: Storing input before touching the ground (pro)
-    Polish: letting the player jump right after starting a fall (pro)
-    Refining the camera: better prediction of the player's motion (pro) (?)
-    Zero-gravity area (pro) (?)
-
-*** Hook
-    
-    Pulling objects
-    Breaking fragile surfaces
-    Removing armors from enemies with the hook
-    
-*** Game progression
-    
-    Unlocking new player abilities: code pattern -> can use a simple ability like double jump as an example
-    Transitioning from one scene to another
-
-*** Game design
-    
-    Metroidvania design analysis: what makes a Metroidvania?
-    Design analyses of character movement, camera, etc. in other platform games
-    
-    How to get a game project started: from 0 to a nice demo, /focus on the game creation workflow/
-    How to get started with game creation, /game design and programming/
-    How it's like to work as a game designer: a day in the life of an indie game designer
-    Teaching the player how to play through level design
-
-*** Level Design
-    
-    Designing frames with tilemaps and pre-made scenes (hooking points, etc.)
-    
-    Level loops: Exploring the possibilities of the core mechanic 
-    Designing frames with pre-made scenes, level loops, and tilemaps
-    How to architecture the map at a meta level to manage the player's progression
-    
-*** Audio
-
-    Creating a game soundtrack with Free Software /Include the plugins, virtual instruments you found/
-    Doing sound design for your game with Free Software
-    Adding BGM and sounds to the game
-    Sound design: how to choose the sounds and BGM for your game to improve the experience and game feel /Practical sound design tips like boosting basses, listening to the game the eyes closed.../
-
-*** Combat and AI
-    
-    Player health, taking damage on contact, and stagger state
-    Death and restarting the game
-    Basic patrol AI: detects gaps and walls, moves within a range
-    Damaging enemies: e.g. hook pulls character to enemy and kills it, enemies use projectiles?
-    Pathfinding for flying enemies: Astar? Heatmap? Steering with follow path
-    Armor from one side
-
-*** Graphics
-    
-    Integrating graphics, animation, and audio into the game
-    Designing game animations in Godot
-
-*** Code structure
-
-    Rundown of the project's code structure and abstractions
-    Patterns we use in the project
-
 *** Extra video ideas
 
     /Ideas of modules to extend the course/
@@ -176,6 +104,137 @@
      Tools for level design/testing/free camera
      Tools for code/debug code
    
+     
+** Free series
+   
+   Create a simple yet compelling platform game, learning the creation workflow from an indie game dev's perspective.
+   
+*** How to make video games: getting started
+    
+    *Goal*: Learn what it takes to make games when you have no experience, and how you can get started
+
+    - Overview of the process
+    - Avoiding common pitfalls as a beginner
+    - Reassure people about programming: it doesn't have to be hard, it can also be fun
+    - Share practical resources to get started with Godot or GDevelop
+    
+      References:
+   
+      - https://www.youtube.com/watch?v=j48LtUkZRjU
+      - https://www.youtube.com/watch?v=z06QR-tz1_o
+      - Playlist by Extra credits https://www.youtube.com/watch?v=z06QR-tz1_o&list=PLhyKYa0YJ_5C6QC36h5eApOyXtx98ehGi
+      
+**** Intro
+    
+     You want to make video games, but you don't know how or where to start? In this video, you'll learn Everything you need to know to get started and create your first game.
+
+     1. How indie developers make games
+     2. Free Software you can use to create your own games
+     3. Free resources and tutorials to get started
+
+     I'm Nathan, and I've been teaching game creation and art for years, with Free Software like the Godot game engine and the digital painting app Krita.
+
+**** Notes
+     
+     Make something that you can do at first
+     Can I make a game without programming?
+     
+     No. But wait! Maybe programming isn't what you think.
+     Changing values in the Inspector is programming.
+     You can learn it slowly, start simple, and write more complicated code as you progress.
+
+**** Summary
+
+*** How it's like to work as a game designer: a day in the life of an indie game designer
+    
+*** How to make games: the workflow
+    
+    Cover the workflow to pre-produce, then produce a game, using the metroidvania 2d project as an example
+    Only about creating the game: 
+  
+    Prototyping, experimenting
+    You can only plan from production
+  
+*** Metroidvania design analysis: what makes a (good) Metroidvania?
+    
+*** Basic motion and input: ground, air control
+    
+*** Basic hook mechanic
+    
+*** Simple lookahead camera: following the player's velocity
+    
+*** Creating a level with Tilemaps and scenes
+    
+*** Simple transition between two levels
+    
+*** Adding BGM and sounds to the game
+    
+*** Character health and taking damage on contact
+    
+*** Death and restarting the game
+
+*** Basic patrol AI: detects gaps and walls, moves within a range
+    
+*** Integrating assets into the game
+    
+*** Building and distributing the game for desktop
+   
+    Publishing on Itch.io?
+    
+*** Bonus
+    
+**** Creating a game soundtrack with Free Software /Include the plugins, virtual instruments you found/ (beginner/introductory tut)
+     
+**** Doing sound design for your game with Free Software (beginner/introductory tut)
+
+** Premium series
+  
+*** Indie
+    
+    /This is a list of topics, some can take several videos/
+    
+    Scaling the hook's power based on distance
+    Wall jump
+    Ledge detection, grab ledge, and let the player jump
+    
+    Unlocking new abilities
+    
+    Level loops: Exploring the possibilities of the core mechanic
+    Designing frames with pre-made scenes, level loops, and tilemaps
+    Teaching the player how to play through level design: designing an in-game tutorial without words
+    
+    Designing game animations in Godot
+    
+    Designing combat mechanics, damaging enemies: e.g. hook pulls character to enemy and kills it, enemies use projectiles?
+    
+    Simple flying enemy AI
+    
+    Hook: Pulling objects
+    
+    Sound design: how to choose the sounds and BGM for your game to improve the experience and game feel /Practical sound design tips like boosting basses, listening to the game the eyes closed.../
+   
+*** Pro
+    
+    /This is a list of topics, some can take several videos/
+    
+    Design analyses of character movement, camera, etc. in other platform games
+    
+    Ledge: teleport to the platform
+    Polish: Storing input before touching the ground
+    Polish: letting the player jump right after starting a fall
+    
+    Refining the camera: better prediction of the player's motion
+    
+    Hook: Breaking fragile surfaces
+    Hook: Removing armors from enemies
+    
+    How to architecture the map at a meta level to manage the player's progression
+    
+    Designing and implementing flexible AI: Series on pathfinding, code structure to build reusable AI behaviors for flying enemies
+    
+    Code structure: Rundown of the project's code structure and abstractions
+    Code structure: Patterns we use in the project
+    
 * Prototypes
 ** DONE Base movement with the hook
    CLOSED: [2019-05-03 ven. 10:18]
