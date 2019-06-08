@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/Hook/Hook.tscn" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://src/Player/Skin.gd" type="Script" id=5]
 [ext_resource path="res://src/Player/Body.gd" type="Script" id=6]
 [ext_resource path="res://src/Player/CameraRig.gd" type="Script" id=7]
+[ext_resource path="res://src/Player/Skills/Base.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Player/Skills/Dash.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 30 )
@@ -26,6 +28,7 @@ position = Vector2( 0, -30 )
 [node name="FloorDetector" parent="." instance=ExtResource( 4 )]
 
 [node name="Skin" type="Position2D" parent="."]
+editor/display_folded = true
 script = ExtResource( 5 )
 
 [node name="Body" type="Node2D" parent="Skin"]
@@ -51,3 +54,8 @@ smoothing_enabled = true
 smoothing_speed = 6.0
 editor_draw_drag_margin = true
 
+[node name="Skills" type="Node" parent="."]
+
+[node name="Base" parent="Skills" instance=ExtResource( 8 )]
+
+[node name="Dash" parent="Skills" instance=ExtResource( 9 )]

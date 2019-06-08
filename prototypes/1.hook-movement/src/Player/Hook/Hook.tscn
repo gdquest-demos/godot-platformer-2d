@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/Player/Hook/Hook.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/Hook/TargetCircle.gd" type="Script" id=2]
 [ext_resource path="res://src/Player/Hook/Arrow.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Player/HookingPoint.gd" type="Script" id=4]
 [ext_resource path="res://src/Player/Hook/SnapDetector/SnapDetector.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Player/Hook/Skills/Base.tscn" type="PackedScene" id=6]
 
 [node name="Hook" type="Position2D"]
 script = ExtResource( 1 )
@@ -27,10 +28,13 @@ script = ExtResource( 4 )
 color_hook = Color( 0.0352941, 0.65098, 0.792157, 1 )
 color_cooldown = Color( 1, 0, 0.305882, 1 )
 
+[node name="SnapDetector" parent="." instance=ExtResource( 5 )]
+
 [node name="Cooldown" type="Timer" parent="."]
 process_mode = 0
 wait_time = 0.2
 one_shot = true
 
-[node name="SnapDetector" parent="." instance=ExtResource( 5 )]
+[node name="Skills" type="Node" parent="."]
 
+[node name="Base" parent="Skills" instance=ExtResource( 6 )]

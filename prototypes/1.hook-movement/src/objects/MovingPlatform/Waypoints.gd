@@ -75,13 +75,13 @@ func get_next_point_position():
 	return get_current_point_position()
 
 
-func set_editor_process(value:bool) -> void:
+func set_editor_process(value: bool) -> void:
 	editor_process = value
 	if not Engine.editor_hint:
 		return
 	set_process(value)
 
 
-func set_mode(value:int) -> void:
-	assert value in Mode
+func set_mode(value: int) -> void:
+#	assert value in Mode
 	mode = value
