@@ -14,47 +14,20 @@ onready var hint: Node2D = $TargetHint
 onready var target_circle: Node2D = $TargetCircle
 onready var snap_detector: Area2D = $SnapDetector
 onready var cooldown: Timer = $Cooldown
-
-onready var length: float = ray.cast_to.length()
+onready var length: = ray.cast_to.length()
 
 const HOOKABLE_PHYSICS_LAYER: = 2
 
 var aim_mode: = false setget set_aim_mode
 
 
-func _physics_process(delta: float) -> void:
-	ray.cast_to = _get_aim_direction() * length
-	target_circle.rotation = ray.cast_to.angle()
-	snap_detector.rotation = ray.cast_to.angle()
-	ray.force_raycast_update()
-	
-	var has_target: = _has_target()
-	if has_target:
-		hint.global_position = ray.get_collision_point()
-	
-	hint.visible = has_target and not snap_detector.target
-	hint.color = hint.color_hook if cooldown.is_stopped() else hint.color_cooldown
-
-
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("hook") and _can_hook():
-		_hook()
-		get_tree().set_input_as_handled()
-
 	if event.is_action_pressed("aim"):
 		self.aim_mode = not aim_mode
 		get_tree().set_input_as_handled()
 
 
-func _hook() -> void:
-	cooldown.start()
-	arrow.hook_position = snap_detector.target.global_position if snap_detector.target else ray.get_collision_point()
-	if aim_mode:
-		self.aim_mode = false
-	emit_signal("hooked_onto_target", _get_hook_position())
-
-
-func set_aim_mode(value:bool) -> void:
+func set_aim_mode(value: bool) -> void:
 	aim_mode = value
 	Engine.time_scale = 0.05 if aim_mode == true else 1.0
 

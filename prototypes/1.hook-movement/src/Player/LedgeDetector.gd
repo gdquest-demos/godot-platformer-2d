@@ -1,6 +1,7 @@
 tool
 extends Position2D
 
+
 onready var ray_bottom: RayCast2D = $RayBottom
 onready var ray_top: RayCast2D = $RayTop
 
@@ -12,6 +13,7 @@ export var ray_length: = 30.0 setget set_ray_length
 
 var _ray_cast_to_x: = ray_length setget _set_ray_cast_to_x
 var _ready: = false
+
 
 func _ready() -> void:
 	_ready = true

@@ -3,7 +3,6 @@
 [ext_resource path="res://src/Player/Hook/SnapDetector/SnapDetector.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/Hook/SnapDetector/HookingHint.tscn" type="PackedScene" id=2]
 
-
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 90.0002
 height = 160.0

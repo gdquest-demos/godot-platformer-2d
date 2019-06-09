@@ -2,8 +2,6 @@
 
 [ext_resource path="res://src/Player/LedgeDetector.gd" type="Script" id=1]
 
-
-
 [node name="LedgeDetector" type="Position2D"]
 position = Vector2( 0, -30 )
 script = ExtResource( 1 )
