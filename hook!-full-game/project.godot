@@ -32,7 +32,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Hook! Movement Prototype"
+config/name="Hook!"
 run/main_scene="res://src/Game.tscn"
 config/icon="res://icon.png"
 
