@@ -103,12 +103,23 @@
      Tools should always answer a need: figure out what costs you or what's going to cost you time, prioritize them, figure out solutions, and calculate the time they'd take you.
      Tools for level design/testing/free camera
      Tools for code/debug code
-   
+     
+**** Boss
+     
+     Designing and implementing a boss, with an intro and outro cut-scene, and phases.
      
 ** Free series
-   
+
    Create a simple yet compelling platform game, learning the creation workflow from an indie game dev's perspective.
    
+*** Intro: what this course is about, what you'll learn, how to make the most of it
+   
+    Target audience
+    Pre-requisites
+    What you'll learn: list of content
+    How this course is designed/teaching style
+    Free resources to get up to speed
+    
 *** How to make video games: getting started
     
     *Goal*: Learn what it takes to make games when you have no experience, and how you can get started
@@ -156,6 +167,8 @@
     You can only plan from production
   
 *** Metroidvania design analysis: what makes a (good) Metroidvania?
+    
+    Take the analysis from the course's README/prototype jam doc
     
 *** Basic motion and input: ground, air control
     
