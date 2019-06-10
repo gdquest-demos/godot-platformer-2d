@@ -32,6 +32,9 @@ func _on_Events_player_state_changed(state: String) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	var move_direction: = Vector2.ZERO
 	
+	if event is InputEventJoypadMotion:
+		return
+	
 	if player._state == "air" and event.is_action_pressed("move_left") or event.is_action_pressed("move_right"):
 		if event.is_action_pressed("move_left"):
 			move_direction = Vector2.LEFT
