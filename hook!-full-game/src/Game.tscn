@@ -108,6 +108,11 @@ position = Vector2( 2610, 0 )
 [node name="Waypoints" parent="MovingPlatform" instance=ExtResource( 7 )]
 editor/display_folded = true
 position = Vector2( 2612.25, 3.375 )
+mode = 0
+editor_process = true
+line_color = Color( 0.228943, 0.710254, 0.945312, 1 )
+line_width = 10.0
+triangle_color = Color( 0.722656, 0.908997, 1, 1 )
 
 [node name="Node2D" type="Node2D" parent="MovingPlatform/Waypoints"]
 

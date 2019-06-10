@@ -1,4 +1,4 @@
-extends "Skill.gd"
+extends "res://src/Player/Skills/Skill.gd"
 
 
 const FLOOR_NORMAL: = Vector2(0, -1)

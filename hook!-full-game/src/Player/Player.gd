@@ -17,11 +17,14 @@ onready var _transitions: = {}
 
 
 func _ready() -> void:
-	# combine transitions from all skills
+	# combine transitions from all skills - union operation on Dictionaries
 	for skill in skills.get_children():
 		for key in skill.transitions:
 			if _transitions.has(key):
 				for state in skill.transitions[key]:
+					if state in _transitions[key]:
+						continue
+					
 					_transitions[key].push_back(state)
 			else:
 				_transitions[key] = skill.transitions[key]

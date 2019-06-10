@@ -1,4 +1,4 @@
-extends "Skill.gd"
+extends "res://src/Player/Skills/Skill.gd"
 
 
 const DASH_RESET_TIME: = 0.2
