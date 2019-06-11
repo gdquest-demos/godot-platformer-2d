@@ -9,9 +9,9 @@ return when its time is up - there are no facilities to interrupt loops and func
 what to do when its time is up, and when to check for its time being up.
 """
 
-var _priority : int
-var _frequency : int
-var _phase : int
+var _priority: int
+var _frequency: int
+var _phase: int
 
-func _run(microseconds_budget : int) -> void:
+func _run(microseconds_budget: int) -> void:
 	pass

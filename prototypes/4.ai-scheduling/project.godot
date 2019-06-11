@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "SchedulableJob",
+"class": "BalancedScheduler",
+"language": "GDScript",
+"path": "res://src/Scheduling/BalancedScheduler.gd"
+}, {
 "base": "Reference",
 "class": "SchedulableJob",
 "language": "GDScript",
 "path": "res://src/Scheduling/SchedulableJob.gd"
 } ]
 _global_script_class_icons={
+"BalancedScheduler": "",
 "SchedulableJob": ""
 }
 

@@ -1,14 +1,14 @@
 extends SchedulableJob
 
-var _id : int
-var _last_index : int = 0
-var _iteration : int = 0
+var _id: int
+var _last_index: int = 0
+var _iteration: int = 0
 
-func _init(id :int) -> void:
+func _init(id:int) -> void:
 	_id = id
 
 
-func _run(microseconds_budget : int) -> void:
+func _run(microseconds_budget: int) -> void:
 	var last_time = Scheduler.get_elapsed_microseconds()
 	for i in range(_last_index, 10000):
 		var current_time = Scheduler.get_elapsed_microseconds()
