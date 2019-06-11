@@ -9,10 +9,20 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "DamageSource",
+"language": "GDScript",
+"path": "res://src/Combat/DamageSource.gd"
+}, {
 "base": "Node2D",
 "class": "DrawingUtils",
 "language": "GDScript",
 "path": "res://src/DrawingUtils.gd"
+}, {
+"base": "Reference",
+"class": "Hit",
+"language": "GDScript",
+"path": "res://src/Combat/Hit.gd"
 }, {
 "base": "Position2D",
 "class": "Hook",
@@ -23,17 +33,25 @@ _global_script_classes=[ {
 "class": "HookTarget",
 "language": "GDScript",
 "path": "res://src/HookTarget.gd"
+}, {
+"base": "Node",
+"class": "Stats",
+"language": "GDScript",
+"path": "res://src/Combat/Stats.gd"
 } ]
 _global_script_class_icons={
+"DamageSource": "",
 "DrawingUtils": "",
+"Hit": "",
 "Hook": "",
-"HookTarget": ""
+"HookTarget": "",
+"Stats": ""
 }
 
 [application]
 
 config/name="Hook!"
-run/main_scene="res://src/Game.tscn"
+run/main_scene="res://src/areas/LevelTest.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -41,6 +59,7 @@ config/icon="res://icon.png"
 Settings="*res://src/singletons/Settings.gd"
 Events="*res://src/singletons/Events.gd"
 ControlUtils="*res://src/singletons/ControlUtils.gd"
+HitFactory="*res://src/Combat/HitFactory.tscn"
 
 [debug]
 
@@ -126,6 +145,8 @@ restart={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="World"
 2d_physics/layer_3="Hookable"
+2d_physics/layer_11="DamageSource"
+2d_physics/layer_12="Hitbox"
 
 [rendering]
 
