@@ -45,13 +45,14 @@ func _on_Hook_hooked_onto_target(target_position: Vector2) -> void:
 	if player.is_on_floor() and to_target.y > 0.0:
 		return
 	
-	var PULL_BASE_FORCE: = 2200.0
+	var PULL_BASE_FORCE: = 1800.0
 	var direction: = to_target.normalized()
 	var distance: = to_target.length()
 
 	player._velocity.y = -1000.0 if direction.y > 0.0 else 0.0
 	_air_max_speed = air_max_speed_hook
-	_player_move(1, direction, INF, PULL_BASE_FORCE * pow(distance / player.hook.length, 0.5))
+	var pull := direction * PULL_BASE_FORCE * pow(sin(distance / player.hook.length) * PI / 2.0, 0.7)
+	_player_apply(pull)
 
 
 func _on_Skin_animation_finished(name: String) -> void:
@@ -77,7 +78,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(delta):
 	var move_direction: Vector2 = player.get_move_direction()
-	
 	# Horizontal movement
 	match player._state:
 		"idle":
@@ -118,6 +118,10 @@ func _player_move(delta: float, move_direction: Vector2, speed: float, accelerat
 			player._velocity += move_direction * acceleration * delta
 			if abs(player._velocity.x) > speed:
 				player._velocity.x = sign(player._velocity.x) * speed
+
+
+func _player_apply(force: Vector2) -> void:
+	player._velocity += force
 
 
 func _player_jump() -> void:
