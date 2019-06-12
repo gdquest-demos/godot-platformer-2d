@@ -19,6 +19,7 @@ onready var _transitions: = {}
 
 
 func _ready() -> void:
+	Events.emit_signal("player_respawned")
 	# combine transitions from all skills - union operation on Dictionaries
 	for skill in skills.get_children():
 		for key in skill.transitions:
@@ -46,3 +47,9 @@ static func get_move_direction() -> Vector2:
 
 func take_damage(source: Hit) -> void:
 	stats.take_damage(source)
+
+
+func die() -> void:
+	for skill in skills.get_children():
+		skill.queue_free()
+	Events.emit_signal("player_died")

@@ -57,6 +57,8 @@ smoothing_enabled = true
 smoothing_speed = 6.0
 editor_draw_drag_margin = true
 
+[node name="Tween" type="Tween" parent="Skin/CameraRig"]
+
 [node name="Skills" type="Node" parent="."]
 
 [node name="Move" parent="Skills" instance=ExtResource( 8 )]
