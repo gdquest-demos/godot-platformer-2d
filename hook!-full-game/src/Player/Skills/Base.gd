@@ -24,11 +24,13 @@ var _idle_input_delayed_jump: = false
 var _hook_position: = Vector2.ZERO
 
 var transitions: = {
-	"idle": ["run", "air", "hook"],
-	"run": ["idle", "air", "hook"],
-	"air": ["idle", "ledge", "hook"],
-	"hook": ["air", "ledge"],
-	"ledge": ["idle"],
+	"idle": ["run", "air", "hook", "die"],
+	"run": ["idle", "air", "hook", "die"],
+	"air": ["idle", "ledge", "hook", "die"],
+	"hook": ["air", "ledge", "die"],
+	"ledge": ["idle", "die"],
+	"die": ["spawn"],
+	"spawn": ["idle"],
 }
 
 
@@ -139,7 +141,6 @@ func enter_state() -> void:
 	match player._state:
 		"idle":
 			player._velocity.x = 0.0
-
 			if _air_input_delayed_jump:
 				_air_input_delayed_jump = false
 				_player_jump()
@@ -160,7 +161,17 @@ func enter_state() -> void:
 			player.global_position = player.ledge_detector.ray_top.global_position + Vector2(player.ledge_detector.ray_length * sign(player._velocity.x), 0.0)
 			player.global_position = player.floor_detector.get_floor_position()
 			player._velocity = Vector2.ZERO
-			player.skin.animate_ledge(global_position_start, player.global_position)
+			var animation_data: = {
+				from=global_position_start,
+				to=player.global_position,
+			}
+			player.skin.play("ledge", animation_data)
+
+		"die":
+			player.skin.play("die")
+
+		"spawn":
+			player.skin.play("spawn")
 
 		_:
 			return
@@ -175,3 +186,6 @@ func exit_state() -> void:
 			var direction_x: = sign(player._velocity.x)
 			if Input.is_action_pressed("move_left") and direction_x == -1 or Input.is_action_pressed("move_right") and direction_x == 1:
 				player._velocity.x = direction_x * air_max_speed_normal
+
+		_:
+			return
