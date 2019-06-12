@@ -1,5 +1,6 @@
 extends Position2D
 
+
 signal animation_finished(name)
 
 onready var tween: Tween = $Tween
@@ -19,6 +20,6 @@ func animate_ledge(from: Vector2, to: Vector2) -> void:
 	tween.start()
 
 
-func _on_Tween_tween_completed(object:Object, key:NodePath) -> void:
+func _on_Tween_tween_completed(object: Object, key: NodePath) -> void:
 	if key == ":global_position":
 		emit_signal("animation_finished", "ledge")

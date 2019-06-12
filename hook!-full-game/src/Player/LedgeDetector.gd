@@ -38,6 +38,10 @@ func set_ray_length(value: float) -> void:
 	self._ray_cast_to_x = value * sign(_ray_cast_to_x)
 
 
+func set_active(value:bool) -> void:
+	active = value
+
+
 func _set_ray_cast_to_x(value: float) -> void:
 	_ray_cast_to_x = value
 	var cast_to: = Vector2(value, 0.0)
@@ -45,7 +49,3 @@ func _set_ray_cast_to_x(value: float) -> void:
 	ray_top.cast_to = cast_to
 	ray_bottom.position.x = sign(value) * _offset
 	ray_top.position.x = sign(value) * _offset
-
-
-func set_active(value:bool) -> void:
-	active = value
