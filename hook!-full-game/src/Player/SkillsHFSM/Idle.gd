@@ -27,5 +27,6 @@ func enter(msg: Dictionary = {}) -> void:
 	move.speed = move.XY_MAX_SPEED
 	move.velocity = Vector2.ZERO
 	if jump_delay.time_left > 0.0:
-		move.velocity = move.calculate_jump_velocity(move.velocity)
+		move.velocity = move.calculate_velocity(
+				move.velocity, move.speed, Vector2(0.0, move.JUMP_SPEED), 1.0, Vector2.UP)
 		_player.transition_to("Move/Air")

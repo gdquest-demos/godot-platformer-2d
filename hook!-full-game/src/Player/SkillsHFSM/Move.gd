@@ -27,12 +27,12 @@ func ready(player: KinematicBody2D) -> void:
 
 func unhandled_input(event: InputEvent) -> void:
 	if _player.is_on_floor() and event.is_action_pressed("jump"):
-		self.velocity = calculate_jump_velocity(velocity)
+		self.velocity = calculate_velocity(velocity, speed, Vector2(0.0, JUMP_SPEED), 1.0, Vector2.UP)
 		_player.transition_to("Move/Air")
 
 
 func physics_process(delta: float) -> void:
-	self.velocity = calculate_move_velocity(velocity, speed, acceleration, delta, get_move_direction())
+	self.velocity = calculate_velocity(velocity, speed, acceleration, delta, get_move_direction())
 	self.velocity = _player.move_and_slide(velocity, _player.FLOOR_NORMAL)
 
 
@@ -44,7 +44,7 @@ func set_velocity(value: Vector2) -> void:
 	_player.info_dict.velocity = velocity
 
 
-static func calculate_move_velocity(
+static func calculate_velocity(
 		old_velocity: Vector2, max_speed: Vector2, acceleration: Vector2,
 		delta: float, move_direction: Vector2) -> Vector2:
 	var new_velocity: = old_velocity
@@ -54,10 +54,6 @@ static func calculate_move_velocity(
 	new_velocity.y = clamp(new_velocity.y, -max_speed.y, max_speed.y)
 	
 	return new_velocity
-
-
-static func calculate_jump_velocity(old_velocity: Vector2) -> Vector2:
-	return Vector2(old_velocity.x, old_velocity.y - JUMP_SPEED)
 
 
 static func get_move_direction() -> Vector2:

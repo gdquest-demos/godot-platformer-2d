@@ -12,7 +12,8 @@ func unhandled_input(event: InputEvent) -> void:
 	var move: = get_parent()
 	if event.is_action_pressed("jump"):
 		if move.velocity.y >= 0.0 and jump_delay.time_left > 0.0:
-			move.velocity = move.calculate_jump_velocity(move.velocity)
+			move.velocity = move.calculate_velocity(
+					move.velocity, move.speed, Vector2(0.0, move.JUMP_SPEED), 1.0, Vector2.UP)
 		emit_signal("jumped")
 
 
