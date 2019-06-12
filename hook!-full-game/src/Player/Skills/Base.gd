@@ -10,7 +10,6 @@ export var gravity_normal: = 3000.0
 
 export var air_acceleration: = 3000.0
 export var air_max_speed_normal: float = max_speed_ground
-export var air_max_speed_hook: = 700.0
 export var air_max_speed_vertical: = Vector2(-1500.0, 1500.0)
 
 var _air_max_speed: = air_max_speed_normal
