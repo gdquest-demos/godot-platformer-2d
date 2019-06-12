@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/theme/gdquest.theme" type="Theme" id=1]
+[ext_resource path="res://src/UI/Title.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/UI/InfoLabel.gd" type="Script" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Label
+
+
+func _ready() -> void:
+	Events.connect(\"player_state_changed\", self, \"_on_Events_player_state_changed\")
+
+
+func _on_Events_player_state_changed(state: String) -> void:
+	text = \"State: %s\" % state.to_upper()"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Label
+
+func _ready() -> void:
+	Settings.connect(\"controls_changed\", self, \"_on_Settings_controls_changed\")
+
+
+func _on_Settings_controls_changed(controls:int) -> void:
+	var string: = \"Keyboard & Mouse\" if controls == Settings.KBD_MOUSE else \"Gamepad\"
+	text = \"Controls: %s\" % string
+"
+
+[node name="PlayerInfoPanel" type="Panel"]
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 400.0
+margin_bottom = 520.0
+theme = ExtResource( 1 )
+
+[node name="Column" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 40.0
+margin_right = -40.0
+margin_bottom = -40.0
+
+[node name="Title" parent="Column" instance=ExtResource( 2 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 280.0
+margin_bottom = 36.0
+text = "info"
+
+[node name="InfoLabel" type="Label" parent="Column"]
+margin_top = 44.0
+margin_right = 280.0
+margin_bottom = 70.0
+text = "Player info"
+script = ExtResource( 3 )
+
+[node name="InfoLabel2" type="Label" parent="Column"]
+margin_top = 78.0
+margin_right = 280.0
+margin_bottom = 104.0
+text = "Player state"
+script = SubResource( 1 )
+
+[node name="InfoLabel3" type="Label" parent="Column"]
+margin_top = 112.0
+margin_right = 280.0
+margin_bottom = 138.0
+text = "Controls"
+script = SubResource( 2 )
