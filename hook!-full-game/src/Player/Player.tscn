@@ -26,11 +26,12 @@ shape = SubResource( 1 )
 position = Vector2( 0, -30 )
 
 [node name="LedgeDetector" parent="." instance=ExtResource( 3 )]
+active = true
+ray_length = 30.0
 
 [node name="FloorDetector" parent="." instance=ExtResource( 4 )]
 
 [node name="Skin" type="Position2D" parent="."]
-editor/display_folded = true
 script = ExtResource( 5 )
 
 [node name="Body" type="Node2D" parent="Skin"]
@@ -64,3 +65,4 @@ editor_draw_drag_margin = true
 
 [node name="HitBox" parent="." instance=ExtResource( 10 )]
 position = Vector2( 0, -30 )
+

@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/HookTarget.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://src/Player/Player.gd"
+}, {
 "base": "Node",
 "class": "Stats",
 "language": "GDScript",
@@ -45,6 +50,7 @@ _global_script_class_icons={
 "Hit": "",
 "Hook": "",
 "HookTarget": "",
+"Player": "",
 "Stats": ""
 }
 
@@ -61,6 +67,7 @@ Events="*res://src/singletons/Events.gd"
 ControlUtils="*res://src/singletons/ControlUtils.gd"
 HitFactory="*res://src/Combat/HitFactory.tscn"
 Steering="*res://src/singletons/Steering.gd"
+CheckpointUtils="*res://src/singletons/CheckpointUtils.gd"
 
 [debug]
 
