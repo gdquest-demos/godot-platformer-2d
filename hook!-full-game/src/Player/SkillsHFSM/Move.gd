@@ -8,7 +8,7 @@ const Y_ACCELERATION: = 3000.0
 
 var acceleration: = Vector2(X_ACCELERATION, Y_ACCELERATION)
 var speed: = XY_MAX_SPEED
-var velocity: = Vector2.ZERO
+var velocity: = Vector2.ZERO setget set_velocity
 
 
 func _on_Hook_hooked_onto_target(target_global_position: Vector2) -> void:
@@ -27,13 +27,21 @@ func ready(player: KinematicBody2D) -> void:
 
 func unhandled_input(event: InputEvent) -> void:
 	if _player.is_on_floor() and event.is_action_pressed("jump"):
-		velocity = calculate_jump_velocity(velocity)
+		self.velocity = calculate_jump_velocity(velocity)
 		_player.transition_to("Move/Air")
 
 
 func physics_process(delta: float) -> void:
-	velocity = calculate_move_velocity(velocity, speed, acceleration, delta, get_move_direction())
-	velocity = _player.move_and_slide(velocity, _player.FLOOR_NORMAL)
+	self.velocity = calculate_move_velocity(velocity, speed, acceleration, delta, get_move_direction())
+	self.velocity = _player.move_and_slide(velocity, _player.FLOOR_NORMAL)
+
+
+func set_velocity(value: Vector2) -> void:
+	if _player == null:
+		return
+	
+	velocity = value
+	_player.info_dict.velocity = velocity
 
 
 static func calculate_move_velocity(

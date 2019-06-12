@@ -1,7 +1,7 @@
 tool
 extends Node2D
 
-enum {CYCLE, PING_PONG}
+enum Mode {CYCLE, PING_PONG}
 
 export(Mode) var mode: = Mode.CYCLE setget set_mode
 
