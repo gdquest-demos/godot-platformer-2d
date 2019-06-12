@@ -7,6 +7,8 @@ onready var ledge_detector: Position2D = $LedgeDetector
 onready var floor_detector: RayCast2D = $FloorDetector
 onready var skin: Position2D = $Skin
 onready var skills: Node = $Skills
+onready var stats: Stats = $Stats
+
 var _info_dict: = {} setget _set_info_dict
 
 var _gravity: = 0.0
@@ -40,3 +42,7 @@ static func get_move_direction() -> Vector2:
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 		0.0
 	)
+
+
+func take_damage(source: Hit) -> void:
+	stats.take_damage(source)

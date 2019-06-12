@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/Hook/Hook.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://src/Player/Body.gd" type="Script" id=6]
 [ext_resource path="res://src/Player/CameraRig.gd" type="Script" id=7]
 [ext_resource path="res://src/Player/Skills/Base.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Combat/Stats.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Combat/HitBox/HitBox.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 30 )
@@ -24,12 +26,11 @@ shape = SubResource( 1 )
 position = Vector2( 0, -30 )
 
 [node name="LedgeDetector" parent="." instance=ExtResource( 3 )]
-active = true
-ray_length = 30.0
 
 [node name="FloorDetector" parent="." instance=ExtResource( 4 )]
 
 [node name="Skin" type="Position2D" parent="."]
+editor/display_folded = true
 script = ExtResource( 5 )
 
 [node name="Body" type="Node2D" parent="Skin"]
@@ -58,3 +59,8 @@ editor_draw_drag_margin = true
 [node name="Skills" type="Node" parent="."]
 
 [node name="Move" parent="Skills" instance=ExtResource( 8 )]
+
+[node name="Stats" parent="." instance=ExtResource( 9 )]
+
+[node name="HitBox" parent="." instance=ExtResource( 10 )]
+position = Vector2( 0, -30 )
