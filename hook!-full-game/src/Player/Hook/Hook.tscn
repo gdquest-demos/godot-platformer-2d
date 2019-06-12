@@ -42,5 +42,6 @@ one_shot = true
 
 [node name="PullRay" type="RayCast2D" parent="."]
 enabled = true
+cast_to = Vector2( 50, 0 )
 collision_mask = 10
 script = ExtResource( 7 )

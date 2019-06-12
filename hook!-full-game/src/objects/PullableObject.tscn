@@ -1,12 +1,18 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/objects/PullableObject.gd" type="Script" id=1]
+[ext_resource path="res://src/objects/Gravity.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 40.8749, 34.625 )
 
-[node name="PullableObject" type="RigidBody2D"]
+[node name="PullableObject" type="KinematicBody2D"]
 collision_layer = 10
-collision_mask = 3
-gravity_scale = 5.0
+collision_mask = 2
+script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="Gravity" type="Node" parent="."]
+script = ExtResource( 2 )
