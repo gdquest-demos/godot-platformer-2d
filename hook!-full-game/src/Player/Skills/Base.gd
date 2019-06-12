@@ -28,7 +28,7 @@ var transitions: = {
 	"idle": ["run", "air", "hook"],
 	"run": ["idle", "air", "hook"],
 	"air": ["idle", "ledge", "hook"],
-	"hook": ["air"],
+	"hook": ["air", "ledge"],
 	"ledge": ["idle"],
 }
 
@@ -91,13 +91,14 @@ func _physics_process(delta):
 		
 		"hook":
 			var to_target: = _hook_position - player.global_position
-			var direction: = to_target.normalized()
 			var distance: = to_target.length()
 			
-			var hook_speed: = 1600.0
-			var velocity_desired: = direction * hook_speed
-			var steering: Vector2 = (velocity_desired - player._velocity) / 2.0
-			player._velocity += steering
+			var hook_max_speed: = 1600.0
+			player._velocity = Steering.arrive_to(
+									player._velocity,
+									player.global_position,
+									_hook_position,
+									hook_max_speed)
 			if distance < player._velocity.length() * delta:
 				# Dampen the character's velocity upon reaching the target so it doesn't
 				# go flying way above the hook
