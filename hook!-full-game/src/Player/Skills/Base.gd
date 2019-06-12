@@ -100,10 +100,6 @@ func _physics_process(delta):
 									_hook_position,
 									hook_max_speed)
 			if distance < player._velocity.length() * delta:
-				# Dampen the character's velocity upon reaching the target so it doesn't
-				# go flying way above the hook
-				# The transition is harsh right now, the arrival behavior may be better
-				player._velocity = player._velocity.normalized() * 400.0
 				change_state("air")
 	
 	# Vertical movement
@@ -175,3 +171,8 @@ func exit_state() -> void:
 	match player._state:
 		"air":
 			_air_max_speed = air_max_speed_normal
+		
+		"hook":
+			var direction_x: = sign(player._velocity.x)
+			if Input.is_action_pressed("move_left") and direction_x == -1 or Input.is_action_pressed("move_right") and direction_x == 1:
+				player._velocity.x = direction_x * air_max_speed_normal

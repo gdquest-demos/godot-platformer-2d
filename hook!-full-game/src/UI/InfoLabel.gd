@@ -12,4 +12,6 @@ func _on_Events_player_info_updated(info: Dictionary) -> void:
 			text += "%s: (%01d %01d)" % [key, info[key].x, info[key].y]
 		else:
 			text += "%s: %s\n" % [key, info[key]]
-#		text += "\n"
+	if 'velocity' in info:
+		var direction_x: = sign(info['velocity'].x)
+		text += "\ndirection: %s" % [direction_x]
