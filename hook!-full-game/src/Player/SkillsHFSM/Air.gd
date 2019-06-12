@@ -5,7 +5,7 @@ signal jumped
 
 onready var jump_delay: Timer = $JumpDelay
 
-const AIR_X_ACCELERATION: = 3000.0
+const X_ACCELERATION: = 3000.0
 
 
 func unhandled_input(event: InputEvent) -> void:
@@ -29,10 +29,10 @@ func physics_process(delta: float) -> void:
 func enter(msg: Dictionary = {}) -> void:
 	var move: = get_parent()
 	move.velocity = msg.velocity if "velocity" in msg else move.velocity
-	move.acceleration = Vector2(AIR_X_ACCELERATION, move.Y_ACCELERATION)
+	move.acceleration = Vector2(X_ACCELERATION, move.ACCELERATION.y)
 	jump_delay.start()
 
 
 func exit() -> void:
 	var move: = get_parent()
-	move.acceleration = Vector2(move.X_ACCELERATION, move.Y_ACCELERATION)
+	move.acceleration = move.ACCELERATION

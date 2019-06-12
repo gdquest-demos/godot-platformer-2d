@@ -3,10 +3,9 @@ extends "res://src/Player/SkillsHFSM/Skill.gd"
 
 const XY_MAX_SPEED: = Vector2(500.0, 1500.0)
 const JUMP_SPEED: = 900.0
-const X_ACCELERATION: = 1e10
-const Y_ACCELERATION: = 3000.0
+const ACCELERATION: = Vector2(1e10, 3000.0)
 
-var acceleration: = Vector2(X_ACCELERATION, Y_ACCELERATION)
+var acceleration: = ACCELERATION
 var speed: = XY_MAX_SPEED
 var velocity: = Vector2.ZERO setget set_velocity
 
