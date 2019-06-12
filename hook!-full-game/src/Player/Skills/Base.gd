@@ -22,11 +22,13 @@ var _air_input_delayed_jump_duration: = 0.1
 # Allow the player to jump right after falling off a ledge
 var _idle_input_delayed_jump: = false
 
+var _hook_position: = Vector2.ZERO
 
 var transitions: = {
-	"idle": ["run", "air"],
-	"run": ["idle", "air"],
-	"air": ["idle", "ledge"],
+	"idle": ["run", "air", "hook"],
+	"run": ["idle", "air", "hook"],
+	"air": ["idle", "ledge", "hook"],
+	"hook": ["air"],
 	"ledge": ["idle"],
 }
 
@@ -44,15 +46,8 @@ func _on_Hook_hooked_onto_target(target_position: Vector2) -> void:
 	var to_target: = target_position - player.global_position
 	if player.is_on_floor() and to_target.y > 0.0:
 		return
-	
-	var PULL_BASE_FORCE: = 1800.0
-	var direction: = to_target.normalized()
-	var distance: = to_target.length()
-
-	player._velocity.y = -1000.0 if direction.y > 0.0 else 0.0
-	_air_max_speed = air_max_speed_hook
-	var pull := direction * PULL_BASE_FORCE * pow(sin(distance / player.hook.length) * PI / 2.0, 0.7)
-	_player_apply(pull)
+	_hook_position = target_position
+	change_state("hook")
 
 
 func _on_Skin_animation_finished(name: String) -> void:
@@ -93,6 +88,12 @@ func _physics_process(delta):
 			_player_move(delta, move_direction, _air_max_speed, air_acceleration)
 			if player.ledge_detector.is_against_ledge(sign(player._velocity.x)):
 				change_state("ledge")
+		
+		"hook":
+			if not player.is_on_floor():
+				change_state("air")
+			else:
+				change_state("idle")
 	
 	# Vertical movement
 	if player._state != "ledge":
@@ -144,6 +145,17 @@ func enter_state() -> void:
 				var timer: = get_tree().create_timer(_air_input_delayed_jump_duration)
 				timer.connect("timeout", self, 'set', ['_idle_input_delayed_jump', false])
 
+		"hook":
+			var to_target: = _hook_position - player.global_position
+			var PULL_BASE_FORCE: = 1800.0
+			var direction: = to_target.normalized()
+			var distance: = to_target.length()
+		
+			player._velocity.y = -1000.0 if direction.y > 0.0 else 0.0
+			_air_max_speed = air_max_speed_hook
+			var pull := direction * PULL_BASE_FORCE * pow(sin(distance / player.hook.length) * PI / 2.0, 0.7)
+			_player_apply(pull)
+		
 		"ledge":
 			# Move the character above the platform, then snap it down to the ground
 			var global_position_start: = player.global_position
