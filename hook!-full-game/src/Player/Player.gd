@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 
 onready var hook: Position2D = $Hook
-onready var camera: Position2D = $Skin/CameraRig
+onready var camera: Position2D = $CameraRig
 onready var ledge_detector: Position2D = $LedgeDetector
 onready var floor_detector: RayCast2D = $FloorDetector
 onready var skin: Position2D = $Skin

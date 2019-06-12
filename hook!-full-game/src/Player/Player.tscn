@@ -1,15 +1,14 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/Hook/Hook.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Player/LedgeDetector.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Player/FloorDetector.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/Player/Skin.gd" type="Script" id=5]
-[ext_resource path="res://src/Player/Body.gd" type="Script" id=6]
-[ext_resource path="res://src/Player/CameraRig.gd" type="Script" id=7]
-[ext_resource path="res://src/Player/Skills/Base.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/Combat/Stats.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/Combat/HitBox/HitBox.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/Player/Skin.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Player/CameraRig.gd" type="Script" id=6]
+[ext_resource path="res://src/Player/Skills/Base.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Combat/Stats.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Combat/HitBox/HitBox.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 30 )
@@ -23,31 +22,25 @@ position = Vector2( 0, -30 )
 shape = SubResource( 1 )
 
 [node name="Hook" parent="." instance=ExtResource( 2 )]
-position = Vector2( 0, -30 )
+position = Vector2( -7, -28 )
 
 [node name="LedgeDetector" parent="." instance=ExtResource( 3 )]
 
 [node name="FloorDetector" parent="." instance=ExtResource( 4 )]
 
-[node name="Skin" type="Position2D" parent="."]
-editor/display_folded = true
-script = ExtResource( 5 )
+[node name="Skin" parent="." instance=ExtResource( 5 )]
 
-[node name="Body" type="Node2D" parent="Skin"]
+[node name="CameraRemoteTransform" type="RemoteTransform2D" parent="Skin"]
+position = Vector2( 0, -30 )
+remote_path = NodePath("../../CameraRig")
+update_rotation = false
+update_scale = false
+
+[node name="CameraRig" type="Position2D" parent="."]
 position = Vector2( 0, -30 )
 script = ExtResource( 6 )
-size = Vector2( 50, 50 )
-outline = Vector2( 10, 10 )
-color_fill = Color( 0, 0.431373, 0.717647, 1 )
-color_outline = Color( 0.231373, 0.145098, 0.584314, 1 )
 
-[node name="Tween" type="Tween" parent="Skin"]
-
-[node name="CameraRig" type="Position2D" parent="Skin"]
-position = Vector2( 0, -30 )
-script = ExtResource( 7 )
-
-[node name="Camera2D" type="Camera2D" parent="Skin/CameraRig"]
+[node name="Camera2D" type="Camera2D" parent="CameraRig"]
 current = true
 process_mode = 0
 drag_margin_h_enabled = false
@@ -58,9 +51,9 @@ editor_draw_drag_margin = true
 
 [node name="Skills" type="Node" parent="."]
 
-[node name="Move" parent="Skills" instance=ExtResource( 8 )]
+[node name="Move" parent="Skills" instance=ExtResource( 7 )]
 
-[node name="Stats" parent="." instance=ExtResource( 9 )]
+[node name="Stats" parent="." instance=ExtResource( 8 )]
 
-[node name="HitBox" parent="." instance=ExtResource( 10 )]
+[node name="HitBox" parent="." instance=ExtResource( 9 )]
 position = Vector2( 0, -30 )
