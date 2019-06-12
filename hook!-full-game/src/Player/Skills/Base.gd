@@ -90,10 +90,20 @@ func _physics_process(delta):
 				change_state("ledge")
 		
 		"hook":
-			if not player.is_on_floor():
+			var to_target: = _hook_position - player.global_position
+			var direction: = to_target.normalized()
+			var distance: = to_target.length()
+			
+			var hook_speed: = 1600.0
+			var velocity_desired: = direction * hook_speed
+			var steering: Vector2 = (velocity_desired - player._velocity) / 2.0
+			player._velocity += steering
+			if distance < player._velocity.length() * delta:
+				# Dampen the character's velocity upon reaching the target so it doesn't
+				# go flying way above the hook
+				# The transition is harsh right now, the arrival behavior may be better
+				player._velocity = player._velocity.normalized() * 400.0
 				change_state("air")
-			else:
-				change_state("idle")
 	
 	# Vertical movement
 	if player._state != "ledge":
@@ -146,15 +156,7 @@ func enter_state() -> void:
 				timer.connect("timeout", self, 'set', ['_idle_input_delayed_jump', false])
 
 		"hook":
-			var to_target: = _hook_position - player.global_position
-			var PULL_BASE_FORCE: = 1800.0
-			var direction: = to_target.normalized()
-			var distance: = to_target.length()
-		
-			player._velocity.y = -1000.0 if direction.y > 0.0 else 0.0
-			_air_max_speed = air_max_speed_hook
-			var pull := direction * PULL_BASE_FORCE * pow(sin(distance / player.hook.length) * PI / 2.0, 0.7)
-			_player_apply(pull)
+			pass
 		
 		"ledge":
 			# Move the character above the platform, then snap it down to the ground
