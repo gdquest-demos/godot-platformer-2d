@@ -1,7 +1,7 @@
 tool
 extends Node2D
 """
-Utility to draw a rectangle with an outline.
+Draws a rectangle with an outline
 """
 
 
