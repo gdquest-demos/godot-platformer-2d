@@ -6,7 +6,7 @@ The raycast is updated manually for greater precision with where the player is a
 """
 
 
-signal hooked_onto_target(target_position)
+signal hooked_onto_target(target_global_position)
 
 onready var ray: RayCast2D = $RayCast2D
 onready var arrow: Node2D = $Arrow
