@@ -1,5 +1,8 @@
 tool
 extends Node2D
+"""
+Utility to draw a rectangle with an outline.
+"""
 
 
 export var size: = Vector2(40.0, 40.0) setget set_size

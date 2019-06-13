@@ -1,4 +1,10 @@
 extends Node
+"""
+State interface for the Player scene.
+Stores a reference to the Player and to the state machine.
+As we're using Hierarchical State Machines, a state can be a node branch.
+The lowest leaf tries to handle callbacks, and if it can't, it delegates the work to its parent.
+"""
 
 
 var is_composite: = get_child_count() != 0

@@ -1,5 +1,8 @@
 extends Node
-
+"""
+Hierarchical State machine for the player.
+Initializes states and delegates engine callbacks (_physics_process, _unhandled_input) to the active_state.
+"""
 
 const State: = preload("res://src/Player/States/State.gd")
 onready var active_state: Node = $"Move/Idle"

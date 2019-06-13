@@ -1,4 +1,7 @@
 extends Position2D
+"""
+The player's animated skin. Provides a simple interface to play animations.
+"""
 
 
 signal animation_finished(name)

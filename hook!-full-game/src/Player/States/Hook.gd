@@ -1,4 +1,7 @@
 extends "res://src/Player/States/State.gd"
+"""
+Moves the player to the target position using the arrive_to steering behavior.
+"""
 
 
 const HOOK_MAX_SPEED: = 1600.0

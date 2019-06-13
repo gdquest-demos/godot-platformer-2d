@@ -1,4 +1,7 @@
 extends RayCast2D
+"""
+Down facing ray, relative to its parent, used to detect the floor and the floor's position.
+"""
 
 
 func is_close_to_floor() -> bool:
