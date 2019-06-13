@@ -1,13 +1,15 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://src/UI/debug/DebugPanel.gd" type="Script" id=1]
+[ext_resource path="res://assets/theme/gdquest.theme" type="Theme" id=1]
+[ext_resource path="res://src/UI/debug/DebugPanel.gd" type="Script" id=2]
 
 [node name="DebugPanel" type="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -1693.0
 margin_bottom = -790.0
-script = ExtResource( 1 )
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -21,7 +23,7 @@ align = 1
 valign = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 58.0
+margin_top = 62.0
 margin_right = 227.0
 margin_bottom = 290.0
 size_flags_horizontal = 3
@@ -35,4 +37,4 @@ custom_constants/margin_bottom = 20
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 207.0
-margin_bottom = 212.0
+margin_bottom = 208.0
