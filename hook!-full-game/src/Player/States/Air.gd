@@ -1,4 +1,4 @@
-extends "res://src/Player/SkillsHFSM/Skill.gd"
+extends "res://src/Player/States/State.gd"
 
 
 signal jumped
@@ -21,9 +21,9 @@ func physics_process(delta: float) -> void:
 	var move: = get_parent()
 	move.physics_process(delta)
 	if _player.is_on_floor():
-		_player.transition_to("Move/Idle")
+		_state_machine.transition_to("Move/Idle")
 	elif _player.ledge_detector.is_against_ledge(sign(move.velocity.x)):
-		_player.transition_to("Ledge", {move_skill = move})
+		_state_machine.transition_to("Ledge", {move_state = move})
 
 
 func enter(msg: Dictionary = {}) -> void:

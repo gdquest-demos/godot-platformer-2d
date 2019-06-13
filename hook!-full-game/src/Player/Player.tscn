@@ -16,8 +16,6 @@
 [ext_resource path="res://src/Combat/Stats.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/Combat/HitBox/HitBox.tscn" type="PackedScene" id=15]
 
-
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 30 )
 
@@ -59,36 +57,36 @@ smoothing_enabled = true
 smoothing_speed = 6.0
 editor_draw_drag_margin = true
 
-[node name="Skills" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 7 )
 
-[node name="Move" type="Node" parent="Skills"]
+[node name="Move" type="Node" parent="StateMachine"]
 editor/display_folded = true
 script = ExtResource( 8 )
 
-[node name="Idle" type="Node" parent="Skills/Move"]
+[node name="Idle" type="Node" parent="StateMachine/Move"]
 editor/display_folded = true
 script = ExtResource( 9 )
 
-[node name="JumpDelay" type="Timer" parent="Skills/Move/Idle"]
+[node name="JumpDelay" type="Timer" parent="StateMachine/Move/Idle"]
 wait_time = 0.1
 one_shot = true
 
-[node name="Run" type="Node" parent="Skills/Move"]
+[node name="Run" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 10 )
 
-[node name="Air" type="Node" parent="Skills/Move"]
+[node name="Air" type="Node" parent="StateMachine/Move"]
 editor/display_folded = true
 script = ExtResource( 11 )
 
-[node name="JumpDelay" type="Timer" parent="Skills/Move/Air"]
+[node name="JumpDelay" type="Timer" parent="StateMachine/Move/Air"]
 wait_time = 0.1
 one_shot = true
 
-[node name="Ledge" type="Node" parent="Skills"]
+[node name="Ledge" type="Node" parent="StateMachine"]
 script = ExtResource( 12 )
 
-[node name="Hook" type="Node" parent="Skills"]
+[node name="Hook" type="Node" parent="StateMachine"]
 script = ExtResource( 13 )
 
 [node name="Stats" parent="." instance=ExtResource( 14 )]

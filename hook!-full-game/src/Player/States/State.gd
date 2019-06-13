@@ -4,11 +4,13 @@ extends Node
 var is_composite: = get_child_count() != 0
 
 var _player: KinematicBody2D = null
+var _state_machine: Node = null
 
 
-func ready(player: KinematicBody2D) -> void:
+func setup(player: KinematicBody2D, state_machine: Node) -> void:
 	_player = player
-	if _player.active_skill == self:
+	_state_machine = state_machine
+	if _state_machine.active_state == self:
 		enter()
 
 

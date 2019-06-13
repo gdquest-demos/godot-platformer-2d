@@ -1,4 +1,4 @@
-extends "res://src/Player/SkillsHFSM/Skill.gd"
+extends "res://src/Player/States/State.gd"
 
 
 const XY_MAX_SPEED: = Vector2(500.0, 1500.0)
@@ -15,11 +15,11 @@ func _on_Hook_hooked_onto_target(target_global_position: Vector2) -> void:
 	if _player.is_on_floor() and to_target.y > 0.0:
 		return
 	
-	_player.transition_to("Hook", {target_global_position = target_global_position, velocity = velocity})
+	_state_machine.transition_to("Hook", {target_global_position = target_global_position, velocity = velocity})
 
 
-func ready(player: KinematicBody2D) -> void:
-	.ready(player)
+func setup(player: KinematicBody2D, state_machine: Node) -> void:
+	.setup(player, state_machine)
 	_player.hook.connect("hooked_onto_target", self, "_on_Hook_hooked_onto_target")
 	$Air.connect("jumped", $Idle.jump_delay, "start")
 
@@ -27,7 +27,7 @@ func ready(player: KinematicBody2D) -> void:
 func unhandled_input(event: InputEvent) -> void:
 	if _player.is_on_floor() and event.is_action_pressed("jump"):
 		self.velocity = calculate_velocity(velocity, speed, Vector2(0.0, JUMP_SPEED), 1.0, Vector2.UP)
-		_player.transition_to("Move/Air")
+		_state_machine.transition_to("Move/Air")
 
 
 func physics_process(delta: float) -> void:

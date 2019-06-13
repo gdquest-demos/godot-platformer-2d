@@ -1,11 +1,11 @@
-extends "res://src/Player/SkillsHFSM/Skill.gd"
+extends "res://src/Player/States/State.gd"
 
 
 onready var jump_delay: Timer = $JumpDelay
 
 
-func ready(player: KinematicBody2D) -> void:
-	.ready(player)
+func setup(player: KinematicBody2D, state_machine: Node) -> void:
+	.setup(player, state_machine)
 	var move: = get_parent()
 	# force update once at start of game
 	player.move_and_slide(move.velocity, _player.FLOOR_NORMAL)
@@ -17,9 +17,9 @@ func unhandled_input(event: InputEvent) -> void:
 
 func physics_process(delta: float) -> void:
 	if _player.is_on_floor() and get_parent().get_move_direction().x != 0.0:
-		_player.transition_to("Move/Run")
+		_state_machine.transition_to("Move/Run")
 	elif not _player.is_on_floor():
-		_player.transition_to("Move/Air")
+		_state_machine.transition_to("Move/Air")
 
 
 func enter(msg: Dictionary = {}) -> void:
@@ -29,4 +29,4 @@ func enter(msg: Dictionary = {}) -> void:
 	if jump_delay.time_left > 0.0:
 		move.velocity = move.calculate_velocity(
 				move.velocity, move.speed, Vector2(0.0, move.JUMP_SPEED), 1.0, Vector2.UP)
-		_player.transition_to("Move/Air")
+		_state_machine.transition_to("Move/Air")

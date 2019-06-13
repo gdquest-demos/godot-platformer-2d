@@ -1,4 +1,4 @@
-extends "res://src/Player/SkillsHFSM/Skill.gd"
+extends "res://src/Player/States/State.gd"
 
 
 const HOOK_MAX_SPEED: = 1600.0
@@ -17,7 +17,7 @@ func physics_process(delta: float) -> void:
 		# Dampen the character's velocity upon reaching the target so it doesn't go flying way above the hook
 		# The transition is harsh right now, the arrival behavior may be better
 		self.velocity = velocity.normalized() * 400.0
-		_player.transition_to("Move/Air", {velocity = velocity})
+		_state_machine.transition_to("Move/Air", {velocity = velocity})
 
 
 func enter(msg: Dictionary = {}) -> void:
