@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/Game.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/theme/fonts/montserrat/Montserrat-Black.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://assets/tilesets/basic.tres" type="TileSet" id=4]
 [ext_resource path="res://src/HookTarget.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/areas/Debug.gd" type="Script" id=6]
+[ext_resource path="res://src/UI/debug/DebugPanel.tscn" type="PackedScene" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 90
@@ -79,3 +81,23 @@ position = Vector2( 1160, 360 )
 
 [node name="HookTarget5" parent="Level3/TileMap" instance=ExtResource( 5 )]
 position = Vector2( 1520, 400 )
+
+[node name="Debug" type="CanvasLayer" parent="."]
+script = ExtResource( 6 )
+
+[node name="PlayerDebugPanel" parent="Debug" instance=ExtResource( 7 )]
+margin_left = 492.0
+margin_right = -1054.0
+reference_node_path = NodePath("../../Player")
+properties = PoolStringArray( "_velocity", "_state" )
+
+[node name="HookDebugPanel2" parent="Debug" instance=ExtResource( 7 )]
+margin_left = 876.0
+margin_right = -670.0
+reference_node_path = NodePath("../../Player/Hook")
+properties = PoolStringArray( "length" )
+
+[node name="StatsDebugPanel" parent="Debug" instance=ExtResource( 7 )]
+margin_left = 1261.5
+margin_right = -284.501
+reference_node_path = NodePath("../../Player/Stats")
