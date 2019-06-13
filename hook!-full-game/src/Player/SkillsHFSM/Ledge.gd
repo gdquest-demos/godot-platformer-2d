@@ -22,4 +22,8 @@ func enter(msg: Dictionary = {}) -> void:
 	_player.global_position = _player.floor_detector.get_floor_position()
 	
 	msg.move_skill.velocity = Vector2.ZERO
-	_player.skin.animate_ledge(player_global_position_start, _player.global_position)
+	var anim_data: = {
+		'from': player_global_position_start,
+		'to': _player.global_position,
+	}
+	_player.skin.play('ledge', anim_data)

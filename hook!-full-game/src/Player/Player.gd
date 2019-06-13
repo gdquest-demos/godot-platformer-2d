@@ -2,47 +2,48 @@ extends KinematicBody2D
 
 
 onready var hook: Position2D = $Hook
-onready var camera: Position2D = $CameraRig
+onready var camera: Position2D = $Skin/CameraRig
 onready var ledge_detector: Position2D = $LedgeDetector
 onready var floor_detector: RayCast2D = $FloorDetector
 onready var skin: Position2D = $Skin
-onready var skills: Node = $Skills
 onready var stats: Stats = $Stats
+onready var skills: Node = $Skills
+onready var active_skill: Node = skills.get_node("Move/Idle")
 
-var _info_dict: = {} setget _set_info_dict
+const FLOOR_NORMAL: = Vector2.UP
 
-var _gravity: = 0.0
-var _velocity: = Vector2.ZERO
-
-var _state: = "idle"
-onready var _transitions: = {}
+var info_dict: = {} setget set_info_dict
 
 
 func _ready() -> void:
-	# combine transitions from all skills - union operation on Dictionaries
-	for skill in skills.get_children():
-		for key in skill.transitions:
-			if _transitions.has(key):
-				for state in skill.transitions[key]:
-					if state in _transitions[key]:
-						continue
-					
-					_transitions[key].push_back(state)
-			else:
-				_transitions[key] = skill.transitions[key]
+	skills.ready(self)
 
 
-func _set_info_dict(value: Dictionary) -> void:
-	_info_dict = value
-	Events.emit_signal("player_info_updated", _info_dict)
+func _unhandled_input(event: InputEvent) -> void:
+	active_skill.unhandled_input(event)
 
 
-static func get_move_direction() -> Vector2:
-	return Vector2(
-		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
-		0.0
-	)
+func _physics_process(delta: float) -> void:
+	active_skill.physics_process(delta)
+
+
+func set_info_dict(value: Dictionary) -> void:
+	info_dict = value
+	Events.emit_signal("player_info_updated", info_dict)
 
 
 func take_damage(source: Hit) -> void:
 	stats.take_damage(source)
+
+
+func transition_to(target_skill_path: String, msg: Dictionary = {}) -> void:
+	if not skills.has_node(target_skill_path):
+		return
+
+	var target_skill: = skills.get_node(target_skill_path)
+	assert target_skill.is_composite == false
+
+	active_skill.exit()
+	active_skill = target_skill
+	active_skill.enter(msg)
+	Events.emit_signal("player_skill_changed", active_skill.name)
