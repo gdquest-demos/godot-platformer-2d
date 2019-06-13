@@ -40,8 +40,6 @@ func add_property_label(property: String) -> void:
 
 
 func _update(property: String) -> void:
-	if not container.has_node(property.capitalize()):
-		return
 	var search_array: Array = properties
 	var property_label: Label = container.get_child(search_array.find(property))
 	property_label.text = "%s: %s"%[property.capitalize(), reference_node.get(property)]
