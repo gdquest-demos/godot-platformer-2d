@@ -6,15 +6,17 @@
 [ext_resource path="res://src/Player/FloorDetector.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Player/Skin.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Player/CameraRig.gd" type="Script" id=6]
-[ext_resource path="res://src/Player/Skills.gd" type="Script" id=7]
-[ext_resource path="res://src/Player/SkillsHFSM/Move.gd" type="Script" id=8]
-[ext_resource path="res://src/Player/SkillsHFSM/Idle.gd" type="Script" id=9]
-[ext_resource path="res://src/Player/SkillsHFSM/Run.gd" type="Script" id=10]
-[ext_resource path="res://src/Player/SkillsHFSM/Air.gd" type="Script" id=11]
-[ext_resource path="res://src/Player/SkillsHFSM/Ledge.gd" type="Script" id=12]
-[ext_resource path="res://src/Player/SkillsHFSM/Hook.gd" type="Script" id=13]
+[ext_resource path="res://src/Player/StateMachine.gd" type="Script" id=7]
+[ext_resource path="res://src/Player/States/Move.gd" type="Script" id=8]
+[ext_resource path="res://src/Player/States/Idle.gd" type="Script" id=9]
+[ext_resource path="res://src/Player/States/Run.gd" type="Script" id=10]
+[ext_resource path="res://src/Player/States/Air.gd" type="Script" id=11]
+[ext_resource path="res://src/Player/States/Ledge.gd" type="Script" id=12]
+[ext_resource path="res://src/Player/States/Hook.gd" type="Script" id=13]
 [ext_resource path="res://src/Combat/Stats.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/Combat/HitBox/HitBox.tscn" type="PackedScene" id=15]
+
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 30 )
