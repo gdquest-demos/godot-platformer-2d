@@ -25,6 +25,8 @@ shape = SubResource( 1 )
 position = Vector2( -7, -28 )
 
 [node name="LedgeDetector" parent="." instance=ExtResource( 3 )]
+active = true
+ray_length = 30.0
 
 [node name="FloorDetector" parent="." instance=ExtResource( 4 )]
 
