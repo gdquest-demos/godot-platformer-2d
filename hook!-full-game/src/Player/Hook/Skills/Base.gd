@@ -32,4 +32,9 @@ func _hook() -> void:
 			else hook.ray.get_collision_point())
 	if hook.aim_mode:
 		hook.aim_mode = false
-	hook.emit_signal("hooked_onto_target", hook._get_hook_position())
+
+	hook.emit_signal("hooked_onto_target", hook._get_target_position())
+
+	var target: HookTarget = hook._get_hook_target()
+	if target:
+		target.hooked_from(hook.global_position)
