@@ -12,7 +12,7 @@ onready var anim: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
 	tween.connect("tween_completed", self, "_on_Tween_tween_completed")
-	tween.connect("animation_finished", self, "_on_AnimationPlayer_animation_finished")
+	anim.connect("animation_finished", self, "_on_AnimationPlayer_animation_finished")
 
 
 func play(name: String, data: ={}) -> void:
