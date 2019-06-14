@@ -44,8 +44,12 @@ func _can_hook() -> bool:
 	return _has_target() and cooldown.is_stopped()
 
 
-func _get_hook_position() -> Vector2:
+func _get_target_position() -> Vector2:
 	return snap_detector.target.global_position if snap_detector.target else ray.get_collision_point()
+
+
+func _get_hook_target() -> HookTarget:
+	return snap_detector.target
 
 
 func _get_aim_direction() -> Vector2:

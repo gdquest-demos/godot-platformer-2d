@@ -1,7 +1,14 @@
 extends Area2D
 class_name HookTarget
-"""Point the hook can pull onto"""
+"""
+Area2D the Hook can hook onto
+If one_shot is true, the player can only hook onto the point once
+"""
 
+
+signal hooked_onto_from(hook_position)
+
+export var one_shot: = false
 
 onready var timer: Timer = $Timer
 
@@ -16,10 +23,17 @@ func _draw() -> void:
 	draw_circle(Vector2.ZERO, 12.0, color)
 
 
+func hooked_from(hook_position: Vector2) -> void:
+	self.active = false
+	emit_signal("hooked_onto_from", hook_position)
+
+
 func set_active(value:bool) -> void:
 	active = value
 	self.color = COLOR_ACTIVE if active else COLOR_INACTIVE
-	timer.start()
+
+	if not active and not one_shot:
+		timer.start()
 
 
 func set_color(value:Color) -> void:
