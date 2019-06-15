@@ -15,7 +15,7 @@ func enter(msg: Dictionary = {}) -> void:
 	if not "move_state" in msg:
 		return
 	
-	var player_global_position_start: = _player.global_position
+	var start: = _player.global_position
 	_player.global_position = (
 			_player.ledge_detector.ray_top.global_position
 			+ Vector2(_player.ledge_detector.ray_length * sign(msg.move_state.velocity.x), 0.0))
@@ -23,7 +23,6 @@ func enter(msg: Dictionary = {}) -> void:
 	
 	msg.move_state.velocity = Vector2.ZERO
 	var anim_data: = {
-		'from': player_global_position_start,
-		'to': _player.global_position,
+		'from': start - _player.global_position,
 	}
 	_player.skin.play('ledge', anim_data)

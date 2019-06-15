@@ -22,28 +22,25 @@ func play(name: String, data: ={}) -> void:
 	anim.stop()
 	if name == "ledge":
 		assert 'from' in data
-		assert 'to' in data
-		_animate_ledge(data['from'], data['to'])
+		_animate_ledge(data['from'])
 	else:
 		anim.play(name)
 
 
-func _animate_ledge(from: Vector2, to: Vector2) -> void:
-	# Animate the character climbing a ledge between two positions
-	# To replace with an interpolate method, to control X and Y axes?
+func _animate_ledge(from: Vector2) -> void:
+	# Animate the character climbing a ledge from a starting offset
 	tween.interpolate_property(
-		self, 'global_position',
-		from, to, 0.15,
+		self, 'position',
+		from, Vector2.ZERO, 0.15,
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
-	global_position = from
+	position = from
 
 
 func _on_Tween_tween_completed(object: Object, key: NodePath) -> void:
-	if key == ":global_position":
+	if key == ":position":
 		emit_signal("animation_finished", "ledge")
 
 
 func _on_AnimationPlayer_animation_finished(name:String) -> void:
 	  emit_signal("animation_finished", name)
-
