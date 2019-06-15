@@ -10,7 +10,7 @@ based on its frequency and a phase offset.
 The phase of a job is to prevent spikes of activity; if there are 100 AI entities created at the
 same time, all vying for an update every 10 frames, there are 9 frames where nothing happens,
 and one frame where every entity fights for time budget. The phase will offset them to try and
-spread the load.
+spread the load. However, the phase offset can only be as big as the largest frequency-1.
 
 Higher priority jobs added via `add_new_priority_job` will get the lion's share of the budget
 before lower priority ones. In addition, there is a balanced sub scheduler for jobs added via
