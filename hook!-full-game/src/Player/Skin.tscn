@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/Player/Skin.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/Rectangle.gd" type="Script" id=2]
-
 
 [sub_resource type="Animation" id=1]
 resource_name = "REST_POSE"
@@ -156,7 +155,23 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-resource_name = "spawn"
+resource_name = "ledge"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:scale")
@@ -197,6 +212,5 @@ color_outline = Color( 0.231373, 0.145098, 0.584314, 1 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/REST_POSE = SubResource( 1 )
 anims/die = SubResource( 2 )
-anims/spawn = SubResource( 3 )
-
-[node name="Tween" type="Tween" parent="."]
+anims/ledge = SubResource( 3 )
+anims/spawn = SubResource( 4 )

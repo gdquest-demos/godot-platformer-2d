@@ -32,8 +32,6 @@ shape = SubResource( 1 )
 position = Vector2( 0, -30 )
 
 [node name="LedgeDetector" parent="." instance=ExtResource( 3 )]
-active = true
-ray_length = 30.0
 
 [node name="FloorDetector" parent="." instance=ExtResource( 4 )]
 
@@ -50,6 +48,8 @@ position = Vector2( 0, -30 )
 script = ExtResource( 6 )
 
 [node name="ShakingCamera" parent="CameraRig" instance=ExtResource( 7 )]
+DAMP_EASING = 1.0
+shake = false
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 8 )

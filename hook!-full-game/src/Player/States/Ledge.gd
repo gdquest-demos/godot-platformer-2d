@@ -8,7 +8,7 @@ func _on_Skin_animation_finished(name: String) -> void:
 
 func setup(player: KinematicBody2D, state_machine: Node) -> void:
 	.setup(player, state_machine)
-	_player.skin.connect("animation_finished", self, "_on_Skin_animation_finished")
+	_player.skin.anim.connect("animation_finished", self, "_on_Skin_animation_finished")
 
 
 func enter(msg: Dictionary = {}) -> void:
@@ -22,7 +22,4 @@ func enter(msg: Dictionary = {}) -> void:
 	_player.global_position = _player.floor_detector.get_floor_position()
 	
 	msg.move_state.velocity = Vector2.ZERO
-	var anim_data: = {
-		'from': start - _player.global_position,
-	}
-	_player.skin.play('ledge', anim_data)
+	_player.skin.play('ledge', {from = start - _player.global_position})
