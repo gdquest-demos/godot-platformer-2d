@@ -36,6 +36,7 @@ func _animate_ledge(from: Vector2, to: Vector2) -> void:
 		from, to, 0.15,
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
+	global_position = from
 
 
 func _on_Tween_tween_completed(object: Object, key: NodePath) -> void:
