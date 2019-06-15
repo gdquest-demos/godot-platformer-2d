@@ -1,17 +1,30 @@
 extends Reference
 class_name SchedulableJob
 """
-A SchedulableJob to be used as an extension to other jobs.
+A SchedulableJob to be used as an extension to create individual jobs.
 
-A job, once added to the scheduler, will be run at its given frequency, offset by a calculated phase (to keep it from
-overlapping frames where there is a lot of activity.) It is up to the job to play nice with the allocated budget and
-return when its time is up - there are no facilities to interrupt loops and functions. It is also up to the job to determine
-what to do when its time is up, and when to check for its time being up.
+A job runs at a set frequency, offset by its calculated phase. When its time is up, `_run` will be
+called with the amount of microseconds it is allowed to use before it should save its current state
+and return, to be resumed at its next call. However, there is no mechanism in place to forcibly
+abort a function - it is up to the job to play nice and keep track of how much time it's taken.
+
+It should return any left over budget it has available, if any. Negative values will be ignored.
+
+The Scheduler has a helper function `get_elapsed_microseconds` that is a wrapper around godot's
+`OS.get_ticks_usec()` call that can be used for this purpose.
+
+Notes
+-----
+1 second == 1,000 milliseconds == 1,000,000 microseconds
+In most 60 fps games, an average frame takes 16.66 milliseconds to both update and render.
 """
 
+# warning-ignore:unused_class_variable
 var _priority: int
+# warning-ignore:unused_class_variable
 var _frequency: int
+# warning-ignore:unused_class_variable
 var _phase: int
 
-func _run(microseconds_budget: int) -> void:
-	pass
+func _run(microseconds_budget: int) -> int:
+	return microseconds_budget
