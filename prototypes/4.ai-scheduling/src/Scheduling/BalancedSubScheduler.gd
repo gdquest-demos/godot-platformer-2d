@@ -34,7 +34,7 @@ func _run(microseconds_budget: int) -> void:
 			_job_list.remove(i+1)
 			continue
 		
-		if (_current_frame + (job as SchedulableJob).phase) % (job as SchedulableJob).frequency == 0:
+		if (_current_frame + job.phase) % job.frequency == 0:
 			_run_list.append(job)
 	
 	var current_job: = 0

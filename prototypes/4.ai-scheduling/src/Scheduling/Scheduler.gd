@@ -50,7 +50,7 @@ func _process(delta) -> void:
 			_job_list.remove(i+1)
 			continue
 		
-		if (_current_frame + (job as SchedulableJob).phase) % (job as SchedulableJob).frequency == 0:
+		if (_current_frame + job.phase) % job.frequency == 0:
 			_run_list.append(job)
 			total_priority += job.priority
 	
