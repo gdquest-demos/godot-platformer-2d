@@ -6,8 +6,8 @@
 [node name="DebugPanel" type="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -1693.0
-margin_bottom = -790.0
+margin_right = -1630.0
+margin_bottom = -770.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 
@@ -16,7 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="ReferenceName" type="Label" parent="VBoxContainer"]
-margin_right = 227.0
+margin_right = 290.0
 margin_bottom = 54.0
 rect_min_size = Vector2( 0, 54 )
 align = 1
@@ -24,8 +24,8 @@ valign = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 margin_top = 62.0
-margin_right = 227.0
-margin_bottom = 290.0
+margin_right = 290.0
+margin_bottom = 310.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 20
@@ -36,5 +36,5 @@ custom_constants/margin_bottom = 20
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 207.0
-margin_bottom = 208.0
+margin_right = 270.0
+margin_bottom = 228.0

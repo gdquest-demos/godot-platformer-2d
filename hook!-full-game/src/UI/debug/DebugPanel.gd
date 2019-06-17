@@ -1,45 +1,64 @@
 extends Control
+"""
+Displays the values of properties of a given node
+You can directly change the `properties` property to display multiple values from the `reference` node
+E.g. properties = PoolStringArray(['speed', 'position', 'modulate'])
+"""
 
-onready var container: VBoxContainer = $VBoxContainer/MarginContainer/VBoxContainer
-onready var reference_node: Node = get_node(reference_node_path)
-onready var name_label: Label = $VBoxContainer/ReferenceName
+onready var _container: VBoxContainer = $VBoxContainer/MarginContainer/VBoxContainer
+onready var _title: Label = $VBoxContainer/ReferenceName
 
-export (NodePath) var reference_node_path: NodePath
-export (PoolStringArray) var properties: PoolStringArray = []
+onready var reference: Node = get_node(reference_path) setget set_reference
 
-func _ready():
-	if reference_node:
-		setup()
+export var reference_path: NodePath
+export var properties: PoolStringArray setget set_properties
 
 
 func _process(delta) -> void:
-	for property_string in properties:
-		_update(property_string)
+	_update()
 
 
 func setup() -> void:
 	_clear()
-	name_label.text = reference_node.name
-	for property_string in properties:
-		add_property_label(property_string)
+	_title.text = reference.name
+	for property in properties:
+		track(property)
 
 
-func _clear() -> void:
-	for property_label in container.get_children():
-		property_label.queue_free()
-
-
-func add_property_label(property: String) -> void:
+func track(property: String) -> void:
 	var label: = Label.new()
 	label.autowrap = true
 	label.name = property.capitalize()
-	container.add_child(label)
+	_container.add_child(label)
 	if not property in properties:
 		properties.append(property)
-	_update(property)
 
 
-func _update(property: String) -> void:
+func _clear() -> void:
+	for property_label in _container.get_children():
+		property_label.queue_free()
+
+
+func _update() -> void:
 	var search_array: Array = properties
-	var property_label: Label = container.get_child(search_array.find(property))
-	property_label.text = "%s: %s"%[property.capitalize(), reference_node.get(property)]
+	for property in properties:
+		var property_label: Label = _container.get_child(search_array.find(property))
+		var value = reference.get(property)
+
+		var text: = ""
+		if value is Vector2:
+			text = "(%01d %01d)" % [value.x, value.y]
+		else:
+			text = str(value)
+		property_label.text = "%s: %s" % [property.capitalize(), text]
+
+
+func set_properties(value: PoolStringArray) -> void:
+	properties = value
+	setup()
+
+
+func set_reference(value: Node) -> void:
+	reference = value
+	if reference:
+	  setup()

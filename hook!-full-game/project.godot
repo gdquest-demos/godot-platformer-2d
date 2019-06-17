@@ -64,7 +64,6 @@ Steering="*res://src/Singletons/Steering.gd"
 
 [debug]
 
-gdscript/warnings/enable=false
 testing/controls/use_right_stick=false
 
 [display]
