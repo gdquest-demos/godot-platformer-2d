@@ -8,7 +8,7 @@ func _on_Skin_animation_finished(name: String) -> void:
 
 func setup(player: KinematicBody2D, state_machine: Node) -> void:
 	.setup(player, state_machine)
-	_player.skin.anim.connect("animation_finished", self, "_on_Skin_animation_finished")
+	_player.skin.connect("animation_finished", self, "_on_Skin_animation_finished")
 
 
 func enter(msg: Dictionary = {}) -> void:
