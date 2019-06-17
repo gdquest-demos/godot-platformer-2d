@@ -1,12 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/Game.gd" type="Script" id=1]
 [ext_resource path="res://assets/theme/gdquest.theme" type="Theme" id=2]
-[ext_resource path="res://src/Debug/PlayerInfoPanel.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/objects/MovingPlatform/MovingPlatform.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/objects/MovingPlatform/Waypoints.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/HookTarget.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Objects/MovingPlatform/MovingPlatform.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Objects/MovingPlatform/Waypoints.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/HookTarget.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 401.995
@@ -26,17 +25,14 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="PlayerInfoPanel" parent="TopLayer/UI" instance=ExtResource( 3 )]
-
-[node name="Player" parent="." instance=ExtResource( 4 )]
+[node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 2080, -80 )
-collision_mask = 6
 
-[node name="MovingPlatform" parent="." instance=ExtResource( 5 )]
+[node name="MovingPlatform" parent="." instance=ExtResource( 4 )]
 editor/display_folded = true
 position = Vector2( 2610, 0 )
 
-[node name="Waypoints" parent="MovingPlatform" instance=ExtResource( 6 )]
+[node name="Waypoints" parent="MovingPlatform" instance=ExtResource( 5 )]
 editor/display_folded = true
 position = Vector2( 2612.25, 3.375 )
 mode = 0
@@ -145,55 +141,55 @@ collision_mask = 0
 [node name="1" type="CollisionPolygon2D" parent="HookableWall"]
 polygon = PoolVector2Array( -40, -160, 0, -160, 0, 120, -40, 120 )
 
-[node name="HookTarget1" parent="." instance=ExtResource( 7 )]
+[node name="HookTarget1" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1680, 480 )
 
-[node name="HookTarget4" parent="." instance=ExtResource( 7 )]
+[node name="HookTarget4" parent="." instance=ExtResource( 6 )]
 position = Vector2( 3360, 720 )
 
-[node name="HookTarget6" parent="." instance=ExtResource( 7 )]
+[node name="HookTarget6" parent="." instance=ExtResource( 6 )]
 position = Vector2( 3880, 440 )
 
-[node name="HookTarget5" parent="." instance=ExtResource( 7 )]
+[node name="HookTarget5" parent="." instance=ExtResource( 6 )]
 position = Vector2( 2964, 440 )
 
-[node name="HookTarget7" parent="." instance=ExtResource( 7 )]
+[node name="HookTarget7" parent="." instance=ExtResource( 6 )]
 position = Vector2( 2560, -212 )
 
-[node name="HookTarget8" parent="." instance=ExtResource( 7 )]
+[node name="HookTarget8" parent="." instance=ExtResource( 6 )]
 position = Vector2( 2960, -360 )
 
-[node name="HookTarget9" parent="." instance=ExtResource( 7 )]
+[node name="HookTarget9" parent="." instance=ExtResource( 6 )]
 position = Vector2( 3360, -400 )
 
-[node name="HookTarget10" parent="." instance=ExtResource( 7 )]
+[node name="HookTarget10" parent="." instance=ExtResource( 6 )]
 position = Vector2( 3240, -720 )
 
-[node name="HookTarget11" parent="." instance=ExtResource( 7 )]
+[node name="HookTarget11" parent="." instance=ExtResource( 6 )]
 position = Vector2( 2800, -720 )
 
-[node name="HookTarget12" parent="." instance=ExtResource( 7 )]
+[node name="HookTarget12" parent="." instance=ExtResource( 6 )]
 position = Vector2( 2400, -760 )
 
-[node name="HookTarget13" parent="." instance=ExtResource( 7 )]
+[node name="HookTarget13" parent="." instance=ExtResource( 6 )]
 position = Vector2( 2680, -1080 )
 
-[node name="HookTarget14" parent="." instance=ExtResource( 7 )]
+[node name="HookTarget14" parent="." instance=ExtResource( 6 )]
 position = Vector2( 3000, -960 )
 
-[node name="HookTarget15" parent="." instance=ExtResource( 7 )]
+[node name="HookTarget15" parent="." instance=ExtResource( 6 )]
 position = Vector2( 3440, -1000 )
 
-[node name="HookTarget16" parent="." instance=ExtResource( 7 )]
+[node name="HookTarget16" parent="." instance=ExtResource( 6 )]
 position = Vector2( 3680, -720 )
 
-[node name="HookTarget17" parent="." instance=ExtResource( 7 )]
+[node name="HookTarget17" parent="." instance=ExtResource( 6 )]
 position = Vector2( 4000, -960 )
 
-[node name="HookTarget2" parent="." instance=ExtResource( 7 )]
+[node name="HookTarget2" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1960, 190 )
 
-[node name="HookTarget3" parent="." instance=ExtResource( 7 )]
+[node name="HookTarget3" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1640, -240 )
 
 [node name="Flag" type="Node2D" parent="."]
