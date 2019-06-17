@@ -14,8 +14,8 @@ var _elapsed_time: float = 0
 func _ready() -> void:
 	Scheduler.add_new_job(_test, 1)
 	Scheduler.add_new_priority_job(_test2, 1, 2)
-	#Anticipated result is test2 to run more often than test1
-	Scheduler.set_microseconds_budget(150)
+	#Anticipated result is test2 to run ~2x more often than test1
+	Scheduler.microseconds_budget = 150
 
 
 func _process(delta) -> void:

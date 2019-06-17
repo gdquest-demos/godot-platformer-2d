@@ -8,8 +8,6 @@ called with the amount of microseconds it is allowed to use before it should sav
 and return, to be resumed at its next call. However, there is no mechanism in place to forcibly
 abort a function - it is up to the job to play nice and keep track of how much time it's taken.
 
-It should return any left over budget it has available, if any. Negative values will be ignored.
-
 The Scheduler has a helper function `get_elapsed_microseconds` that is a wrapper around godot's
 `OS.get_ticks_usec()` call that can be used for this purpose.
 
@@ -20,11 +18,12 @@ In most 60 fps games, an average frame takes 16.66 milliseconds to both update a
 """
 
 # warning-ignore:unused_class_variable
-var _priority: int
+var priority: int
 # warning-ignore:unused_class_variable
-var _frequency: int
+var frequency: int
 # warning-ignore:unused_class_variable
-var _phase: int
+var phase: int
 
-func _run(microseconds_budget: int) -> int:
-	return microseconds_budget
+# warning-ignore:unused_argument
+func _run(microseconds_budget: int) -> void:
+	pass

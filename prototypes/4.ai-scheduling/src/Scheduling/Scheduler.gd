@@ -21,7 +21,7 @@ before lower priority ones. In addition, there is a balanced sub scheduler for j
 const MAX_INT: = 0x7FFFFFFFFFFFFFFF
 
 #4 milliseconds maximum budget by default
-var microseconds_budget: = 4000 setget set_microseconds_budget, get_microseconds_budget
+var microseconds_budget: = 4000
 
 var _sub_scheduler: = BalancedSubScheduler.new()
 var _current_frame: = 0
@@ -37,8 +37,6 @@ func _ready() -> void:
 
 # warning-ignore:unused_argument
 func _process(delta) -> void:
-	var last_time: = OS.get_ticks_usec()
-	
 	_current_frame += 1
 	
 	_run_list.clear()
@@ -52,23 +50,24 @@ func _process(delta) -> void:
 			_job_list.remove(i+1)
 			continue
 		
-		if (_current_frame + (job as SchedulableJob)._phase) % (job as SchedulableJob)._frequency == 0:
+		if (_current_frame + (job as SchedulableJob).phase) % (job as SchedulableJob).frequency == 0:
 			_run_list.append(job)
-			total_priority += job._priority
-	
+			total_priority += job.priority
 	
 	var current_usecs_to_run: = microseconds_budget
-	for job in _run_list:
+	var last_time: = OS.get_ticks_usec()
+	
+	var list_size: = _run_list.size()
+	for i in range(0, list_size):
+		var job:= _run_list[i] as SchedulableJob
+		
 		var current_time: = OS.get_ticks_usec()
-		current_usecs_to_run -= current_time - last_time
+		current_usecs_to_run -= (current_time - last_time)
 		
-		var available_time: = int(current_usecs_to_run * (job as SchedulableJob)._priority / total_priority)
-		var returned_time: = (job as SchedulableJob)._run(available_time)
-		
-		if returned_time > 0 and returned_time < available_time:
-			current_usecs_to_run += returned_time
+		var available_time: = int(current_usecs_to_run * job.priority / total_priority)
+		job._run(available_time)
 		last_time = current_time
-
+		total_priority -= job.priority
 
 """
 Adds a job at a set frequency, and with a priority that is proportional to the total amount of
@@ -76,9 +75,10 @@ priority from all other jobs. It will be offset by a phase; so, a frequency of 1
 be on the very next frame, depending on how busy the scheduler is.
 """
 func add_new_priority_job(job: SchedulableJob, frequency: int, priority: float) -> void:
-	job._frequency = frequency
-	job._priority = priority
-	job._phase = _calculate_phase(frequency)
+	job.frequency = frequency
+# warning-ignore:narrowing_conversion
+	job.priority = priority
+	job.phase = _calculate_phase(frequency)
 	_job_list.append(weakref(job))
 
 
@@ -114,18 +114,6 @@ func get_elapsed_microseconds() -> int:
 
 
 """
-Sets the amount of microseconds alloted to the scheduler as a whole every frame.
-It defaults to 4000 microseconds (4 milliseconds.)
-"""
-func set_microseconds_budget(new_budget: int) -> void:
-	microseconds_budget = new_budget
-
-
-func get_microseconds_budget() -> int:
-	return microseconds_budget
-
-
-"""
 Runs a simulation with the current job loadout to calculate a phase that will offset this job from
 the other frequencies.
 """
@@ -146,7 +134,7 @@ func _calculate_phase(frequency: int) -> int:
 				_job_list.remove(i+1)
 				continue
 			
-			if (frame - job._phase) % job._frequency == 0:
+			if (frame - job.phase) % job.frequency == 0:
 				_phase_counters[slot] += 1
 	
 	var min_value: = MAX_INT
