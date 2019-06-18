@@ -15,6 +15,8 @@ func unhandled_input(event: InputEvent) -> void:
 			move.velocity = move.calculate_velocity(
 					move.velocity, move.speed, Vector2(0.0, move.JUMP_SPEED), 1.0, Vector2.UP)
 		emit_signal("jumped")
+	else:
+		move.unhandled_input(event)
 
 
 func physics_process(delta: float) -> void:
