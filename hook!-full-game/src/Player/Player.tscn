@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/Hook/Hook.tscn" type="PackedScene" id=2]
@@ -12,12 +12,12 @@
 [ext_resource path="res://src/Player/States/Idle.gd" type="Script" id=10]
 [ext_resource path="res://src/Player/States/Run.gd" type="Script" id=11]
 [ext_resource path="res://src/Player/States/Air.gd" type="Script" id=12]
-[ext_resource path="res://src/Player/States/Ledge.gd" type="Script" id=13]
-[ext_resource path="res://src/Player/States/Hook.gd" type="Script" id=14]
-[ext_resource path="res://src/Player/States/Debug.gd" type="Script" id=15]
-[ext_resource path="res://src/Combat/Stats.tscn" type="PackedScene" id=16]
-[ext_resource path="res://src/Combat/HitBox/HitBox.tscn" type="PackedScene" id=17]
-
+[ext_resource path="res://src/Player/States/Wall.gd" type="Script" id=13]
+[ext_resource path="res://src/Player/States/Ledge.gd" type="Script" id=14]
+[ext_resource path="res://src/Player/States/Hook.gd" type="Script" id=15]
+[ext_resource path="res://src/Player/States/Debug.gd" type="Script" id=16]
+[ext_resource path="res://src/Combat/Stats.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/Combat/HitBox/HitBox.tscn" type="PackedScene" id=18]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 30 )
@@ -59,11 +59,9 @@ shake = false
 script = ExtResource( 8 )
 
 [node name="Move" type="Node" parent="StateMachine"]
-editor/display_folded = true
 script = ExtResource( 9 )
 
 [node name="Idle" type="Node" parent="StateMachine/Move"]
-editor/display_folded = true
 script = ExtResource( 10 )
 
 [node name="JumpDelay" type="Timer" parent="StateMachine/Move/Idle"]
@@ -81,16 +79,19 @@ script = ExtResource( 12 )
 wait_time = 0.1
 one_shot = true
 
-[node name="Ledge" type="Node" parent="StateMachine"]
+[node name="Wall" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 13 )
 
-[node name="Hook" type="Node" parent="StateMachine"]
+[node name="Ledge" type="Node" parent="StateMachine"]
 script = ExtResource( 14 )
 
-[node name="Debug" type="Node" parent="StateMachine"]
+[node name="Hook" type="Node" parent="StateMachine"]
 script = ExtResource( 15 )
 
-[node name="Stats" parent="." instance=ExtResource( 16 )]
+[node name="Debug" type="Node" parent="StateMachine"]
+script = ExtResource( 16 )
 
-[node name="HitBox" parent="." instance=ExtResource( 17 )]
+[node name="Stats" parent="." instance=ExtResource( 17 )]
+
+[node name="HitBox" parent="." instance=ExtResource( 18 )]
 position = Vector2( 0, -30 )
