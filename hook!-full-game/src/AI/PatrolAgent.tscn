@@ -25,6 +25,7 @@ color_fill = Color( 0.894118, 0.203922, 0.396078, 1 )
 color_outline = Color( 0.670588, 0.0431373, 0.0431373, 1 )
 
 [node name="Pivot" type="Position2D" parent="."]
+editor/display_folded = true
 
 [node name="FloorDetector" parent="Pivot" instance=ExtResource( 3 )]
 position = Vector2( 40, 0 )
@@ -32,5 +33,10 @@ enabled = true
 
 [node name="Timer" type="Timer" parent="."]
 process_mode = 0
-wait_time = 1.2
 one_shot = true
+
+[node name="Start" type="Position2D" parent="."]
+position = Vector2( -150, 0 )
+
+[node name="End" type="Position2D" parent="."]
+position = Vector2( 220, 0 )
