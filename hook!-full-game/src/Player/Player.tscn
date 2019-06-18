@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/Hook/Hook.tscn" type="PackedScene" id=2]
@@ -14,8 +14,10 @@
 [ext_resource path="res://src/Player/States/Air.gd" type="Script" id=12]
 [ext_resource path="res://src/Player/States/Ledge.gd" type="Script" id=13]
 [ext_resource path="res://src/Player/States/Hook.gd" type="Script" id=14]
-[ext_resource path="res://src/Combat/Stats.tscn" type="PackedScene" id=15]
-[ext_resource path="res://src/Combat/HitBox/HitBox.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/Player/States/Debug.gd" type="Script" id=15]
+[ext_resource path="res://src/Combat/Stats.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/Combat/HitBox/HitBox.tscn" type="PackedScene" id=17]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 30 )
@@ -32,6 +34,8 @@ shape = SubResource( 1 )
 position = Vector2( 0, -30 )
 
 [node name="LedgeDetector" parent="." instance=ExtResource( 3 )]
+active = true
+ray_length = 30.0
 
 [node name="FloorDetector" parent="." instance=ExtResource( 4 )]
 
@@ -83,7 +87,10 @@ script = ExtResource( 13 )
 [node name="Hook" type="Node" parent="StateMachine"]
 script = ExtResource( 14 )
 
-[node name="Stats" parent="." instance=ExtResource( 15 )]
+[node name="Debug" type="Node" parent="StateMachine"]
+script = ExtResource( 15 )
 
-[node name="HitBox" parent="." instance=ExtResource( 16 )]
+[node name="Stats" parent="." instance=ExtResource( 16 )]
+
+[node name="HitBox" parent="." instance=ExtResource( 17 )]
 position = Vector2( 0, -30 )

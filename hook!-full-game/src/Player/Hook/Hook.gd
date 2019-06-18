@@ -19,6 +19,7 @@ onready var length: = ray.cast_to.length()
 const HOOKABLE_PHYSICS_LAYER: = 2
 
 var aim_mode: = false setget set_aim_mode
+var active: = true setget set_active
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -41,7 +42,7 @@ func _has_target() -> bool:
 
 
 func _can_hook() -> bool:
-	return _has_target() and cooldown.is_stopped()
+	return active and _has_target() and cooldown.is_stopped()
 
 
 func _get_target_position() -> Vector2:
@@ -58,3 +59,9 @@ func _get_aim_direction() -> Vector2:
 			return ControlUtils.get_aim_joystick_direction()
 		Settings.KBD_MOUSE, _:
 			return (get_global_mouse_position() - global_position).normalized()
+
+
+func set_active(value: bool) -> void:
+	active = value
+	set_process_unhandled_input(value)
+

@@ -28,6 +28,8 @@ func unhandled_input(event: InputEvent) -> void:
 	if _player.is_on_floor() and event.is_action_pressed("jump"):
 		self.velocity = calculate_velocity(velocity, speed, Vector2(0.0, JUMP_SPEED), 1.0, Vector2.UP)
 		_state_machine.transition_to("Move/Air")
+	if event.is_action_pressed('toggle_debug_move'):
+		_state_machine.transition_to('Debug')
 
 
 func physics_process(delta: float) -> void:

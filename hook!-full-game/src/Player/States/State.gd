@@ -1,4 +1,5 @@
 extends Node
+class_name State
 """
 State interface for the Player scene.
 Stores a reference to the Player and to the state machine.
