@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/Hook/Hook.tscn" type="PackedScene" id=2]
@@ -13,6 +13,86 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 30 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "death"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skin/CameraRig/Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.7, 0.7 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Fade/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Fade/ColorRect:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.196078, 0.196078, 0.196078, 0 ), Color( 0.196078, 0.196078, 0.196078, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "respawn"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skin/CameraRig/Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.7, 0.7 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Fade/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Fade/ColorRect:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.196078, 0.196078, 0.196078, 1 ), Color( 0.196078, 0.196078, 0.196078, 0 ) ]
+}
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 2
@@ -50,14 +130,13 @@ script = ExtResource( 7 )
 
 [node name="Camera2D" type="Camera2D" parent="Skin/CameraRig"]
 current = true
+zoom = Vector2( 0.7, 0.7 )
 process_mode = 0
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
 smoothing_enabled = true
 smoothing_speed = 6.0
 editor_draw_drag_margin = true
-
-[node name="Tween" type="Tween" parent="Skin/CameraRig"]
 
 [node name="Skills" type="Node" parent="."]
 
@@ -67,4 +146,16 @@ editor_draw_drag_margin = true
 
 [node name="HitBox" parent="." instance=ExtResource( 10 )]
 position = Vector2( 0, -30 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/death = SubResource( 2 )
+anims/respawn = SubResource( 3 )
+
+[node name="Fade" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Fade"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.196078, 0.196078, 0.196078, 1 )
 

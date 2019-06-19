@@ -72,7 +72,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta):
-	var move_direction: Vector2 = player.get_move_direction()
+	var move_direction: Vector2 = player.get_move_direction() if not player.dead else Vector2.ZERO
 	# Horizontal movement
 	match player._state:
 		"idle":
