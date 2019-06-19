@@ -31,7 +31,6 @@ func physics_process(delta: float) -> void:
 		_velocity.y = lerp(_velocity.y, max_wall_slide_speed, wall_friction_factor)
 	else:
 		_velocity.y += wall_slide_acceleration * delta
-	clamp(_velocity.y, 0.0, max_wall_slide_speed)
 	_velocity = _player.move_and_slide(_velocity, _player.FLOOR_NORMAL)
 
 	if _player.is_on_floor():
