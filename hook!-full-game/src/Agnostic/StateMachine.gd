@@ -5,14 +5,18 @@ Hierarchical State machine for the player.
 Initializes states and delegates engine callbacks (_physics_process, _unhandled_input) to the active_state.
 """
 
-onready var active_state: State = $Move/Idle
+
+export(NodePath) var initial_state
+
+onready var active_state: State = get_node(initial_state)
 
 
-func setup(player: KinematicBody2D, node: Node = self) -> void:
-	for state in node.get_children():
-		setup(player, state)
-		if state is State:
-			state.setup(player, self)
+func _init() -> void:
+	add_to_group("hfsm")
+
+
+func _ready() -> void:
+	active_state.enter()
 
 
 func _unhandled_input(event: InputEvent) -> void:

@@ -7,7 +7,7 @@
 [ext_resource path="res://src/Player/Skin.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Player/Camera/CameraRig.gd" type="Script" id=6]
 [ext_resource path="res://src/Player/Camera/ShakingCamera.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/Player/StateMachine.gd" type="Script" id=8]
+[ext_resource path="res://src/Agnostic/StateMachine.gd" type="Script" id=8]
 [ext_resource path="res://src/Player/States/Move.gd" type="Script" id=9]
 [ext_resource path="res://src/Player/States/Idle.gd" type="Script" id=10]
 [ext_resource path="res://src/Player/States/Run.gd" type="Script" id=11]
@@ -17,7 +17,6 @@
 [ext_resource path="res://src/Player/States/Debug.gd" type="Script" id=15]
 [ext_resource path="res://src/Combat/Stats.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/Combat/HitBox/HitBox.tscn" type="PackedScene" id=17]
-
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 30 )
@@ -57,6 +56,7 @@ shake = false
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 8 )
+initial_state = NodePath("Move/Idle")
 
 [node name="Move" type="Node" parent="StateMachine"]
 editor/display_folded = true

@@ -7,7 +7,6 @@ onready var ledge_detector: Position2D = $LedgeDetector
 onready var floor_detector: RayCast2D = $FloorDetector
 onready var skin: Position2D = $Skin
 onready var stats: Stats = $Stats
-onready var state_machine: StateMachine = $StateMachine
 
 onready var collider: CollisionShape2D = $CollisionShape2D
 onready var hitbox: Area2D = $HitBox
@@ -16,10 +15,6 @@ const FLOOR_NORMAL: = Vector2.UP
 
 var active: = true setget set_active
 var info_dict: = {} setget set_info_dict
-
-
-func _ready() -> void:
-	state_machine.setup(self)
 
 
 func take_damage(source: Hit) -> void:

@@ -25,15 +25,9 @@ var active: = true setget set_active
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("aim"):
 		self.aim_mode = not aim_mode
-		get_tree().set_input_as_handled()
 
 
-func set_aim_mode(value: bool) -> void:
-	aim_mode = value
-	Engine.time_scale = 0.05 if aim_mode == true else 1.0
-
-
-func _has_target() -> bool:
+func has_target() -> bool:
 	var has_target: bool = snap_detector.has_target()
 	if not has_target and ray.is_colliding():
 		var collider: PhysicsBody2D = ray.get_collider()
@@ -41,24 +35,29 @@ func _has_target() -> bool:
 	return has_target
 
 
-func _can_hook() -> bool:
-	return active and _has_target() and cooldown.is_stopped()
+func can_hook() -> bool:
+	return active and has_target() and cooldown.is_stopped()
 
 
-func _get_target_position() -> Vector2:
+func get_target_position() -> Vector2:
 	return snap_detector.target.global_position if snap_detector.target else ray.get_collision_point()
 
 
-func _get_hook_target() -> HookTarget:
+func get_hook_target() -> HookTarget:
 	return snap_detector.target
 
 
-func _get_aim_direction() -> Vector2:
+func get_aim_direction() -> Vector2:
 	match Settings.controls:
 		Settings.GAMEPAD:
 			return ControlUtils.get_aim_joystick_direction()
 		Settings.KBD_MOUSE, _:
 			return (get_global_mouse_position() - global_position).normalized()
+
+
+func set_aim_mode(value: bool) -> void:
+	aim_mode = value
+	Engine.time_scale = 0.05 if aim_mode == true else 1.0
 
 
 func set_active(value: bool) -> void:

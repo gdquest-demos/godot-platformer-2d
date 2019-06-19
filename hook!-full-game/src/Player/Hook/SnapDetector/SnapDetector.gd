@@ -8,6 +8,13 @@ onready var ray: RayCast2D = $RayCast2D
 var target: HookTarget setget set_target
 
 
+func _on_Hook_hooked_onto_target(pull_force) -> void:
+	if not target:
+		return
+	target.active = false
+	target = null
+
+
 func _physics_process(delta: float) -> void:
 	self.target = find_best_target()
 
@@ -48,10 +55,3 @@ func set_target(value: HookTarget) -> void:
 	hint.visible = target != null
 	if target:
 		hint.global_position = target.global_position
-
-
-func _on_Hook_hooked_onto_target(pull_force) -> void:
-	if not target:
-		return
-	target.active = false
-	target = null
