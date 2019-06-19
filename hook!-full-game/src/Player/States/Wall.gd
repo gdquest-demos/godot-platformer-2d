@@ -30,10 +30,7 @@ func physics_process(delta: float) -> void:
 
 func unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
-		var jump_velocity: = Vector2()
-		jump_velocity.x = _wall_normal
-		jump_velocity.y = -1.0
-		jump_velocity = jump_velocity.normalized() * _jump_strength
+		var jump_velocity: = Vector2(_wall_normal, -1.0).normalized() * _jump_strength
 		
 		_state_machine.transition_to("Move/Air", {"velocity": jump_velocity})
 	
