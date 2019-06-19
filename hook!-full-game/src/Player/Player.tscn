@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/Hook/Hook.tscn" type="PackedScene" id=2]
@@ -59,11 +59,9 @@ script = ExtResource( 8 )
 initial_state = NodePath("Move/Idle")
 
 [node name="Move" type="Node" parent="StateMachine"]
-editor/display_folded = true
 script = ExtResource( 9 )
 
 [node name="Idle" type="Node" parent="StateMachine/Move"]
-editor/display_folded = true
 script = ExtResource( 10 )
 
 [node name="JumpDelay" type="Timer" parent="StateMachine/Move/Idle"]
@@ -81,16 +79,23 @@ script = ExtResource( 12 )
 wait_time = 0.1
 one_shot = true
 
-[node name="Ledge" type="Node" parent="StateMachine"]
+[node name="Wall" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 13 )
 
-[node name="Hook" type="Node" parent="StateMachine"]
+[node name="JumpDelay" type="Timer" parent="StateMachine/Move/Wall"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Ledge" type="Node" parent="StateMachine"]
 script = ExtResource( 14 )
 
-[node name="Debug" type="Node" parent="StateMachine"]
+[node name="Hook" type="Node" parent="StateMachine"]
 script = ExtResource( 15 )
 
-[node name="Stats" parent="." instance=ExtResource( 16 )]
+[node name="Debug" type="Node" parent="StateMachine"]
+script = ExtResource( 16 )
 
-[node name="HitBox" parent="." instance=ExtResource( 17 )]
+[node name="Stats" parent="." instance=ExtResource( 17 )]
+
+[node name="HitBox" parent="." instance=ExtResource( 18 )]
 position = Vector2( 0, -30 )

@@ -3,11 +3,13 @@
 [ext_resource path="res://src/Player/Hook/Hook.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/Hook/TargetCircle.gd" type="Script" id=2]
 [ext_resource path="res://src/Player/Hook/Arrow.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/Player/HookingPoint.gd" type="Script" id=4]
-[ext_resource path="res://src/Player/Hook/SnapDetector/SnapDetector.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/Agnostic/StateMachine.gd" type="Script" id=6]
-[ext_resource path="res://src/Player/Hook/States/Aim.gd" type="Script" id=7]
-[ext_resource path="res://src/Player/Hook/States/Fire.gd" type="Script" id=8]
+[ext_resource path="res://src/Combat/DamageSource.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Player/HookingPoint.gd" type="Script" id=5]
+[ext_resource path="res://src/Player/Hook/SnapDetector/SnapDetector.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Player/Hook/Skills/Base.tscn" type="PackedScene" id=7]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 15.0
 
 [node name="Hook" type="Position2D"]
 script = ExtResource( 1 )
@@ -21,15 +23,21 @@ cast_to = Vector2( 460, 0 )
 collision_mask = 6
 
 [node name="Arrow" parent="." instance=ExtResource( 3 )]
-visible = false
+
+[node name="DamageSource" parent="Arrow/Head" index="0" instance=ExtResource( 4 )]
+position = Vector2( -9, 0 )
+damage = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arrow/Head/DamageSource"]
+shape = SubResource( 1 )
 
 [node name="TargetHint" type="Node2D" parent="."]
 visible = false
-script = ExtResource( 4 )
+script = ExtResource( 5 )
 color_hook = Color( 0.0352941, 0.65098, 0.792157, 1 )
 color_cooldown = Color( 1, 0, 0.305882, 1 )
 
-[node name="SnapDetector" parent="." instance=ExtResource( 5 )]
+[node name="SnapDetector" parent="." instance=ExtResource( 6 )]
 
 [node name="Cooldown" type="Timer" parent="."]
 process_mode = 0
@@ -40,8 +48,6 @@ one_shot = true
 script = ExtResource( 6 )
 initial_state = NodePath("Aim")
 
-[node name="Aim" type="Node" parent="StateMachine"]
-script = ExtResource( 7 )
+[node name="Base" parent="Skills" instance=ExtResource( 7 )]
 
-[node name="Fire" type="Node" parent="StateMachine/Aim"]
-script = ExtResource( 8 )
+[editable path="Arrow"]
