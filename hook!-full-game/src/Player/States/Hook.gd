@@ -21,6 +21,7 @@ func physics_process(delta: float) -> void:
 		# The transition is harsh right now, the arrival behavior may be better
 		self.velocity = velocity.normalized() * 400.0
 		_state_machine.transition_to("Move/Air", {velocity = velocity})
+	Events.emit_signal("player_moved", _player.global_position)
 
 
 func enter(msg: Dictionary = {}) -> void:
