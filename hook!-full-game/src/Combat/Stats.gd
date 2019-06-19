@@ -8,6 +8,7 @@ class_name Stats
 
 signal health_changed(old_value, new_value)
 signal health_depleted()
+signal damage_taken()
 
 var modifiers = {}
 
@@ -25,6 +26,7 @@ func _ready() -> void:
 func take_damage(hit: Hit) -> void:
 	var old_health = health
 	health -= hit.damage
+	emit_signal("damage_taken")
 	health = max(0, health)
 	emit_signal("health_changed", health, old_health)
 	if health == 0:
