@@ -82,6 +82,10 @@ one_shot = true
 [node name="Wall" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 13 )
 
+[node name="JumpDelay" type="Timer" parent="StateMachine/Move/Wall"]
+wait_time = 0.2
+one_shot = true
+
 [node name="Ledge" type="Node" parent="StateMachine"]
 script = ExtResource( 14 )
 

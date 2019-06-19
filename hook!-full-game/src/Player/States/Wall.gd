@@ -1,5 +1,6 @@
 extends State
 
+onready var jump_delay: Timer = $JumpDelay
 
 export var wall_slide_acceleration: = 100.0
 export var max_wall_slide_speed: = 200.0
@@ -7,6 +8,12 @@ export var max_wall_slide_speed: = 200.0
 var _jump_strength: = 1000.0
 var _velocity: = Vector2.ZERO
 var _wall_normal: = -1
+
+
+func setup(player: KinematicBody2D, state_machine: Node) -> void:
+	.setup(player, state_machine)
+	jump_delay.connect("timeout", self, "_on_JumpDelay_timeout")
+
 
 func enter(msg: Dictionary = {}) -> void:
 	_wall_normal = msg.normal
@@ -34,11 +41,14 @@ func unhandled_input(event: InputEvent) -> void:
 		
 		_state_machine.transition_to("Move/Air", {"velocity": jump_velocity})
 	
-	if event.is_action_released("move_left") and _wall_normal > 0:
-		_state_machine.transition_to("Move/Air", {"velocity": _velocity.y})
-	elif event.is_action_released("move_right") and _wall_normal < 0:
-		_state_machine.transition_to("Move/Air", {"velocity": _velocity.y})
+	if ((event.is_action_released("move_left") and _wall_normal > 0) or
+			(event.is_action_released("move_right") and _wall_normal < 0)):
+		jump_delay.start()
 
 
 func exit() -> void:
 	_velocity = Vector2.ZERO
+
+
+func _on_JumpDelay_timeout() -> void:
+	_state_machine.transition_to("Move/Air", {"velocity": _velocity.y})
