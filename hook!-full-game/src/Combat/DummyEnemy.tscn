@@ -10,4 +10,4 @@ script = ExtResource( 1 )
 [node name="HitBox" parent="." instance=ExtResource( 2 )]
 
 [node name="Stats" parent="." instance=ExtResource( 3 )]
-max_health = 50
+max_health = 15
