@@ -3,7 +3,6 @@ extends Node
 
 onready var hook: Hook = $"../.."
 
-
 func _physics_process(delta: float) -> void:
 	hook.ray.cast_to = hook._get_aim_direction() * hook.ray.cast_to.length()
 	hook.target_circle.rotation = hook.ray.cast_to.angle()
@@ -25,16 +24,33 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _hook() -> void:
+	if not hook.cooldown.is_stopped():
+		return
+	_snap_hook_arrow_tip()
+	_disable_hook_aim()
+	_handle_hook_target()
+	_trigger_hook_cooldown()
+
+
+func _snap_hook_arrow_tip() -> void:
+	var snap_position: Vector2 = hook.ray.get_collision_point()
+	if hook.snap_detector.target:
+		snap_position = hook.snap_detector.target.global_position
+	hook.arrow.hook_position= snap_position
+
+
+func _trigger_hook_cooldown() -> void:
 	hook.cooldown.start()
-	hook.arrow.hook_position = (
-			hook.snap_detector.target.global_position
-			if hook.snap_detector.target
-			else hook.ray.get_collision_point())
+
+
+func _disable_hook_aim() -> void:
 	if hook.aim_mode:
 		hook.aim_mode = false
 
-	hook.emit_signal("hooked_onto_target", hook._get_target_position())
 
+func _handle_hook_target() -> void:
 	var target: HookTarget = hook._get_hook_target()
 	if target:
 		target.hooked_from(hook.global_position)
+		if not target.is_in_group("enemy"):
+			hook.emit_signal("hooked_onto_target", hook._get_target_position())
