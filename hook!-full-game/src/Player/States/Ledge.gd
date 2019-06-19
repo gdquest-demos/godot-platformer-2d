@@ -1,4 +1,8 @@
-extends "res://src/Player/States/State.gd"
+extends State
+
+
+func _setup() -> void:
+	owner.skin.connect("animation_finished", self, "_on_Skin_animation_finished")
 
 
 func _on_Skin_animation_finished(name: String) -> void:
@@ -6,20 +10,15 @@ func _on_Skin_animation_finished(name: String) -> void:
 		_state_machine.transition_to("Move/Idle")
 
 
-func setup(player: KinematicBody2D, state_machine: Node) -> void:
-	.setup(player, state_machine)
-	_player.skin.connect("animation_finished", self, "_on_Skin_animation_finished")
-
-
 func enter(msg: Dictionary = {}) -> void:
 	if not "move_state" in msg:
 		return
 	
-	var start: = _player.global_position
-	_player.global_position = (
-			_player.ledge_detector.ray_top.global_position
-			+ Vector2(_player.ledge_detector.ray_length * sign(msg.move_state.velocity.x), 0.0))
-	_player.global_position = _player.floor_detector.get_floor_position()
+	var start: Vector2 = owner.global_position
+	owner.global_position = (
+			owner.ledge_detector.ray_top.global_position
+			+ Vector2(owner.ledge_detector.ray_length * sign(msg.move_state.velocity.x), 0.0))
+	owner.global_position = owner.floor_detector.get_floor_position()
 	
 	msg.move_state.velocity = Vector2.ZERO
-	_player.skin.play('ledge', {from = start - _player.global_position})
+	owner.skin.play('ledge', {from = start - owner.global_position})

@@ -1,14 +1,13 @@
-extends "res://src/Player/States/State.gd"
+extends State
 
 
 onready var jump_delay: Timer = $JumpDelay
 
 
-func setup(player: KinematicBody2D, state_machine: Node) -> void:
-	.setup(player, state_machine)
-	var move: = get_parent()
+func _setup() -> void:
 	# force update once at start of game
-	player.move_and_slide(move.velocity, _player.FLOOR_NORMAL)
+	var move: = get_parent()
+	owner.move_and_slide(move.velocity, owner.FLOOR_NORMAL)
 
 
 func unhandled_input(event: InputEvent) -> void:
@@ -16,9 +15,9 @@ func unhandled_input(event: InputEvent) -> void:
 
 
 func physics_process(delta: float) -> void:
-	if _player.is_on_floor() and get_parent().get_move_direction().x != 0.0:
+	if owner.is_on_floor() and get_parent().get_move_direction().x != 0.0:
 		_state_machine.transition_to("Move/Run")
-	elif not _player.is_on_floor():
+	elif not owner.is_on_floor():
 		_state_machine.transition_to("Move/Air")
 
 

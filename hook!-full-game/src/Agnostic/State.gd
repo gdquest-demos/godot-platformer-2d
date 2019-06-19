@@ -10,15 +10,16 @@ The lowest leaf tries to handle callbacks, and if it can't, it delegates the wor
 
 var is_composite: = get_child_count() != 0
 
-var _player: KinematicBody2D = null
 var _state_machine: Node = null
 
 
-func setup(player: KinematicBody2D, state_machine: Node) -> void:
-	_player = player
-	_state_machine = state_machine
-	if _state_machine.active_state == self:
-		enter()
+func _ready() -> void:
+	owner.connect("ready", self, "_setup")
+	_state_machine = _get_hfsm(self)
+
+
+func _setup() -> void:
+	pass
 
 
 func unhandled_input(event: InputEvent) -> void:
@@ -35,3 +36,9 @@ func enter(msg: Dictionary = {}) -> void:
 
 func exit() -> void:
 	pass
+
+
+func _get_hfsm(node: Node) -> Node:
+	if node != null and not node.is_in_group("hfsm"):
+		return _get_hfsm(node.get_parent())
+	return node
