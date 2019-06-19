@@ -1,4 +1,4 @@
-extends "res://src/Player/States/State.gd"
+extends State
 
 
 const XY_MAX_SPEED: = Vector2(500.0, 1500.0)
@@ -10,22 +10,21 @@ var speed: = XY_MAX_SPEED
 var velocity: = Vector2.ZERO setget set_velocity
 
 
+func _setup() -> void:
+	owner.hook.connect("hooked_onto_target", self, "_on_Hook_hooked_onto_target")
+	$Air.connect("jumped", $Idle.jump_delay, "start")
+
+
 func _on_Hook_hooked_onto_target(target_global_position: Vector2) -> void:
-	var to_target: = target_global_position - _player.global_position
-	if _player.is_on_floor() and to_target.y > 0.0:
+	var to_target: Vector2 = target_global_position - owner.global_position
+	if owner.is_on_floor() and to_target.y > 0.0:
 		return
 	
 	_state_machine.transition_to("Hook", {target_global_position = target_global_position, velocity = velocity})
 
 
-func setup(player: KinematicBody2D, state_machine: Node) -> void:
-	.setup(player, state_machine)
-	_player.hook.connect("hooked_onto_target", self, "_on_Hook_hooked_onto_target")
-	$Air.connect("jumped", $Idle.jump_delay, "start")
-
-
 func unhandled_input(event: InputEvent) -> void:
-	if _player.is_on_floor() and event.is_action_pressed("jump"):
+	if owner.is_on_floor() and event.is_action_pressed("jump"):
 		self.velocity = calculate_velocity(velocity, speed, Vector2(0.0, JUMP_SPEED), 1.0, Vector2.UP)
 		_state_machine.transition_to("Move/Air")
 	if event.is_action_pressed('toggle_debug_move'):
@@ -34,15 +33,15 @@ func unhandled_input(event: InputEvent) -> void:
 
 func physics_process(delta: float) -> void:
 	self.velocity = calculate_velocity(velocity, speed, acceleration, delta, get_move_direction())
-	self.velocity = _player.move_and_slide(velocity, _player.FLOOR_NORMAL)
+	self.velocity = owner.move_and_slide(velocity, owner.FLOOR_NORMAL)
 
 
 func set_velocity(value: Vector2) -> void:
-	if _player == null:
+	if owner == null:
 		return
 	
 	velocity = value
-	_player.info_dict.velocity = velocity
+	owner.info_dict.velocity = velocity
 
 
 static func calculate_velocity(
