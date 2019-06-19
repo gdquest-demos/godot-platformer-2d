@@ -103,36 +103,12 @@ gravity = 1000.0
 position = Vector2( 1130, 850 )
 
 [node name="DummyEnemy" parent="." instance=ExtResource( 9 )]
-position = Vector2( 960, 850 )
-
-[node name="Polygon2D" type="Polygon2D" parent="DummyEnemy"]
-color = Color( 1, 0.215686, 0.215686, 1 )
-polygon = PoolVector2Array( -30, -40, 30, -40, 30, 40, -30, 40 )
-
-[node name="HookTarget" parent="DummyEnemy" groups=[
-"enemy",
-] instance=ExtResource( 6 )]
+position = Vector2( 1040, 920 )
 
 [node name="DummyEnemy2" parent="." instance=ExtResource( 9 )]
-position = Vector2( 1130, 710 )
-
-[node name="Polygon2D" type="Polygon2D" parent="DummyEnemy2"]
-color = Color( 1, 0.215686, 0.215686, 1 )
-polygon = PoolVector2Array( -30, -40, 30, -40, 30, 40, -30, 40 )
-
-[node name="HookTarget" parent="DummyEnemy2" groups=[
-"enemy",
-] instance=ExtResource( 6 )]
+position = Vector2( 1490, 1000 )
 
 [node name="DummyEnemy3" parent="." instance=ExtResource( 9 )]
-position = Vector2( 1290, 843 )
-
-[node name="Polygon2D" type="Polygon2D" parent="DummyEnemy3"]
-color = Color( 1, 0.215686, 0.215686, 1 )
-polygon = PoolVector2Array( -30, -40, 30, -40, 30, 40, -30, 40 )
-
-[node name="HookTarget" parent="DummyEnemy3" groups=[
-"enemy",
-] instance=ExtResource( 6 )]
+position = Vector2( 1520, 800 )
 
 [editable path="Player"]
