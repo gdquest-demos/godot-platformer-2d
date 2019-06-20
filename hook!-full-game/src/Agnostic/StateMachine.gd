@@ -6,13 +6,13 @@ Initializes states and delegates engine callbacks (_physics_process, _unhandled_
 """
 
 
-export(NodePath) var initial_state
+export var initial_state: = NodePath()
 
 onready var active_state: State = get_node(initial_state)
 
 
 func _init() -> void:
-	add_to_group("hfsm")
+	add_to_group("state_machine")
 
 
 func _ready() -> void:

@@ -15,7 +15,7 @@ var _state_machine: Node = null
 
 func _ready() -> void:
 	owner.connect("ready", self, "_setup")
-	_state_machine = _get_hfsm(self)
+	_state_machine = _get_state_machine(self)
 
 
 func _setup() -> void:
@@ -38,7 +38,7 @@ func exit() -> void:
 	pass
 
 
-func _get_hfsm(node: Node) -> Node:
-	if node != null and not node.is_in_group("hfsm"):
-		return _get_hfsm(node.get_parent())
+func _get_state_machine(node: Node) -> Node:
+	if node != null and not node.is_in_group("state_machine"):
+		return _get_state_machine(node.get_parent())
 	return node
