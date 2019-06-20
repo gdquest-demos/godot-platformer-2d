@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/Player/Hook/Hook.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/Hook/TargetCircle.gd" type="Script" id=2]
@@ -9,9 +9,6 @@
 [ext_resource path="res://src/Agnostic/StateMachine.gd" type="Script" id=7]
 [ext_resource path="res://src/Player/Hook/States/Aim.gd" type="Script" id=8]
 [ext_resource path="res://src/Player/Hook/States/Fire.gd" type="Script" id=9]
-
-[sub_resource type="CircleShape2D" id=1]
-radius = 15.0
 
 [node name="Hook" type="Position2D"]
 script = ExtResource( 1 )
@@ -28,11 +25,6 @@ collision_mask = 6
 [node name="Arrow" parent="." instance=ExtResource( 3 )]
 
 [node name="DamageSource" parent="Arrow/Head" index="0" instance=ExtResource( 4 )]
-position = Vector2( -9, 0 )
-damage = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Arrow/Head/DamageSource"]
-shape = SubResource( 1 )
 
 [node name="TargetHint" type="Node2D" parent="."]
 visible = false
@@ -58,3 +50,5 @@ script = ExtResource( 8 )
 script = ExtResource( 9 )
 
 [editable path="Arrow"]
+
+[editable path="Arrow/Head/DamageSource"]
