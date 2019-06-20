@@ -4,9 +4,9 @@
 [ext_resource path="res://src/Player/Hook/Hook.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Player/LedgeDetector.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Player/FloorDetector.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/Player/Skin.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/Player/Camera/CameraRig.gd" type="Script" id=6]
-[ext_resource path="res://src/Player/Camera/ShakingCamera.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Player/Camera/CameraRig.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Player/Camera/AnchorDetector.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Player/Skin.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Agnostic/StateMachine.gd" type="Script" id=8]
 [ext_resource path="res://src/Player/States/Move.gd" type="Script" id=9]
 [ext_resource path="res://src/Player/States/Idle.gd" type="Script" id=10]
@@ -39,21 +39,18 @@ ray_length = 30.0
 
 [node name="FloorDetector" parent="." instance=ExtResource( 4 )]
 
-[node name="Skin" parent="." instance=ExtResource( 5 )]
+[node name="CameraRig" parent="." instance=ExtResource( 5 )]
+
+[node name="AnchorDetector" parent="." instance=ExtResource( 6 )]
+
+[node name="Skin" parent="." instance=ExtResource( 7 )]
 
 [node name="CameraRemoteTransform" type="RemoteTransform2D" parent="Skin"]
 position = Vector2( 0, -30 )
 remote_path = NodePath("../../CameraRig")
+update_position = false
 update_rotation = false
 update_scale = false
-
-[node name="CameraRig" type="Position2D" parent="."]
-position = Vector2( 0, -30 )
-script = ExtResource( 6 )
-
-[node name="ShakingCamera" parent="CameraRig" instance=ExtResource( 7 )]
-DAMP_EASING = 1.0
-shake = false
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 8 )
@@ -105,3 +102,7 @@ one_shot = true
 
 [node name="HitBox" parent="." instance=ExtResource( 18 )]
 position = Vector2( 0, -30 )
+
+[editable path="CameraRig"]
+
+[editable path="AnchorDetector"]

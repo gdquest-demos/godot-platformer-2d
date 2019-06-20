@@ -5,6 +5,7 @@ onready var camera_position: Position2D = $CameraPosition
 
 
 func _ready() -> void:
+	return
 	connect("area_entered", self, "_on_area", ["entered"])
 	connect("area_exited", self, "_on_area", ["exited"])
 

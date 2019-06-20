@@ -4,6 +4,7 @@
 
 [node name="ShakingCamera" type="Camera2D"]
 current = true
+smoothing_enabled = true
 script = ExtResource( 1 )
 amplitude = 8.0
 duration = 0.8

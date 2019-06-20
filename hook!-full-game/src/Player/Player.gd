@@ -3,11 +3,12 @@ extends KinematicBody2D
 
 onready var hook: Position2D = $Hook
 onready var camera: Position2D = $CameraRig
+onready var shaking_camera: Camera2D = $CameraRig/ShakingCamera
+onready var area_detector: Area2D = $AnchorDetector
 onready var ledge_detector: Position2D = $LedgeDetector
 onready var floor_detector: RayCast2D = $FloorDetector
 onready var skin: Position2D = $Skin
 onready var stats: Stats = $Stats
-
 onready var collider: CollisionShape2D = $CollisionShape2D
 onready var hitbox: Area2D = $HitBox
 
@@ -19,6 +20,11 @@ var info_dict: = {} setget set_info_dict
 var dead = false
 
 
+func _ready() -> void:
+	area_detector.connect("area_entered", self, "_on_AreaDetector_area", ["entered"])
+	area_detector.connect("area_exited", self, "_on_AreaDetector_area", ["exited"])
+
+
 func take_damage(source: Hit) -> void:
 	stats.take_damage(source)
 
@@ -26,17 +32,22 @@ func take_damage(source: Hit) -> void:
 func die(respawn: bool = true) -> void:
 	camera.inactive = true
 	dead = true
-	animation_player.play("death")
-	yield(animation_player, "animation_finished")
+	skin.play("death")
+	yield(skin, "animation_finished")
 	if respawn:
 		respawn()
 
 
 func respawn() -> void:
-	global_position = checkpoints[checkpoints.size() - 1]
-	animation_player.play("respawn")
+	skin.play("respawn")
 	camera.inactive = false
 	dead = false
+
+
+func _on_AreaDetector_area(area: Area2D, which: String) -> void:
+	if not area.is_in_group("anchor"):
+		return
+	shaking_camera.smoothing_speed = 1.5 if which == "entered" else shaking_camera.default_smoothing_speed
 
 
 func set_active(value: bool) -> void:

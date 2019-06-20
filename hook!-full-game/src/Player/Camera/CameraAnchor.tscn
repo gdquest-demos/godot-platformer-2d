@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="CameraAnchor" type="Area2D" groups=[
+"anchor",
+]]
+editor/display_folded = true
+modulate = Color( 0.780392, 1, 0, 1 )
+position = Vector2( 2215.19, 379.376 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )

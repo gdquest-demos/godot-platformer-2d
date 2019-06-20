@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/Game.gd" type="Script" id=1]
 [ext_resource path="res://assets/theme/gdquest.theme" type="Theme" id=2]
@@ -6,8 +6,9 @@
 [ext_resource path="res://src/UI/debug/DebugPanel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/tilesets/basic.tres" type="TileSet" id=5]
 [ext_resource path="res://src/HookTarget.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/AI/PatrolAgent.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Player/Camera/CameraAnchor.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/AI/PatrolAgent.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=9]
 
 [node name="LevelTest" type="Node"]
 script = ExtResource( 1 )
@@ -70,6 +71,9 @@ position = Vector2( 680, 480 )
 [node name="HookTarget3" parent="Levels/Level2/TileMap" instance=ExtResource( 6 )]
 position = Vector2( 1040, 240 )
 
+[node name="CameraAnchor" parent="Levels/Level2/TileMap" instance=ExtResource( 7 )]
+position = Vector2( 370, 780 )
+
 [node name="Level3" type="Node2D" parent="Levels"]
 position = Vector2( 4360, -1280 )
 
@@ -93,10 +97,12 @@ position = Vector2( 1160, 360 )
 [node name="HookTarget5" parent="Levels/Level3/TileMap" instance=ExtResource( 6 )]
 position = Vector2( 1520, 400 )
 
-[node name="PatrolAgent" parent="Levels/Level3" instance=ExtResource( 7 )]
+[node name="PatrolAgent" parent="Levels/Level3" instance=ExtResource( 8 )]
 position = Vector2( 270, 1000 )
+speed = 300.0
+gravity = 1000.0
 
-[node name="Player" parent="Levels" instance=ExtResource( 8 )]
+[node name="Player" parent="Levels" instance=ExtResource( 9 )]
 position = Vector2( 2640, 420 )
 
 [editable path="Levels/Player"]

@@ -21,7 +21,11 @@ func _ready() -> void:
 	assert mouse_range.x >= 0.0 and mouse_range.y >= 0.0
 
 
-func update_position(velocity:Vector2) -> void:
+func _physics_process(delta: float) -> void:
+	update_position()
+
+
+func update_position(velocity: Vector2 = Vector2.ZERO) -> void:
 	"""Updates the camera rig's position based on the player's state and controller position"""
 	if inactive:
 		return
@@ -36,4 +40,3 @@ func update_position(velocity:Vector2) -> void:
 			if Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left"):
 				_camera.position.x = sign(velocity.x) * offset.x
 			_camera.position.y = joystick_direction.y * offset.y
-
