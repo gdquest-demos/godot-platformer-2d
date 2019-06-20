@@ -39,6 +39,16 @@ mouse_filter = 2
 reference_path = NodePath("../../../../Levels/Player/StateMachine/Move")
 properties = PoolStringArray( "velocity", "speed" )
 
+[node name="DebugPanel2" parent="UI/DebugDock/Column" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 110.0
+margin_right = 408.0
+margin_bottom = 212.0
+mouse_filter = 2
+reference_path = NodePath("../../../../Levels/Player/StateMachine")
+properties = PoolStringArray( "_state_name" )
+
 [node name="Levels" type="Node" parent="."]
 
 [node name="Level1" type="Node2D" parent="Levels"]
