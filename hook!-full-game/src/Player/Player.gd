@@ -16,9 +16,27 @@ const FLOOR_NORMAL: = Vector2.UP
 var active: = true setget set_active
 var info_dict: = {} setget set_info_dict
 
+var dead = false
+
 
 func take_damage(source: Hit) -> void:
 	stats.take_damage(source)
+
+
+func die(respawn: bool = true) -> void:
+	camera.inactive = true
+	dead = true
+	animation_player.play("death")
+	yield(animation_player, "animation_finished")
+	if respawn:
+		respawn()
+
+
+func respawn() -> void:
+	global_position = checkpoints[checkpoints.size() - 1]
+	animation_player.play("respawn")
+	camera.inactive = false
+	dead = false
 
 
 func set_active(value: bool) -> void:
