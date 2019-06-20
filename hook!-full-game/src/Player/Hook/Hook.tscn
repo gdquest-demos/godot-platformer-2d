@@ -6,9 +6,10 @@
 [ext_resource path="res://src/Combat/DamageSource.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Player/HookingPoint.gd" type="Script" id=5]
 [ext_resource path="res://src/Player/Hook/SnapDetector/SnapDetector.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/Agnostic/StateMachine.gd" type="Script" id=7]
+[ext_resource path="res://src/StateMachine/StateMachine.gd" type="Script" id=7]
 [ext_resource path="res://src/Player/Hook/States/Aim.gd" type="Script" id=8]
 [ext_resource path="res://src/Player/Hook/States/Fire.gd" type="Script" id=9]
+
 
 [node name="Hook" type="Position2D"]
 script = ExtResource( 1 )
