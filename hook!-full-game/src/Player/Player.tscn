@@ -15,7 +15,7 @@
 [ext_resource path="res://src/Player/States/Wall.gd" type="Script" id=13]
 [ext_resource path="res://src/Player/States/Ledge.gd" type="Script" id=14]
 [ext_resource path="res://src/Player/States/Hook.gd" type="Script" id=15]
-[ext_resource path="res://src/Player/States/Debug.gd" type="Script" id=16]
+[ext_resource path="res://src/Player/States/Stagger.gd" type="Script" id=16]
 [ext_resource path="res://src/Combat/Stats.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/Combat/HitBox/HitBox.tscn" type="PackedScene" id=18]
 
@@ -94,7 +94,12 @@ script = ExtResource( 14 )
 script = ExtResource( 15 )
 
 [node name="Debug" type="Node" parent="StateMachine"]
+
+[node name="Stagger" type="Node" parent="StateMachine"]
 script = ExtResource( 16 )
+
+[node name="Duration" type="Timer" parent="StateMachine/Stagger"]
+one_shot = true
 
 [node name="Stats" parent="." instance=ExtResource( 17 )]
 

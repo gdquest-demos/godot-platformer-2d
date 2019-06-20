@@ -23,6 +23,17 @@ func _on_Hook_hooked_onto_target(target_global_position: Vector2) -> void:
 	_state_machine.transition_to("Hook", {target_global_position = target_global_position, velocity = velocity})
 
 
+func _on_Stats_damage_taken():
+	_state_machine.transition_to("Stagger")
+
+
+func setup(player: KinematicBody2D, state_machine: Node) -> void:
+	.setup(player, state_machine)
+	owner.hook.connect("hooked_onto_target", self, "_on_Hook_hooked_onto_target")
+	$Air.connect("jumped", $Idle.jump_delay, "start")
+	owner.stats.connect("damage_taken", self, "_on_Stats_damage_taken")
+
+
 func unhandled_input(event: InputEvent) -> void:
 	if owner.is_on_floor() and event.is_action_pressed("jump"):
 		self.velocity = calculate_velocity(velocity, speed, Vector2(0.0, JUMP_SPEED), 1.0, Vector2.UP)
