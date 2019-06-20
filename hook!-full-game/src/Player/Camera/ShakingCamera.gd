@@ -5,15 +5,16 @@ Shakes the screen when shake is set to true
 To make it react to events happening in the game world, use the Events signal routing singleton
 """
 
+onready var timer = $Timer
+
 export var amplitude = 4.0
 export var duration = 0.3 setget set_duration
 export var DAMP_EASING = 1.0
 export var shake = false setget set_shake
 
-onready var timer = $Timer
-
 enum States {IDLE, SHAKING}
 var state = States.IDLE
+var default_smoothing_speed: = smoothing_speed
 
 
 func _ready() -> void:

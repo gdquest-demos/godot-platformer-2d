@@ -22,6 +22,7 @@ func physics_process(delta: float) -> void:
 	var multiplier: = 3.0 if Input.is_action_pressed('debug_sprint') else 1.0
 	self.velocity = speed * direction * multiplier
 	owner.position += velocity * delta
+	Events.emit_signal("player_moved", owner.global_position)
 
 
 func enter(msg: Dictionary = {}):

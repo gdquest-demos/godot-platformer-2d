@@ -19,7 +19,7 @@ func _on_Hook_hooked_onto_target(target_global_position: Vector2) -> void:
 	var to_target: Vector2 = target_global_position - owner.global_position
 	if owner.is_on_floor() and to_target.y > 0.0:
 		return
-	
+
 	_state_machine.transition_to("Hook", {target_global_position = target_global_position, velocity = velocity})
 
 
@@ -45,12 +45,13 @@ func unhandled_input(event: InputEvent) -> void:
 func physics_process(delta: float) -> void:
 	self.velocity = calculate_velocity(velocity, speed, acceleration, delta, get_move_direction())
 	self.velocity = owner.move_and_slide(velocity, owner.FLOOR_NORMAL)
+	Events.emit_signal("player_moved", owner.global_position)
 
 
 func set_velocity(value: Vector2) -> void:
 	if owner == null:
 		return
-	
+
 	velocity = value
 	owner.info_dict.velocity = velocity
 
@@ -59,11 +60,11 @@ static func calculate_velocity(
 		old_velocity: Vector2, max_speed: Vector2, acceleration: Vector2,
 		delta: float, move_direction: Vector2) -> Vector2:
 	var new_velocity: = old_velocity
-	
+
 	new_velocity += move_direction * acceleration * delta
 	new_velocity.x = clamp(new_velocity.x, -max_speed.x, max_speed.x)
 	new_velocity.y = clamp(new_velocity.y, -max_speed.y, max_speed.y)
-	
+
 	return new_velocity
 
 
