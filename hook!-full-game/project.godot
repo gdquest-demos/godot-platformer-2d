@@ -71,7 +71,6 @@ config/icon="res://icon.png"
 Settings="*res://src/Singletons/Settings.gd"
 Events="*res://src/Singletons/Events.gd"
 ControlUtils="*res://src/Singletons/ControlUtils.gd"
-HitFactory="*res://src/Combat/HitFactory.tscn"
 Steering="*res://src/Singletons/Steering.gd"
 
 [debug]

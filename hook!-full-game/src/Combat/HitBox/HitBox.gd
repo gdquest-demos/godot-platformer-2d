@@ -10,7 +10,7 @@ func _ready() -> void:
 
 
 func _on_area_entered(damage_source: Area2D) -> void:
-	var hit = HitFactory.generate_hit(damage_source)
+	var hit: = Hit.new(damage_source)
 	owner.take_damage(hit)
 
 
