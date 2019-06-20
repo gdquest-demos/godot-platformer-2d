@@ -35,7 +35,7 @@ anchor_bottom = 0.0
 margin_right = 408.0
 margin_bottom = 102.0
 mouse_filter = 2
-reference_path = NodePath("../../../../Player/StateMachine/Move")
+reference_path = NodePath("../../../../Levels/Player/StateMachine/Move")
 properties = PoolStringArray( "velocity", "speed" )
 
 [node name="Levels" type="Node" parent="."]
@@ -96,7 +96,7 @@ position = Vector2( 1520, 400 )
 [node name="PatrolAgent" parent="Levels/Level3" instance=ExtResource( 7 )]
 position = Vector2( 270, 1000 )
 
-[node name="Player" parent="." instance=ExtResource( 8 )]
-position = Vector2( 1130, 850 )
+[node name="Player" parent="Levels" instance=ExtResource( 8 )]
+position = Vector2( 2640, 420 )
 
-[editable path="Player"]
+[editable path="Levels/Player"]
