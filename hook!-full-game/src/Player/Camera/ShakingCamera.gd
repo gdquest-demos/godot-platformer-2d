@@ -1,7 +1,7 @@
 tool
 extends Camera2D
 """
-Shakes the screen when shake is set to true
+Shakes the screen when is_shaking is set to true
 To make it react to events happening in the game world, use the Events signal routing singleton
 """
 
@@ -10,7 +10,7 @@ onready var timer = $Timer
 export var amplitude = 4.0
 export var duration = 0.3 setget set_duration
 export var DAMP_EASING = 1.0
-export var shake = false setget set_shake
+export var is_shaking = false setget set_is_shaking
 
 enum States {IDLE, SHAKING}
 var state = States.IDLE
@@ -36,9 +36,9 @@ func set_duration(value: float) -> void:
 		timer.wait_time = duration
 
 
-func set_shake(value: bool) -> void:
-	shake = value
-	if shake:
+func set_is_shaking(value: bool) -> void:
+	is_shaking = value
+	if is_shaking:
 		_change_state(States.SHAKING)
 	else:
 		_change_state(States.IDLE)
@@ -56,4 +56,4 @@ func _change_state(new_state: int) -> void:
 
 
 func _on_ShakeTimer_timeout() -> void:
-	self.shake = false
+	self.is_shaking = false

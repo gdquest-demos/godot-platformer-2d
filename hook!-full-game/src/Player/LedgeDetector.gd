@@ -10,21 +10,21 @@ onready var ray_top: RayCast2D = $RayTop
 
 onready var _offset: float = ray_bottom.position.x
 
-export var active: = true setget set_active
+export var is_active: = true setget set_is_active
 
 export var ray_length: = 30.0 setget set_ray_length
 
 var _ray_cast_to_x: = ray_length setget _set_ray_cast_to_x
-var _ready: = false
+var _is_ready: = false
 
 
 func _ready() -> void:
-	_ready = true
+	_is_ready = true
 	self.ray_length = ray_length
 
 
 func is_against_ledge(look_direction: int) -> bool:
-	if not active:
+	if not is_active:
 		return false
 
 	self._ray_cast_to_x = ray_length * look_direction
@@ -34,15 +34,15 @@ func is_against_ledge(look_direction: int) -> bool:
 
 
 func set_ray_length(value: float) -> void:
-	if not _ready:
+	if not _is_ready:
 		return
 	
 	ray_length = value
 	self._ray_cast_to_x = value * sign(_ray_cast_to_x)
 
 
-func set_active(value:bool) -> void:
-	active = value
+func set_is_active(value:bool) -> void:
+	is_active = value
 
 
 func _set_ray_cast_to_x(value: float) -> void:

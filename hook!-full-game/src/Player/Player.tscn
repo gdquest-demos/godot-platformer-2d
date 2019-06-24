@@ -19,7 +19,6 @@
 [ext_resource path="res://src/Combat/Stats.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/Combat/HitBox/HitBox.tscn" type="PackedScene" id=18]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 30 )
 

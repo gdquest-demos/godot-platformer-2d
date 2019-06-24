@@ -10,7 +10,6 @@
 [ext_resource path="res://src/Player/Hook/States/Aim.gd" type="Script" id=8]
 [ext_resource path="res://src/Player/Hook/States/Fire.gd" type="Script" id=9]
 
-
 [node name="Hook" type="Position2D"]
 script = ExtResource( 1 )
 

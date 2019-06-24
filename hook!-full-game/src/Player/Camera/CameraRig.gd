@@ -9,7 +9,8 @@ onready var _camera: Camera2D
 export var offset: = Vector2(200.0, 160.0)
 export var mouse_range: = Vector2(100.0, 500.0)
 
-var inactive := false
+var is_active := false
+
 
 func _ready() -> void:
 	for node in get_children():
@@ -27,8 +28,9 @@ func _physics_process(delta: float) -> void:
 
 func update_position(velocity: Vector2 = Vector2.ZERO) -> void:
 	"""Updates the camera rig's position based on the player's state and controller position"""
-	if inactive:
+	if not is_active:
 		return
+
 	match Settings.controls:
 		Settings.KBD_MOUSE:
 			var mouse_position: = get_local_mouse_position()

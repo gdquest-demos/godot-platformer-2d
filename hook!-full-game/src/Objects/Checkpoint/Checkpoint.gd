@@ -2,7 +2,7 @@ extends Area2D
 
 signal reached(checkpoint)
 
-var already_reached := false
+var is_unlocked := false
 
 
 func _ready() -> void:
@@ -10,8 +10,9 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: PhysicsBody2D) -> void:
-	if already_reached or not body is Player:
+	if is_unlocked or not body is Player:
 		return
+
 	body.checkpoints.append(global_position)
 	modulate = Color(0.65, 0.65, 0.65)
-	already_reached = true
+	is_unlocked = true

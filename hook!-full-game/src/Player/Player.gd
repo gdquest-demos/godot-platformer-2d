@@ -14,10 +14,8 @@ onready var hitbox: Area2D = $HitBox
 
 const FLOOR_NORMAL: = Vector2.UP
 
-var active: = true setget set_active
+var is_active: = true setget set_is_active
 var info_dict: = {} setget set_info_dict
-
-var dead = false
 
 
 func _ready() -> void:
@@ -31,7 +29,6 @@ func take_damage(source: Hit) -> void:
 
 func die(respawn: bool = true) -> void:
 	camera.inactive = true
-	dead = true
 	skin.play("death")
 	yield(skin, "animation_finished")
 	if respawn:
@@ -41,7 +38,6 @@ func die(respawn: bool = true) -> void:
 func respawn() -> void:
 	skin.play("respawn")
 	camera.inactive = false
-	dead = false
 
 
 func _on_AreaDetector_area(area: Area2D, which: String) -> void:
@@ -50,13 +46,13 @@ func _on_AreaDetector_area(area: Area2D, which: String) -> void:
 	shaking_camera.smoothing_speed = 1.5 if which == "entered" else shaking_camera.default_smoothing_speed
 
 
-func set_active(value: bool) -> void:
-	active = value
+func set_is_active(value: bool) -> void:
+	is_active = value
 	if not collider:
 		return
 	collider.disabled = not value
-	hook.active = value
-	ledge_detector.active = value
+	hook.is_active = value
+	ledge_detector.is_active = value
 	hitbox.monitoring = value
 
 

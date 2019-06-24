@@ -20,7 +20,7 @@ func find_best_target() -> HookTarget:
 	var closest_target: HookTarget
 	var distance_to_closest: = 100000.0
 	for t in targets:
-		if not t.active:
+		if not t.is_active:
 			continue
 		var distance: = global_position.distance_to(t.global_position)
 		if distance > distance_to_closest:
@@ -49,5 +49,5 @@ func set_target(value:HookTarget) -> void:
 func _on_Hook_hooked_onto_target(pull_force) -> void:
 	if not target:
 		return
-	target.active = false
+	target.is_active = false
 	target = null
