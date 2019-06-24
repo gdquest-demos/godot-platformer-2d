@@ -6,7 +6,7 @@ func physics_process(delta: float) -> void:
 
 
 func enter(msg: Dictionary = {}) -> void:
-	owner.aim_mode = false
+	owner.is_aiming = false
 	owner.cooldown.start()
 	
 	owner.arrow.hook_position = (

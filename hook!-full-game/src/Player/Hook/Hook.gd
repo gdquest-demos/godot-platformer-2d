@@ -1,8 +1,10 @@
+tool
 extends Position2D
 class_name Hook
 """
 Throws a raycast that can interact with Hookable bodies and calculate a pull vector towards those bodies.
 The raycast is updated manually for greater precision with where the player is aiming
+Draws the hook's range in the editor
 """
 
 
@@ -18,13 +20,18 @@ onready var length: = ray.cast_to.length()
 
 const HOOKABLE_PHYSICS_LAYER: = 2
 
-var aim_mode: = false setget set_aim_mode
-var active: = true setget set_active
+var is_aiming: = false setget set_is_aiming
+var is_active: = true setget set_is_active
+
+
+func _ready() -> void:
+	if Engine.editor_hint:
+		update()
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("aim"):
-		self.aim_mode = not aim_mode
+		self.is_aiming = not is_aiming
 
 
 func has_target() -> bool:
@@ -36,7 +43,7 @@ func has_target() -> bool:
 
 
 func can_hook() -> bool:
-	return active and has_target() and cooldown.is_stopped()
+	return is_active and has_target() and cooldown.is_stopped()
 
 
 func get_target_position() -> Vector2:
@@ -55,12 +62,23 @@ func get_aim_direction() -> Vector2:
 			return (get_global_mouse_position() - global_position).normalized()
 
 
-func set_aim_mode(value: bool) -> void:
-	aim_mode = value
-	Engine.time_scale = 0.05 if aim_mode == true else 1.0
+func set_is_aiming(value: bool) -> void:
+	is_aiming = value
+	Engine.time_scale = 0.05 if is_aiming == true else 1.0
 
 
-func set_active(value: bool) -> void:
-	active = value
+func set_is_active(value: bool) -> void:
+	is_active = value
 	set_process_unhandled_input(value)
 
+
+func _draw() -> void:
+	if not Engine.editor_hint:
+		return
+	
+	var radius: float = snap_detector.calculate_length()
+	DrawingUtils.draw_circle_outline(
+		self,
+		Vector2.ZERO,
+		radius,
+		Color.lightgreen)

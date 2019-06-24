@@ -26,11 +26,11 @@ func physics_process(delta: float) -> void:
 
 
 func enter(msg: Dictionary = {}):
-	owner.active = false
+	owner.is_active = false
 
 
 func exit():
-	owner.active = true
+	owner.is_active = true
 
 
 func set_velocity(value: Vector2) -> void:

@@ -1,3 +1,4 @@
+tool
 extends Area2D
 """Detects and returns the best snapping target for the hook"""
 
@@ -11,7 +12,7 @@ var target: HookTarget setget set_target
 func _on_Hook_hooked_onto_target(pull_force) -> void:
 	if not target:
 		return
-	target.active = false
+	target.is_active = false
 	target = null
 
 
@@ -28,7 +29,7 @@ func find_best_target() -> HookTarget:
 	var closest_target: HookTarget = null
 	var distance_to_closest: = 100000.0
 	for t in targets:
-		if not t.active:
+		if not t.is_active:
 			continue
 		
 		var distance: = global_position.distance_to(t.global_position)
@@ -50,7 +51,23 @@ func has_target() -> bool:
 	return target != null
 
 
+"""
+Returns the length of the hook, from the origin to the tip of the collision shape
+"""
+func calculate_length() -> float:
+	var length: = -1.0
+	for collider in [$CapsuleH, $CapsuleV]:
+		if not collider:
+			continue
+		var capsule: CapsuleShape2D = collider.shape
+		var capsule_length: float = collider.position.length() + capsule.height / 2 * sin(collider.rotation) + capsule.radius
+		length = max(length, capsule_length)
+	return length
+
+
 func set_target(value: HookTarget) -> void:
+	if not value:
+		return
 	target = value
 	hint.visible = target != null
 	if target:

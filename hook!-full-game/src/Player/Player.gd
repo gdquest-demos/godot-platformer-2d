@@ -14,7 +14,6 @@ onready var hitbox: Area2D = $HitBox
 
 const FLOOR_NORMAL: = Vector2.UP
 
-var is_dead: = false
 var is_active: = true setget set_is_active
 var info_dict: = {} setget set_info_dict
 
@@ -25,7 +24,7 @@ func _ready() -> void:
 
 
 func _on_AreaDetector_area(area: Area2D, which: String) -> void:
-	if not area.is_in_group("anchor"):
+	if not (area.is_in_group("anchor") and area.global_position.x > global_position.x):
 		return
 	
 	match which:
@@ -43,7 +42,6 @@ func take_damage(source: Hit) -> void:
 
 func die(respawn: bool = true) -> void:
 	camera_rig.is_active = true
-	is_dead = true
 	skin.play("death")
 	yield(skin, "animation_finished")
 	if respawn:
@@ -53,7 +51,6 @@ func die(respawn: bool = true) -> void:
 func respawn() -> void:
 	skin.play("respawn")
 	camera_rig.is_active = false
-	is_dead = false
 
 
 func set_is_active(value: bool) -> void:
@@ -61,8 +58,8 @@ func set_is_active(value: bool) -> void:
 	if not collider:
 		return
 	collider.disabled = not value
-	hook.active = value
-	ledge_detector.active = value
+	hook.is_active = value
+	ledge_detector.is_active = value
 	hitbox.monitoring = value
 
 

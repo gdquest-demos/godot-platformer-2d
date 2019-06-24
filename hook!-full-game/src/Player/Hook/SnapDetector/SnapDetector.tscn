@@ -29,14 +29,14 @@ script = ExtResource( 1 )
 visible = false
 color_hook = Color( 0.0352941, 0.792157, 0.117647, 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CapsuleH" type="CollisionShape2D" parent="."]
 modulate = Color( 0.0392157, 0.152941, 0.772549, 0.682353 )
 show_behind_parent = true
 position = Vector2( 230, 0 )
 rotation = 1.57079
 shape = SubResource( 1 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+[node name="CapsuleV" type="CollisionShape2D" parent="."]
 modulate = Color( 0.0392157, 0.152941, 0.772549, 0.682353 )
 show_behind_parent = true
 position = Vector2( 300, 0 )
