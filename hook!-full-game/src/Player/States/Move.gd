@@ -45,7 +45,7 @@ func unhandled_input(event: InputEvent) -> void:
 func physics_process(delta: float) -> void:
 	self.velocity = calculate_velocity(velocity, speed, acceleration, delta, get_move_direction())
 	self.velocity = owner.move_and_slide(velocity, owner.FLOOR_NORMAL)
-	Events.emit_signal("player_moved", owner.global_position)
+	Events.emit_signal("player_moved", owner)
 
 
 func set_velocity(value: Vector2) -> void:
