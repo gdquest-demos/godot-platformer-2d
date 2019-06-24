@@ -10,6 +10,10 @@ script = ExtResource( 1 )
 [node name="ShakingCamera" type="Camera2D" parent="."]
 current = true
 smoothing_enabled = true
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
 script = ExtResource( 2 )
 amplitude = 8.0
 duration = 0.8

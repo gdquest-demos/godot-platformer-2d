@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 
 onready var hook: Position2D = $Hook
-onready var camera: Position2D = $CameraRig
+onready var camera_rig: Position2D = $CameraRig
 onready var shaking_camera: Camera2D = $CameraRig/ShakingCamera
 onready var area_detector: Area2D = $AnchorDetector
 onready var ledge_detector: Position2D = $LedgeDetector
@@ -14,10 +14,9 @@ onready var hitbox: Area2D = $HitBox
 
 const FLOOR_NORMAL: = Vector2.UP
 
-var active: = true setget set_active
+var is_dead: = false
+var is_active: = true setget set_is_active
 var info_dict: = {} setget set_info_dict
-
-var dead = false
 
 
 func _ready() -> void:
@@ -25,13 +24,26 @@ func _ready() -> void:
 	area_detector.connect("area_exited", self, "_on_AreaDetector_area", ["exited"])
 
 
+func _on_AreaDetector_area(area: Area2D, which: String) -> void:
+	if not area.is_in_group("anchor"):
+		return
+	
+	match which:
+		"entered":
+			camera_rig.is_active = false
+			shaking_camera.smoothing_speed = 1.5
+		"exited":
+			camera_rig.is_active = true
+			shaking_camera.smoothing_speed = shaking_camera.default_smoothing_speed
+
+
 func take_damage(source: Hit) -> void:
 	stats.take_damage(source)
 
 
 func die(respawn: bool = true) -> void:
-	camera.inactive = true
-	dead = true
+	camera_rig.is_active = true
+	is_dead = true
 	skin.play("death")
 	yield(skin, "animation_finished")
 	if respawn:
@@ -40,18 +52,12 @@ func die(respawn: bool = true) -> void:
 
 func respawn() -> void:
 	skin.play("respawn")
-	camera.inactive = false
-	dead = false
+	camera_rig.is_active = false
+	is_dead = false
 
 
-func _on_AreaDetector_area(area: Area2D, which: String) -> void:
-	if not area.is_in_group("anchor"):
-		return
-	shaking_camera.smoothing_speed = 1.5 if which == "entered" else shaking_camera.default_smoothing_speed
-
-
-func set_active(value: bool) -> void:
-	active = value
+func set_is_active(value: bool) -> void:
+	is_active = value
 	if not collider:
 		return
 	collider.disabled = not value

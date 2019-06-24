@@ -19,7 +19,6 @@
 [ext_resource path="res://src/Combat/Stats.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/Combat/HitBox/HitBox.tscn" type="PackedScene" id=18]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 30 )
 
@@ -35,8 +34,6 @@ shape = SubResource( 1 )
 position = Vector2( 0, -30 )
 
 [node name="LedgeDetector" parent="." instance=ExtResource( 3 )]
-active = true
-ray_length = 30.0
 
 [node name="FloorDetector" parent="." instance=ExtResource( 4 )]
 
@@ -45,13 +42,6 @@ ray_length = 30.0
 [node name="AnchorDetector" parent="." instance=ExtResource( 6 )]
 
 [node name="Skin" parent="." instance=ExtResource( 7 )]
-
-[node name="CameraRemoteTransform" type="RemoteTransform2D" parent="Skin"]
-position = Vector2( 0, -30 )
-remote_path = NodePath("../../CameraRig")
-update_position = false
-update_rotation = false
-update_scale = false
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 8 )
