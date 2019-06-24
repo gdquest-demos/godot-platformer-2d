@@ -4,8 +4,8 @@
 [ext_resource path="res://src/Player/Hook/Hook.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Player/LedgeDetector.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Player/FloorDetector.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/Player/Camera/CameraRig.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/Player/Camera/AnchorDetector.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Player/Camera/CameraAnchorDetector.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Player/Camera/CameraRig.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Player/Skin.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/StateMachine/StateMachine.gd" type="Script" id=8]
 [ext_resource path="res://src/Player/States/Move.gd" type="Script" id=9]
@@ -37,9 +37,14 @@ position = Vector2( 0, -30 )
 
 [node name="FloorDetector" parent="." instance=ExtResource( 4 )]
 
-[node name="CameraRig" parent="." instance=ExtResource( 5 )]
+[node name="CameraAnchorDetector" parent="." instance=ExtResource( 5 )]
+editor/display_folded = true
 
-[node name="AnchorDetector" parent="." instance=ExtResource( 6 )]
+[node name="CameraPosition" parent="CameraAnchorDetector" index="1"]
+remote_path = NodePath("../../CameraRig")
+
+[node name="CameraRig" parent="." instance=ExtResource( 6 )]
+editor/display_folded = true
 
 [node name="Skin" parent="." instance=ExtResource( 7 )]
 
@@ -51,6 +56,7 @@ initial_state = NodePath("Move/Idle")
 script = ExtResource( 9 )
 
 [node name="Idle" type="Node" parent="StateMachine/Move"]
+editor/display_folded = true
 script = ExtResource( 10 )
 
 [node name="JumpDelay" type="Timer" parent="StateMachine/Move/Idle"]
@@ -69,6 +75,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Wall" type="Node" parent="StateMachine/Move"]
+editor/display_folded = true
 script = ExtResource( 13 )
 
 [node name="JumpDelay" type="Timer" parent="StateMachine/Move/Wall"]
@@ -94,6 +101,6 @@ one_shot = true
 [node name="HitBox" parent="." instance=ExtResource( 18 )]
 position = Vector2( 0, -30 )
 
-[editable path="CameraRig"]
+[editable path="CameraAnchorDetector"]
 
-[editable path="AnchorDetector"]
+[editable path="CameraRig"]
