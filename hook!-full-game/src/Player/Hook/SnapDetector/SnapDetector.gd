@@ -50,6 +50,20 @@ func has_target() -> bool:
 	return target != null
 
 
+"""
+Returns the length of the hook, from the origin to the tip of the collision shape
+"""
+func calculate_length() -> float:
+	var length: = -1.0
+	for collider in [$CapsuleH, $CapsuleV]:
+		if not collider:
+			continue
+		var capsule: CapsuleShape2D = collider.shape
+		var capsule_length: float = collider.position.length() + capsule.height / 2 * sin(collider.rotation) + capsule.radius
+		length = max(length, capsule_length)
+	return length
+
+
 func set_target(value: HookTarget) -> void:
 	target = value
 	hint.visible = target != null

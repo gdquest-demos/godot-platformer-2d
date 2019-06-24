@@ -1,8 +1,10 @@
+tool
 extends Position2D
 class_name Hook
 """
 Throws a raycast that can interact with Hookable bodies and calculate a pull vector towards those bodies.
 The raycast is updated manually for greater precision with where the player is aiming
+Draws the hook's range in the editor
 """
 
 
@@ -20,6 +22,10 @@ const HOOKABLE_PHYSICS_LAYER: = 2
 
 var aim_mode: = false setget set_aim_mode
 var active: = true setget set_active
+
+func _ready() -> void:
+	if Engine.editor_hint:
+		update()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -64,3 +70,14 @@ func set_active(value: bool) -> void:
 	active = value
 	set_process_unhandled_input(value)
 
+
+func _draw() -> void:
+	if not Engine.editor_hint:
+		return
+	
+	var radius: float = snap_detector.calculate_length()
+	DrawingUtils.draw_circle_outline(
+		self,
+		Vector2.ZERO,
+		radius,
+		Color.lightgreen)
