@@ -8,9 +8,50 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "SteeringBehaviour2D",
+"class": "ArrivalBehaviour2D",
+"language": "GDScript",
+"path": "res://src/Behaviours/2D/ArrivalBehaviour2D.gd"
+}, {
+"base": "Node",
+"class": "BehaviourController2D",
+"language": "GDScript",
+"path": "res://src/Behaviours/2D/BehaviourController2D.gd"
+}, {
+"base": "SeekBehaviour2D",
+"class": "FleeBehaviour2D",
+"language": "GDScript",
+"path": "res://src/Behaviours/2D/FleeBehaviour2D.gd"
+}, {
+"base": "SteeringBehaviour2D",
+"class": "OrientBehaviour2D",
+"language": "GDScript",
+"path": "res://src/Behaviours/2D/OrientBehaviour2D.gd"
+}, {
+"base": "SteeringBehaviour2D",
+"class": "SeekBehaviour2D",
+"language": "GDScript",
+"path": "res://src/Behaviours/2D/SeekBehaviour2D.gd"
+}, {
+"base": "Node",
+"class": "SteeringBehaviour2D",
+"language": "GDScript",
+"path": "res://src/Behaviours/2D/SteeringBehaviour2D.gd"
+}, {
+"base": "Reference",
+"class": "SteeringMotion2D",
+"language": "GDScript",
+"path": "res://src/Behaviours/2D/SteeringMotion2D.gd"
+} ]
 _global_script_class_icons={
-
+"ArrivalBehaviour2D": "",
+"BehaviourController2D": "",
+"FleeBehaviour2D": "",
+"OrientBehaviour2D": "",
+"SeekBehaviour2D": "",
+"SteeringBehaviour2D": "",
+"SteeringMotion2D": ""
 }
 
 [application]
