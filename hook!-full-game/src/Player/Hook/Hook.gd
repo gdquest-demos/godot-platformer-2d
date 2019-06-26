@@ -10,13 +10,11 @@ Draws the hook's range in the editor
 
 signal hooked_onto_target(target_global_position)
 
-onready var ray: RayCast2D = $RayCast2D
+onready var ray_cast: RayCast2D = $RayCast2D
 onready var arrow: Node2D = $Arrow
-onready var hint: Node2D = $TargetHint
 onready var target_circle: Node2D = $TargetCircle
 onready var snap_detector: Area2D = $SnapDetector
 onready var cooldown: Timer = $Cooldown
-onready var length: = ray.cast_to.length()
 
 const HOOKABLE_PHYSICS_LAYER: = 2
 
@@ -29,15 +27,18 @@ func _ready() -> void:
 		update()
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("aim"):
-		self.is_aiming = not is_aiming
+func _draw() -> void:
+	if not Engine.editor_hint:
+		return
+	
+	var radius: float = snap_detector.calculate_length()
+	DrawingUtils.draw_circle_outline(self, Vector2.ZERO, radius, Color.lightgreen)
 
 
 func has_target() -> bool:
 	var has_target: bool = snap_detector.has_target()
-	if not has_target and ray.is_colliding():
-		var collider: PhysicsBody2D = ray.get_collider()
+	if not has_target and ray_cast.is_colliding():
+		var collider: = ray_cast.get_collider()
 		has_target = collider.get_collision_layer_bit(HOOKABLE_PHYSICS_LAYER)
 	return has_target
 
@@ -47,7 +48,7 @@ func can_hook() -> bool:
 
 
 func get_target_position() -> Vector2:
-	return snap_detector.target.global_position if snap_detector.target else ray.get_collision_point()
+	return snap_detector.target.global_position if snap_detector.target else ray_cast.get_collision_point()
 
 
 func get_hook_target() -> HookTarget:
@@ -70,15 +71,3 @@ func set_is_aiming(value: bool) -> void:
 func set_is_active(value: bool) -> void:
 	is_active = value
 	set_process_unhandled_input(value)
-
-
-func _draw() -> void:
-	if not Engine.editor_hint:
-		return
-	
-	var radius: float = snap_detector.calculate_length()
-	DrawingUtils.draw_circle_outline(
-		self,
-		Vector2.ZERO,
-		radius,
-		Color.lightgreen)
