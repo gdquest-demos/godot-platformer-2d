@@ -11,6 +11,10 @@ var hook_position: = Vector2.ZERO setget set_hook_position
 var length: = 40.0 setget set_length
 
 
+func _on_Tween_tween_completed(object: Object, key: NodePath) -> void:
+	visible = false
+
+
 func set_hook_position(value: Vector2) -> void:
 	hook_position = value
 	var to_target: = hook_position - global_position
@@ -27,7 +31,3 @@ func set_length(value: float) -> void:
 	length = value
 	tail.points[-1].x = length
 	head.position.x = tail.points[-1].x + tail.position.x
-
-
-func _on_Tween_tween_completed(object: Object, key: NodePath) -> void:
-	visible = false

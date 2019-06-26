@@ -6,6 +6,7 @@ extends DrawingUtils
 export var offset: = Vector2(50.0, 0) setget set_offset
 export var color: = Color(1, 0.34375, 0.635986) setget set_color
 
+
 func _draw() -> void:
 	draw_circle_outline(self, offset, 8.0, color, 3.0)
 
