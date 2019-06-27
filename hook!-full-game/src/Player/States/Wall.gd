@@ -1,6 +1,7 @@
 extends State
 
 onready var jump_delay: Timer = $JumpDelay
+onready var fall_delay: Timer = $FallDelay
 
 export var slide_acceleration: = 500.0
 export var max_slide_speed: = 400.0
@@ -11,16 +12,21 @@ var _velocity: = Vector2.ZERO
 var _wall_normal: = -1
 
 
-func setup(player: KinematicBody2D, state_machine: Node) -> void:
-	.setup(player, state_machine)
+func _ready() -> void:
 	jump_delay.connect("timeout", self, "_on_JumpDelay_timeout")
+	fall_delay.connect("timeout", self, "_on_FallDelay_timeout")
 
-	
+
 func enter(msg: Dictionary = {}) -> void:
 	_wall_normal = msg.normal
 	_velocity = msg.velocity
 	if _velocity.y < max_slide_speed:
 		_velocity.y = 0.0
+	
+	var wall_detector_length: float = owner.wall_detector.cast_to.length()
+	var wall_direction: = -_wall_normal
+	owner.wall_detector.cast_to = Vector2(wall_direction * wall_detector_length, 0)
+	owner.wall_detector.enabled = true
 
 
 func physics_process(delta: float) -> void:
@@ -32,6 +38,12 @@ func physics_process(delta: float) -> void:
 
 	if owner.is_on_floor():
 		_state_machine.transition_to("Move/Idle")
+	
+	if not owner.wall_detector.is_colliding():
+		if fall_delay.is_stopped():
+			fall_delay.start()
+	else:
+		fall_delay.stop()
 
 
 func unhandled_input(event: InputEvent) -> void:
@@ -47,7 +59,12 @@ func unhandled_input(event: InputEvent) -> void:
 
 func exit() -> void:
 	_velocity = Vector2.ZERO
+	owner.wall_detector.enabled = false
 
 
 func _on_JumpDelay_timeout() -> void:
+	_state_machine.transition_to("Move/Air", {"velocity": _velocity.y})
+
+
+func _on_FallDelay_timeout() -> void:
 	_state_machine.transition_to("Move/Air", {"velocity": _velocity.y})
