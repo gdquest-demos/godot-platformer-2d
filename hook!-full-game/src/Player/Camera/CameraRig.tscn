@@ -9,6 +9,7 @@ script = ExtResource( 1 )
 
 [node name="ShakingCamera" type="Camera2D" parent="."]
 current = true
+process_mode = 0
 smoothing_enabled = true
 smoothing_speed = 7.0
 drag_margin_left = 0.0
