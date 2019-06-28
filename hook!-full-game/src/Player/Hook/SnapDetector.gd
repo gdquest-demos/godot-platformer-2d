@@ -1,3 +1,4 @@
+tool
 extends Area2D
 """Detects and returns the best snapping target for the hook"""
 
