@@ -34,8 +34,15 @@ shape = SubResource( 1 )
 position = Vector2( 0, -30 )
 
 [node name="LedgeDetector" parent="." instance=ExtResource( 3 )]
+is_active = true
+ray_length = 30.0
 
 [node name="FloorDetector" parent="." instance=ExtResource( 4 )]
+
+[node name="WallDetector" type="RayCast2D" parent="."]
+position = Vector2( 0, -31.1111 )
+cast_to = Vector2( 100, 0 )
+collision_mask = 2
 
 [node name="CameraAnchorDetector" parent="." instance=ExtResource( 5 )]
 editor/display_folded = true
@@ -45,6 +52,10 @@ remote_path = NodePath("../../CameraRig")
 
 [node name="CameraRig" parent="." instance=ExtResource( 6 )]
 editor/display_folded = true
+
+[node name="ShakingCamera" parent="CameraRig" index="0"]
+DAMP_EASING = 1.0
+is_shaking = false
 
 [node name="Skin" parent="." instance=ExtResource( 7 )]
 
@@ -75,11 +86,14 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Wall" type="Node" parent="StateMachine/Move"]
-editor/display_folded = true
 script = ExtResource( 13 )
 
 [node name="JumpDelay" type="Timer" parent="StateMachine/Move/Wall"]
 wait_time = 0.2
+one_shot = true
+
+[node name="FallDelay" type="Timer" parent="StateMachine/Move/Wall"]
+wait_time = 0.05
 one_shot = true
 
 [node name="Ledge" type="Node" parent="StateMachine"]
