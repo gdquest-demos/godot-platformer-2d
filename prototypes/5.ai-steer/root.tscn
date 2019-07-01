@@ -23,8 +23,8 @@ script = ExtResource( 2 )
 steerable_path = NodePath("../..")
 max_linear_speed = 250.0
 max_linear_acceleration = 50.0
-max_rotation_speed = 1.0
-max_rotational_acceleration = 0.25
+max_rotation_speed = 3.0
+max_rotational_acceleration = 0.1
 
 [node name="ArriveBehaviour2D" type="Node" parent="AI/AI/BehaviourController2D"]
 script = ExtResource( 3 )
@@ -40,8 +40,9 @@ max_prediction_time = 2.0
 
 [node name="AlignBehaviour2D" type="Node" parent="AI/AI/BehaviourController2D"]
 script = ExtResource( 6 )
-deceleration_radius = 1.57
-alignment_tolerance = 1.0
+deceleration_radius = 45.0
+alignment_tolerance = 2.0
+time_to_target = 1.0
 
 [node name="Sprite" type="Sprite" parent="AI"]
 texture = ExtResource( 7 )
@@ -50,7 +51,7 @@ texture = ExtResource( 7 )
 "player",
 ]]
 position = Vector2( 437.193, 297.482 )
-rotation = 0.785398
+rotation = 1.5708
 script = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="Player"]

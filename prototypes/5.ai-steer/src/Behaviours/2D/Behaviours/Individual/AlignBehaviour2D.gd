@@ -21,9 +21,10 @@ func _align(motion: SteeringMotion2D, desired_rotation: float) -> SteeringMotion
 		motion.zero()
 	else:
 		var target_rotation: = deg2rad(controller.max_rotation_speed)
+		var deceleration_radius_rad: = deg2rad(deceleration_radius)
 		
-		if rotation_size <= deceleration_radius:
-			target_rotation *= rotation_size / deceleration_radius
+		if rotation_size <= deceleration_radius_rad:
+			target_rotation *= rotation_size / deceleration_radius_rad
 		target_rotation *= desired_rotation / rotation_size
 		
 		motion.rotational_motion = (target_rotation - controller.current_rotation_velocity) / time_to_target
