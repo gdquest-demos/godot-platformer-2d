@@ -3,7 +3,7 @@ extends Node
 Sample AI controller. It gets and sets the player in its `_ready` function as a target to various
 behaviours, and picks whichever one it should be calculating on. It also updates the controller
 with information for the behaviours to use. Then, based on what is calculated, it applies
-the calculated velocity to itself.
+the calculated velocity to itself. Mostly a playground.
 """
 
 var _target: Node2D
@@ -14,6 +14,7 @@ var _behaviour: SteeringBehaviour2D
 var _arrive: ArriveBehaviour2D
 var _align: AlignBehaviour2D
 var _priority: PrioritySteering2D
+var _flee: FleeBehaviour2D
 
 var _velocity: = Vector2()
 var _rotation_velocity: float
@@ -25,10 +26,13 @@ func _ready():
 	_arrive = get_node("BehaviourController2D/PrioritySteering2D/ArriveBehaviour2D") as ArriveBehaviour2D
 	_arrive.target = _target
 	
-	_align = get_node("BehaviourController2D/PrioritySteering2D/AlignBehaviour2D") as AlignBehaviour2D
+	_align = get_node("BehaviourController2D/PrioritySteering2D/BlendedBehaviour2D/AlignBehaviour2D") as AlignBehaviour2D
 	_align.target = _target
 	
 	_priority = get_node("BehaviourController2D/PrioritySteering2D") as PrioritySteering2D
+	
+	_flee = get_node("BehaviourController2D/PrioritySteering2D/BlendedBehaviour2D/FleeBehaviour2D")
+	_flee.target = _target
 	
 	_controller = get_node("BehaviourController2D")
 	

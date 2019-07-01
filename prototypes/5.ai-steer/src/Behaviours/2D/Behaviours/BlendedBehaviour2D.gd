@@ -6,6 +6,7 @@ A behaviour that runs through all of its children and blends all motions togethe
 The blended behaviour will first calculate a child's motion, will multiply iy by its weight, then add it
 to the motion buffer before returning it. It will be clamped to the controller's maximums.
 The weights are not relative to 1, and instead act as a multiplier on the strength of the behaviour.
+The index of a given weight in the array should refer to the given index of its child.
 
 Notes
 -----
@@ -18,7 +19,7 @@ It can also lead to conflicts of force which may cause unusual behaviour.
 The general workflow should be to have a priority steering with a set of blended behaviours, based on need.
 """
 
-export(float) var weight: float = 1
+export(Array) var weights: = []
 
 var _internal_motion: = SteeringMotion2D.new()
 
@@ -28,12 +29,19 @@ Returns the steering motion with a blend of all of the behaviour's children, cap
 func _calculate_steering_internal(motion: SteeringMotion2D) -> SteeringMotion2D:
 	motion.zero()
 
-	for child in get_children():
-		if !(child is SteeringBehaviour2D):
+	var size: = get_child_count()
+	for i in range(0, size):
+		var child: = get_child(i) as SteeringBehaviour2D
+		if child == null:
 			continue
 		
 		var steering: = child as SteeringBehaviour2D
 		steering.calculate_steering(_internal_motion)
+		
+		var weight: float = 1
+		if weights.size() >= i:
+			weight = weights[i]
+		
 		motion.linear_motion += (_internal_motion.linear_motion * weight)
 		motion.rotational_motion += (_internal_motion.rotational_motion * weight)
 	
