@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "SteeringBehaviour2D",
-"class": "ArrivalBehaviour2D",
-"language": "GDScript",
-"path": "res://src/Behaviours/2D/ArrivalBehaviour2D.gd"
-}, {
 "base": "Node",
 "class": "BehaviourController2D",
 "language": "GDScript",
@@ -24,15 +19,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Behaviours/2D/BlendedBehaviour2D.gd"
 }, {
-"base": "SeekBehaviour2D",
-"class": "FleeBehaviour2D",
+"base": "SeekNode2DBehaviour",
+"class": "FleeNode2DBehaviour",
 "language": "GDScript",
-"path": "res://src/Behaviours/2D/FleeBehaviour2D.gd"
+"path": "res://src/Behaviours/2D/TargetsNode2D/FleeBehaviour2D.gd"
 }, {
-"base": "SteeringBehaviour2D",
-"class": "OrientBehaviour2D",
+"base": "SeekVector2Behaviour",
+"class": "FleeVector2Behaviour",
 "language": "GDScript",
-"path": "res://src/Behaviours/2D/OrientBehaviour2D.gd"
+"path": "res://src/Behaviours/2D/TargetsVector2/FleeVector2Behaviour.gd"
 }, {
 "base": "SteeringBehaviour2D",
 "class": "PrioritySteering2D",
@@ -40,9 +35,14 @@ _global_script_classes=[ {
 "path": "res://src/Behaviours/2D/PrioritySteering2D.gd"
 }, {
 "base": "SteeringBehaviour2D",
-"class": "SeekBehaviour2D",
+"class": "SeekNode2DBehaviour",
 "language": "GDScript",
-"path": "res://src/Behaviours/2D/SeekBehaviour2D.gd"
+"path": "res://src/Behaviours/2D/TargetsNode2D/SeekNode2DBehaviour.gd"
+}, {
+"base": "SteeringBehaviour2D",
+"class": "SeekVector2Behaviour",
+"language": "GDScript",
+"path": "res://src/Behaviours/2D/TargetsVector2/SeekVector2Behaviour.gd"
 }, {
 "base": "Node",
 "class": "SteeringBehaviour2D",
@@ -55,13 +55,13 @@ _global_script_classes=[ {
 "path": "res://src/Behaviours/2D/SteeringMotion2D.gd"
 } ]
 _global_script_class_icons={
-"ArrivalBehaviour2D": "",
 "BehaviourController2D": "",
 "BlendedBehaviour2D": "",
-"FleeBehaviour2D": "",
-"OrientBehaviour2D": "",
+"FleeNode2DBehaviour": "",
+"FleeVector2Behaviour": "",
 "PrioritySteering2D": "",
-"SeekBehaviour2D": "",
+"SeekNode2DBehaviour": "",
+"SeekVector2Behaviour": "",
 "SteeringBehaviour2D": "",
 "SteeringMotion2D": ""
 }

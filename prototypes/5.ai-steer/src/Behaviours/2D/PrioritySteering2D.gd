@@ -1,15 +1,23 @@
 extends SteeringBehaviour2D
 class_name PrioritySteering2D
 
-func _calculate_steering_internal() -> SteeringMotion2D:
-	var result: = SteeringMotion2D.new()
-	for child in get_children():
-		if !(child is SteeringBehaviour2D):
+var last_selected_child_idx: int
+
+func _calculate_steering_internal(motion: SteeringMotion2D) -> SteeringMotion2D:
+	last_selected_child_idx = -1
+	var size: = get_child_count()
+	
+	for i in range(0, size):
+		last_selected_child_idx = i
+		var child: = get_child(i) as SteeringBehaviour2D
+		if child == null:
 			continue
-		var steering: = child as SteeringBehaviour2D
-		var subresult: = steering.calculate_steering()
-		if subresult.linear_motion.length() != 0 or subresult.rotation_motion != 0:
-			result.linear_motion = subresult.linear_motion
-			result.rotational_motion = subresult.rotational_motion
+		
+		child.calculate_steering(motion)
+		if motion.linear_motion.length_squared() != 0 or motion.rotation_motion != 0:
 			break
-	return result
+	
+	if size > 0:
+		return motion
+	else:
+		return motion.zero()
