@@ -17,12 +17,7 @@ func _calculate_steering_internal(motion: SteeringMotion2D) -> SteeringMotion2D:
 		motion.linear_motion += (internal_motion.linear_motion * weight)
 		motion.rotational_motion += (internal_motion.rotational_motion * weight)
 	
-	var length2: = motion.linear_motion.length_squared()
-	var limit2: = controller.max_linear_speed * controller.max_linear_speed
-	if length2 > limit2:
-		motion.linear_motion = motion.linear_motion * sqrt(limit2 / length2)
-	
-	if motion.rotational_motion > controller.max_rotation_speed:
-		motion.rotational_motion = controller.max_rotation_speed
+	motion.linear_motion.clamped(controller.max_linear_acceleration)
+	motion.rotational_motion = min(controller.max_rotational_acceleration, motion.rotational_motion)
 	
 	return motion

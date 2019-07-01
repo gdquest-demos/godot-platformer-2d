@@ -1,5 +1,5 @@
-extends SeekVector2Behaviour
-class_name FleeVector2Behaviour
+extends SeekBehaviour2D
+class_name FleeBehaviour2D
 
 func _calculate_steering_internal(motion: SteeringMotion2D) -> SteeringMotion2D:
 	._calculate_steering_internal(motion)

@@ -1,6 +1,6 @@
 extends Node2D
 
-var speed: float = 150
+var speed: float = 125
 
 func _process(delta):
 	if Input.is_key_pressed(KEY_RIGHT):
