@@ -14,7 +14,7 @@ func _calculate_steering_internal(motion: SteeringMotion2D) -> SteeringMotion2D:
 			continue
 		
 		child.calculate_steering(motion)
-		if motion.linear_motion.length_squared() != 0 or motion.rotation_motion != 0:
+		if motion.linear_motion.length_squared() != 0 or motion.rotational_motion != 0:
 			break
 	
 	if size > 0:

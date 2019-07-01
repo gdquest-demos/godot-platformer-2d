@@ -11,4 +11,12 @@ func zero() -> void:
 
 
 func is_zero() -> bool:
-	return linear_motion.x == 0 and linear_motion.y == 0 and rotational_motion == 0
+	return linear_is_zero() and rotational_is_zero()
+
+
+func linear_is_zero() -> bool:
+	return linear_motion.x == 0 and linear_motion.y == 0
+
+
+func rotational_is_zero() -> bool:
+	return rotational_motion == 0

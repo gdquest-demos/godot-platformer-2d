@@ -1,14 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://LAI.gd" type="Script" id=1]
 [ext_resource path="res://src/Behaviours/2D/BehaviourController2D.gd" type="Script" id=2]
-[ext_resource path="res://src/Behaviours/2D/Behaviours/Individual/ArriveBehaviour2D.gd" type="Script" id=3]
-[ext_resource path="res://src/Behaviours/2D/Behaviours/Individual/SeekBehaviour2D.gd" type="Script" id=4]
-[ext_resource path="res://src/Behaviours/2D/Behaviours/Individual/InterceptBehaviour2D.gd" type="Script" id=5]
-[ext_resource path="res://src/Behaviours/2D/Behaviours/Individual/AlignBehaviour2D.gd" type="Script" id=6]
-[ext_resource path="res://icon.png" type="Texture" id=7]
-[ext_resource path="res://Player.gd" type="Script" id=8]
-[ext_resource path="res://target.png" type="Texture" id=9]
+[ext_resource path="res://src/Behaviours/2D/Behaviours/PrioritySteering2D.gd" type="Script" id=3]
+[ext_resource path="res://src/Behaviours/2D/Behaviours/Individual/ArriveBehaviour2D.gd" type="Script" id=4]
+[ext_resource path="res://src/Behaviours/2D/Behaviours/Individual/AlignBehaviour2D.gd" type="Script" id=5]
+[ext_resource path="res://icon.png" type="Texture" id=6]
+[ext_resource path="res://Player.gd" type="Script" id=7]
+[ext_resource path="res://target.png" type="Texture" id=8]
 
 [node name="Node2D" type="Node2D"]
 
@@ -26,33 +25,29 @@ max_linear_acceleration = 50.0
 max_rotation_speed = 3.0
 max_rotational_acceleration = 0.1
 
-[node name="ArriveBehaviour2D" type="Node" parent="AI/AI/BehaviourController2D"]
+[node name="PrioritySteering2D" type="Node" parent="AI/AI/BehaviourController2D"]
 script = ExtResource( 3 )
+
+[node name="ArriveBehaviour2D" type="Node" parent="AI/AI/BehaviourController2D/PrioritySteering2D"]
+script = ExtResource( 4 )
 arrival_tolerance = 50.0
 deceleration_radius = 150.0
 
-[node name="SeekBehaviour2D" type="Node" parent="AI/AI/BehaviourController2D"]
-script = ExtResource( 4 )
-
-[node name="InterceptBehaviour2D" type="Node" parent="AI/AI/BehaviourController2D"]
+[node name="AlignBehaviour2D" type="Node" parent="AI/AI/BehaviourController2D/PrioritySteering2D"]
 script = ExtResource( 5 )
-max_prediction_time = 2.0
-
-[node name="AlignBehaviour2D" type="Node" parent="AI/AI/BehaviourController2D"]
-script = ExtResource( 6 )
 deceleration_radius = 45.0
 alignment_tolerance = 2.0
 time_to_target = 1.0
 
 [node name="Sprite" type="Sprite" parent="AI"]
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 
 [node name="Player" type="Node2D" parent="." groups=[
 "player",
 ]]
 position = Vector2( 437.193, 297.482 )
 rotation = 1.5708
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="Player"]
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
