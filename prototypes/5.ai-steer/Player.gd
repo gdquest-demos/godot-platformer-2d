@@ -1,4 +1,7 @@
 extends Node2D
+"""
+Simple script that lets the user move around with the arrow keys.
+"""
 
 var speed: float = 125
 

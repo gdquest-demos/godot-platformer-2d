@@ -1,4 +1,10 @@
 extends Node
+"""
+Sample AI controller. It gets and sets the player in its `_ready` function as a target to various
+behaviours, and picks whichever one it should be calculating on. It also updates the controller
+with information for the behaviours to use. Then, based on what is calculated, it applies
+the calculated velocity to itself.
+"""
 
 var _target: Node2D
 var _motion: = SteeringMotion2D.new()
@@ -54,6 +60,6 @@ func _process(delta):
 		get_parent().rotate(_rotation_velocity)
 	else:
 		_rotation_velocity = 0
-		_controller.set_rotation_velocity(0)
+		_controller.current_rotation_velocity = 0
 	
 	_last_target_position = target_position

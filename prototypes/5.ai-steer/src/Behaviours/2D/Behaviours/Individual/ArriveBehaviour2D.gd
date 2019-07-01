@@ -1,5 +1,16 @@
 extends SteeringBehaviour2D
 class_name ArriveBehaviour2D
+"""
+A behaviour that aims to arrive at where the target is, smoothly and within an acceptable distance threshold.
+
+`arrival_tolerance` is the distance away from the target that will be good enough to stop moving.
+`deceleration_radius` is the distance away from the target that the AI should begin weighing down its acceleration
+and slow down.
+`time_to_target` is a fixed time scale value of time by which it should weigh its velocity by to arrive smoothly.
+This value should be small and defaults to 0.1.
+
+Supported targets are Vector2 and Node2D.
+"""
 
 export(float) var arrival_tolerance: float
 export(float) var deceleration_radius: float
@@ -7,6 +18,10 @@ export(float) var time_to_target: float = 0.1
 
 var target
 
+"""
+Returns the steering motion filled with a linear acceleration amount that will take it towards the target with a
+smooth deceleration, or zero if it is already inside of an arrival threshold.
+"""
 func _calculate_steering_internal(motion: SteeringMotion2D) -> SteeringMotion2D:
 	if target == null:
 		return motion.zero()
@@ -30,10 +45,9 @@ func _calculate_steering_internal(motion: SteeringMotion2D) -> SteeringMotion2D:
 	return motion
 
 
-func _arrive_vector(motion: SteeringMotion2D) -> SteeringMotion2D:
-	return motion.zero()
-
-
+"""
+Returns the target's position.
+"""
 func _to_target() -> Vector2:
 	if target is Vector2:
 		return target - steerable().position

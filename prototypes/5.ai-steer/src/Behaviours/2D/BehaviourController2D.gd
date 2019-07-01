@@ -1,5 +1,13 @@
 extends Node
 class_name BehaviourController2D
+"""
+Meant to be the parent to behaviours. It is a helper to provide information to its children behaviours.
+
+The controller is the hub through which behaviours access various information about themselves, and
+their targets. It holds the maximum speeds and acceleration amounts, and has space to hold current
+velocities that can be used in more predictive behaviours. However, the controller is naive and
+needs to be fed this information; where the information comes from should be determined by the programmer.
+"""
 
 export(NodePath) var steerable_path: NodePath
 export(float) var max_linear_speed: float
@@ -15,23 +23,25 @@ var target_current_rotation_velocity: float = 0
 
 onready var steerable: Node2D = get_node(steerable_path)
 
+"""
+Returns true if a Node2D was successfully put into the controller.
+"""
 func valid() -> bool:
 	return steerable != null
 
 
+"""
+Sets the current linear velocity by way of X and Y, rather than copying or creating new vectors.
+"""
 func set_linear_velocity(x: float, y: float) -> void:
 	current_linear_velocity.x = x
 	current_linear_velocity.y = y
 
 
-func set_rotation_velocity(rotational_velocity: float) -> void:
-	current_rotation_velocity = rotational_velocity
-
-
+"""
+Sets the target's current linear velocity by way of X and Y, rather than copying or creating new vectors.
+Not all behaviours have a target that moves, so match requirements accordingly.
+"""
 func set_target_linear_velocity(x: float, y: float) -> void:
 	target_current_linear_velocity.x = x
 	target_current_linear_velocity.y = y
-
-
-func set_target_rotation_velocity(rotational_velocity: float) -> void:
-	target_current_rotation_velocity = rotational_velocity

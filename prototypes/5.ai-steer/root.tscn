@@ -37,7 +37,6 @@ deceleration_radius = 150.0
 script = ExtResource( 5 )
 deceleration_radius = 45.0
 alignment_tolerance = 2.0
-time_to_target = 1.0
 
 [node name="Sprite" type="Sprite" parent="AI"]
 texture = ExtResource( 6 )
