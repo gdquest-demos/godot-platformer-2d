@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://LAI.gd" type="Script" id=1]
+[ext_resource path="res://src/Behaviours/2D/BehaviourController2D.gd" type="Script" id=2]
+[ext_resource path="res://src/Behaviours/2D/Behaviours/PrioritySteering2D.gd" type="Script" id=3]
+[ext_resource path="res://src/Behaviours/2D/Behaviours/Individual/ArriveBehaviour2D.gd" type="Script" id=4]
+[ext_resource path="res://src/Behaviours/2D/Behaviours/BlendedBehaviour2D.gd" type="Script" id=5]
+[ext_resource path="res://src/Behaviours/2D/Behaviours/Individual/AlignBehaviour2D.gd" type="Script" id=6]
+[ext_resource path="res://src/Behaviours/2D/Behaviours/Individual/FleeBehaviour2D.gd" type="Script" id=7]
+[ext_resource path="res://icon.png" type="Texture" id=8]
+[ext_resource path="res://Player.gd" type="Script" id=9]
+[ext_resource path="res://target.png" type="Texture" id=10]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AI" type="Node2D" parent="."]
+position = Vector2( 203.878, 129.64 )
+
+[node name="AI" type="Node" parent="AI"]
+script = ExtResource( 1 )
+
+[node name="BehaviourController2D" type="Node" parent="AI/AI"]
+script = ExtResource( 2 )
+steerable_path = NodePath("../..")
+max_linear_speed = 250.0
+max_linear_acceleration = 50.0
+max_rotation_speed = 3.0
+max_rotational_acceleration = 0.1
+
+[node name="PrioritySteering2D" type="Node" parent="AI/AI/BehaviourController2D"]
+script = ExtResource( 3 )
+
+[node name="ArriveBehaviour2D" type="Node" parent="AI/AI/BehaviourController2D/PrioritySteering2D"]
+script = ExtResource( 4 )
+arrival_tolerance = 50.0
+deceleration_radius = 150.0
+
+[node name="BlendedBehaviour2D" type="Node" parent="AI/AI/BehaviourController2D/PrioritySteering2D"]
+script = ExtResource( 5 )
+weights = [ 1.0, 0.2 ]
+
+[node name="AlignBehaviour2D" type="Node" parent="AI/AI/BehaviourController2D/PrioritySteering2D/BlendedBehaviour2D"]
+script = ExtResource( 6 )
+deceleration_radius = 45.0
+alignment_tolerance = 2.0
+
+[node name="FleeBehaviour2D" type="Node" parent="AI/AI/BehaviourController2D/PrioritySteering2D/BlendedBehaviour2D"]
+script = ExtResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="AI"]
+texture = ExtResource( 8 )
+
+[node name="Player" type="Node2D" parent="." groups=[
+"player",
+]]
+position = Vector2( 437.193, 297.482 )
+rotation = 1.5708
+script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="Player"]
+texture = ExtResource( 10 )

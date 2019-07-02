@@ -1,0 +1,89 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "SteeringBehaviour2D",
+"class": "AlignBehaviour2D",
+"language": "GDScript",
+"path": "res://src/Behaviours/2D/Behaviours/Individual/AlignBehaviour2D.gd"
+}, {
+"base": "SteeringBehaviour2D",
+"class": "ArriveBehaviour2D",
+"language": "GDScript",
+"path": "res://src/Behaviours/2D/Behaviours/Individual/ArriveBehaviour2D.gd"
+}, {
+"base": "Node",
+"class": "BehaviourController2D",
+"language": "GDScript",
+"path": "res://src/Behaviours/2D/BehaviourController2D.gd"
+}, {
+"base": "SteeringBehaviour2D",
+"class": "BlendedBehaviour2D",
+"language": "GDScript",
+"path": "res://src/Behaviours/2D/Behaviours/BlendedBehaviour2D.gd"
+}, {
+"base": "InterceptBehaviour2D",
+"class": "EvadeBehaviour2D",
+"language": "GDScript",
+"path": "res://src/Behaviours/2D/Behaviours/Individual/EvadeBehaviour2D.gd"
+}, {
+"base": "SeekBehaviour2D",
+"class": "FleeBehaviour2D",
+"language": "GDScript",
+"path": "res://src/Behaviours/2D/Behaviours/Individual/FleeBehaviour2D.gd"
+}, {
+"base": "SteeringBehaviour2D",
+"class": "InterceptBehaviour2D",
+"language": "GDScript",
+"path": "res://src/Behaviours/2D/Behaviours/Individual/InterceptBehaviour2D.gd"
+}, {
+"base": "SteeringBehaviour2D",
+"class": "PrioritySteering2D",
+"language": "GDScript",
+"path": "res://src/Behaviours/2D/Behaviours/PrioritySteering2D.gd"
+}, {
+"base": "SteeringBehaviour2D",
+"class": "SeekBehaviour2D",
+"language": "GDScript",
+"path": "res://src/Behaviours/2D/Behaviours/Individual/SeekBehaviour2D.gd"
+}, {
+"base": "Node",
+"class": "SteeringBehaviour2D",
+"language": "GDScript",
+"path": "res://src/Behaviours/2D/SteeringBehaviour2D.gd"
+}, {
+"base": "Reference",
+"class": "SteeringMotion2D",
+"language": "GDScript",
+"path": "res://src/Behaviours/2D/SteeringMotion2D.gd"
+} ]
+_global_script_class_icons={
+"AlignBehaviour2D": "",
+"ArriveBehaviour2D": "",
+"BehaviourController2D": "",
+"BlendedBehaviour2D": "",
+"EvadeBehaviour2D": "",
+"FleeBehaviour2D": "",
+"InterceptBehaviour2D": "",
+"PrioritySteering2D": "",
+"SeekBehaviour2D": "",
+"SteeringBehaviour2D": "",
+"SteeringMotion2D": ""
+}
+
+[application]
+
+config/name="AI-Steer"
+run/main_scene="res://root.tscn"
+config/icon="res://icon.png"
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
