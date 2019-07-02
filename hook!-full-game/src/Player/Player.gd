@@ -1,5 +1,5 @@
 extends KinematicBody2D
-
+class_name Player
 
 onready var hook: Position2D = $Hook
 onready var camera_rig: Position2D = $CameraRig
