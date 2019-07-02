@@ -1,7 +1,7 @@
-extends SteeringBehaviour2D
-class_name InterceptBehaviour2D
+extends SteeringBehavior2D
+class_name InterceptBehavior2D
 """
-A behaviour that will have the target attempt to predict where the target is headed, and point
+A behavior that will have the target attempt to predict where the target is headed, and point
 its acceleration towards that point.
 
 `max_prediction_time` is how far into the future in fixed time scale the AI will use to predict

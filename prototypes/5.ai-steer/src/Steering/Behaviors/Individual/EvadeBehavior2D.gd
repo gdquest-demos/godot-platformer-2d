@@ -1,8 +1,8 @@
-extends InterceptBehaviour2D
-class_name EvadeBehaviour2D
+extends InterceptBehavior2D
+class_name EvadeBehavior2D
 """
-A behaviour that acts as the inverse of Intercept. It will move away from the predicted point where
-the target will be. See `InterceptBehaviour2D` for more information.
+A behavior that acts as the inverse of Intercept. It will move away from the predicted point where
+the target will be. See `InterceptBehavior2D` for more information.
 
 Supported targets are Vector2 and Node2D.
 """

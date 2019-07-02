@@ -1,7 +1,7 @@
-extends SteeringBehaviour2D
-class_name SeekBehaviour2D
+extends SteeringBehavior2D
+class_name SeekBehavior2D
 """
-A behaviour that will constantly accelerate towards the target as fast as it can accelerate.
+A behavior that will constantly accelerate towards the target as fast as it can accelerate.
 
 Supported targets are Node2D and Vector2.
 """

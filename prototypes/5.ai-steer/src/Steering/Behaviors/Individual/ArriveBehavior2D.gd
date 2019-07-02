@@ -1,7 +1,7 @@
-extends SteeringBehaviour2D
-class_name ArriveBehaviour2D
+extends SteeringBehavior2D
+class_name ArriveBehavior2D
 """
-A behaviour that aims to arrive at where the target is, smoothly and within an acceptable distance threshold.
+A behavior that aims to arrive at where the target is, smoothly and within an acceptable distance threshold.
 
 `arrival_tolerance` is the distance away from the target that will be good enough to stop moving.
 `deceleration_radius` is the distance away from the target that the AI should begin weighing down its acceleration

@@ -1,11 +1,11 @@
 extends Node
-class_name BehaviourController2D
+class_name BehaviorController2D
 """
-Meant to be the parent to behaviours. It is a helper to provide information to its children behaviours.
+Meant to be the parent to behaviors. It is a helper to provide information to its children behaviors.
 
-The controller is the hub through which behaviours access various information about themselves, and
+The controller is the hub through which behaviors access various information about themselves, and
 their targets. It holds the maximum speeds and acceleration amounts, and has space to hold current
-velocities that can be used in more predictive behaviours. However, the controller is naive and
+velocities that can be used in more predictive behaviors. However, the controller is naive and
 needs to be fed this information; where the information comes from should be determined by the programmer.
 """
 
@@ -40,7 +40,7 @@ func set_linear_velocity(x: float, y: float) -> void:
 
 """
 Sets the target's current linear velocity by way of X and Y, rather than copying or creating new vectors.
-Not all behaviours have a target that moves, so match requirements accordingly.
+Not all behaviors have a target that moves, so match requirements accordingly.
 """
 func set_target_linear_velocity(x: float, y: float) -> void:
 	target_current_linear_velocity.x = x

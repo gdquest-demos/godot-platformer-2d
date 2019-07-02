@@ -1,7 +1,7 @@
-extends SteeringBehaviour2D
-class_name AlignBehaviour2D
+extends SteeringBehavior2D
+class_name AlignBehavior2D
 """
-A behaviour that tries to rotate itself to match the target's own rotation.
+A behavior that tries to rotate itself to match the target's own rotation.
 
 The `alignment_tolerance` is there to prevent flicker, so as to not constantly overshoot
 and start rotating back the other way. The `deceleration_radius` is the interval of degrees

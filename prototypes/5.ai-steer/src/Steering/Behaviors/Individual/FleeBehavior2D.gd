@@ -1,7 +1,7 @@
-extends SeekBehaviour2D
-class_name FleeBehaviour2D
+extends SeekBehavior2D
+class_name FleeBehavior2D
 """
-A behaviour that acts like an inverse of Seek - it will constantly accelerate away from the target.
+A behavior that acts like an inverse of Seek - it will constantly accelerate away from the target.
 
 Supported targets are Node2D and Vector2.
 """
