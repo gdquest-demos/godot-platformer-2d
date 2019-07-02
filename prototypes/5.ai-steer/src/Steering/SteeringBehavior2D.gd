@@ -5,24 +5,25 @@ The base class for a behavior in 2D space. Subclasses of this class should only
 override `_calculate_steering_internal`.
 
 Calling `calculate_steering` on a class that extends this should fill the provided `SteeringMotion2D`
-with an amount of linear and rotational acceleration. It is up to the caller to then use that
-information to actually move the AI actor.
+with an amount of linear and angular acceleration. It is up to the caller to then use that
+information to move the AI actor.
 """
 
-var enabled: = true
+
+var is_enabled: = true
 var controller: BehaviorController2D
+
 
 func _ready() -> void:
 	_get_controller(self)
 
 
 """
-The public face of the steering calculation.
-Returns the motion with the linear and/or rotational acceleration filled in, based on the behavior.
+Returns the motion with the linear and/or angular acceleration filled in, based on the behavior.
 """
 func calculate_steering(motion: SteeringMotion2D) -> SteeringMotion2D:
-	if !enabled or controller == null or !controller.valid():
-		return motion.zero()
+	if not is_enabled or not controller or not controller.has_valid_agent():
+		return motion.reset_values()
 	else:
 		return _calculate_steering_internal(motion)
 
@@ -30,15 +31,14 @@ func calculate_steering(motion: SteeringMotion2D) -> SteeringMotion2D:
 """
 Returns the actor upon which the behaviors are acting, to access their position in space.
 """
-func steerable() -> Node2D:
-	if controller == null:
-		return null
-	return controller.steerable
+func get_actor() -> Node2D:
+	assert controller
+	return controller.actor
 
 
 """
-The privade, overriderable face of the steering calculation.
-Returns the motion with the linear and/or rotational acceleration filled in, based on the behavior.
+Virtual function
+Returns the motion with the linear and/or angular acceleration filled in, based on the behavior.
 """
 func _calculate_steering_internal(motion: SteeringMotion2D) -> SteeringMotion2D:
 	return motion

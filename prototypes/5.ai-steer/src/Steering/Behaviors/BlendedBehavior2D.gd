@@ -1,51 +1,52 @@
 extends SteeringBehavior2D
 class_name BlendedBehavior2D
 """
-A behavior that runs through all of its children and blends all motions together by a defined weight.
+Runs through all of its children and blends all motions together by a defined weight.
 
-The blended behavior will first calculate a child's motion, will multiply iy by its weight, then add it
-to the motion buffer before returning it. It will be clamped to the controller's maximums.
-The weights are not relative to 1, and instead act as a multiplier on the strength of the behavior.
+The blended behavior first calculates a child's motion, multiplies it by its weight, then adds it
+to the motion buffer before returning it. The motion is clamped to the controller's maximums.
+The weights are multipliers on the strength of the individual behaviors. They're not scaled down to sum to one.
 The index of a given weight in the array should refer to the given index of its child.
 
 Notes
 -----
-More complex behaviors can be built with a blended behavior than an indivudal one without writing
-a complex, custom behavior, but it is more costly to run since all children will be evaluated. Figuring
-out the amount of weight to give each behavior can also be a non-trivial, manual problem.
+You can build complex behaviors with a blended behavior compared to indivudal ones without writing
+a complex, custom behavior. But it is more costly to run since all of BlendedBehavior2D's children are evaluated. 
+Figuring out the weight to give each behavior can also be tricky and takes some trial-and-error.
 
-It can also lead to conflicts of force which may cause unusual behavior.
+Weights can lead to conflicting forces, which may cause weird behaviors.
 
-The general workflow should be to have a priority steering with a set of blended behaviors, based on need.
+The recommended use is to have a priority steering with a set of blended behaviors, based on need.
 """
 
-export(Array) var weights: = []
+export var weights: = []
 
 var _internal_motion: = SteeringMotion2D.new()
 
+
 """
-Returns the steering motion with a blend of all of the behavior's children, capped by the controller's maximums.
+Returns the steering motion with a blend of all of the behavior's children, clamped to the controller's maximum values.
 """
 func _calculate_steering_internal(motion: SteeringMotion2D) -> SteeringMotion2D:
-	motion.zero()
+	motion.reset_values()
 
 	var size: = get_child_count()
 	for i in range(0, size):
 		var child: = get_child(i) as SteeringBehavior2D
-		if child == null:
+		if not child:
 			continue
-		
+
 		var steering: = child as SteeringBehavior2D
 		steering.calculate_steering(_internal_motion)
-		
-		var weight: float = 1
+
+		var weight: = 1.0
 		if weights.size() >= i:
 			weight = weights[i]
-		
-		motion.linear_motion += (_internal_motion.linear_motion * weight)
-		motion.rotational_motion += (_internal_motion.rotational_motion * weight)
-	
-	motion.linear_motion.clamped(controller.max_linear_acceleration)
-	motion.rotational_motion = min(controller.max_rotational_acceleration, motion.rotational_motion)
-	
+
+		motion.motion += (_internal_motion.motion * weight)
+		motion.angular_motion += (_internal_motion.angular_motion * weight)
+
+	motion.motion.clamped(controller.max_acceleration)
+	motion.angular_motion = min(controller.max_angular_acceleration, motion.angular_motion)
+
 	return motion

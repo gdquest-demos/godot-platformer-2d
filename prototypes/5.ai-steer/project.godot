@@ -9,53 +9,53 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "SteeringBehaviour2D",
-"class": "AlignBehaviour2D",
+"base": "SteeringBehavior2D",
+"class": "AlignBehavior2D",
 "language": "GDScript",
 "path": "res://src/Steering/Behaviors/Individual/AlignBehavior2D.gd"
 }, {
-"base": "SteeringBehaviour2D",
-"class": "ArriveBehaviour2D",
+"base": "SteeringBehavior2D",
+"class": "ArriveBehavior2D",
 "language": "GDScript",
 "path": "res://src/Steering/Behaviors/Individual/ArriveBehavior2D.gd"
 }, {
 "base": "Node",
-"class": "BehaviourController2D",
+"class": "BehaviorController2D",
 "language": "GDScript",
 "path": "res://src/Steering/BehaviorController2D.gd"
 }, {
-"base": "SteeringBehaviour2D",
-"class": "BlendedBehaviour2D",
+"base": "SteeringBehavior2D",
+"class": "BlendedBehavior2D",
 "language": "GDScript",
 "path": "res://src/Steering/Behaviors/BlendedBehavior2D.gd"
 }, {
-"base": "InterceptBehaviour2D",
-"class": "EvadeBehaviour2D",
+"base": "InterceptBehavior2D",
+"class": "EvadeBehavior2D",
 "language": "GDScript",
 "path": "res://src/Steering/Behaviors/Individual/EvadeBehavior2D.gd"
 }, {
-"base": "SeekBehaviour2D",
-"class": "FleeBehaviour2D",
+"base": "SeekBehavior2D",
+"class": "FleeBehavior2D",
 "language": "GDScript",
 "path": "res://src/Steering/Behaviors/Individual/FleeBehavior2D.gd"
 }, {
-"base": "SteeringBehaviour2D",
-"class": "InterceptBehaviour2D",
+"base": "SteeringBehavior2D",
+"class": "InterceptBehavior2D",
 "language": "GDScript",
 "path": "res://src/Steering/Behaviors/Individual/InterceptBehavior2D.gd"
 }, {
-"base": "SteeringBehaviour2D",
+"base": "SteeringBehavior2D",
 "class": "PrioritySteering2D",
 "language": "GDScript",
 "path": "res://src/Steering/Behaviors/PrioritySteering2D.gd"
 }, {
-"base": "SteeringBehaviour2D",
-"class": "SeekBehaviour2D",
+"base": "SteeringBehavior2D",
+"class": "SeekBehavior2D",
 "language": "GDScript",
 "path": "res://src/Steering/Behaviors/Individual/SeekBehavior2D.gd"
 }, {
 "base": "Node",
-"class": "SteeringBehaviour2D",
+"class": "SteeringBehavior2D",
 "language": "GDScript",
 "path": "res://src/Steering/SteeringBehavior2D.gd"
 }, {
@@ -65,23 +65,23 @@ _global_script_classes=[ {
 "path": "res://src/Steering/SteeringMotion2D.gd"
 } ]
 _global_script_class_icons={
-"AlignBehaviour2D": "",
-"ArriveBehaviour2D": "",
-"BehaviourController2D": "",
-"BlendedBehaviour2D": "",
-"EvadeBehaviour2D": "",
-"FleeBehaviour2D": "",
-"InterceptBehaviour2D": "",
+"AlignBehavior2D": "",
+"ArriveBehavior2D": "",
+"BehaviorController2D": "",
+"BlendedBehavior2D": "",
+"EvadeBehavior2D": "",
+"FleeBehavior2D": "",
+"InterceptBehavior2D": "",
 "PrioritySteering2D": "",
-"SeekBehaviour2D": "",
-"SteeringBehaviour2D": "",
+"SeekBehavior2D": "",
+"SteeringBehavior2D": "",
 "SteeringMotion2D": ""
 }
 
 [application]
 
 config/name="AI-Steer"
-run/main_scene="res://root.tscn"
+run/main_scene="res://test-2.tscn"
 config/icon="res://icon.png"
 
 [rendering]
