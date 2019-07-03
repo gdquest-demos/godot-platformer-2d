@@ -21,14 +21,14 @@ The recommended use is to have a priority steering with a set of blended behavio
 
 export var weights: = []
 
-var _internal_motion: = SteeringMotion2D.new()
+var _steering: = SteeringMotion2D.new()
 
 
 """
 Returns the steering motion with a blend of all of the behavior's children, clamped to the controller's maximum values.
 """
-func _calculate_steering_internal(motion: SteeringMotion2D) -> SteeringMotion2D:
-	motion.reset_values()
+func _calculate_steering_internal(steering: SteeringMotion2D) -> SteeringMotion2D:
+	steering.reset_values()
 
 	var size: = get_child_count()
 	for i in range(0, size):
@@ -37,16 +37,16 @@ func _calculate_steering_internal(motion: SteeringMotion2D) -> SteeringMotion2D:
 			continue
 
 		var steering: = child as SteeringBehavior2D
-		steering.calculate_steering(_internal_motion)
+		steering.calculate_steering(_steering)
 
 		var weight: = 1.0
 		if weights.size() >= i:
 			weight = weights[i]
 
-		motion.motion += (_internal_motion.motion * weight)
-		motion.angular_motion += (_internal_motion.angular_motion * weight)
+		steering.motion += (_steering.motion * weight)
+		steering.angular_velocity += (_steering.angular_motion * weight)
 
-	motion.motion.clamped(controller.max_acceleration)
-	motion.angular_motion = min(controller.max_angular_acceleration, motion.angular_motion)
+	steering.motion.clamped(controller.max_acceleration)
+	steering.angular_velocity = min(controller.max_angular_acceleration, steering.angular_velocity)
 
-	return motion
+	return steering

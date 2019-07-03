@@ -27,22 +27,22 @@ var target: Node2D
 Returns a steering motion that has no linear acceleration but a angular acceleration that will
 match its own to its target's orientation.
 """
-func _calculate_steering_internal(motion: SteeringMotion2D) -> SteeringMotion2D:
+func _calculate_steering_internal(steering: SteeringMotion2D) -> SteeringMotion2D:
 	if not target:
-		return motion.reset_values()
-	return _align(motion, target.rotation)
+		return steering.reset_values()
+	return _align(steering, target.rotation)
 
 
 """
 The internal function that calculates the alignment based on the radians passed into the function.
 Returns the steering motion with the angular acceleration that will match its own to the rotation value.
 """
-func _align(motion: SteeringMotion2D, desired_rotation: float) -> SteeringMotion2D:
+func _align(steering: SteeringMotion2D, desired_rotation: float) -> SteeringMotion2D:
 	var rotation_size: = abs(desired_rotation - get_actor().rotation)
 	var alignment_tolerance_rad: = deg2rad(alignment_tolerance)
 
 	if rotation_size <= alignment_tolerance_rad:
-		motion.reset_values()
+		steering.reset_values()
 	else:
 		var target_rotation: = deg2rad(controller.max_rotation_speed)
 		var deceleration_radius_rad: = deg2rad(deceleration_radius)
@@ -51,13 +51,13 @@ func _align(motion: SteeringMotion2D, desired_rotation: float) -> SteeringMotion
 			target_rotation *= rotation_size / deceleration_radius_rad
 		target_rotation *= desired_rotation / rotation_size
 
-		motion.angular_motion = (target_rotation - controller.angular_velocity) / time_to_target
+		steering.angular_velocity = (target_rotation - controller.angular_velocity) / time_to_target
 
-		var angular_acceleration: = abs(motion.angular_motion)
+		var angular_acceleration: = abs(steering.angular_velocity)
 		var max_angular_acceleration_rad: = deg2rad(controller.max_angular_acceleration)
 		if angular_acceleration > max_angular_acceleration_rad:
-			motion.angular_motion *= max_angular_acceleration_rad / angular_acceleration
+			steering.angular_velocity *= max_angular_acceleration_rad / angular_acceleration
 
-		motion.motion = Vector2.ZERO
+		steering.velocity = Vector2.ZERO
 
-	return motion
+	return steering

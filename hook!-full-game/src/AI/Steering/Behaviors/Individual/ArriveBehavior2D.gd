@@ -26,16 +26,16 @@ var target: Node2D
 Returns the steering motion filled with a linear acceleration amount that will take it towards the target with a
 smooth deceleration, or zero if it is already inside of an arrival threshold.
 """
-func _calculate_steering_internal(motion: SteeringMotion2D) -> SteeringMotion2D:
+func _calculate_steering_internal(steering: SteeringMotion2D) -> SteeringMotion2D:
 	if not target:
-		return motion.reset_values()
+		return steering.reset_values()
 
 	var actor = get_actor()
 	var to_target: Vector2 = target.position - actor.position
 	var distance: = to_target.length()
 
 	if distance <= arrival_tolerance:
-		motion.reset_values()
+		steering.reset_values()
 	else:
 		var target_speed: = controller.max_speed
 		if distance <= deceleration_radius:
@@ -44,7 +44,7 @@ func _calculate_steering_internal(motion: SteeringMotion2D) -> SteeringMotion2D:
 		var target_velocity: = to_target.normalized() * target_speed
 		target_velocity = (target_velocity - controller.velocity) * (1.0 / time_to_target)
 
-		motion.motion = target_velocity.clamped(controller.max_acceleration)
-		motion.angular_motion = 0.0
+		steering.velocity = target_velocity.clamped(controller.max_acceleration)
+		steering.angular_velocity = 0.0
 
-	return motion
+	return steering

@@ -3,7 +3,7 @@ class_name PrioritySteering2D
 """
 Runs from top to bottom through its children, a collection of
 SteeringBehavior2D nodes, requests each to calculate its steering, and stops
-once one of them returns non-zero motion.
+once one of them returns non-zero steering.
 
 PrioritySteering2D gives priority to the behaviors at the top of its child list.
 
@@ -29,7 +29,7 @@ func get_last_selected_child() -> SteeringBehavior2D:
 Fills the steering motion object with the first non-zero calculation it can find. The priority goes from
 top to bottom.
 """
-func _calculate_steering_internal(motion: SteeringMotion2D) -> SteeringMotion2D:
+func _calculate_steering_internal(steering: SteeringMotion2D) -> SteeringMotion2D:
 	last_child_index = -1
 	var size: = get_child_count()
 
@@ -38,11 +38,11 @@ func _calculate_steering_internal(motion: SteeringMotion2D) -> SteeringMotion2D:
 		if child == null:
 			continue
 
-		child.calculate_steering(motion)
-		if !motion.is_zero():
+		child.calculate_steering(steering)
+		if !steering.is_zero():
 			last_child_index = i
 
 	if size > 0:
-		return motion
+		return steering
 	else:
-		return motion.reset_values()
+		return steering.reset_values()

@@ -11,21 +11,17 @@ information to move the AI actor.
 
 
 var is_enabled: = true
-var controller: BehaviorController2D
-
-
-func _ready() -> void:
-	_get_controller(self)
+onready var controller: BehaviorController2D = _find_controller(self)
 
 
 """
 Returns the motion with the linear and/or angular acceleration filled in, based on the behavior.
 """
-func calculate_steering(motion: SteeringMotion2D) -> SteeringMotion2D:
+func calculate_steering(steering: SteeringMotion2D) -> SteeringMotion2D:
 	if not is_enabled or not controller or not controller.has_valid_agent():
-		return motion.reset_values()
+		return steering.reset_values()
 	else:
-		return _calculate_steering_internal(motion)
+		return _calculate_steering_internal(steering)
 
 
 """
@@ -40,15 +36,14 @@ func get_actor() -> Node2D:
 Virtual function
 Returns the motion with the linear and/or angular acceleration filled in, based on the behavior.
 """
-func _calculate_steering_internal(motion: SteeringMotion2D) -> SteeringMotion2D:
-	return motion
+func _calculate_steering_internal(steering: SteeringMotion2D) -> SteeringMotion2D:
+	return steering
 
 
 """
 Recursively searches its parent to find the behavior controller that will feed it information.
 """
-func _get_controller(current_node: Node) -> void:
-	if current_node is BehaviorController2D:
-		controller = current_node
-	elif current_node.get_parent() != null:
-		_get_controller(current_node.get_parent())
+func _find_controller(current_node: Node) -> Node:
+	if not current_node is BehaviorController2D:
+		return _find_controller(current_node.get_parent())
+	return current_node

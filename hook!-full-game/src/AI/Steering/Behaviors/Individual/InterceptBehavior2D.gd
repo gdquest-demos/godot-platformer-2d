@@ -20,9 +20,9 @@ Returns the steering motion filled with a linear acceleration amount that will s
 intercept course with wherever the target is headed so that its arrival will cross with the
 target's.
 """
-func _calculate_steering_internal(motion: SteeringMotion2D) -> SteeringMotion2D:
+func _calculate_steering_internal(steering: SteeringMotion2D) -> SteeringMotion2D:
 	if not target:
-		return motion.reset_values()
+		return steering.reset_values()
 
 	var target_position: = target.position
 	var distance2: = (target_position - get_actor().position).length_squared()
@@ -35,8 +35,8 @@ func _calculate_steering_internal(motion: SteeringMotion2D) -> SteeringMotion2D:
 		if prediction_time2 < max_prediction_time * max_prediction_time:
 			prediction_time = sqrt(prediction_time2)
 
-	motion.motion = target_position + (controller.target_velocity * prediction_time)
-	motion.motion = (motion.motion - get_actor().position).normalized() * controller.max_acceleration
-	motion.angular_motion = 0
+	steering.velocity = target_position + (controller.target_velocity * prediction_time)
+	steering.velocity = (steering.velocity - get_actor().position).normalized() * controller.max_acceleration
+	steering.angular_velocity = 0
 
-	return motion
+	return steering
