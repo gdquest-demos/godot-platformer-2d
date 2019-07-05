@@ -36,7 +36,8 @@ func setup(player: KinematicBody2D, state_machine: Node) -> void:
 
 func unhandled_input(event: InputEvent) -> void:
 	if owner.is_on_floor() and event.is_action_pressed("jump"):
-		self.velocity = calculate_velocity(velocity, speed, Vector2(0.0, JUMP_SPEED), 1.0, Vector2.UP)
+		if not Input.is_action_pressed("move_down"):
+			self.velocity = calculate_velocity(velocity, speed, Vector2(0.0, JUMP_SPEED), 1.0, Vector2.UP)
 		_state_machine.transition_to("Move/Air")
 	if event.is_action_pressed('toggle_debug_move'):
 		_state_machine.transition_to('Debug')
