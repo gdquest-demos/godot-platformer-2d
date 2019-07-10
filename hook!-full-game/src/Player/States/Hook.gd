@@ -16,7 +16,7 @@ func physics_process(delta: float) -> void:
 	
 	self.velocity = Steering.arrive_to(velocity, owner.global_position, target_global_position, HOOK_MAX_SPEED)
 	self.velocity = owner.move_and_slide(velocity, owner.FLOOR_NORMAL)
-	if distance < velocity.length() * delta:
+	if distance < velocity.length() * delta or owner.is_on_ceiling():
 		# Dampen the character's velocity upon reaching the target so it doesn't go flying way above the hook
 		# The transition is harsh right now, the arrival behavior may be better
 		self.velocity = velocity.normalized() * 400.0
