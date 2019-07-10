@@ -1,3 +1,4 @@
+tool
 extends State
 
 
@@ -8,6 +9,10 @@ func _setup() -> void:
 	# force update once at start of game
 	var move: = get_parent()
 	owner.move_and_slide(move.velocity, owner.FLOOR_NORMAL)
+
+
+func _get_configuration_warning() -> String:
+	return "" if $JumpDelay else "%s requires a Timer child named JumpDelay" % name
 
 
 func unhandled_input(event: InputEvent) -> void:

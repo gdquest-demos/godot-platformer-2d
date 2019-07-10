@@ -1,3 +1,4 @@
+tool
 extends Control
 """
 Displays the values of properties of a given node
@@ -31,6 +32,10 @@ func _setup() -> void:
 		track(property)
 
 
+func _get_configuration_warning() -> String:
+	return "" if not reference_path.is_empty() else "Reference Path should not be empty."
+
+
 func track(property: String) -> void:
 	var label: = Label.new()
 	label.autowrap = true
@@ -46,6 +51,8 @@ func _clear() -> void:
 
 
 func _update() -> void:
+	if Engine.editor_hint:
+		return
 	var search_array: Array = properties
 	for property in properties:
 		var label: Label = _container.get_child(search_array.find(property))
