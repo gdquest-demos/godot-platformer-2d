@@ -1,3 +1,4 @@
+tool
 extends State
 
 
@@ -6,6 +7,10 @@ signal jumped
 onready var jump_delay: Timer = $JumpDelay
 
 const X_ACCELERATION: = 3000.0
+
+
+func _get_configuration_warning() -> String:
+	return "" if $JumpDelay else "%s requires a Timer child named JumpDelay" % name
 
 
 func unhandled_input(event: InputEvent) -> void:

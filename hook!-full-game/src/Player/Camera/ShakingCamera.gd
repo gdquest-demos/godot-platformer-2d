@@ -30,6 +30,10 @@ func _process(delta) -> void:
 		rand_range(amplitude, -amplitude) * damping)
 
 
+func _get_configuration_warning() -> String:
+	return "" if $Timer else "%s requires a Timer child named Timer" % name
+
+
 func set_duration(value: float) -> void:
 	duration = value
 	if timer:

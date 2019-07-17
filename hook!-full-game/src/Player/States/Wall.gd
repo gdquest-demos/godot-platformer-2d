@@ -1,3 +1,4 @@
+tool
 extends State
 
 onready var jump_delay: Timer = $JumpDelay
@@ -15,6 +16,10 @@ var _wall_normal: = -1
 func _ready() -> void:
 	jump_delay.connect("timeout", self, "_on_JumpDelay_timeout")
 	fall_delay.connect("timeout", self, "_on_FallDelay_timeout")
+
+
+func _get_configuration_warning() -> String:
+	return "" if $JumpDelay and $FallDelay else "%s requires two Timer children named JumpDelay and FallDelay" % name
 
 
 func enter(msg: Dictionary = {}) -> void:

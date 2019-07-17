@@ -94,3 +94,9 @@ func _draw() -> void:
 	var center: = (start + end) / 2
 	var angle: = start.angle_to(end)
 	DrawingUtils.draw_triangle(self, center, angle, draw_radius)
+
+func _get_configuration_warning() -> String:
+	var warning: = ""
+	if not $Start or not $End:
+		warning += "%s requires two Position2D children named Start and End to work." % name
+	return warning
