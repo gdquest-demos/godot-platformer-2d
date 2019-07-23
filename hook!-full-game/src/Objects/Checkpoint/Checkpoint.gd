@@ -1,7 +1,7 @@
 extends Area2D
 
 
-var is_visited := false
+var is_visited := false setget set_is_visited
 
 
 func _ready() -> void:
@@ -9,9 +9,14 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: PhysicsBody2D) -> void:
-	if is_visited or not body is Player:
-		return
+	assert body is Player
+	self.is_visited = true
 
-	modulate = Color(0.65, 0.65, 0.65)
-	is_visited = true
-	Events.emit_signal("checkpoint_visited", self)
+
+func set_is_visited(value: bool) -> void:
+	is_visited = value
+
+	if is_visited:
+		modulate = Color(0.65, 0.65, 0.65)
+		Events.emit_signal("checkpoint_visited", self)
+		disconnect("body_entered", self, "_on_body_entered")

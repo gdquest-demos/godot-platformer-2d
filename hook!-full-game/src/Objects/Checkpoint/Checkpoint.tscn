@@ -3,12 +3,15 @@
 [ext_resource path="res://src/Objects/Checkpoint/Checkpoint.gd" type="Script" id=1]
 [ext_resource path="res://assets/tilesets/basic.png" type="Texture" id=2]
 
+
+
 [sub_resource type="CircleShape2D" id=1]
 radius = 12.5
 
 [node name="Checkpoint" type="Area2D" groups=[
 "checkpoints",
 ]]
+collision_layer = 0
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -18,4 +21,3 @@ shape = SubResource( 1 )
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 0, 50, 50, 50 )
-
