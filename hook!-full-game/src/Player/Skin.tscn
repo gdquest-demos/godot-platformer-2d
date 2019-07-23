@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/Player/Skin.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/Rectangle.gd" type="Script" id=2]
+[ext_resource path="res://assets/sprites/shadow.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/robi_2.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "REST_POSE"
@@ -202,6 +204,7 @@ tracks/1/keys = {
 script = ExtResource( 1 )
 
 [node name="Body" type="Node2D" parent="."]
+visible = false
 position = Vector2( 0, -30 )
 script = ExtResource( 2 )
 size = Vector2( 50, 50 )
@@ -214,3 +217,12 @@ anims/REST_POSE = SubResource( 1 )
 anims/die = SubResource( 2 )
 anims/ledge = SubResource( 3 )
 anims/spawn = SubResource( 4 )
+
+[node name="shadow" type="Sprite" parent="."]
+scale = Vector2( 0.374978, 0.356176 )
+texture = ExtResource( 3 )
+
+[node name="robi" type="Sprite" parent="."]
+position = Vector2( -5.44446, -62.6667 )
+scale = Vector2( 0.477689, 0.453737 )
+texture = ExtResource( 4 )

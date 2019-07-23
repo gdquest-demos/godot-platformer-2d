@@ -41,8 +41,6 @@ shape = SubResource( 1 )
 position = Vector2( 0, -30 )
 
 [node name="LedgeDetector" parent="." instance=ExtResource( 3 )]
-is_active = true
-ray_length = 30.0
 
 [node name="FloorDetector" parent="." instance=ExtResource( 4 )]
 
@@ -57,6 +55,10 @@ collision_mask = 2
 remote_path = NodePath("../../CameraRig")
 
 [node name="CameraRig" parent="." instance=ExtResource( 6 )]
+
+[node name="ShakingCamera" parent="CameraRig" index="0"]
+DAMP_EASING = 1.0
+is_shaking = false
 
 [node name="Skin" parent="." instance=ExtResource( 7 )]
 
@@ -88,6 +90,10 @@ one_shot = true
 
 [node name="Wall" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 13 )
+slide_acceleration = 500.0
+max_slide_speed = 400.0
+friction_factor = 0.15
+jump_strength = 1000.0
 
 [node name="JumpDelay" type="Timer" parent="StateMachine/Move/Wall"]
 wait_time = 0.2
@@ -128,6 +134,7 @@ position = Vector2( 0, -30 )
 collision_layer = 0
 collision_mask = 8
 script = ExtResource( 22 )
+actor_path = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PassThroughDetector"]
 rotation = 3.14159
