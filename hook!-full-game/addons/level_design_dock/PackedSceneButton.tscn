@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/level_design_dock/PackedSceneButtonGroup.tres" type="ButtonGroup" id=1]
+[ext_resource path="res://addons/level_design_dock/PackedSceneButton.gd" type="Script" id=2]
+
+[node name="PackedSceneButton" type="Button"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 64, 64 )
+toggle_mode = true
+group = ExtResource( 1 )
+script = ExtResource( 2 )
