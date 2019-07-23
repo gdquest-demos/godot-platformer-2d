@@ -1,14 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://src/Main/LevelLoader.gd" type="Script" id=1]
-[ext_resource path="res://src/Levels/Level1.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=3]
 
 [node name="Game" type="Node"]
 
 [node name="LevelLoader" type="Node" parent="."]
 script = ExtResource( 1 )
-LEVEL_START = ExtResource( 2 )
 player_path = NodePath("")
-
-[node name="Player" parent="LevelLoader" instance=ExtResource( 3 )]
