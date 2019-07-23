@@ -34,9 +34,9 @@ func change_level(level_new: PackedScene) -> void:
 
 
 func _get_configuration_warning() -> String:
-	var warning: = ""
+	var warnings: = PoolStringArray()
 	if not LEVEL_START:
-		warning += "%s is missing a start level, consider setting one in the inspector.\n" % name
-	if not player:
-		warning += "%s is missing the player node as its child" % name
-	return warning
+		warnings.append("%s is missing a start level, consider setting one in the inspector." % name)
+	if not player_path:
+		warnings.append("%s is missing the player node as its child" % name)
+	return warnings.join("\n")
