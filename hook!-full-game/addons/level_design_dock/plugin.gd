@@ -31,7 +31,6 @@ func forward_canvas_gui_input(event: InputEvent) -> bool:
 	var forward: = false
 	if event is InputEventMouseMotion:
 		_move_instance()
-		forward = true
 	elif event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			forward = true
