@@ -27,11 +27,17 @@ func unhandled_input(event: InputEvent) -> void:
 func physics_process(delta: float) -> void:
 	var move: = get_parent()
 	move.physics_process(delta)
+
+	# Landing on the floor
 	if owner.is_on_floor():
-		_state_machine.transition_to("Move/Idle")
+		if move.get_move_direction().x == 0.0:
+			_state_machine.transition_to("Move/Idle")
+		else:
+			_state_machine.transition_to("Move/Run")
+
 	elif owner.ledge_detector.is_against_ledge(sign(move.velocity.x)):
 		_state_machine.transition_to("Ledge", {move_state = move})
-	
+
 	if owner.is_on_wall() and move.velocity.y > 0:
 		var wall_normal: float = owner.get_slide_collision(0).normal.x
 		_state_machine.transition_to("Move/Wall", {"normal": wall_normal, "velocity": move.velocity})
