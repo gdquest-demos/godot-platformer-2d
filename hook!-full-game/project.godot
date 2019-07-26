@@ -147,7 +147,7 @@ Steering="*res://src/Singletons/Steering.gd"
 
 [debug]
 
-testing/controls/use_right_stick=false
+testing/controls/aim_stick=0
 
 [display]
 

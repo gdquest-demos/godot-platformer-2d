@@ -1,16 +1,19 @@
-"""Global utility methods to extend what's available from the Input singleton"""
+"""Globally accessible methods to extend what's available from the Input singleton"""
 extends Node
 
 
+"""
+Returns the direction in which the player is aiming with the stick
+"""
 static func get_aim_joystick_direction() -> Vector2:
-	var use_right_stick: bool = ProjectSettings.get_setting('debug/testing/controls/use_right_stick')
-	
-	# FIXME: axes should be 2 and 3, or RX and RY, is there a calibration issue with the gamepad?
-	if use_right_stick:
-		return Vector2(
-			Input.get_joy_axis(0, JOY_AXIS_3), 
-			Input.get_joy_axis(0, JOY_AXIS_4)).normalized()
-	else:
-		return Vector2(
-			Input.get_joy_axis(0, JOY_AXIS_0), 
-			Input.get_joy_axis(0, JOY_AXIS_1)).normalized()
+	return get_aim_joystick_strength().normalized()
+
+
+"""
+Returns the strength of the XY input with the joystick used for aiming,
+each axis being a value between 0 and 1
+"""
+static func get_aim_joystick_strength() -> Vector2:
+	return Vector2(
+		Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left"),
+		Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up"))
