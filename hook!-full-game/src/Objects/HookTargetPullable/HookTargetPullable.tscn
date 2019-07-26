@@ -3,7 +3,8 @@
 [ext_resource path="res://src/Objects/HookTargetPullable/HookTargetPullable.gd" type="Script" id=1]
 [ext_resource path="res://src/Objects/HookTargetPullable/PropelledBody.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Player/Rectangle.gd" type="Script" id=3]
-[ext_resource path="res://src/HookTarget.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Objects/HookTarget.tscn" type="PackedScene" id=4]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 40, 130 )

@@ -3,8 +3,9 @@
 [ext_resource path="res://src/Combat/DummyEnemy.gd" type="Script" id=1]
 [ext_resource path="res://src/Combat/HitBox/HitBox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Combat/Stats.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/HookTarget.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Objects/HookTarget.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Combat/DamageSource.tscn" type="PackedScene" id=5]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 40, 70 )

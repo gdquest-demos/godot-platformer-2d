@@ -1,6 +1,6 @@
 """
-Library of utility functions to calculate steering motion
-To use as a Singleton/Autoloaded script
+Utility functions to calculate steering motion
+To use as an autoloaded Node
 """
 extends Node
 

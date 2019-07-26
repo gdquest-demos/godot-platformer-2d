@@ -1,3 +1,6 @@
+"""
+Functions to draw shapes unavailable in CanvasItem
+"""
 extends Node2D
 class_name DrawingUtils
 

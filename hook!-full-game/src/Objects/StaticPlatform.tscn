@@ -1,7 +1,0 @@
-[gd_scene format=2]
-
-[node name="StaticPlatform" type="StaticBody2D"]
-
-[node name="1" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( 0, 0, 0, 80, 310, 80, 310, 0 )
-
