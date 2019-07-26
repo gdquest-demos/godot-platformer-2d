@@ -6,7 +6,7 @@ Rig to move a child camera based on the player's input, to give them more forwar
 
 onready var camera: Camera2D = $ShakingCamera
 
-export var offset: = Vector2(200.0, 160.0)
+export var offset: = Vector2(300.0, 300.0)
 export var mouse_range: = Vector2(100.0, 500.0)
 
 var is_active: = true
@@ -28,7 +28,5 @@ func update_position(velocity: Vector2 = Vector2.ZERO) -> void:
 			camera.position = distance_ratio * mouse_position.normalized() * offset
 
 		Settings.GAMEPAD:
-			var joystick_direction: Vector2 = ControlUtils.get_aim_joystick_strength()
-			if Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left"):
-				camera.position.x = sign(velocity.x) * offset.x
-			camera.position.y = joystick_direction.y * offset.y
+			var joystick_strength: = ControlUtils.get_aim_joystick_strength()
+			camera.position = joystick_strength * offset
