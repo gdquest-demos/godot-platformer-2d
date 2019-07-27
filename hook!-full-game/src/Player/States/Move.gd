@@ -6,7 +6,7 @@ const JUMP_SPEED: = 900.0
 const ACCELERATION: = Vector2(1e10, 3000.0)
 
 var acceleration: = ACCELERATION
-var speed: = XY_MAX_SPEED
+var max_speed: = XY_MAX_SPEED
 var velocity: = Vector2.ZERO setget set_velocity
 
 
@@ -37,14 +37,14 @@ func setup(player: KinematicBody2D, state_machine: Node) -> void:
 func unhandled_input(event: InputEvent) -> void:
 	if owner.is_on_floor() and event.is_action_pressed("jump"):
 		if not Input.is_action_pressed("move_down"):
-			self.velocity = calculate_velocity(velocity, speed, Vector2(0.0, JUMP_SPEED), 1.0, Vector2.UP)
+			self.velocity = calculate_velocity(velocity, max_speed, Vector2(0.0, JUMP_SPEED), 1.0, Vector2.UP)
 		_state_machine.transition_to("Move/Air")
 	if event.is_action_pressed('toggle_debug_move'):
 		_state_machine.transition_to('Debug')
 
 
 func physics_process(delta: float) -> void:
-	self.velocity = calculate_velocity(velocity, speed, acceleration, delta, get_move_direction())
+	self.velocity = calculate_velocity(velocity, max_speed, acceleration, delta, get_move_direction())
 	self.velocity = owner.move_and_slide(velocity, owner.FLOOR_NORMAL)
 	Events.emit_signal("player_moved", owner)
 
@@ -58,8 +58,12 @@ func set_velocity(value: Vector2) -> void:
 
 
 static func calculate_velocity(
-		old_velocity: Vector2, max_speed: Vector2, acceleration: Vector2,
-		delta: float, move_direction: Vector2) -> Vector2:
+			old_velocity: Vector2,
+			max_speed: Vector2,
+			acceleration: Vector2,
+			delta: float,
+			move_direction: Vector2
+	) -> Vector2:
 	var new_velocity: = old_velocity
 
 	new_velocity += move_direction * acceleration * delta

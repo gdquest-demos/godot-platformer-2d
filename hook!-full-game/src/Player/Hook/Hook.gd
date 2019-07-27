@@ -30,7 +30,7 @@ func _ready() -> void:
 func _draw() -> void:
 	if not Engine.editor_hint:
 		return
-	
+
 	var radius: float = snap_detector.calculate_length()
 	DrawingUtils.draw_circle_outline(self, Vector2.ZERO, radius, Color.lightgreen)
 
@@ -56,11 +56,13 @@ func get_hook_target() -> HookTarget:
 
 
 func get_aim_direction() -> Vector2:
+	var direction: = Vector2.ZERO
 	match Settings.controls:
 		Settings.GAMEPAD:
-			return ControlUtils.get_aim_joystick_direction()
+			direction = ControlUtils.get_aim_joystick_direction()
 		Settings.KBD_MOUSE, _:
-			return (get_global_mouse_position() - global_position).normalized()
+			direction = (get_global_mouse_position() - global_position).normalized()
+	return direction
 
 
 func set_is_aiming(value: bool) -> void:

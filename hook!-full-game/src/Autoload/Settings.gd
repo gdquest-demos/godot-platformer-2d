@@ -6,7 +6,7 @@ extends Node
 signal controls_changed(new_scheme)
 
 
-enum {KBD_MOUSE, GAMEPAD}
+enum { KBD_MOUSE, GAMEPAD }
 var controls: = KBD_MOUSE setget set_controls
 
 enum AimStick { LEFT=0, RIGHT=1 }
@@ -57,9 +57,11 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventJoypadButton or event is InputEventJoypadMotion:
-		self.controls = GAMEPAD
-	elif event is InputEventMouse:
-		self.controls = KBD_MOUSE
+		if controls == KBD_MOUSE:
+			self.controls = GAMEPAD
+	elif event is InputEventMouseMotion or event is InputEventMouseButton:
+		if controls == GAMEPAD:
+			self.controls = KBD_MOUSE
 
 
 func set_controls(value: int) -> void:
@@ -67,6 +69,11 @@ func set_controls(value: int) -> void:
 	emit_signal("controls_changed", controls)
 
 
+"""
+Switch between using the gamepad's left and right joystick
+to aim the hook.
+Replaces the Input map actions
+"""
 func set_aim_stick(value: int) -> void:
 	assert value in [AimStick.LEFT, AimStick.RIGHT]
 	var setting: int = ProjectSettings.get_setting('debug/testing/controls/aim_stick')
@@ -86,7 +93,7 @@ func set_aim_stick(value: int) -> void:
 
 
 """
-Creates and returns a new InputEventJoypadMotion event for aim_* input events,
+Returns a new InputEventJoypadMotion event for aim_* input events,
 using JOYSTICK_AIM_INPUTS for the base data 
 Use AimStick.* for the stick argument
 """

@@ -22,11 +22,12 @@ func update_position(velocity: Vector2 = Vector2.ZERO) -> void:
 		return
 
 	match Settings.controls:
-		Settings.KBD_MOUSE:
-			var mouse_position: = get_local_mouse_position()
-			var distance_ratio: = clamp(mouse_position.length(), mouse_range.x, mouse_range.y) / mouse_range.y
-			camera.position = distance_ratio * mouse_position.normalized() * offset
 
 		Settings.GAMEPAD:
 			var joystick_strength: = ControlUtils.get_aim_joystick_strength()
 			camera.position = joystick_strength * offset
+
+		Settings.KBD_MOUSE, _:
+			var mouse_position: = get_local_mouse_position()
+			var distance_ratio: = clamp(mouse_position.length(), mouse_range.x, mouse_range.y) / mouse_range.y
+			camera.position = distance_ratio * mouse_position.normalized() * offset

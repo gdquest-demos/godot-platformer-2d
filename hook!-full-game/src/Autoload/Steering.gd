@@ -10,10 +10,10 @@ const DEFAULT_MAX_SPEED: = 400.0
 
 
 static func follow(velocity: Vector2,
-				global_position: Vector2,
-				target_position: Vector2,
-				max_speed: = DEFAULT_MAX_SPEED,
-				mass: = DEFAULT_MASS) -> Vector2:
+				   global_position: Vector2,
+				   target_position: Vector2,
+				   max_speed: = DEFAULT_MAX_SPEED,
+				   mass: = DEFAULT_MASS) -> Vector2:
 	"""
 	Calculates and returns a velocity steering towards target_position
 	"""
