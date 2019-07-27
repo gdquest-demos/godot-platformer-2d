@@ -18,7 +18,7 @@ func unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		if move.velocity.y >= 0.0 and jump_delay.time_left > 0.0:
 			move.velocity = move.calculate_velocity(
-					move.velocity, move.speed, Vector2(0.0, move.JUMP_SPEED), 1.0, Vector2.UP)
+					move.velocity, move.max_speed, Vector2(0.0, move.JUMP_SPEED), 1.0, Vector2.UP)
 		emit_signal("jumped")
 	else:
 		move.unhandled_input(event)
@@ -46,6 +46,7 @@ func physics_process(delta: float) -> void:
 func enter(msg: Dictionary = {}) -> void:
 	var move: = get_parent()
 	move.velocity = msg.velocity if "velocity" in msg else move.velocity
+	move.max_speed = msg.max_speed if "max_speed" in msg else move.max_speed
 	move.acceleration = Vector2(X_ACCELERATION, move.ACCELERATION.y)
 	jump_delay.start()
 

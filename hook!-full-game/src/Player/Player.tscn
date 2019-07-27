@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/Hook/Hook.tscn" type="PackedScene" id=2]
@@ -15,13 +15,14 @@
 [ext_resource path="res://src/Player/States/Wall.gd" type="Script" id=13]
 [ext_resource path="res://src/Player/States/Ledge.gd" type="Script" id=14]
 [ext_resource path="res://src/Player/States/Hook.gd" type="Script" id=15]
-[ext_resource path="res://src/Player/States/Debug.gd" type="Script" id=16]
-[ext_resource path="res://src/Player/States/Stagger.gd" type="Script" id=17]
-[ext_resource path="res://src/Player/States/Spawn.gd" type="Script" id=18]
-[ext_resource path="res://src/Player/States/Die.gd" type="Script" id=19]
-[ext_resource path="res://src/Combat/Stats.tscn" type="PackedScene" id=20]
-[ext_resource path="res://src/Combat/HitBox/HitBox.tscn" type="PackedScene" id=21]
-[ext_resource path="res://src/Player/PassThroughDetector.gd" type="Script" id=22]
+[ext_resource path="res://src/Player/States/Charge.gd" type="Script" id=16]
+[ext_resource path="res://src/Player/States/Debug.gd" type="Script" id=17]
+[ext_resource path="res://src/Player/States/Stagger.gd" type="Script" id=18]
+[ext_resource path="res://src/Player/States/Spawn.gd" type="Script" id=19]
+[ext_resource path="res://src/Player/States/Die.gd" type="Script" id=20]
+[ext_resource path="res://src/Combat/Stats.tscn" type="PackedScene" id=21]
+[ext_resource path="res://src/Combat/HitBox/HitBox.tscn" type="PackedScene" id=22]
+[ext_resource path="res://src/Player/PassThroughDetector.gd" type="Script" id=23]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 30 )
@@ -55,10 +56,6 @@ collision_mask = 2
 remote_path = NodePath("../../CameraRig")
 
 [node name="CameraRig" parent="." instance=ExtResource( 6 )]
-
-[node name="ShakingCamera" parent="CameraRig" index="0"]
-DAMP_EASING = 1.0
-is_shaking = false
 
 [node name="Skin" parent="." instance=ExtResource( 7 )]
 
@@ -109,31 +106,39 @@ script = ExtResource( 14 )
 [node name="Hook" type="Node" parent="StateMachine"]
 script = ExtResource( 15 )
 
-[node name="Debug" type="Node" parent="StateMachine"]
+[node name="Timer" type="Timer" parent="StateMachine/Hook"]
+process_mode = 0
+wait_time = 0.4
+one_shot = true
+
+[node name="Charge" type="Node" parent="StateMachine/Hook"]
 script = ExtResource( 16 )
 
-[node name="Stagger" type="Node" parent="StateMachine"]
+[node name="Debug" type="Node" parent="StateMachine"]
 script = ExtResource( 17 )
+
+[node name="Stagger" type="Node" parent="StateMachine"]
+script = ExtResource( 18 )
 
 [node name="Duration" type="Timer" parent="StateMachine/Stagger"]
 one_shot = true
 
 [node name="Spawn" type="Node" parent="StateMachine"]
-script = ExtResource( 18 )
-
-[node name="Die" type="Node" parent="StateMachine"]
 script = ExtResource( 19 )
 
-[node name="Stats" parent="." instance=ExtResource( 20 )]
+[node name="Die" type="Node" parent="StateMachine"]
+script = ExtResource( 20 )
 
-[node name="HitBox" parent="." instance=ExtResource( 21 )]
+[node name="Stats" parent="." instance=ExtResource( 21 )]
+
+[node name="HitBox" parent="." instance=ExtResource( 22 )]
 position = Vector2( 0, -30 )
 
 [node name="PassThroughDetector" type="Area2D" parent="."]
 position = Vector2( 0, -30 )
 collision_layer = 0
 collision_mask = 8
-script = ExtResource( 22 )
+script = ExtResource( 23 )
 actor_path = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PassThroughDetector"]

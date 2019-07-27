@@ -13,9 +13,6 @@ var velocity: = Vector2.ZERO setget set_velocity
 
 
 func physics_process(delta: float) -> void:
-	var to_target: Vector2 = target_global_position - owner.global_position
-	var distance: = to_target.length()
-	
 	self.velocity = Steering.arrive_to(
 		velocity,
 		owner.global_position,
@@ -29,6 +26,9 @@ func physics_process(delta: float) -> void:
 	var distance: = to_target.length()
 
 	if distance < velocity.length() * delta:
+		if Input.is_action_pressed("hook"):
+			_state_machine.transition_to("Hook/Charge")
+		else:
 			self.velocity = velocity.normalized() * arrive_push
 			_state_machine.transition_to("Move/Air", {velocity = velocity})
 
