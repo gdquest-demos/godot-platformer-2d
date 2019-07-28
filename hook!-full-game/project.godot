@@ -156,6 +156,7 @@ Settings="*res://src/Autoload/Settings.gd"
 Events="*res://src/Autoload/Events.gd"
 ControlUtils="*res://src/Autoload/ControlUtils.gd"
 Steering="*res://src/Autoload/Steering.gd"
+Utils="*res://src/Autoload/Utils.gd"
 
 [debug]
 
