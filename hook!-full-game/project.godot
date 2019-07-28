@@ -147,7 +147,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Hook!"
-run/main_scene="res://src/Levels/Level.tscn"
+run/main_scene="res://src/Main/Game.tscn"
 config/icon="res://icon.png"
 
 [autoload]
