@@ -13,9 +13,6 @@ var velocity: = Vector2.ZERO setget set_velocity
 
 
 func physics_process(delta: float) -> void:
-	var to_target: Vector2 = target_global_position - owner.global_position
-	var distance: = to_target.length()
-	
 	self.velocity = Steering.arrive_to(
 		velocity,
 		owner.global_position,
