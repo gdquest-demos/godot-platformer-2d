@@ -1,4 +1,4 @@
-"""Globally accessible methods to extend what's available from the Input singleton"""
+"""Globally accessible utils functionality"""
 extends Node
 
 
@@ -17,3 +17,12 @@ static func get_aim_joystick_strength() -> Vector2:
 	return Vector2(
 		Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left"),
 		Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up"))
+
+"""
+Checks if two numbers are approximately equal
+"""
+static func is_equal_approx(a: float, b: float, cmp_epsilon: float = 1e-5) -> bool:
+	var tolerance: = cmp_epsilon * abs(a)
+	if tolerance < cmp_epsilon:
+		tolerance = cmp_epsilon
+	return abs(a - b) < tolerance

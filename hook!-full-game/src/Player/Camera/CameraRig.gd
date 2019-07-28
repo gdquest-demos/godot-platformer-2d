@@ -24,7 +24,7 @@ func update_position(velocity: Vector2 = Vector2.ZERO) -> void:
 	match Settings.controls:
 
 		Settings.GAMEPAD:
-			var joystick_strength: = ControlUtils.get_aim_joystick_strength()
+			var joystick_strength: = Utils.get_aim_joystick_strength()
 			camera.position = joystick_strength * offset
 
 		Settings.KBD_MOUSE, _:

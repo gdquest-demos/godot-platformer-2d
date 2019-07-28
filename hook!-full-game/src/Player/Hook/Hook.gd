@@ -59,7 +59,7 @@ func get_aim_direction() -> Vector2:
 	var direction: = Vector2.ZERO
 	match Settings.controls:
 		Settings.GAMEPAD:
-			direction = ControlUtils.get_aim_joystick_direction()
+			direction = Utils.get_aim_joystick_direction()
 		Settings.KBD_MOUSE, _:
 			direction = (get_global_mouse_position() - global_position).normalized()
 	return direction
