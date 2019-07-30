@@ -31,11 +31,6 @@ func _ready() -> void:
 	stats.connect("health_depleted", state_machine, "transition_to", ['Die'])
 
 
-func _on_Events_level_loaded(level: Node2D) -> void:
-	var spawn_checkpoint = level.get_node("Checkpoints").get_child(0)
-	global_position = spawn_checkpoint.global_position
-
-
 func take_damage(source: Hit) -> void:
 	stats.take_damage(source)
 

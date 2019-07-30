@@ -1,6 +1,6 @@
 extends Node
 
-const StartLevel: PackedScene = preload("res://src/Levels/Level1.tscn")
+export(PackedScene) var StartLevel: = preload("res://src/Levels/Level1.tscn")
 
 
 func _ready() -> void:

@@ -2,7 +2,7 @@ tool
 extends Area2D
 
 
-export(String, FILE) var next_level_path: String = ""
+export(String, FILE) var next_level_path: = ""
 
 
 func _ready() -> void:

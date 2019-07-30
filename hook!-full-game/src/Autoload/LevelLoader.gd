@@ -22,6 +22,10 @@ func trigger(NewLevel: PackedScene) -> void:
 		yield(_level, "tree_exited")
 
 	_level = NewLevel.instance()
+
+	var player_spawn: = _level.get_node("Checkpoints").get_child(0)
+	_player.global_position = player_spawn.global_position
+
 	_game.add_child(_level)
 	_game.add_child(_player)
 	
