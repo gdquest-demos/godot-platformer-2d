@@ -27,7 +27,13 @@ var info_dict: = {} setget set_info_dict
 
 
 func _ready() -> void:
+	Events.connect("level_loaded", self, "_on_Events_level_loaded")
 	stats.connect("health_depleted", state_machine, "transition_to", ['Die'])
+
+
+func _on_Events_level_loaded(level: Node) -> void:
+	var spawn_checkpoint = level.get_node("Checkpoints").get_child(0)
+	global_position = spawn_checkpoint.global_position
 
 
 func take_damage(source: Hit) -> void:

@@ -50,19 +50,18 @@ cast_to = Vector2( 100, 0 )
 collision_mask = 2
 
 [node name="CameraAnchorDetector" parent="." instance=ExtResource( 5 )]
+editor/display_folded = true
 
 [node name="CameraPosition" parent="CameraAnchorDetector" index="1"]
 remote_path = NodePath("../../CameraRig")
 
 [node name="CameraRig" parent="." instance=ExtResource( 6 )]
-
-[node name="ShakingCamera" parent="CameraRig" index="0"]
-DAMP_EASING = 1.0
-is_shaking = false
+editor/display_folded = true
 
 [node name="Skin" parent="." instance=ExtResource( 7 )]
 
 [node name="StateMachine" type="Node" parent="."]
+editor/display_folded = true
 script = ExtResource( 8 )
 initial_state = NodePath("Move/Idle")
 
