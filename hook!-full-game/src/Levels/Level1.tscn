@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/tilesets/platform.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Combat/DummyEnemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/tilesets/basic.tres" type="TileSet" id=3]
 [ext_resource path="res://src/Objects/HookTarget.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/Levels/Exit.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Objects/Checkpoint.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Objects/Exit.tscn" type="PackedScene" id=6]
 
 [node name="Level1" type="Node2D"]
 
@@ -32,10 +33,17 @@ tile_data = PoolIntArray( 720943, 1, 0, 720944, 1, 0, 720945, 1, 0, 720946, 1, 0
 position = Vector2( 1960, 400 )
 
 [node name="Checkpoints" type="Node" parent="."]
+editor/display_folded = true
 
-[node name="0" type="Position2D" parent="Checkpoints"]
+[node name="0" parent="Checkpoints" instance=ExtResource( 5 )]
 position = Vector2( 1400, 1000 )
 
-[node name="Exit" parent="." instance=ExtResource( 5 )]
+[node name="1" parent="Checkpoints" instance=ExtResource( 5 )]
+position = Vector2( 1793.42, 635.224 )
+
+[node name="2" parent="Checkpoints" instance=ExtResource( 5 )]
+position = Vector2( 2224.52, 374.454 )
+
+[node name="Exit" parent="." instance=ExtResource( 6 )]
 position = Vector2( 2360, 300 )
 next_level_path = "res://src/Levels/Level2.tscn"

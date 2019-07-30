@@ -19,7 +19,7 @@ func _get_configuration_warning() -> String:
 	return "" if next_level_path != "" else "next_level_path needs to be set to the next level"
 
 
-func _on_body_entered(body: Node) -> void:
+func _on_body_entered(body: PhysicsBody2D) -> void:
 	if body is Player:
 		var NextLevel = load(next_level_path)
 		LevelLoader.trigger(NextLevel)

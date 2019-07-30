@@ -1,7 +1,12 @@
 extends State
 
 
+var last_checkpoint: Area2D = null
+
+
 func enter(msg: Dictionary = {}) -> void:
+	assert "last_checkpoint" in msg
+	last_checkpoint = msg.last_checkpoint
 	owner.camera_rig.is_active = true
 	owner.skin.play("die")
 	owner.skin.connect("animation_finished", self, "_on_Player_animation_finished")
@@ -12,4 +17,4 @@ func exit() -> void:
 
 
 func _on_Player_animation_finished(anim_name: String) -> void:
-	_state_machine.transition_to('Spawn')
+	_state_machine.transition_to('Spawn', {last_checkpoint = last_checkpoint})

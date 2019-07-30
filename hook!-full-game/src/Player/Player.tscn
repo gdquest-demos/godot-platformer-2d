@@ -61,7 +61,6 @@ editor/display_folded = true
 [node name="Skin" parent="." instance=ExtResource( 7 )]
 
 [node name="StateMachine" type="Node" parent="."]
-editor/display_folded = true
 script = ExtResource( 8 )
 initial_state = NodePath("Move/Idle")
 
@@ -88,6 +87,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Wall" type="Node" parent="StateMachine/Move"]
+editor/display_folded = true
 script = ExtResource( 13 )
 slide_acceleration = 500.0
 max_slide_speed = 400.0
@@ -112,6 +112,7 @@ script = ExtResource( 15 )
 script = ExtResource( 16 )
 
 [node name="Stagger" type="Node" parent="StateMachine"]
+editor/display_folded = true
 script = ExtResource( 17 )
 
 [node name="Duration" type="Timer" parent="StateMachine/Stagger"]
