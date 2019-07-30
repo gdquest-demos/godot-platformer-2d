@@ -2,7 +2,6 @@
 
 [ext_resource path="res://src/Objects/HookTarget.gd" type="Script" id=1]
 
-
 [sub_resource type="CircleShape2D" id=1]
 radius = 25.1794
 
@@ -16,4 +15,3 @@ shape = SubResource( 1 )
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
