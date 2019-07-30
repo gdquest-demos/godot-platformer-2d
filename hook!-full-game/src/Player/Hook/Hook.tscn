@@ -23,6 +23,7 @@ collision_mask = 6
 script = SubResource( 1 )
 
 [node name="Arrow" parent="." instance=ExtResource( 2 )]
+visible = false
 
 [node name="Head" parent="Arrow" index="1"]
 editor/display_folded = true
@@ -32,7 +33,6 @@ editor/display_folded = true
 [node name="TargetCircle" type="Node2D" parent="."]
 script = ExtResource( 4 )
 offset = Vector2( 120, 0 )
-color = Color( 1, 0.34375, 0.635986, 1 )
 
 [node name="SnapDetector" parent="." instance=ExtResource( 5 )]
 
