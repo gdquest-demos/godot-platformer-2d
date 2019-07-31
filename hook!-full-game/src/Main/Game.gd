@@ -1,5 +1,8 @@
 extends Node
 
+
+onready var transition: ColorRect = $UI/Transition
+
 export(PackedScene) var StartLevel: = preload("res://src/Levels/Level1.tscn")
 
 
