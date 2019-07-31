@@ -41,6 +41,7 @@ shape = SubResource( 1 )
 position = Vector2( 0, -30 )
 
 [node name="LedgeDetector" parent="." instance=ExtResource( 3 )]
+is_active = false
 
 [node name="FloorDetector" parent="." instance=ExtResource( 4 )]
 
@@ -58,10 +59,13 @@ remote_path = NodePath("../../CameraRig")
 [node name="CameraRig" parent="." instance=ExtResource( 6 )]
 editor/display_folded = true
 
+[node name="ShakingCamera" parent="CameraRig" index="0"]
+DAMP_EASING = 1.0
+is_shaking = false
+
 [node name="Skin" parent="." instance=ExtResource( 7 )]
 
 [node name="StateMachine" type="Node" parent="."]
-editor/display_folded = true
 script = ExtResource( 8 )
 initial_state = NodePath("Move/Idle")
 
@@ -88,6 +92,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Wall" type="Node" parent="StateMachine/Move"]
+editor/display_folded = true
 script = ExtResource( 13 )
 slide_acceleration = 500.0
 max_slide_speed = 400.0
@@ -107,6 +112,7 @@ script = ExtResource( 14 )
 
 [node name="Hook" type="Node" parent="StateMachine"]
 script = ExtResource( 15 )
+arrive_push = 900.0
 
 [node name="Debug" type="Node" parent="StateMachine"]
 script = ExtResource( 16 )
