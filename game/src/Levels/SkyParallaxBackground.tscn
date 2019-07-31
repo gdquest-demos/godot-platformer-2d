@@ -12,6 +12,7 @@
 motion_scale = Vector2( 0, 0 )
 
 [node name="sky" type="Sprite" parent="ParallaxLayer"]
+scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 
 [node name="ParallaxBackground2" type="ParallaxLayer" parent="."]
@@ -51,18 +52,18 @@ position = Vector2( 898.5, -148 )
 texture = ExtResource( 4 )
 
 [node name="ParallaxBackground3" type="ParallaxLayer" parent="."]
-motion_scale = Vector2( 0.12, 0.12 )
+motion_scale = Vector2( 0.12, 0.08 )
 
-[node name="mountains2" type="Sprite" parent="ParallaxBackground3"]
-position = Vector2( 1895, 249.155 )
-scale = Vector2( 1.02604, 0.662525 )
+[node name="mountains" type="Sprite" parent="ParallaxBackground3"]
+position = Vector2( 0, 353.91 )
+scale = Vector2( 2, 1.276 )
 texture = ExtResource( 5 )
 region_rect = Rect2( 0, 1, 4580, 549 )
 region_filter_clip = true
 
-[node name="mountains" type="Sprite" parent="ParallaxBackground3"]
-position = Vector2( 0, 260 )
-scale = Vector2( 1, 0.638182 )
+[node name="mountains2" type="Sprite" parent="ParallaxBackground3"]
+position = Vector2( 1920, 353.91 )
+scale = Vector2( 2, 1.276 )
 texture = ExtResource( 5 )
 region_rect = Rect2( 0, 1, 4580, 549 )
 region_filter_clip = true
