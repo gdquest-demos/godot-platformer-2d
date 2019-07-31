@@ -27,7 +27,6 @@ var info_dict: = {} setget set_info_dict
 
 
 func _ready() -> void:
-	Events.connect("level_loaded", self, "_on_Events_level_loaded")
 	stats.connect("health_depleted", state_machine, "transition_to", ['Die'])
 
 
