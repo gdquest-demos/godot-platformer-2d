@@ -57,7 +57,6 @@ tracks/1/keys = {
 script = ExtResource( 1 )
 
 [node name="UI" type="CanvasLayer" parent="."]
-editor/display_folded = true
 layer = 100
 
 [node name="DebugDock" type="MarginContainer" parent="UI"]
