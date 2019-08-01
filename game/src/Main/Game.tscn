@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/Main/Game.gd" type="Script" id=1]
 [ext_resource path="res://assets/theme/gdquest.theme" type="Theme" id=2]
 [ext_resource path="res://src/UI/debug/DebugDock.gd" type="Script" id=3]
 [ext_resource path="res://src/UI/debug/DebugPanel.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/UI/Transition.gd" type="Script" id=5]
-[ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "<BASE>"
@@ -101,14 +100,13 @@ margin_right = 1920.0
 margin_bottom = 1080.0
 mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
-script = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Transition"]
 autoplay = "<BASE>"
 anims/<BASE> = SubResource( 1 )
 anims/transition = SubResource( 2 )
 
-[node name="Player" parent="." instance=ExtResource( 6 )]
+[node name="Player" parent="." instance=ExtResource( 5 )]
 editor/display_folded = true
 
 [editable path="Player"]
