@@ -55,7 +55,7 @@ func enter(msg: Dictionary = {}) -> void:
 	if "impulse" in msg:
 		move.velocity = calculate_jump_velocity(msg.impulse)
 	move.acceleration = Vector2(acceleration_x, move.acceleration_default.y)
-	move.max_speed.x = max(move.velocity.x, move.max_speed_default.x)
+	move.max_speed.x = max(abs(move.velocity.x), move.max_speed_default.x)
 	jump_delay.start()
 
 
