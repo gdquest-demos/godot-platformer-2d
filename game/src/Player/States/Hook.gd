@@ -13,13 +13,14 @@ var velocity: = Vector2.ZERO setget set_velocity
 
 
 func physics_process(delta: float) -> void:
-	self.velocity = Steering.arrive_to(
+	var new_velocity: = Steering.arrive_to(
 		velocity,
 		owner.global_position,
 		target_global_position,
 		HOOK_MAX_SPEED
 	)
-	self.velocity = owner.move_and_slide(velocity, owner.FLOOR_NORMAL)
+	new_velocity = new_velocity if new_velocity.length() > arrive_push else new_velocity.normalized() * arrive_push
+	self.velocity = owner.move_and_slide(new_velocity, owner.FLOOR_NORMAL)
 	Events.emit_signal("player_moved", owner)
 
 	var to_target: Vector2 = target_global_position - owner.global_position
