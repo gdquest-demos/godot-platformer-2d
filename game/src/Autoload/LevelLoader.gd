@@ -21,7 +21,7 @@ func trigger(NewLevel: PackedScene) -> void:
 	
 	if _level:
 		scene_tree.paused = true
-		_game.transition.animation_player.play("transition")
+#		_game.transition.animation_player.play("transition")
 		_level.queue_free()
 		yield(_level, "tree_exited")
 
@@ -30,8 +30,8 @@ func trigger(NewLevel: PackedScene) -> void:
 	var player_spawn: = _level.get_node("Checkpoints").get_child(0)
 	_player.global_position = player_spawn.global_position
 	
-	if _game.transition.animation_player.current_animation == "transition":
-		yield(_game.transition, "peaked")
+#	if _game.transition.animation_player.current_animation == "transition":
+#		yield(_game.transition, "peaked")
 	
 	_game.add_child(_level)
 	_game.add_child(_player)
