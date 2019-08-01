@@ -26,9 +26,8 @@ func physics_process(delta: float) -> void:
 	var distance: = to_target.length()
 
 	if distance < velocity.length() * delta:
-			self.velocity = velocity.normalized() * arrive_push
-			_state_machine.transition_to("Move/Air", {velocity = velocity})
-
+		self.velocity = velocity.normalized() * arrive_push
+		_state_machine.transition_to("Move/Air", {velocity = velocity})
 
 
 func enter(msg: Dictionary = {}) -> void:

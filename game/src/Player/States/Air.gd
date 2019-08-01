@@ -7,8 +7,8 @@ You can pass a msg to this state:
 	velocity: Vector2, to preserve inertia from the previous state
 	impulse: float, to make the character jump
 }
+The player can jump after falling off a ledge. See unhandled_input and jump_delay.
 """
-
 
 signal jumped
 
@@ -23,16 +23,10 @@ func _get_configuration_warning() -> String:
 
 func unhandled_input(event: InputEvent) -> void:
 	var move: = get_parent()
+	# Jump after falling off a ledge
 	if event.is_action_pressed("jump"):
 		if move.velocity.y >= 0.0 and jump_delay.time_left > 0.0:
-			move.velocity = move.calculate_velocity(
-				move.velocity,
-				move.max_speed,
-				Vector2(0.0,
-				move.jump_impulse),
-				1.0,
-				Vector2.UP
-			)
+			move.velocity = calculate_jump_velocity(move.jump_impulse)
 		emit_signal("jumped")
 	else:
 		move.unhandled_input(event)
@@ -59,16 +53,21 @@ func enter(msg: Dictionary = {}) -> void:
 	var move: = get_parent()
 	move.velocity = msg.velocity if "velocity" in msg else move.velocity
 	if "impulse" in msg:
-		var jump_velocity = move.calculate_velocity(
-			move.velocity,
-			move.max_speed,
-			Vector2(0.0, msg.impulse),
-			1.0,
-			Vector2.UP
-		)
-		move.velocity = jump_velocity
+		move.velocity = calculate_jump_velocity(msg.impulse)
 	move.acceleration = Vector2(acceleration_x, move.acceleration_default.y)
+	move.max_speed.x = max(move.velocity.x, move.max_speed_default.x)
 	jump_delay.start()
+
+
+func calculate_jump_velocity(impulse: float = 0.0) -> Vector2:
+	var move: State = get_parent()
+	return move.calculate_velocity(
+		move.velocity,
+		move.max_speed,
+		Vector2(0.0, impulse),
+		1.0,
+		Vector2.UP
+	)
 
 
 func exit() -> void:
