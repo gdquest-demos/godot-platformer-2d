@@ -2,7 +2,6 @@ extends State
 
 
 const XY_MAX_SPEED: = Vector2(500.0, 1500.0)
-const JUMP_SPEED: = 900.0
 const ACCELERATION: = Vector2(1e10, 3000.0)
 
 var acceleration: = ACCELERATION
@@ -36,8 +35,6 @@ func setup(player: KinematicBody2D, state_machine: Node) -> void:
 
 func unhandled_input(event: InputEvent) -> void:
 	if owner.is_on_floor() and event.is_action_pressed("jump"):
-		if not Input.is_action_pressed("move_down"):
-			self.velocity = calculate_velocity(velocity, max_speed, Vector2(0.0, JUMP_SPEED), 1.0, Vector2.UP)
 		_state_machine.transition_to("Move/Air")
 	if event.is_action_pressed('toggle_debug_move'):
 		_state_machine.transition_to('Debug')
