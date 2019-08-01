@@ -1,11 +1,12 @@
 extends State
 
 
-const XY_MAX_SPEED: = Vector2(500.0, 1500.0)
-const ACCELERATION: = Vector2(1e10, 3000.0)
+export var max_speed_default: = Vector2(500.0, 1500.0)
+export var acceleration_default: = Vector2(100000, 3000.0)
+export var jump_impulse: = 900.0
 
-var acceleration: = ACCELERATION
-var max_speed: = XY_MAX_SPEED
+var acceleration: = acceleration_default
+var max_speed: = max_speed_default
 var velocity: = Vector2.ZERO setget set_velocity
 
 
@@ -35,7 +36,7 @@ func setup(player: KinematicBody2D, state_machine: Node) -> void:
 
 func unhandled_input(event: InputEvent) -> void:
 	if owner.is_on_floor() and event.is_action_pressed("jump"):
-		_state_machine.transition_to("Move/Air")
+		_state_machine.transition_to("Move/Air", { impulse = jump_impulse })
 	if event.is_action_pressed('toggle_debug_move'):
 		_state_machine.transition_to('Debug')
 
@@ -55,11 +56,11 @@ func set_velocity(value: Vector2) -> void:
 
 
 static func calculate_velocity(
-			old_velocity: Vector2,
-			max_speed: Vector2,
-			acceleration: Vector2,
-			delta: float,
-			move_direction: Vector2
+		old_velocity: Vector2,
+		max_speed: Vector2,
+		acceleration: Vector2,
+		delta: float,
+		move_direction: Vector2
 	) -> Vector2:
 	var new_velocity: = old_velocity
 

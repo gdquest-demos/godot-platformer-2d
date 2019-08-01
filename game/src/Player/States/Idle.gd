@@ -28,7 +28,7 @@ func physics_process(delta: float) -> void:
 
 func enter(msg: Dictionary = {}) -> void:
 	var move = get_parent()
-	move.max_speed = move.XY_MAX_SPEED
+	move.max_speed = move.max_speed_default
 	move.velocity = Vector2.ZERO
 	if jump_delay.time_left > 0.0:
 		_state_machine.transition_to("Move/Air")

@@ -1,13 +1,20 @@
 tool
 extends State
+"""
+Manages Air movement, including jumping and landing.
+You can pass a msg to this state:
+{
+	velocity: Vector2, to preserve inertia from the previous state
+	impulse: float, to make the character jump
+}
+"""
 
 
 signal jumped
 
-export var jump_impulse: = 900.0
 onready var jump_delay: Timer = $JumpDelay
 
-const X_ACCELERATION: = 3000.0
+export var acceleration_x: = 3000.0
 
 
 func _get_configuration_warning() -> String:
@@ -22,7 +29,7 @@ func unhandled_input(event: InputEvent) -> void:
 				move.velocity,
 				move.max_speed,
 				Vector2(0.0,
-				jump_impulse),
+				move.jump_impulse),
 				1.0,
 				Vector2.UP
 			)
@@ -50,18 +57,20 @@ func physics_process(delta: float) -> void:
 
 func enter(msg: Dictionary = {}) -> void:
 	var move: = get_parent()
-	var jump_velocity = move.calculate_velocity(
-		move.velocity,
-		move.max_speed,
-		Vector2(0.0, jump_impulse),
-		1.0,
-		Vector2.UP
-	)
-	move.velocity = msg.velocity if "velocity" in msg else jump_velocity
-	move.acceleration = Vector2(X_ACCELERATION, move.ACCELERATION.y)
+	move.velocity = msg.velocity if "velocity" in msg else move.velocity
+	if "impulse" in msg:
+		var jump_velocity = move.calculate_velocity(
+			move.velocity,
+			move.max_speed,
+			Vector2(0.0, msg.impulse),
+			1.0,
+			Vector2.UP
+		)
+		move.velocity = jump_velocity
+	move.acceleration = Vector2(acceleration_x, move.acceleration_default.y)
 	jump_delay.start()
 
 
 func exit() -> void:
 	var move: = get_parent()
-	move.acceleration = move.ACCELERATION
+	move.acceleration = move.acceleration_default
