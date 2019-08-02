@@ -92,16 +92,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Wall" type="Node" parent="StateMachine/Move"]
-editor/display_folded = true
 script = ExtResource( 13 )
-slide_acceleration = 500.0
-max_slide_speed = 400.0
-friction_factor = 0.15
-jump_strength = 1000.0
-
-[node name="JumpDelay" type="Timer" parent="StateMachine/Move/Wall"]
-wait_time = 0.2
-one_shot = true
 
 [node name="FallDelay" type="Timer" parent="StateMachine/Move/Wall"]
 wait_time = 0.05
