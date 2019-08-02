@@ -1,4 +1,7 @@
 extends State
+"""
+Pulls the character up a ledge, temporarily taking control away from the player
+"""
 
 
 func _setup() -> void:

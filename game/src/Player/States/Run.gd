@@ -1,4 +1,8 @@
 extends State
+"""
+Delegates movement to its parent Move state
+"""
+
 
 
 func unhandled_input(event: InputEvent) -> void:

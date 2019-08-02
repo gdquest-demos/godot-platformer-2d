@@ -1,6 +1,7 @@
 extends State
 """
-Moves the player to the target position using the arrive_to steering behavior.
+Moves the character to the target position using the arrive_to steering behavior
+Preserves the character's inertia past the hooking point
 """
 
 

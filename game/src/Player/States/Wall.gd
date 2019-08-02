@@ -1,5 +1,8 @@
 tool
 extends State
+"""
+Handles wall movement: sliding against the wall and wall jump
+"""
 
 onready var fall_delay: Timer = $FallDelay
 
@@ -7,7 +10,7 @@ export var slide_acceleration: = 1600.0
 export var max_slide_speed: = 400.0
 export (float, 0.0, 1.0) var friction_factor: = 0.15
 
-export var jump_strength: = Vector2(500.0, 900.0)
+export var jump_strength: = Vector2(500.0, 400.0)
 var _wall_normal: = -1
 var _velocity: = Vector2.ZERO
 
@@ -22,7 +25,6 @@ func _get_configuration_warning() -> String:
 
 func enter(msg: Dictionary = {}) -> void:
 	_wall_normal = msg.normal
-	var move: State = get_parent()
 	_velocity.y = clamp(msg.velocity.y, -max_slide_speed, max_slide_speed)
 
 	owner.wall_detector.cast_to.x = abs(owner.wall_detector.cast_to.x) * -1.0 * sign(_wall_normal)
@@ -30,7 +32,6 @@ func enter(msg: Dictionary = {}) -> void:
 
 
 func physics_process(delta: float) -> void:
-	var move: State = get_parent()
 	if _velocity.y > max_slide_speed:
 		_velocity.y = lerp(_velocity.y, max_slide_speed, friction_factor)
 	else:
@@ -47,6 +48,7 @@ func physics_process(delta: float) -> void:
 	else:
 		fall_delay.stop()
 
+	var move: = get_parent()
 	var is_moving_away_from_wall: = sign(move.get_move_direction().x) == sign(_wall_normal)
 	if is_moving_away_from_wall:
 		_state_machine.transition_to("Move/Air")
@@ -54,7 +56,8 @@ func physics_process(delta: float) -> void:
 
 func unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
-		var impulse: = Vector2(_wall_normal, -1.0).normalized() * jump_strength
+		# The direction vector not being normalized is intended
+		var impulse: = Vector2(_wall_normal, -1.0) * jump_strength
 		_state_machine.transition_to("Move/Air", {"velocity": impulse})
 
 
@@ -64,5 +67,4 @@ func exit() -> void:
 
 
 func _on_FallDelay_timeout() -> void:
-	var move: State = get_parent()
 	_state_machine.transition_to("Move/Air", {"velocity": _velocity})

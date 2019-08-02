@@ -1,4 +1,8 @@
 extends State
+"""
+Parent state that abstracts and handles basic movement
+Move-related children states can delegate movement to it, or use its utility functions
+"""
 
 
 export var max_speed_default: = Vector2(500.0, 1500.0)
@@ -73,5 +77,6 @@ static func calculate_velocity(
 
 static func get_move_direction() -> Vector2:
 	return Vector2(
-			Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
-			1.0)
+		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
+		1.0
+	)
