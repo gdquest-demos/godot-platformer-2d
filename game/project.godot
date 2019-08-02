@@ -206,22 +206,22 @@ sprint={
  ]
 }
 aim_left={
-"deadzone": 0.6,
+"deadzone": 0.0,
 "events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":-1.0,"script":null)
  ]
 }
 aim_right={
-"deadzone": 0.6,
+"deadzone": 0.0,
 "events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":1.0,"script":null)
  ]
 }
 aim_up={
-"deadzone": 0.6,
+"deadzone": 0.0,
 "events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":-1.0,"script":null)
  ]
 }
 aim_down={
-"deadzone": 0.6,
+"deadzone": 0.0,
 "events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":1.0,"script":null)
  ]
 }
