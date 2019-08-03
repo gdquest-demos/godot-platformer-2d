@@ -3,8 +3,6 @@
 [ext_resource path="res://src/Objects/Checkpoint/Checkpoint.gd" type="Script" id=1]
 [ext_resource path="res://assets/tilesets/basic.png" type="Texture" id=2]
 
-
-
 [sub_resource type="CircleShape2D" id=1]
 radius = 12.5
 

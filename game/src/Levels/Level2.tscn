@@ -3,7 +3,8 @@
 [ext_resource path="res://assets/tilesets/basic.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Objects/HookTarget.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/AI/PatrolAgent.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/Levels/Exit.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Objects/Exit.tscn" type="PackedScene" id=4]
+
 
 [node name="Level2" type="Node2D"]
 position = Vector2( 2440, -580 )

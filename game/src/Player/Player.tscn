@@ -92,6 +92,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Wall" type="Node" parent="StateMachine/Move"]
+editor/display_folded = true
 script = ExtResource( 13 )
 
 [node name="FallDelay" type="Timer" parent="StateMachine/Move/Wall"]
@@ -109,6 +110,7 @@ arrive_push = 900.0
 script = ExtResource( 16 )
 
 [node name="Stagger" type="Node" parent="StateMachine"]
+editor/display_folded = true
 script = ExtResource( 17 )
 
 [node name="Duration" type="Timer" parent="StateMachine/Stagger"]

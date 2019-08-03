@@ -2,6 +2,8 @@ extends State
 
 
 func enter(msg: Dictionary = {}) -> void:
+	assert "last_checkpoint" in msg
+	owner.global_position = msg.last_checkpoint.global_position
 	owner.is_active = false
 	owner.camera_rig.is_active = false
 	owner.skin.play("spawn")
