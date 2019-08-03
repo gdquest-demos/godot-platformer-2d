@@ -2,10 +2,11 @@ tool
 extends State
 """
 Manages Air movement, including jumping and landing.
-You can pass a msg to this state:
+You can pass a msg to this state, every key is optional:
 {
 	velocity: Vector2, to preserve inertia from the previous state
 	impulse: float, to make the character jump
+	wall_jump: bool, to take air control off the player for controls_freeze.wait_time seconds upon entering the state
 }
 The player can jump after falling off a ledge. See unhandled_input and jump_delay.
 """
@@ -13,6 +14,7 @@ The player can jump after falling off a ledge. See unhandled_input and jump_dela
 signal jumped
 
 onready var jump_delay: Timer = $JumpDelay
+onready var controls_freeze: Timer = $ControlsFreeze
 
 export var acceleration_x: = 3000.0
 
@@ -34,9 +36,18 @@ func unhandled_input(event: InputEvent) -> void:
 
 func physics_process(delta: float) -> void:
 	var move: = get_parent()
-	move.physics_process(delta)
+	var direction: Vector2 = move.get_move_direction() if controls_freeze.is_stopped() else Vector2(sign(move.velocity.x), 1.0)
+	move.velocity = move.calculate_velocity(
+		move.velocity,
+		move.max_speed,
+		move.acceleration,
+		delta,
+		direction
+	)
+	move.velocity = owner.move_and_slide(move.velocity, owner.FLOOR_NORMAL)
+	Events.emit_signal("player_moved", owner)
 
-	# Landing on the floor
+	# Landing
 	if owner.is_on_floor():
 		var target_state: = "Move/Idle" if move.get_move_direction().x == 0 else "Move/Run"
 		_state_machine.transition_to(target_state)
@@ -54,6 +65,8 @@ func enter(msg: Dictionary = {}) -> void:
 	move.velocity = msg.velocity if "velocity" in msg else move.velocity
 	if "impulse" in msg:
 		move.velocity = calculate_jump_velocity(msg.impulse)
+	if "wall_jump" in msg:
+		controls_freeze.start()
 	move.acceleration = Vector2(acceleration_x, move.acceleration_default.y)
 	move.max_speed.x = max(abs(move.velocity.x), move.max_speed_default.x)
 	jump_delay.start()

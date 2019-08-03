@@ -87,11 +87,14 @@ one_shot = true
 script = ExtResource( 11 )
 
 [node name="Air" type="Node" parent="StateMachine/Move"]
-editor/display_folded = true
 script = ExtResource( 12 )
 
 [node name="JumpDelay" type="Timer" parent="StateMachine/Move/Air"]
 wait_time = 0.1
+one_shot = true
+
+[node name="ControlsFreeze" type="Timer" parent="StateMachine/Move/Air"]
+wait_time = 0.16
 one_shot = true
 
 [node name="Wall" type="Node" parent="StateMachine/Move"]

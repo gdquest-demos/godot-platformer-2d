@@ -35,14 +35,22 @@ func physics_process(delta: float) -> void:
 	var move: = get_parent()
 	var is_moving_away_from_wall: = sign(move.get_move_direction().x) == sign(_wall_normal)
 	if is_moving_away_from_wall:
-		_state_machine.transition_to("Move/Air")
+		jump()
+
+
+func jump() -> void:
+	# The direction vector not being normalized is intended
+	var impulse: = Vector2(_wall_normal, -1.0) * jump_strength
+	var msg: = {
+		velocity = impulse,
+		wall_jump = true
+	}
+	_state_machine.transition_to("Move/Air", msg)
 
 
 func unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
-		# The direction vector not being normalized is intended
-		var impulse: = Vector2(_wall_normal, -1.0) * jump_strength
-		_state_machine.transition_to("Move/Air", {"velocity": impulse})
+		jump()
 
 
 func exit() -> void:
