@@ -58,10 +58,13 @@ remote_path = NodePath("../../CameraRig")
 
 [node name="CameraRig" parent="." instance=ExtResource( 6 )]
 editor/display_folded = true
+position = Vector2( 0, -30 )
 
 [node name="ShakingCamera" parent="CameraRig" index="0"]
-DAMP_EASING = 1.0
-is_shaking = false
+default_smoothing_speed = {
+"gamepad": 1,
+"mouse": 3
+}
 
 [node name="Skin" parent="." instance=ExtResource( 7 )]
 
@@ -92,12 +95,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Wall" type="Node" parent="StateMachine/Move"]
-editor/display_folded = true
 script = ExtResource( 13 )
-
-[node name="FallDelay" type="Timer" parent="StateMachine/Move/Wall"]
-wait_time = 0.05
-one_shot = true
 
 [node name="Ledge" type="Node" parent="StateMachine"]
 script = ExtResource( 14 )

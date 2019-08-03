@@ -4,8 +4,6 @@ extends State
 Handles wall movement: sliding against the wall and wall jump
 """
 
-onready var fall_delay: Timer = $FallDelay
-
 export var slide_acceleration: = 1600.0
 export var max_slide_speed: = 400.0
 export (float, 0.0, 1.0) var friction_factor: = 0.15
@@ -13,14 +11,6 @@ export (float, 0.0, 1.0) var friction_factor: = 0.15
 export var jump_strength: = Vector2(500.0, 400.0)
 var _wall_normal: = -1
 var _velocity: = Vector2.ZERO
-
-
-func _ready() -> void:
-	fall_delay.connect("timeout", self, "_on_FallDelay_timeout")
-
-
-func _get_configuration_warning() -> String:
-	return "" if $FallDelay else "%s requires a Timer child named FallDelay" % name
 
 
 func enter(msg: Dictionary = {}) -> void:
@@ -42,12 +32,6 @@ func physics_process(delta: float) -> void:
 	if owner.is_on_floor():
 		_state_machine.transition_to("Move/Idle")
 
-	if not owner.wall_detector.is_colliding():
-		if fall_delay.is_stopped():
-			fall_delay.start()
-	else:
-		fall_delay.stop()
-
 	var move: = get_parent()
 	var is_moving_away_from_wall: = sign(move.get_move_direction().x) == sign(_wall_normal)
 	if is_moving_away_from_wall:
@@ -63,7 +47,6 @@ func unhandled_input(event: InputEvent) -> void:
 
 func exit() -> void:
 	owner.wall_detector.enabled = false
-	fall_delay.stop()
 
 
 func _on_FallDelay_timeout() -> void:
