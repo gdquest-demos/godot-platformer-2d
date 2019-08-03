@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/tilesets/platform.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/tilesets/basic.tres" type="TileSet" id=2]
 [ext_resource path="res://src/Objects/HookTarget.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/Objects/Checkpoint/Checkpoint.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Objects/Checkpoint.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Levels/Exit.tscn" type="PackedScene" id=5]
 
 [node name="Level1" type="Node2D"]
@@ -35,8 +35,12 @@ position = Vector2( 1090, 630 )
 
 [node name="Checkpoints" type="Node" parent="."]
 
-[node name="Checkpoint" parent="Checkpoints" instance=ExtResource( 4 )]
+[node name="0" parent="Checkpoints" instance=ExtResource( 4 )]
 position = Vector2( 490, 670 )
+color = {
+"active": Color( 0.988235, 0.403922, 0.403922, 1 ),
+"inactive": Color( 0.223529, 0.223529, 0.223529, 1 )
+}
 
 [node name="Exit" parent="." instance=ExtResource( 5 )]
 position = Vector2( 2710, 510 )

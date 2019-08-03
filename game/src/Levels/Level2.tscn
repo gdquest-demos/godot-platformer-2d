@@ -1,10 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/tilesets/basic.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Objects/HookTarget.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/AI/PatrolAgent.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/Objects/Exit.tscn" type="PackedScene" id=4]
-
+[ext_resource path="res://src/Objects/Checkpoint.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Objects/Exit.tscn" type="PackedScene" id=5]
 
 [node name="Level2" type="Node2D"]
 position = Vector2( 2440, -580 )
@@ -37,9 +37,13 @@ gravity = 1000.0
 
 [node name="Checkpoints" type="Node" parent="."]
 
-[node name="0" type="Position2D" parent="Checkpoints"]
+[node name="0" parent="Checkpoints" instance=ExtResource( 4 )]
 position = Vector2( 2480, 420 )
+color = {
+"active": Color( 0.988235, 0.403922, 0.403922, 1 ),
+"inactive": Color( 0.223529, 0.223529, 0.223529, 1 )
+}
 
-[node name="Exit" parent="." instance=ExtResource( 4 )]
+[node name="Exit" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1860, 420 )
 next_level_path = "res://src/Levels/Level1.tscn"
