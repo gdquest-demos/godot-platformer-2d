@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/theme/gdquest.theme" type="Theme" id=2]
 [ext_resource path="res://src/UI/debug/DebugDock.gd" type="Script" id=3]
 [ext_resource path="res://src/UI/debug/DebugPanel.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/Objects/Checkpoint/Checkpoints.gd" type="Script" id=5]
+[ext_resource path="res://src/Main/Checkpoints.gd" type="Script" id=5]
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Levels/SkyParallaxBackground.tscn" type="PackedScene" id=7]
 
@@ -58,6 +58,7 @@ tracks/1/keys = {
 script = ExtResource( 1 )
 
 [node name="UI" type="CanvasLayer" parent="."]
+editor/display_folded = true
 layer = 100
 
 [node name="DebugDock" type="MarginContainer" parent="UI"]
@@ -113,6 +114,18 @@ script = ExtResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
 editor/display_folded = true
+
+[node name="CameraRig" parent="Player" index="6"]
+position = Vector2( 0, -30 )
+
+[node name="Air" parent="Player/StateMachine/Move" index="2"]
+acceleration_x = 3000.0
+
+[node name="Wall" parent="Player/StateMachine/Move" index="3"]
+slide_acceleration = 1600.0
+max_slide_speed = 400.0
+friction_factor = 0.15
+jump_strength = Vector2( 500, 400 )
 
 [node name="SkyParallaxBackground" parent="." instance=ExtResource( 7 )]
 
