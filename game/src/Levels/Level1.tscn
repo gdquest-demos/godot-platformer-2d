@@ -43,5 +43,5 @@ color = {
 }
 
 [node name="Exit" parent="." instance=ExtResource( 5 )]
-position = Vector2( 2710, 510 )
+position = Vector2( 2700, 260 )
 next_level_path = "res://src/Levels/Level2.tscn"

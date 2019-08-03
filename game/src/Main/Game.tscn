@@ -115,18 +115,6 @@ script = ExtResource( 5 )
 [node name="Player" parent="." instance=ExtResource( 6 )]
 editor/display_folded = true
 
-[node name="CameraRig" parent="Player" index="6"]
-position = Vector2( 0, -30 )
-
-[node name="Air" parent="Player/StateMachine/Move" index="2"]
-acceleration_x = 3000.0
-
-[node name="Wall" parent="Player/StateMachine/Move" index="3"]
-slide_acceleration = 1600.0
-max_slide_speed = 400.0
-friction_factor = 0.15
-jump_strength = Vector2( 500, 400 )
-
 [node name="SkyParallaxBackground" parent="." instance=ExtResource( 7 )]
 
 [editable path="Player"]
