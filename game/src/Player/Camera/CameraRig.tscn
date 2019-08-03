@@ -4,7 +4,6 @@
 [ext_resource path="res://src/Player/Camera/ShakingCamera.gd" type="Script" id=2]
 
 [node name="CameraRig" type="Position2D"]
-position = Vector2( 0, -30 )
 script = ExtResource( 1 )
 
 [node name="ShakingCamera" type="Camera2D" parent="."]
@@ -19,6 +18,10 @@ drag_margin_bottom = 0.0
 script = ExtResource( 2 )
 amplitude = 8.0
 duration = 0.8
+default_smoothing_speed = {
+"gamepad": 1,
+"mouse": 3
+}
 
 [node name="Timer" type="Timer" parent="ShakingCamera"]
 wait_time = 0.8

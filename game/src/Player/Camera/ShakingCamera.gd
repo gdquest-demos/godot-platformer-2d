@@ -3,6 +3,7 @@ extends Camera2D
 """
 Shakes the screen when is_shaking is set to true
 To make it react to events happening in the game world, use the Events signal routing singleton
+Uses different smoothing values depending on the active controller
 """
 
 onready var timer = $Timer
@@ -11,15 +12,30 @@ export var amplitude = 4.0
 export var duration = 0.3 setget set_duration
 export var DAMP_EASING = 1.0
 export var is_shaking = false setget set_is_shaking
+export var default_smoothing_speed: = {
+	mouse=3,
+	gamepad=1
+}
 
 enum States {IDLE, SHAKING}
 var state = States.IDLE
-var default_smoothing_speed: = smoothing_speed
+
+
+func reset_smoothing_speed() -> void:
+	match Settings.controls:
+		Settings.GAMEPAD:
+			smoothing_speed = default_smoothing_speed.gamepad
+
+		Settings.KBD_MOUSE, _:
+		    smoothing_speed = default_smoothing_speed.mouse
 
 
 func _ready() -> void:
+	Settings.connect('controls_changed', self, 'reset_smoothing_speed')
 	timer.connect('timeout', self, '_on_ShakeTimer_timeout')
+
 	self.duration = duration
+	reset_smoothing_speed()
 	set_process(false)
 
 
