@@ -17,14 +17,15 @@ signal jumped
 onready var jump_delay: Timer = $JumpDelay
 onready var controls_freeze: Timer = $ControlsFreeze
 
-export var acceleration_x: = 3000.0
+export var acceleration_x: = 5000.0
 
 
 func enter(msg: Dictionary = {}) -> void:
 	var move: = get_parent()
 	move.velocity = msg.velocity if "velocity" in msg else move.velocity
+	move.acceleration.x = acceleration_x
 	if "impulse" in msg:
-		move.velocity = calculate_jump_velocity(msg.impulse)
+		move.velocity += calculate_jump_velocity(msg.impulse)
 	if "wall_jump" in msg:
 		controls_freeze.start()
 		move.acceleration = Vector2(acceleration_x, move.acceleration_default.y)
