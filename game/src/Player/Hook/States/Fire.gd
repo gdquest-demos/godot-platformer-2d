@@ -9,10 +9,6 @@ func _on_Cooldown_timeout() -> void:
 	_state_machine.transition_to("Aim")
 
 
-func physics_process(delta: float) -> void:
-	get_parent().physics_process(delta)
-
-
 func enter(msg: Dictionary = {}) -> void:
 	owner.is_aiming = false
 	owner.cooldown.start()
@@ -25,3 +21,9 @@ func enter(msg: Dictionary = {}) -> void:
 		owner.arrow.hook_position = owner.ray_cast.get_collision_point()
 
 	owner.emit_signal("hooked_onto_target", owner.get_target_position())
+
+
+func physics_process(delta: float) -> void:
+	get_parent().physics_process(delta)
+
+

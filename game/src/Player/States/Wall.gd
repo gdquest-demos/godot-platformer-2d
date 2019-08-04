@@ -4,6 +4,7 @@ extends State
 Handles wall movement: sliding against the wall and wall jump
 """
 
+
 export var slide_acceleration: = 1600.0
 export var max_slide_speed: = 400.0
 export (float, 0.0, 1.0) var friction_factor: = 0.15
@@ -19,6 +20,11 @@ func enter(msg: Dictionary = {}) -> void:
 
 	owner.wall_detector.cast_to.x = abs(owner.wall_detector.cast_to.x) * -1.0 * sign(_wall_normal)
 	owner.wall_detector.enabled = true
+
+
+func unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("jump"):
+		jump()
 
 
 func physics_process(delta: float) -> void:
@@ -38,6 +44,10 @@ func physics_process(delta: float) -> void:
 		jump()
 
 
+func exit() -> void:
+	owner.wall_detector.enabled = false
+
+
 func jump() -> void:
 	# The direction vector not being normalized is intended
 	var impulse: = Vector2(_wall_normal, -1.0) * jump_strength
@@ -46,16 +56,3 @@ func jump() -> void:
 		wall_jump = true
 	}
 	_state_machine.transition_to("Move/Air", msg)
-
-
-func unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("jump"):
-		jump()
-
-
-func exit() -> void:
-	owner.wall_detector.enabled = false
-
-
-func _on_FallDelay_timeout() -> void:
-	_state_machine.transition_to("Move/Air", {"velocity": _velocity})

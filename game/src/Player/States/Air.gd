@@ -11,6 +11,7 @@ You can pass a msg to this state, every key is optional:
 The player can jump after falling off a ledge. See unhandled_input and jump_delay.
 """
 
+
 signal jumped
 
 onready var jump_delay: Timer = $JumpDelay
@@ -19,8 +20,16 @@ onready var controls_freeze: Timer = $ControlsFreeze
 export var acceleration_x: = 3000.0
 
 
-func _get_configuration_warning() -> String:
-	return "" if $JumpDelay else "%s requires a Timer child named JumpDelay" % name
+func enter(msg: Dictionary = {}) -> void:
+	var move: = get_parent()
+	move.velocity = msg.velocity if "velocity" in msg else move.velocity
+	if "impulse" in msg:
+		move.velocity = calculate_jump_velocity(msg.impulse)
+	if "wall_jump" in msg:
+		controls_freeze.start()
+		move.acceleration = Vector2(acceleration_x, move.acceleration_default.y)
+		move.max_speed.x = max(abs(move.velocity.x), move.max_speed_default.x)
+		jump_delay.start()
 
 
 func unhandled_input(event: InputEvent) -> void:
@@ -60,18 +69,14 @@ func physics_process(delta: float) -> void:
 		_state_machine.transition_to("Move/Wall", {"normal": wall_normal, "velocity": move.velocity})
 
 
-func enter(msg: Dictionary = {}) -> void:
+func exit() -> void:
 	var move: = get_parent()
-	move.velocity = msg.velocity if "velocity" in msg else move.velocity
-	if "impulse" in msg:
-		move.velocity = calculate_jump_velocity(msg.impulse)
-	if "wall_jump" in msg:
-		controls_freeze.start()
-	move.acceleration = Vector2(acceleration_x, move.acceleration_default.y)
-	move.max_speed.x = max(abs(move.velocity.x), move.max_speed_default.x)
-	jump_delay.start()
+	move.acceleration = move.acceleration_default
 
 
+"""
+Returns a new velocity with a vertical impulse applied to it
+"""
 func calculate_jump_velocity(impulse: float = 0.0) -> Vector2:
 	var move: State = get_parent()
 	return move.calculate_velocity(
@@ -83,6 +88,5 @@ func calculate_jump_velocity(impulse: float = 0.0) -> Vector2:
 	)
 
 
-func exit() -> void:
-	var move: = get_parent()
-	move.acceleration = move.acceleration_default
+func _get_configuration_warning() -> String:
+	return "" if $JumpDelay else "%s requires a Timer child named JumpDelay" % name

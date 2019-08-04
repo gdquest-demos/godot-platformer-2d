@@ -18,6 +18,11 @@ func _ready() -> void:
 	_state_machine = _get_state_machine(self)
 
 
+"""
+Virtual function similar to Godot's built-in `_ready`,
+except that the callback happens once the node's owner is ready
+Use this to initialize the state with its owner's properties or to connect to the owner's signals
+"""
 func _setup() -> void:
 	pass
 

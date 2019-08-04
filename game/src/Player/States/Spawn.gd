@@ -1,4 +1,7 @@
 extends State
+"""
+Takes control away from the player and makes the character spawn
+"""
 
 
 func enter(msg: Dictionary = {}) -> void:

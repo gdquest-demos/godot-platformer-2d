@@ -13,6 +13,13 @@ var target_global_position: = Vector2(INF, INF)
 var velocity: = Vector2.ZERO
 
 
+func enter(msg: Dictionary = {}) -> void:
+	match msg:
+		{"target_global_position": var tgp, "velocity": var v}:
+			target_global_position = tgp
+			velocity = v
+
+
 func physics_process(delta: float) -> void:
 	var new_velocity: = Steering.arrive_to(
 		velocity,
@@ -30,13 +37,6 @@ func physics_process(delta: float) -> void:
 	if distance < velocity.length() * delta:
 		velocity = velocity.normalized() * arrive_push
 		_state_machine.transition_to("Move/Air", {velocity = velocity})
-
-
-func enter(msg: Dictionary = {}) -> void:
-	match msg:
-		{"target_global_position": var tgp, "velocity": var v}:
-			target_global_position = tgp
-			velocity = v
 
 
 func exit() -> void:

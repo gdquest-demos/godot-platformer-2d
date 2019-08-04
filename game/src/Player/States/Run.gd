@@ -1,12 +1,15 @@
 extends State
 """
-Delegates movement to its parent Move state
+Horizontal movement on the ground.
+Delegates movement to its parent Move state and extends it
+with state transitions
 """
 
 
 
 func unhandled_input(event: InputEvent) -> void:
-	get_parent().unhandled_input(event)
+	var move: = get_parent()
+	move.unhandled_input(event)
 
 
 func physics_process(delta: float) -> void:
