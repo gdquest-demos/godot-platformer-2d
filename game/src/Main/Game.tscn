@@ -80,17 +80,17 @@ mouse_filter = 2
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 408.0
-margin_bottom = 162.0
+margin_bottom = 196.0
 mouse_filter = 2
 reference_path = NodePath("../../../../../Game/Player/StateMachine/Move")
-properties = PoolStringArray( "velocity", "speed" )
+properties = PoolStringArray( "velocity", "acceleration", "max_speed" )
 
 [node name="DebugPanel2" parent="UI/DebugDock/Column" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 170.0
+margin_top = 204.0
 margin_right = 408.0
-margin_bottom = 298.0
+margin_bottom = 332.0
 mouse_filter = 2
 reference_path = NodePath("../../../../../Game/Player/StateMachine")
 properties = PoolStringArray( "_state_name" )

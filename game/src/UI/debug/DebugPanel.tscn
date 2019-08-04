@@ -11,6 +11,8 @@ margin_right = -1630.0
 margin_bottom = -998.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
+reference_path = NodePath("")
+properties = PoolStringArray(  )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_right = 290.0
@@ -21,7 +23,7 @@ margin_right = 290.0
 margin_bottom = 54.0
 rect_min_size = Vector2( 0, 54 )
 custom_fonts/font = ExtResource( 3 )
-text = "title"
+text = "DebugPanel"
 align = 1
 valign = 1
 
