@@ -11,7 +11,7 @@ export var jump_impulse: = 900.0
 
 var acceleration: = acceleration_default
 var max_speed: = max_speed_default
-var velocity: = Vector2.ZERO setget set_velocity
+var velocity: = Vector2.ZERO
 
 
 func _setup() -> void:
@@ -46,17 +46,9 @@ func unhandled_input(event: InputEvent) -> void:
 
 
 func physics_process(delta: float) -> void:
-	self.velocity = calculate_velocity(velocity, max_speed, acceleration, delta, get_move_direction())
-	self.velocity = owner.move_and_slide(velocity, owner.FLOOR_NORMAL)
+	velocity = calculate_velocity(velocity, max_speed, acceleration, delta, get_move_direction())
+	velocity = owner.move_and_slide(velocity, owner.FLOOR_NORMAL)
 	Events.emit_signal("player_moved", owner)
-
-
-func set_velocity(value: Vector2) -> void:
-	if owner == null:
-		return
-
-	velocity = value
-	owner.info_dict.velocity = velocity
 
 
 static func calculate_velocity(

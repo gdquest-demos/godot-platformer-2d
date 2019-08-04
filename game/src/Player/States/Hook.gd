@@ -10,7 +10,7 @@ const HOOK_MAX_SPEED: = 1600.0
 export var arrive_push: = 500.0
 
 var target_global_position: = Vector2(INF, INF)
-var velocity: = Vector2.ZERO setget set_velocity
+var velocity: = Vector2.ZERO
 
 
 func physics_process(delta: float) -> void:
@@ -21,14 +21,14 @@ func physics_process(delta: float) -> void:
 		HOOK_MAX_SPEED
 	)
 	new_velocity = new_velocity if new_velocity.length() > arrive_push else new_velocity.normalized() * arrive_push
-	self.velocity = owner.move_and_slide(new_velocity, owner.FLOOR_NORMAL)
+	velocity = owner.move_and_slide(new_velocity, owner.FLOOR_NORMAL)
 	Events.emit_signal("player_moved", owner)
 
 	var to_target: Vector2 = target_global_position - owner.global_position
 	var distance: = to_target.length()
 
 	if distance < velocity.length() * delta:
-		self.velocity = velocity.normalized() * arrive_push
+		velocity = velocity.normalized() * arrive_push
 		_state_machine.transition_to("Move/Air", {velocity = velocity})
 
 
@@ -41,9 +41,4 @@ func enter(msg: Dictionary = {}) -> void:
 
 func exit() -> void:
 	target_global_position = Vector2(INF, INF)
-	self.velocity = Vector2.ZERO
-
-
-func set_velocity(value: Vector2) -> void:
-	velocity = value
-	owner.info_dict.velocity = velocity
+	velocity = Vector2.ZERO

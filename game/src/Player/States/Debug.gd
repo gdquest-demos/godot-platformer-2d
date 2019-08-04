@@ -6,7 +6,7 @@ Use the move_* input to move the character, or click
 debug_sprint, assigned to Shift on the keyboard and B on an XBOX controller, moves the character faster
 """
 
-var velocity: = Vector2.ZERO setget set_velocity
+var velocity: = Vector2.ZERO
 const speed: = Vector2(600.0, 600.0)
 
 
@@ -20,7 +20,7 @@ func unhandled_input(event: InputEvent) -> void:
 func physics_process(delta: float) -> void:
 	var direction: = get_move_direction()
 	var multiplier: = 3.0 if Input.is_action_pressed('debug_sprint') else 1.0
-	self.velocity = speed * direction * multiplier
+	velocity = speed * direction * multiplier
 	owner.position += velocity * delta
 	Events.emit_signal("player_moved", owner)
 
@@ -31,14 +31,6 @@ func enter(msg: Dictionary = {}):
 
 func exit():
 	owner.is_active = true
-
-
-func set_velocity(value: Vector2) -> void:
-	if owner == null:
-		return
-	
-	velocity = value
-	owner.info_dict.velocity = velocity
 
 
 static func get_move_direction() -> Vector2:

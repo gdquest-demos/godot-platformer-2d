@@ -23,7 +23,6 @@ onready var wall_detector: RayCast2D = $WallDetector
 const FLOOR_NORMAL: = Vector2.UP
 
 var is_active: = true setget set_is_active
-var info_dict: = {} setget set_info_dict
 
 
 func _ready() -> void:
@@ -42,8 +41,3 @@ func set_is_active(value: bool) -> void:
 	hook.is_active = value
 	ledge_detector.is_active = value
 	hitbox.monitoring = value
-
-
-func set_info_dict(value: Dictionary) -> void:
-	info_dict = value
-	Events.emit_signal("player_info_updated", info_dict)
