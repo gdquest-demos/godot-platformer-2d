@@ -1,32 +1,29 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/Hook/Hook.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Player/LedgeDetector.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Player/FloorDetector.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/Player/Camera/CameraAnchorDetector.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/Player/Camera/CameraRig.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/Player/Skin.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/StateMachine/StateMachine.gd" type="Script" id=8]
-[ext_resource path="res://src/Player/States/Move.gd" type="Script" id=9]
-[ext_resource path="res://src/Player/States/Idle.gd" type="Script" id=10]
-[ext_resource path="res://src/Player/States/Run.gd" type="Script" id=11]
-[ext_resource path="res://src/Player/States/Air.gd" type="Script" id=12]
-[ext_resource path="res://src/Player/States/Wall.gd" type="Script" id=13]
-[ext_resource path="res://src/Player/States/Ledge.gd" type="Script" id=14]
-[ext_resource path="res://src/Player/States/Hook.gd" type="Script" id=15]
-[ext_resource path="res://src/Player/States/Debug.gd" type="Script" id=16]
-[ext_resource path="res://src/Player/States/Stagger.gd" type="Script" id=17]
-[ext_resource path="res://src/Player/States/Spawn.gd" type="Script" id=18]
-[ext_resource path="res://src/Player/States/Die.gd" type="Script" id=19]
-[ext_resource path="res://src/Combat/Stats.tscn" type="PackedScene" id=20]
-[ext_resource path="res://src/Combat/HitBox/HitBox.tscn" type="PackedScene" id=21]
-[ext_resource path="res://src/Player/PassThroughDetector.gd" type="Script" id=22]
+[ext_resource path="res://src/Player/PassThroughDetector.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Player/Camera/CameraAnchorDetector.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Player/Camera/CameraRig.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Player/Skin.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/StateMachine/StateMachine.gd" type="Script" id=9]
+[ext_resource path="res://src/Player/States/Move.gd" type="Script" id=10]
+[ext_resource path="res://src/Player/States/Idle.gd" type="Script" id=11]
+[ext_resource path="res://src/Player/States/Run.gd" type="Script" id=12]
+[ext_resource path="res://src/Player/States/Air.gd" type="Script" id=13]
+[ext_resource path="res://src/Player/States/Wall.gd" type="Script" id=14]
+[ext_resource path="res://src/Player/States/Ledge.gd" type="Script" id=15]
+[ext_resource path="res://src/Player/States/Hook.gd" type="Script" id=16]
+[ext_resource path="res://src/Player/States/Debug.gd" type="Script" id=17]
+[ext_resource path="res://src/Player/States/Stagger.gd" type="Script" id=18]
+[ext_resource path="res://src/Player/States/Spawn.gd" type="Script" id=19]
+[ext_resource path="res://src/Player/States/Die.gd" type="Script" id=20]
+[ext_resource path="res://src/Combat/Stats.tscn" type="PackedScene" id=21]
+[ext_resource path="res://src/Combat/HitBox/HitBox.tscn" type="PackedScene" id=22]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 30, 30 )
-
-[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 30, 30 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -49,13 +46,15 @@ position = Vector2( 0, -31.1111 )
 cast_to = Vector2( 100, 0 )
 collision_mask = 2
 
-[node name="CameraAnchorDetector" parent="." instance=ExtResource( 5 )]
+[node name="PassThroughDetector" parent="." instance=ExtResource( 5 )]
+
+[node name="CameraAnchorDetector" parent="." instance=ExtResource( 6 )]
 editor/display_folded = true
 
 [node name="CameraPosition" parent="CameraAnchorDetector" index="1"]
 remote_path = NodePath("../../CameraRig")
 
-[node name="CameraRig" parent="." instance=ExtResource( 6 )]
+[node name="CameraRig" parent="." instance=ExtResource( 7 )]
 editor/display_folded = true
 position = Vector2( 0, -30 )
 
@@ -65,28 +64,28 @@ default_smoothing_speed = {
 "mouse": 3
 }
 
-[node name="Skin" parent="." instance=ExtResource( 7 )]
+[node name="Skin" parent="." instance=ExtResource( 8 )]
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource( 8 )
+script = ExtResource( 9 )
 initial_state = NodePath("Move/Idle")
 
 [node name="Move" type="Node" parent="StateMachine"]
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 
 [node name="Idle" type="Node" parent="StateMachine/Move"]
 editor/display_folded = true
-script = ExtResource( 10 )
+script = ExtResource( 11 )
 
 [node name="JumpDelay" type="Timer" parent="StateMachine/Move/Idle"]
 wait_time = 0.1
 one_shot = true
 
 [node name="Run" type="Node" parent="StateMachine/Move"]
-script = ExtResource( 11 )
+script = ExtResource( 12 )
 
 [node name="Air" type="Node" parent="StateMachine/Move"]
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 
 [node name="JumpDelay" type="Timer" parent="StateMachine/Move/Air"]
 wait_time = 0.1
@@ -97,47 +96,35 @@ wait_time = 0.16
 one_shot = true
 
 [node name="Wall" type="Node" parent="StateMachine/Move"]
-script = ExtResource( 13 )
-
-[node name="Ledge" type="Node" parent="StateMachine"]
 script = ExtResource( 14 )
 
-[node name="Hook" type="Node" parent="StateMachine"]
+[node name="Ledge" type="Node" parent="StateMachine"]
 script = ExtResource( 15 )
+
+[node name="Hook" type="Node" parent="StateMachine"]
+script = ExtResource( 16 )
 arrive_push = 900.0
 
 [node name="Debug" type="Node" parent="StateMachine"]
-script = ExtResource( 16 )
+script = ExtResource( 17 )
 
 [node name="Stagger" type="Node" parent="StateMachine"]
 editor/display_folded = true
-script = ExtResource( 17 )
+script = ExtResource( 18 )
 
 [node name="Duration" type="Timer" parent="StateMachine/Stagger"]
 one_shot = true
 
 [node name="Spawn" type="Node" parent="StateMachine"]
-script = ExtResource( 18 )
-
-[node name="Die" type="Node" parent="StateMachine"]
 script = ExtResource( 19 )
 
-[node name="Stats" parent="." instance=ExtResource( 20 )]
+[node name="Die" type="Node" parent="StateMachine"]
+script = ExtResource( 20 )
 
-[node name="HitBox" parent="." instance=ExtResource( 21 )]
+[node name="Stats" parent="." instance=ExtResource( 21 )]
+
+[node name="HitBox" parent="." instance=ExtResource( 22 )]
 position = Vector2( 0, -30 )
-
-[node name="PassThroughDetector" type="Area2D" parent="."]
-position = Vector2( 0, -30 )
-collision_layer = 0
-collision_mask = 8
-script = ExtResource( 22 )
-actor_path = NodePath("..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PassThroughDetector"]
-rotation = 3.14159
-shape = SubResource( 2 )
-one_way_collision = true
 
 [editable path="CameraAnchorDetector"]
 
