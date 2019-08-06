@@ -41,7 +41,7 @@ func physics_process(delta: float) -> void:
 	var move: = get_parent()
 	var is_moving_away_from_wall: = sign(move.get_move_direction().x) == sign(_wall_normal)
 	if is_moving_away_from_wall:
-		jump()
+		_state_machine.transition_to("Move/Air")
 
 
 func exit() -> void:
