@@ -22,6 +22,7 @@ onready var wall_detector: RayCast2D = $WallDetector
 const FLOOR_NORMAL: = Vector2.UP
 
 var is_active: = true setget set_is_active
+var has_teleported: = false
 
 
 func _ready() -> void:

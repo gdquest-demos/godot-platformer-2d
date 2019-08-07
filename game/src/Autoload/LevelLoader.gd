@@ -16,7 +16,7 @@ func setup(game: Node, player: Player, Level: PackedScene) -> void:
 	trigger(Level)
 
 
-func trigger(NewLevel: PackedScene) -> void:
+func trigger(NewLevel: PackedScene, portal_name: String = "") -> void:
 	_game.remove_child(_player)
 	
 	if _level:
@@ -24,15 +24,24 @@ func trigger(NewLevel: PackedScene) -> void:
 #		_game.transition.animation_player.play("transition")
 		_level.queue_free()
 		yield(_level, "tree_exited")
-
+	
 	_level = NewLevel.instance()
-
-	var player_spawn: = _level.get_node("Checkpoints").get_child(0)
-	_player.global_position = player_spawn.global_position
+	
+	var player_position_node: Area2D = (
+		_level.get_node("Checkpoints").get_child(0)
+		if portal_name.empty()
+		else _level.get_node("Portals/%s" % portal_name))
+	_player.global_position = player_position_node.global_position
+	_player.has_teleported = not portal_name.empty()
+	
+	for checkpoint_name in _game.visited_checkpoints.get(_level.name, []):
+		var checkpoint: Area2D = _level.get_node("Checkpoints/%s" % checkpoint_name)
+		checkpoint.is_visited = true
 	
 #	if _game.transition.animation_player.current_animation == "transition":
 #		yield(_game.transition, "peaked")
 	
+	_game.level = _level
 	_game.add_child(_level)
 	_game.add_child(_player)
 	
