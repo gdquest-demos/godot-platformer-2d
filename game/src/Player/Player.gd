@@ -13,7 +13,6 @@ onready var hitbox: Area2D = $HitBox
 
 onready var camera_rig: Position2D = $CameraRig
 onready var shaking_camera: Camera2D = $CameraRig/ShakingCamera
-onready var camera_area_detector: Area2D = $CameraAnchorDetector
 
 onready var ledge_detector: Position2D = $LedgeDetector
 onready var floor_detector: RayCast2D = $FloorDetector
