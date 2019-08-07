@@ -5,9 +5,10 @@
 [ext_resource path="res://src/Combat/DamageSource.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Player/Hook/TargetCircle.gd" type="Script" id=4]
 [ext_resource path="res://src/Player/Hook/SnapDetector.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/StateMachine/StateMachine.gd" type="Script" id=6]
+[ext_resource path="res://src/Main/StateMachine/StateMachine.gd" type="Script" id=6]
 [ext_resource path="res://src/Player/Hook/States/Aim.gd" type="Script" id=7]
 [ext_resource path="res://src/Player/Hook/States/Fire.gd" type="Script" id=8]
+
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends RayCast2D

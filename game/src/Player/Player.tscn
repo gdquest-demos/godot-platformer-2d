@@ -8,7 +8,7 @@
 [ext_resource path="res://src/Player/Camera/CameraAnchorDetector.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Player/Camera/CameraRig.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Player/Skin.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/StateMachine/StateMachine.gd" type="Script" id=9]
+[ext_resource path="res://src/Main/StateMachine/StateMachine.gd" type="Script" id=9]
 [ext_resource path="res://src/Player/States/Move.gd" type="Script" id=10]
 [ext_resource path="res://src/Player/States/Idle.gd" type="Script" id=11]
 [ext_resource path="res://src/Player/States/Run.gd" type="Script" id=12]
@@ -22,6 +22,7 @@
 [ext_resource path="res://src/Player/States/Die.gd" type="Script" id=20]
 [ext_resource path="res://src/Combat/Stats.tscn" type="PackedScene" id=21]
 [ext_resource path="res://src/Combat/HitBox/HitBox.tscn" type="PackedScene" id=22]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 30 )
