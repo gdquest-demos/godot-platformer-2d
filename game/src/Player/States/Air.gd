@@ -22,8 +22,10 @@ export var acceleration_x: = 5000.0
 
 func enter(msg: Dictionary = {}) -> void:
 	var move: = get_parent()
-	move.velocity = msg.velocity if "velocity" in msg else move.velocity
 	move.acceleration.x = acceleration_x
+	if "velocity" in msg:
+		move.velocity = msg.velocity 
+		move.max_speed.x = max(abs(msg.velocity.x), move.max_speed.x)
 	if "impulse" in msg:
 		move.velocity += calculate_jump_velocity(msg.impulse)
 	if "wall_jump" in msg:
