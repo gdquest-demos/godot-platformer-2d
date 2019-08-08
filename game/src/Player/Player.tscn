@@ -38,6 +38,7 @@ shape = SubResource( 1 )
 position = Vector2( 0, -30 )
 
 [node name="LedgeDetector" parent="." instance=ExtResource( 3 )]
+is_active = true
 
 [node name="FloorDetector" parent="." instance=ExtResource( 4 )]
 
@@ -46,7 +47,7 @@ position = Vector2( 0, -31.1111 )
 cast_to = Vector2( 100, 0 )
 collision_mask = 2
 
-[node name="PassThroughDetector" parent="." instance=ExtResource( 5 )]
+[node name="PassThrough" parent="." instance=ExtResource( 5 )]
 
 [node name="CameraAnchorDetector" parent="." instance=ExtResource( 6 )]
 editor/display_folded = true
@@ -59,6 +60,8 @@ editor/display_folded = true
 position = Vector2( 0, -30 )
 
 [node name="ShakingCamera" parent="CameraRig" index="0"]
+DAMP_EASING = 1.0
+is_shaking = false
 default_smoothing_speed = {
 "gamepad": 1,
 "mouse": 3
@@ -97,6 +100,10 @@ one_shot = true
 
 [node name="Wall" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 14 )
+slide_acceleration = 1600.0
+max_slide_speed = 400.0
+friction_factor = 0.15
+jump_strength = Vector2( 500, 400 )
 
 [node name="Ledge" type="Node" parent="StateMachine"]
 script = ExtResource( 15 )
