@@ -14,14 +14,6 @@ var _wall_normal: = -1
 var _velocity: = Vector2.ZERO
 
 
-func enter(msg: Dictionary = {}) -> void:
-	_wall_normal = msg.normal
-	_velocity.y = clamp(msg.velocity.y, -max_slide_speed, max_slide_speed)
-
-	owner.wall_detector.cast_to.x = abs(owner.wall_detector.cast_to.x) * -1.0 * sign(_wall_normal)
-	owner.wall_detector.enabled = true
-
-
 func unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		jump()
@@ -44,8 +36,19 @@ func physics_process(delta: float) -> void:
 		_state_machine.transition_to("Move/Air")
 
 
+func enter(msg: Dictionary = {}) -> void:
+	get_parent().enter(msg)
+	
+	_wall_normal = msg.normal
+	_velocity.y = clamp(msg.velocity.y, -max_slide_speed, max_slide_speed)
+
+	owner.wall_detector.cast_to.x = abs(owner.wall_detector.cast_to.x) * -1.0 * sign(_wall_normal)
+	owner.wall_detector.enabled = true
+
+
 func exit() -> void:
 	owner.wall_detector.enabled = false
+	get_parent().exit()
 
 
 func jump() -> void:

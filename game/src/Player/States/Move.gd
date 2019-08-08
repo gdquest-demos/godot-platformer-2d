@@ -15,12 +15,6 @@ var max_speed: = max_speed_default
 var velocity: = Vector2.ZERO
 
 
-func _setup() -> void:
-	owner.hook.connect("hooked_onto_target", self, "_on_Hook_hooked_onto_target")
-	$Air.connect("jumped", $Idle.jump_delay, "start")
-	owner.stats.connect("damage_taken", self, "_on_Stats_damage_taken")
-	owner.pass_through.connect("body_exited", self, "_on_PassThrough_body_exited")
-
 func _on_Hook_hooked_onto_target(target_global_position: Vector2) -> void:
 	var to_target: Vector2 = target_global_position - owner.global_position
 	if owner.is_on_floor() and to_target.y > 0.0:
@@ -55,6 +49,20 @@ func physics_process(delta: float) -> void:
 	velocity = calculate_velocity(velocity, max_speed, acceleration, delta, get_move_direction())
 	velocity = owner.move_and_slide(velocity, owner.FLOOR_NORMAL)
 	Events.emit_signal("player_moved", owner)
+
+
+func enter(msg: Dictionary = {}) -> void:
+	owner.hook.connect("hooked_onto_target", self, "_on_Hook_hooked_onto_target")
+	owner.stats.connect("damage_taken", self, "_on_Stats_damage_taken")
+	owner.pass_through.connect("body_exited", self, "_on_PassThrough_body_exited")
+	$Air.connect("jumped", $Idle.jump_delay, "start")
+
+
+func exit() -> void:
+	owner.hook.disconnect("hooked_onto_target", self, "_on_Hook_hooked_onto_target")
+	owner.stats.disconnect("damage_taken", self, "_on_Stats_damage_taken")
+	owner.pass_through.disconnect("body_exited", self, "_on_PassThrough_body_exited")
+	$Air.disconnect("jumped", $Idle.jump_delay, "start")
 
 
 static func calculate_velocity(

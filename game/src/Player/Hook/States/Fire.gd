@@ -1,15 +1,17 @@
 extends State
 
 
-func _setup() -> void:
-	owner.cooldown.connect("timeout", self, "_on_Cooldown_timeout")
-
-
 func _on_Cooldown_timeout() -> void:
 	_state_machine.transition_to("Aim")
 
 
+func physics_process(delta: float) -> void:
+	get_parent().physics_process(delta)
+
+
 func enter(msg: Dictionary = {}) -> void:
+	owner.cooldown.connect("timeout", self, "_on_Cooldown_timeout")
+	
 	owner.is_aiming = false
 	owner.cooldown.start()
 
@@ -23,7 +25,6 @@ func enter(msg: Dictionary = {}) -> void:
 	owner.emit_signal("hooked_onto_target", owner.get_target_position())
 
 
-func physics_process(delta: float) -> void:
-	get_parent().physics_process(delta)
-
-
+func exit() -> void:
+	owner.cooldown.disconnect("timeout", self, "_on_Cooldown_timeout")
+	
