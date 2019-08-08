@@ -42,7 +42,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "DrawingUtils",
 "language": "GDScript",
-"path": "res://src/Main/DrawingUtils.gd"
+"path": "res://src/Autoload/DrawingUtils.gd"
 }, {
 "base": "InterceptBehavior2D",
 "class": "EvadeBehavior2D",
