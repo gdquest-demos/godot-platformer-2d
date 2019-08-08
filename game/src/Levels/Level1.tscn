@@ -19,7 +19,7 @@ tile_data = PoolIntArray( -393216, 3, 0, -393215, 3, 1, -393214, 3, 1, -393213, 
 [node name="TileMap3" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 40, 40 )
-collision_layer = 4
+collision_layer = 8
 collision_mask = 0
 format = 1
 tile_data = PoolIntArray( 655407, 1, 0, 655408, 1, 0, 655409, 1, 0, 655410, 1, 0 )

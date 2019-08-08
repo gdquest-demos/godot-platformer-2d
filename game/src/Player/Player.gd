@@ -18,6 +18,8 @@ onready var ledge_detector: Position2D = $LedgeDetector
 onready var floor_detector: RayCast2D = $FloorDetector
 onready var wall_detector: RayCast2D = $WallDetector
 
+onready var pass_through: Area2D = $PassThrough
+
 
 const FLOOR_NORMAL: = Vector2.UP
 
