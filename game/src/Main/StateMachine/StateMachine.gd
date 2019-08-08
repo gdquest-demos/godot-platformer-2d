@@ -17,6 +17,7 @@ func _init() -> void:
 
 
 func _ready() -> void:
+	yield(owner, "ready")
 	state.enter()
 
 
