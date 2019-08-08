@@ -5,12 +5,8 @@ extends State
 onready var jump_delay: Timer = $JumpDelay
 
 
-func enter(msg: Dictionary = {}) -> void:
-	var move = get_parent()
-	move.max_speed = move.max_speed_default
-	move.velocity = Vector2.ZERO
-	if jump_delay.time_left > 0.0:
-		_state_machine.transition_to("Move/Air")
+func _get_configuration_warning() -> String:
+	return "" if $JumpDelay else "%s requires a Timer child named JumpDelay" % name
 
 
 func unhandled_input(event: InputEvent) -> void:
@@ -26,5 +22,15 @@ func physics_process(delta: float) -> void:
 		_state_machine.transition_to("Move/Air")
 
 
-func _get_configuration_warning() -> String:
-	return "" if $JumpDelay else "%s requires a Timer child named JumpDelay" % name
+func enter(msg: Dictionary = {}) -> void:
+	var move = get_parent()
+	move.enter(msg)
+	
+	move.max_speed = move.max_speed_default
+	move.velocity = Vector2.ZERO
+	if jump_delay.time_left > 0.0:
+		_state_machine.transition_to("Move/Air")
+
+
+func exit() -> void:
+	get_parent().exit()

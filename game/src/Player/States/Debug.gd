@@ -11,10 +11,6 @@ var velocity: = Vector2.ZERO
 const speed: = Vector2(600.0, 600.0)
 
 
-func enter(msg: Dictionary = {}):
-	owner.is_active = false
-
-
 func unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed('toggle_debug_move'):
 		_state_machine.transition_to('Move/Air', {'velocity': Vector2.ZERO})
@@ -28,6 +24,10 @@ func physics_process(delta: float) -> void:
 	velocity = speed * direction * multiplier
 	owner.position += velocity * delta
 	Events.emit_signal("player_moved", owner)
+
+
+func enter(msg: Dictionary = {}):
+	owner.is_active = false
 
 
 func exit():

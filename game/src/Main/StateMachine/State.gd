@@ -14,17 +14,7 @@ var _state_machine: Node = null
 
 
 func _ready() -> void:
-	owner.connect("ready", self, "_setup")
 	_state_machine = _get_state_machine(self)
-
-
-"""
-Virtual function similar to Godot's built-in `_ready`,
-except that the callback happens once the node's owner is ready
-Use this to initialize the state with its owner's properties or to connect to the owner's signals
-"""
-func _setup() -> void:
-	pass
 
 
 func unhandled_input(event: InputEvent) -> void:

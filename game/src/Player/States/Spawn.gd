@@ -4,6 +4,10 @@ Takes control away from the player and makes the character spawn
 """
 
 
+func _on_Player_animation_finished(anim_name: String) -> void:
+	_state_machine.transition_to('Move/Idle')
+
+
 func enter(msg: Dictionary = {}) -> void:
 	assert "last_checkpoint" in msg
 	owner.global_position = msg.last_checkpoint.global_position
@@ -17,7 +21,3 @@ func exit() -> void:
 	owner.is_active = true
 	owner.camera_rig.is_active = true
 	owner.skin.disconnect("animation_finished", self, "_on_Player_animation_finished")
-
-
-func _on_Player_animation_finished(anim_name: String) -> void:
-	_state_machine.transition_to('Move/Idle')

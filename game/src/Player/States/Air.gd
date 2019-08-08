@@ -20,21 +20,6 @@ onready var controls_freeze: Timer = $ControlsFreeze
 export var acceleration_x: = 5000.0
 
 
-func enter(msg: Dictionary = {}) -> void:
-	var move: = get_parent()
-	move.acceleration.x = acceleration_x
-	if "velocity" in msg:
-		move.velocity = msg.velocity 
-		move.max_speed.x = max(abs(msg.velocity.x), move.max_speed.x)
-	if "impulse" in msg:
-		move.velocity += calculate_jump_velocity(msg.impulse)
-	if "wall_jump" in msg:
-		controls_freeze.start()
-		move.acceleration = Vector2(acceleration_x, move.acceleration_default.y)
-		move.max_speed.x = max(abs(move.velocity.x), move.max_speed_default.x)
-		jump_delay.start()
-
-
 func unhandled_input(event: InputEvent) -> void:
 	var move: = get_parent()
 	# Jump after falling off a ledge
@@ -72,9 +57,27 @@ func physics_process(delta: float) -> void:
 		_state_machine.transition_to("Move/Wall", {"normal": wall_normal, "velocity": move.velocity})
 
 
+func enter(msg: Dictionary = {}) -> void:
+	var move: = get_parent()
+	move.enter(msg)
+	
+	move.acceleration.x = acceleration_x
+	if "velocity" in msg:
+		move.velocity = msg.velocity 
+		move.max_speed.x = max(abs(msg.velocity.x), move.max_speed.x)
+	if "impulse" in msg:
+		move.velocity += calculate_jump_velocity(msg.impulse)
+	if "wall_jump" in msg:
+		controls_freeze.start()
+		move.acceleration = Vector2(acceleration_x, move.acceleration_default.y)
+		move.max_speed.x = max(abs(move.velocity.x), move.max_speed_default.x)
+		jump_delay.start()
+
+
 func exit() -> void:
 	var move: = get_parent()
 	move.acceleration = move.acceleration_default
+	move.exit()
 
 
 """
