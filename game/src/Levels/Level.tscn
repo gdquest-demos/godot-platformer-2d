@@ -4,10 +4,11 @@
 [ext_resource path="res://assets/theme/gdquest.theme" type="Theme" id=2]
 [ext_resource path="res://src/UI/debug/DebugDock.gd" type="Script" id=3]
 [ext_resource path="res://src/UI/debug/DebugPanel.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/tilesets/basic.tres" type="TileSet" id=5]
+[ext_resource path="res://assets/tilesets/prototype.tres" type="TileSet" id=5]
 [ext_resource path="res://src/Objects/HookTarget.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Objects/HookTargetPullable/HookTargetPullable.tscn" type="PackedScene" id=8]
+
 
 [node name="Game" type="Node"]
 script = ExtResource( 1 )

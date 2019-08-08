@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/tilesets/platform.tres" type="TileSet" id=1]
-[ext_resource path="res://assets/tilesets/basic.tres" type="TileSet" id=2]
+[ext_resource path="res://assets/tilesets/valley.tres" type="TileSet" id=1]
+[ext_resource path="res://assets/tilesets/prototype.tres" type="TileSet" id=2]
 [ext_resource path="res://src/Objects/HookTarget.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Objects/Checkpoint.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Objects/Portal.tscn" type="PackedScene" id=5]
@@ -64,3 +64,4 @@ color = {
 [node name="0" parent="Portals" instance=ExtResource( 5 )]
 position = Vector2( 2721.46, 246.719 )
 next_level_file_path = "res://src/Levels/Level2.tscn"
+next_level_portal_name = ""
