@@ -64,7 +64,7 @@ func physics_process(delta: float) -> void:
 		var target_state: = "Move/Idle" if move.get_move_direction().x == 0 else "Move/Run"
 		_state_machine.transition_to(target_state)
 
-	elif owner.ledge_detector.is_against_ledge(sign(move.velocity.x)):
+	elif owner.ledge_wall_detector.is_against_ledge():
 		_state_machine.transition_to("Ledge", {move_state = move})
 
 	if owner.is_on_wall():

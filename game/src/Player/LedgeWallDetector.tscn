@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://src/Player/LedgeDetector.gd" type="Script" id=1]
+[ext_resource path="res://src/Player/LedgeWallDetector.gd" type="Script" id=1]
 
-[node name="LedgeDetector" type="Position2D"]
+[node name="LedeWallDetector" type="Position2D"]
 script = ExtResource( 1 )
 
 [node name="RayBottom" type="RayCast2D" parent="."]

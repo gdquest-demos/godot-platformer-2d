@@ -14,9 +14,8 @@ onready var hitbox: Area2D = $HitBox
 onready var camera_rig: Position2D = $CameraRig
 onready var shaking_camera: Camera2D = $CameraRig/ShakingCamera
 
-onready var ledge_detector: Position2D = $LedgeDetector
+onready var ledge_wall_detector: Position2D = $LedgeWallDetector
 onready var floor_detector: RayCast2D = $FloorDetector
-onready var wall_detector: RayCast2D = $WallDetector
 
 onready var pass_through: Area2D = $PassThrough
 
@@ -41,5 +40,5 @@ func set_is_active(value: bool) -> void:
 		return
 	collider.disabled = not value
 	hook.is_active = value
-	ledge_detector.is_active = value
+	ledge_wall_detector.is_active = value
 	hitbox.monitoring = value

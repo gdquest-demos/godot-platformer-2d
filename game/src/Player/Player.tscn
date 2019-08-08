@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/Hook/Hook.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/Player/LedgeDetector.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Player/LedgeWallDetector.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Player/FloorDetector.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Player/PassThrough.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Player/Camera/CameraAnchorDetector.tscn" type="PackedScene" id=6]
@@ -23,7 +23,6 @@
 [ext_resource path="res://src/Combat/Stats.tscn" type="PackedScene" id=21]
 [ext_resource path="res://src/Combat/HitBox/HitBox.tscn" type="PackedScene" id=22]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 30 )
 
@@ -38,15 +37,9 @@ shape = SubResource( 1 )
 [node name="Hook" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0, -30 )
 
-[node name="LedgeDetector" parent="." instance=ExtResource( 3 )]
-is_active = true
+[node name="LedgeWallDetector" parent="." instance=ExtResource( 3 )]
 
 [node name="FloorDetector" parent="." instance=ExtResource( 4 )]
-
-[node name="WallDetector" type="RayCast2D" parent="."]
-position = Vector2( 0, -31.1111 )
-cast_to = Vector2( 100, 0 )
-collision_mask = 2
 
 [node name="PassThrough" parent="." instance=ExtResource( 5 )]
 
@@ -101,10 +94,6 @@ one_shot = true
 
 [node name="Wall" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 14 )
-slide_acceleration = 1600.0
-max_slide_speed = 400.0
-friction_factor = 0.15
-jump_strength = Vector2( 500, 400 )
 
 [node name="Ledge" type="Node" parent="StateMachine"]
 script = ExtResource( 15 )
