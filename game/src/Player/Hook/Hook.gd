@@ -1,6 +1,6 @@
 tool
 extends Position2D
-class_name Hook
+class_name Hook, "res://assets/icons/icon_hook.svg"
 """
 Throws a raycast that can interact with Hookable bodies and calculate a pull vector towards those bodies.
 The raycast is updated manually for greater precision with where the player is aiming
