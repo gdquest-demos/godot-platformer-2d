@@ -14,6 +14,11 @@ var _wall_normal: = -1
 var _velocity: = Vector2.ZERO
 
 
+func unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("jump"):
+		jump()
+
+
 func physics_process(delta: float) -> void:
 	if _velocity.y > max_slide_speed:
 		_velocity.y = lerp(_velocity.y, max_slide_speed, friction_factor)
