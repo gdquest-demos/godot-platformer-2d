@@ -10,6 +10,8 @@ var target: HookTarget setget set_target
 
 
 func _ready() -> void:
+	if Engine.editor_hint:
+		set_physics_process(false)
 	ray_cast.set_as_toplevel(true)
 
 
@@ -17,6 +19,10 @@ func _physics_process(delta: float) -> void:
 	self.target = find_best_target()
 
 
+"""
+Returns the closest target, skipping targets when there is an obstacle
+between the player and the target.
+"""
 func find_best_target() -> HookTarget:
 	force_update_transform()
 	var targets: = get_overlapping_areas()
@@ -33,6 +39,7 @@ func find_best_target() -> HookTarget:
 		if distance > distance_to_closest:
 			continue
 		
+		# Skip the target if there is a collider in the way
 		ray_cast.global_position = global_position
 		ray_cast.cast_to = t.global_position - global_position
 		ray_cast.force_update_transform()
@@ -50,6 +57,7 @@ func has_target() -> bool:
 
 """
 Returns the length of the hook, from the origin to the tip of the collision shape
+Used to draw the hook's radius in the editor
 """
 func calculate_length() -> float:
 	var length: = -1.0

@@ -9,7 +9,7 @@ func unhandled_input(event: InputEvent) -> void:
 
 
 func physics_process(delta: float) -> void:
-	var cast: Vector2 = owner.get_aim_direction() * owner.ray_cast.length
+	var cast: Vector2 = owner.get_aim_direction() * owner.ray_cast.cast_to.length()
 	var angle: = cast.angle()
 	owner.ray_cast.cast_to = cast
 	owner.target_circle.rotation = angle
