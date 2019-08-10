@@ -35,20 +35,12 @@ func _draw() -> void:
 	DrawingUtils.draw_circle_outline(self, Vector2.ZERO, radius, Color.lightgreen)
 
 
-func has_target() -> bool:
-	var has_target: bool = snap_detector.has_target()
-	if not has_target and ray_cast.is_colliding():
-		var collider: = ray_cast.get_collider()
-		has_target = collider.get_collision_layer_bit(HOOKABLE_PHYSICS_LAYER)
-	return has_target
-
-
 func can_hook() -> bool:
-	return is_active and has_target() and cooldown.is_stopped()
+	return is_active and snap_detector.has_target() and cooldown.is_stopped()
 
 
 func get_target_position() -> Vector2:
-	return snap_detector.target.global_position if snap_detector.target else ray_cast.get_collision_point()
+	return snap_detector.target.global_position
 
 
 func get_hook_target() -> HookTarget:
@@ -57,11 +49,7 @@ func get_hook_target() -> HookTarget:
 
 func get_aim_direction() -> Vector2:
 	var direction: = Vector2.ZERO
-	match Settings.controls:
-		Settings.GAMEPAD:
-			direction = Utils.get_aim_joystick_direction()
-		Settings.KBD_MOUSE, _:
-			direction = (get_global_mouse_position() - global_position).normalized()
+	direction = (get_global_mouse_position() - global_position).normalized()
 	return direction
 
 
