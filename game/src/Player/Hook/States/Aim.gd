@@ -12,6 +12,6 @@ func physics_process(delta: float) -> void:
 	var cast: Vector2 = owner.get_aim_direction() * owner.ray_cast.cast_to.length()
 	var angle: = cast.angle()
 	owner.ray_cast.cast_to = cast
-	owner.target_circle.rotation = angle
+	owner.arrow.rotation = angle
 	owner.snap_detector.rotation = angle
 	owner.ray_cast.force_raycast_update()

@@ -11,10 +11,6 @@ var hook_position: = Vector2.ZERO setget set_hook_position
 var length: = 40.0 setget set_length
 
 
-func _on_Tween_tween_completed(object: Object, key: NodePath) -> void:
-	visible = false
-
-
 func set_hook_position(value: Vector2) -> void:
 	hook_position = value
 	var to_target: = hook_position - global_position
@@ -24,7 +20,6 @@ func set_hook_position(value: Vector2) -> void:
 			self, 'length', length, start_length, 
 			0.25, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	tween.start()
-	visible = true
 
 
 func set_length(value: float) -> void:

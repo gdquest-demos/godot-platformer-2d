@@ -12,7 +12,6 @@ signal hooked_onto_target(target_global_position)
 
 onready var ray_cast: RayCast2D = $RayCast2D
 onready var arrow: Node2D = $Arrow
-onready var target_circle: Node2D = $TargetCircle
 onready var snap_detector: Area2D = $SnapDetector
 onready var cooldown: Timer = $Cooldown
 

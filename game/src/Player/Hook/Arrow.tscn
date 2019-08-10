@@ -7,7 +7,7 @@
 script = ExtResource( 1 )
 
 [node name="Tail" type="Line2D" parent="."]
-position = Vector2( 20, 0 )
+position = Vector2( 7.85185, -0.296295 )
 points = PoolVector2Array( 40, 0, 30, 0 )
 width = 6.0
 default_color = Color( 0.101961, 0.188235, 0.235294, 1 )
