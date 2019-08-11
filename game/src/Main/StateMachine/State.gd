@@ -1,20 +1,14 @@
 extends Node
 class_name State
 """
-State interface for the Player scene.
-Stores a reference to the Player and to the state machine.
-As we're using Hierarchical State Machines, a state can be a node branch.
+State interface to use in Hierarchical State Machines.
 The lowest leaf tries to handle callbacks, and if it can't, it delegates the work to its parent.
+It's up to the user to call the parent state's functions, e.g. `get_parent().physics_process(delta)`
+Use State as a child of a StateMachine node.
 """
 
 
-var is_composite: = get_child_count() != 0
-
-var _state_machine: Node = null
-
-
-func _ready() -> void:
-	_state_machine = _get_state_machine(self)
+onready var _state_machine: = _get_state_machine(self)
 
 
 func unhandled_input(event: InputEvent) -> void:
