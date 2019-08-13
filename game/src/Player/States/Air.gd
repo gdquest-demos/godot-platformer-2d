@@ -33,15 +33,7 @@ func unhandled_input(event: InputEvent) -> void:
 
 func physics_process(delta: float) -> void:
 	var move: = get_parent()
-	var direction: Vector2 = move.get_move_direction() if controls_freeze.is_stopped() else Vector2(sign(move.velocity.x), 1.0)
-	move.velocity = move.calculate_velocity(
-		move.velocity,
-		move.max_speed,
-		move.acceleration,
-		delta,
-		direction
-	)
-	move.velocity = owner.move_and_slide(move.velocity, owner.FLOOR_NORMAL)
+	move.physics_process(delta)
 	Events.emit_signal("player_moved", owner)
 
 	# Landing
