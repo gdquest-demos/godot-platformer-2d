@@ -9,11 +9,13 @@ const DEFAULT_SLOW_RADIUS: = 200.0
 const DEFAULT_MAX_SPEED: = 400.0
 
 
-static func follow(velocity: Vector2,
-				   global_position: Vector2,
-				   target_position: Vector2,
-				   max_speed: = DEFAULT_MAX_SPEED,
-				   mass: = DEFAULT_MASS) -> Vector2:
+static func follow(
+		velocity: Vector2,
+		global_position: Vector2,
+		target_position: Vector2,
+		max_speed: = DEFAULT_MAX_SPEED,
+		mass: = DEFAULT_MASS
+	) -> Vector2:
 	"""
 	Calculates and returns a velocity steering towards target_position
 	"""
@@ -22,12 +24,14 @@ static func follow(velocity: Vector2,
 	return velocity + steering
 
 
-static func arrive_to(velocity: Vector2,
-					global_position: Vector2,
-					target_position: Vector2,
-					max_speed: = DEFAULT_MAX_SPEED,
-					slow_radius: = DEFAULT_SLOW_RADIUS,
-					mass: = DEFAULT_MASS) -> Vector2:
+static func arrive_to(
+		velocity: Vector2,
+		global_position: Vector2,
+		target_position: Vector2,
+		max_speed: = DEFAULT_MAX_SPEED,
+		slow_radius: = DEFAULT_SLOW_RADIUS,
+		mass: = DEFAULT_MASS
+	) -> Vector2:
 	"""
 	Calculates and returns a new velocity with the arrive steering behavior
 	"""
