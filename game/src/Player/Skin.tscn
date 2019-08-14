@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/Player/Skin.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/shadow.png" type="Texture" id=2]
-[ext_resource path="res://assets/sprites/robi.png" type="Texture" id=3]
-
+[ext_resource path="res://src/Player/Skin/Shadow.gd" type="Script" id=3]
+[ext_resource path="res://assets/sprites/robi.png" type="Texture" id=4]
+[ext_resource path="res://src/Player/FloorDetector.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "REST_POSE"
@@ -149,11 +150,16 @@ anims/die = SubResource( 2 )
 anims/ledge = SubResource( 3 )
 anims/spawn = SubResource( 4 )
 
-[node name="shadow" type="Sprite" parent="."]
+[node name="Shadow" type="Sprite" parent="."]
 scale = Vector2( 0.374978, 0.356176 )
 texture = ExtResource( 2 )
+script = ExtResource( 3 )
 
 [node name="robi" type="Sprite" parent="."]
 position = Vector2( -5.44446, -62.6667 )
 scale = Vector2( 0.477689, 0.453737 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
+
+[node name="FloorDetector" parent="." instance=ExtResource( 5 )]
+position = Vector2( 0, -0.370369 )
+cast_to = Vector2( 0, 200 )

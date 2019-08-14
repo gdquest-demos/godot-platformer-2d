@@ -99,6 +99,7 @@ Use AimStick.* for the stick argument
 func get_joypad_motion_event(action: String, stick: int) -> InputEventJoypadMotion:
 	var event: = InputEventJoypadMotion.new()
 	var action_data: Dictionary = JOYSTICK_AIM_INPUTS[stick][action]
+	action_data.deadzone = 0.0
 	event.axis = action_data.axis
 	event.axis_value = action_data.value
 	return event

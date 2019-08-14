@@ -5,6 +5,5 @@
 [node name="FloorDetector" type="RayCast2D"]
 position = Vector2( 0, -30 )
 cast_to = Vector2( 0, 80 )
-collision_mask = 6
+collision_mask = 10
 script = ExtResource( 1 )
-
