@@ -6,7 +6,6 @@ with state transitions
 """
 
 
-
 func unhandled_input(event: InputEvent) -> void:
 	_parent.unhandled_input(event)
 

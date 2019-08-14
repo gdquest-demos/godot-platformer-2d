@@ -30,6 +30,9 @@ func physics_process(delta: float) -> void:
 	if distance < velocity.length() * delta:
 		velocity = velocity.normalized() * arrive_push
 		_state_machine.transition_to("Move/Air", {velocity = velocity})
+	
+	if owner.is_on_floor():
+		_state_machine.transition_to("Move/Run")
 
 
 func enter(msg: Dictionary = {}) -> void:
