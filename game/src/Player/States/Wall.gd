@@ -30,21 +30,20 @@ func physics_process(delta: float) -> void:
 	if owner.is_on_floor():
 		_state_machine.transition_to("Move/Idle")
 
-	var move: = get_parent()
-	var is_moving_away_from_wall: = sign(move.get_move_direction().x) == sign(_wall_normal)
+	var is_moving_away_from_wall: = sign(_parent.get_move_direction().x) == sign(_wall_normal)
 	if is_moving_away_from_wall or not owner.ledge_wall_detector.is_against_wall():
 		_state_machine.transition_to("Move/Air", {"velocity":_velocity})
 
 
 func enter(msg: Dictionary = {}) -> void:
-	get_parent().enter(msg)
+	_parent.enter(msg)
 
 	_wall_normal = msg.normal
 	_velocity.y = clamp(msg.velocity.y, -max_slide_speed, max_slide_speed)
 
 
 func exit() -> void:
-	get_parent().exit()
+	_parent.exit()
 
 
 func jump() -> void:

@@ -6,7 +6,7 @@ func _on_Cooldown_timeout() -> void:
 
 
 func physics_process(delta: float) -> void:
-	get_parent().physics_process(delta)
+	_parent.physics_process(delta)
 
 
 func enter(msg: Dictionary = {}) -> void:
