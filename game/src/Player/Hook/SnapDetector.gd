@@ -25,8 +25,6 @@ between the player and the target.
 """
 func find_best_target() -> HookTarget:
 	var targets: = get_overlapping_areas()
-	if not targets:
-		return null
 
 	var closest_target: HookTarget = null
 	var distance_to_closest: = 100000.0
