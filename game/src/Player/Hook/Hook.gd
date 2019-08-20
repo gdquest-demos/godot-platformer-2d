@@ -15,8 +15,6 @@ onready var arrow: Node2D = $Arrow
 onready var snap_detector: Area2D = $SnapDetector
 onready var cooldown: Timer = $Cooldown
 
-const HOOKABLE_PHYSICS_LAYER: = 2
-
 var is_aiming: = false setget set_is_aiming
 var is_active: = true setget set_is_active
 
@@ -36,14 +34,6 @@ func _draw() -> void:
 
 func can_hook() -> bool:
 	return is_active and snap_detector.has_target() and cooldown.is_stopped()
-
-
-func get_target_position() -> Vector2:
-	return snap_detector.target.global_position
-
-
-func get_hook_target() -> HookTarget:
-	return snap_detector.target
 
 
 func get_aim_direction() -> Vector2:
