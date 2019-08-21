@@ -23,7 +23,7 @@ func _physics_process(delta: float) -> void:
 	shadow.visible = floor_detector.is_close_to_floor()
 	var ratio: = floor_detector.get_floor_distance_ratio()
 	shadow.scale = Vector2(ratio, ratio) * shadow.scale_start
-	shadow.position.y = floor_detector.get_floor_position().y - global_position.y
+	shadow.global_position = floor_detector.get_floor_position()
 
 
 func play(name: String, data: Dictionary = {}) -> void:

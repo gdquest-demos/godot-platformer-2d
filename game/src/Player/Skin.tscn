@@ -151,6 +151,7 @@ anims/ledge = SubResource( 3 )
 anims/spawn = SubResource( 4 )
 
 [node name="Shadow" type="Sprite" parent="."]
+show_behind_parent = true
 scale = Vector2( 0.374978, 0.356176 )
 texture = ExtResource( 2 )
 script = ExtResource( 3 )
@@ -158,6 +159,7 @@ script = ExtResource( 3 )
 [node name="robi" type="Sprite" parent="."]
 position = Vector2( -5.44446, -62.6667 )
 scale = Vector2( 0.477689, 0.453737 )
+z_index = 10
 texture = ExtResource( 4 )
 
 [node name="FloorDetector" parent="." instance=ExtResource( 5 )]
