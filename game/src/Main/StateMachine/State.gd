@@ -9,8 +9,7 @@ Use State as a child of a StateMachine node.
 
 
 onready var _state_machine: = _get_state_machine(self)
-
-var _parent: Node = null
+var _parent: State = null
 
 
 func _ready() -> void:
