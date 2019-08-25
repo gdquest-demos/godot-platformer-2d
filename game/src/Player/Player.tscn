@@ -38,6 +38,7 @@ shape = SubResource( 1 )
 position = Vector2( 0, -30 )
 
 [node name="LedgeWallDetector" parent="." instance=ExtResource( 3 )]
+is_active = true
 
 [node name="FloorDetector" parent="." instance=ExtResource( 4 )]
 
@@ -83,6 +84,7 @@ script = ExtResource( 12 )
 
 [node name="Air" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 13 )
+acceleration_x = 5000.0
 
 [node name="JumpDelay" type="Timer" parent="StateMachine/Move/Air"]
 wait_time = 0.1
