@@ -18,6 +18,7 @@ onready var cooldown: Timer = $Cooldown
 var is_aiming: = false setget set_is_aiming
 var is_active: = true setget set_is_active
 
+onready var _radius: float = snap_detector.calculate_length()
 
 func _ready() -> void:
 	if Engine.editor_hint:
@@ -28,8 +29,7 @@ func _draw() -> void:
 	if not Engine.editor_hint:
 		return
 
-	var radius: float = snap_detector.calculate_length()
-	DrawingUtils.draw_circle_outline(self, Vector2.ZERO, radius, Color.lightgreen)
+	DrawingUtils.draw_circle_outline(self, Vector2.ZERO, snap_detector.calculate_length(), Color.lightgreen)
 
 
 func can_hook() -> bool:
