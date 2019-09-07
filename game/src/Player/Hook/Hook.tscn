@@ -36,7 +36,7 @@ initial_state = NodePath("Aim")
 [node name="Aim" type="Node" parent="StateMachine"]
 script = ExtResource( 6 )
 
-[node name="Fire" type="Node" parent="StateMachine/Aim"]
+[node name="Fire" type="Node" parent="StateMachine"]
 script = ExtResource( 7 )
 
 [editable path="Arrow"]

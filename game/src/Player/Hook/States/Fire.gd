@@ -5,10 +5,6 @@ func _on_Cooldown_timeout() -> void:
 	_state_machine.transition_to("Aim")
 
 
-func physics_process(delta: float) -> void:
-	_parent.physics_process(delta)
-
-
 func enter(msg: Dictionary = {}) -> void:
 	owner.cooldown.connect("timeout", self, "_on_Cooldown_timeout")
 
@@ -17,7 +13,7 @@ func enter(msg: Dictionary = {}) -> void:
 	var target: HookTarget = owner.snap_detector.target
 	if not target:
 		var distance: = min(owner._radius, owner.get_local_mouse_position().length())
-		owner.arrow.hook_position = owner.global_position + owner.get_local_mouse_position().normalized() * distance
+		owner.arrow.hook_position = owner.global_position + owner.get_local_mouse_position().normalized() * distance / 2.0
 		_state_machine.transition_to("Aim")
 		return
 
