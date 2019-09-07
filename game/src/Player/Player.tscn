@@ -82,6 +82,12 @@ one_shot = true
 [node name="Run" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 12 )
 
+[node name="SlowStarter" type="Timer" parent="StateMachine/Move/Run"]
+wait_time = 0.7
+one_shot = true
+
+[node name="Tween" type="Tween" parent="StateMachine/Move/Run"]
+
 [node name="Air" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 13 )
 acceleration_x = 5000.0
@@ -96,6 +102,10 @@ one_shot = true
 
 [node name="Wall" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 14 )
+slide_acceleration = 1600.0
+max_slide_speed = 400.0
+friction_factor = 0.15
+jump_strength = Vector2( 500, 400 )
 
 [node name="Ledge" type="Node" parent="StateMachine"]
 script = ExtResource( 15 )
