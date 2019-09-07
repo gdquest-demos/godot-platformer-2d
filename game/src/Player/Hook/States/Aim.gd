@@ -5,7 +5,7 @@ func unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("aim"):
 		owner.is_aiming = not owner.is_aiming
 	elif event.is_action_pressed("hook"):
-		_state_machine.transition_to("Aim/Fire")
+		_state_machine.transition_to("Fire")
 
 
 func physics_process(delta: float) -> void:

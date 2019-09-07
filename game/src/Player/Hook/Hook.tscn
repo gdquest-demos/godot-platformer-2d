@@ -17,6 +17,9 @@ collision_mask = 6
 
 [node name="Arrow" parent="." instance=ExtResource( 2 )]
 
+[node name="Tail" parent="Arrow" index="0"]
+texture_mode = 0
+
 [node name="Head" parent="Arrow" index="1"]
 editor/display_folded = true
 
