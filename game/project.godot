@@ -123,6 +123,11 @@ _global_script_classes=[ {
 "class": "SteeringMotion2D",
 "language": "GDScript",
 "path": "res://src/AI/Steering/SteeringMotion2D.gd"
+}, {
+"base": "SteeringBehavior2D",
+"class": "StraightLineBehavior2D",
+"language": "GDScript",
+"path": "res://src/AI/Steering/Behaviors/Individual/StraightLineBehavior2D.gd"
 } ]
 _global_script_class_icons={
 "AlignBehavior2D": "",
@@ -147,7 +152,8 @@ _global_script_class_icons={
 "StateMachine": "",
 "Stats": "",
 "SteeringBehavior2D": "",
-"SteeringMotion2D": ""
+"SteeringMotion2D": "",
+"StraightLineBehavior2D": ""
 }
 
 [application]
