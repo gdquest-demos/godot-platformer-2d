@@ -1,6 +1,6 @@
 extends State
 """
-Simple state for state machine that waits a set amount of time.
+Waits for a given amount of time
 """
 
 export var cooldown_time: = 1.5
