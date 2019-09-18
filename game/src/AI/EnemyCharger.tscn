@@ -58,4 +58,6 @@ script = ExtResource( 7 )
 [node name="Body" type="Node2D" parent="."]
 script = ExtResource( 8 )
 size = Vector2( 54, 54 )
+outline = Vector2( 6, 6 )
+color_fill = Color( 0.890625, 0.583793, 0.149597, 1 )
 color_outline = Color( 0.901961, 0.172549, 0.137255, 1 )

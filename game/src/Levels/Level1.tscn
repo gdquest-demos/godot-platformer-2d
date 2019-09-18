@@ -5,7 +5,7 @@
 [ext_resource path="res://src/Objects/HookTarget.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Objects/Checkpoint.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Objects/Portal.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/AI/Charger.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/AI/EnemyPassivePatrol.tscn" type="PackedScene" id=6]
 
 [node name="Level1" type="Node2D"]
 
@@ -69,5 +69,5 @@ next_level_portal_name = ""
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="Charger" parent="Enemies" instance=ExtResource( 6 )]
-position = Vector2( 1202.35, 763.445 )
+[node name="EnemyPassivePatrol" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 984.356, 365.042 )

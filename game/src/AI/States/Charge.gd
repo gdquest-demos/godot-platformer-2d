@@ -18,7 +18,14 @@ var _steering: = SteeringMotion2D.new()
 
 func enter(msg: Dictionary = {}) -> void:
 	var target: KinematicBody2D = msg.target
-	_behavior.target = (target.global_position - _behavior.controller.actor.global_position).normalized() * 10000
+	var target_position: Vector2
+	if target.has_method("get_collider"):
+		var target_shape: CollisionShape2D = target.get_collider()
+		target_position = target_shape.global_position
+	else:
+		 target_position = target.global_position
+	
+	_behavior.target = (target_position - _behavior.controller.actor.global_position).normalized() * 10000
 
 	timer.connect("timeout", self, "_on_Timer_timeout")
 	timer.start(charge_time)
