@@ -11,7 +11,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50, 20 )
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=2]
 radius = 33.0
 
 [node name="EnemyPassivePatrol" type="KinematicBody2D"]
@@ -23,6 +23,7 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
+monitorable = false
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -33,7 +34,7 @@ editor/display_folded = true
 is_one_shot = true
 
 [node name="CollisionShape2D" parent="HookTarget" index="0"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Body" type="Node2D" parent="."]
 script = ExtResource( 3 )
@@ -52,13 +53,9 @@ script = ExtResource( 5 )
 script = ExtResource( 6 )
 state_when_struck = "Destroyed"
 hooked_color = Color( 0.886275, 0.415686, 0.133333, 1 )
-hurt_color = Color( 1, 0, 0, 1 )
-
-[node name="TimeStunned" type="Timer" parent="StateMachine/Hooked"]
-wait_time = 1.25
-one_shot = true
 
 [node name="Destroyed" type="Node" parent="StateMachine"]
 script = ExtResource( 7 )
+hurt_color = Color( 1, 0, 0, 1 )
 
 [editable path="HookTarget"]

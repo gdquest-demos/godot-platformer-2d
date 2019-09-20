@@ -4,9 +4,12 @@ State to make enemy fade to nothing, then get released by the scene tree.
 """
 
 
+export var hurt_color: Color
+
+
 func enter(msg: Dictionary = {}) -> void:
 	owner.hook_target.set_color(Color(0, 0, 0, 0))
-	owner.body.set_color_fill(msg["hurt_color"])
+	owner.body.set_color_fill(hurt_color)
 	
 	yield(do_color(), "completed")
 	
