@@ -46,3 +46,8 @@ func set_is_active(value: bool) -> void:
 
 func get_collider() -> CollisionShape2D:
 	return collider
+
+
+# FIXME: Temporary function to handle the interaction between the player and a monster it attacks
+func hop_on_enemy() -> void:
+	state_machine.transition_to('HopOnEnemy')

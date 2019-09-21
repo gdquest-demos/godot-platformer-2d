@@ -28,7 +28,5 @@ func exit() -> void:
 
 
 func _on_Player_body_entered(body: KinematicBody2D) -> void:
-	if "velocity" in body.state_machine.state:
-		var velocity: Vector2 = body.state_machine.state.velocity
-		body.state_machine.transition_to("Move/Air", { velocity = Vector2(velocity.x, velocity.y * 1.5) })
-	_state_machine.transition_to(state_when_struck)
+	(body as Player).hop_on_enemy()
+	_state_machine.transition_to('Destroyed')
