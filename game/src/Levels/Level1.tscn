@@ -70,4 +70,12 @@ next_level_portal_name = ""
 [node name="Enemies" type="Node" parent="."]
 
 [node name="EnemyPassivePatrol" parent="Enemies" instance=ExtResource( 6 )]
-position = Vector2( 984.356, 365.042 )
+position = Vector2( 1100.16, 370.077 )
+
+[node name="EnemyPassivePatrol2" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 1570.94, -229.096 )
+direction = 0
+
+[node name="EnemyPassivePatrol7" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 1412.34, -750.226 )
+direction = 0
