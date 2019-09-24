@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/AI/EnemyPassivePatrol.gd" type="Script" id=1]
 [ext_resource path="res://src/Combat/DamageSource.gd" type="Script" id=2]
@@ -15,6 +15,33 @@ extents = Vector2( 50, 20 )
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 33.0
+
+[sub_resource type="Animation" id=3]
+resource_name = "FadeOut"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../Body:color_fill")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.615686, 0, 1, 1 ), Color( 1, 0, 0, 0.8 ), Color( 1, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../../Body:color_outline")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.270588, 0.0745098, 0.619608, 1 ), Color( 0.270588, 0.0745098, 0.619608, 0 ) ]
+}
 
 [node name="EnemyPassivePatrol" type="KinematicBody2D"]
 collision_layer = 16
@@ -42,7 +69,8 @@ shape = SubResource( 2 )
 [node name="Body" type="Node2D" parent="."]
 script = ExtResource( 4 )
 size = Vector2( 100, 40 )
-color_fill = Color( 0.384314, 0.368627, 0.929412, 1 )
+outline = Vector2( 6, 6 )
+color_fill = Color( 0.615686, 0, 1, 1 )
 color_outline = Color( 0.270588, 0.0745098, 0.619608, 1 )
 
 [node name="StateMachine" type="Node" parent="."]
@@ -54,7 +82,6 @@ script = ExtResource( 6 )
 
 [node name="Hooked" type="Node" parent="StateMachine"]
 script = ExtResource( 7 )
-state_when_struck = "Stunned"
 hooked_color = Color( 0.886275, 0.415686, 0.133333, 1 )
 
 [node name="Stunned" type="Node" parent="StateMachine"]
@@ -64,5 +91,8 @@ next_state = "Destroyed"
 [node name="Destroyed" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )
 hurt_color = Color( 1, 0, 0, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="StateMachine/Destroyed"]
+anims/FadeOut = SubResource( 3 )
 
 [editable path="HookTarget"]

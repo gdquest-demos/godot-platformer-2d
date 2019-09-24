@@ -6,7 +6,6 @@ It simply waits until the player body collides with the hitbox, colors the body,
 """
 
 
-export var state_when_struck: String
 export var hooked_color: Color
 
 
@@ -16,4 +15,4 @@ func enter(msg: Dictionary = {}) -> void:
 
 
 func _on_Player_body_entered(body: Player) -> void:
-	_state_machine.transition_to(state_when_struck, {player = body})
+	_state_machine.transition_to("Stunned", {player = body})

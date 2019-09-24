@@ -12,7 +12,7 @@ onready var _direction: int = owner.direction
 func enter(msg: Dictionary = {}) -> void:
 	owner.hook_target.connect("hooked_onto_from", self, "_on_Hook_hooked_onto_from", [], CONNECT_ONESHOT)
 	owner.hitbox.connect("body_entered", self, "_on_Player_body_entered")
-	owner.hook_target.set_is_active(true)
+	owner.hook_target.is_active = true
 
 
 func exit() -> void:
