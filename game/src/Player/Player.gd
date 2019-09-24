@@ -1,12 +1,15 @@
 extends KinematicBody2D
 class_name Player
 
+
+signal hopped_off_entity
+
 onready var state_machine: StateMachine = $StateMachine
 
 onready var hook: Position2D = $Hook
 
 onready var skin: Position2D = $Skin
-onready var collider: CollisionShape2D = $CollisionShape2D
+onready var collider: CollisionShape2D = $CollisionShape2D setget ,get_collider
 
 onready var stats: Stats = $Stats
 onready var hitbox: Area2D = $HitBox
@@ -24,10 +27,12 @@ const FLOOR_NORMAL: = Vector2.UP
 
 var is_active: = true setget set_is_active
 var has_teleported: = false
+var last_checkpoint: Area2D = null
 
 
 func _ready() -> void:
-	stats.connect("health_depleted", state_machine, "transition_to", ['Die'])
+	stats.connect("health_depleted", self, "_on_Player_health_depleted")
+	Events.connect("checkpoint_visited", self, "_on_Events_checkpoint_visited")
 
 
 func take_damage(source: Hit) -> void:
@@ -42,3 +47,15 @@ func set_is_active(value: bool) -> void:
 	hook.is_active = value
 	ledge_wall_detector.is_active = value
 	hitbox.monitoring = value
+
+
+func get_collider() -> CollisionShape2D:
+	return collider
+
+
+func _on_Player_health_depleted() -> void:
+	state_machine.transition_to("Die", {last_checkpoint = last_checkpoint})
+
+
+func _on_Events_checkpoint_visited(checkpoint_name: String) -> void:
+	last_checkpoint = LevelLoader._level.get_node("Checkpoints/%s" % checkpoint_name)

@@ -11,6 +11,7 @@ export var arrive_push: = 500.0
 
 var target_global_position: = Vector2(INF, INF)
 var velocity: = Vector2.ZERO
+var _target_is_living_entity: = false
 
 
 func physics_process(delta: float) -> void:
@@ -29,13 +30,17 @@ func physics_process(delta: float) -> void:
 
 	if distance < velocity.length() * delta:
 		velocity = velocity.normalized() * arrive_push
-		_state_machine.transition_to("Move/Air", {velocity = velocity})
+		if _target_is_living_entity:
+			_state_machine.transition_to("HopOnEnemy")
+		else:
+			_state_machine.transition_to("Move/Air", {velocity = velocity})
 	
 	if owner.is_on_floor():
 		_state_machine.transition_to("Move/Run")
 
 
 func enter(msg: Dictionary = {}) -> void:
+	_target_is_living_entity = owner.hook.snap_detector.target.owner is KinematicBody2D
 	match msg:
 		{"target_global_position": var tgp, "velocity": var v}:
 			target_global_position = tgp
