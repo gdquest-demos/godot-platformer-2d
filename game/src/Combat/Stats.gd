@@ -12,6 +12,8 @@ signal damage_taken()
 
 var modifiers = {}
 
+var invulnerable: = false
+
 var health: int
 export var max_health: int = 1 setget set_max_health
 
@@ -24,6 +26,9 @@ func _ready() -> void:
 
 
 func take_damage(hit: Hit) -> void:
+	if invulnerable:
+		return
+		
 	var old_health = health
 	health -= hit.damage
 	emit_signal("damage_taken")
@@ -51,3 +56,12 @@ func add_modifier(id: int, modifier) -> void:
 
 func remove_modifier(id: int) -> void:
 	modifiers.erase(id)
+
+
+func set_invulnerable_for_seconds(time: float) -> void:
+	invulnerable = true
+	
+	var timer: = get_tree().create_timer(time)
+	yield(timer, "timeout")
+	
+	invulnerable = false

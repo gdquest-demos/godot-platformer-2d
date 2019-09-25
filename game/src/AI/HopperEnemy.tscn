@@ -1,87 +1,85 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://src/AI/EnemyPassivePatrol.gd" type="Script" id=1]
+[ext_resource path="res://src/AI/HopperEnemy.gd" type="Script" id=1]
 [ext_resource path="res://src/Combat/DamageSource.gd" type="Script" id=2]
 [ext_resource path="res://src/Objects/HookTarget.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Player/Rectangle.gd" type="Script" id=4]
 [ext_resource path="res://src/Main/StateMachine/StateMachine.gd" type="Script" id=5]
-[ext_resource path="res://src/AI/States/HorizontalPatrol.gd" type="Script" id=6]
+[ext_resource path="res://src/AI/States/Jump.gd" type="Script" id=6]
 [ext_resource path="res://src/AI/States/Hooked.gd" type="Script" id=7]
 [ext_resource path="res://src/AI/States/Stunned.gd" type="Script" id=8]
 [ext_resource path="res://src/AI/States/Destroyed.gd" type="Script" id=9]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 50, 20 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 25, 25 )
 
-[sub_resource type="CircleShape2D" id=2]
-radius = 33.0
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 25, 25 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "FadeOut"
 tracks/0/type = "value"
-tracks/0/path = NodePath("../../Body:color_fill")
+tracks/0/path = NodePath("../../Body:color_outline")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 0.615686, 0, 1, 1 ), Color( 1, 0, 0, 0.8 ), Color( 1, 0, 0, 0 ) ]
+"values": [ Color( 0.0352941, 0.176471, 0.372549, 1 ), Color( 0.0745098, 0.133333, 0.619608, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("../../Body:color_outline")
+tracks/1/path = NodePath("../../Body:color_fill")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 0.270588, 0.0745098, 0.619608, 1 ), Color( 0.270588, 0.0745098, 0.619608, 0 ) ]
+"values": [ Color( 0.760784, 0.203922, 0.658824, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 0, 0, 0 ) ]
 }
 
-[node name="EnemyPassivePatrol" type="KinematicBody2D"]
+[node name="HopperEnemy" type="KinematicBody2D"]
 collision_layer = 16
 collision_mask = 2
 script = ExtResource( 1 )
 
 [node name="Hitbox" type="Area2D" parent="."]
-monitorable = false
 collision_layer = 16
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="HookTarget" parent="." instance=ExtResource( 3 )]
-editor/display_folded = true
-is_one_shot = true
-
-[node name="CollisionShape2D" parent="HookTarget" index="0"]
-shape = SubResource( 2 )
 
 [node name="Body" type="Node2D" parent="."]
 script = ExtResource( 4 )
-size = Vector2( 100, 40 )
-color_fill = Color( 0.615686, 0, 1, 1 )
-color_outline = Color( 0.270588, 0.0745098, 0.619608, 1 )
+size = Vector2( 50, 50 )
+color_fill = Color( 0.760784, 0.203922, 0.658824, 1 )
+color_outline = Color( 0.0352941, 0.176471, 0.372549, 1 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 5 )
-initial_state = NodePath("HorizontalPatrol")
+initial_state = NodePath("Jump")
 
-[node name="HorizontalPatrol" type="Node" parent="StateMachine"]
+[node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource( 6 )
+
+[node name="Cooldown" type="Timer" parent="StateMachine/Jump"]
+wait_time = 0.6
+one_shot = true
 
 [node name="Hooked" type="Node" parent="StateMachine"]
 script = ExtResource( 7 )
-hooked_color = Color( 0.886275, 0.415686, 0.133333, 1 )
+hooked_color = Color( 0.890196, 0.670588, 0.14902, 1 )
 
 [node name="Stunned" type="Node" parent="StateMachine"]
 script = ExtResource( 8 )
@@ -92,5 +90,3 @@ hurt_color = Color( 1, 0, 0, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="StateMachine/Destroyed"]
 anims/FadeOut = SubResource( 3 )
-
-[editable path="HookTarget"]

@@ -8,11 +8,14 @@ It simply waits until the player body collides with the hitbox, colors the body,
 
 export var hooked_color: Color
 
+var hook_position: Vector2
+
 
 func enter(msg: Dictionary = {}) -> void:
 	owner.body.set_color_fill(hooked_color)
+	hook_position = msg.hook_position
 	owner.hitbox.connect("body_entered", self, "_on_Player_body_entered", [], CONNECT_ONESHOT)
 
 
 func _on_Player_body_entered(body: Player) -> void:
-	_state_machine.transition_to("Stunned", {player = body})
+	_state_machine.transition_to("Stunned", {player = body, hook_position = hook_position})

@@ -10,6 +10,7 @@ func _on_Player_animation_finished(anim_name: String) -> void:
 
 func enter(msg: Dictionary = {}) -> void:
 	assert "last_checkpoint" in msg
+	owner.stats.set_invulnerable_for_seconds(2)
 	owner.global_position = msg.last_checkpoint.global_position
 	owner.is_active = false
 	owner.camera_rig.is_active = false
