@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/tilesets/valley.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/tilesets/prototype.tres" type="TileSet" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/Objects/Checkpoint.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Objects/Portal.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/AI/EnemyPassivePatrol.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/AI/HopperEnemy.tscn" type="PackedScene" id=7]
 
 [node name="Level1" type="Node2D"]
 
@@ -72,6 +73,9 @@ next_level_portal_name = ""
 [node name="EnemyPassivePatrol" parent="Enemies" instance=ExtResource( 6 )]
 position = Vector2( 1100.16, 370.077 )
 
+[node name="EnemyPassivePatrol3" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 1294.42, 370.077 )
+
 [node name="EnemyPassivePatrol2" parent="Enemies" instance=ExtResource( 6 )]
 position = Vector2( 1570.94, -229.096 )
 direction = 0
@@ -79,3 +83,10 @@ direction = 0
 [node name="EnemyPassivePatrol7" parent="Enemies" instance=ExtResource( 6 )]
 position = Vector2( 1412.34, -750.226 )
 direction = 0
+
+[node name="HopperEnemy" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 1392.78, 942.911 )
+jump_angle_left = 42
+jump_angle_right = 60
+jump_power_left = 1867
+jump_power_right = 3000

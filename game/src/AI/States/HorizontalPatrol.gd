@@ -26,7 +26,7 @@ func physics_process(delta: float) -> void:
 
 
 func _on_Hook_hooked_onto_from(hook_position: Vector2) -> void:
-	_state_machine.transition_to("Hooked")
+	_state_machine.transition_to("Hooked", {hook_position = hook_position})
 	
 
 func _on_Player_body_entered(player: Player) -> void:
