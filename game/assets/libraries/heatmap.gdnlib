@@ -1,0 +1,14 @@
+[general]
+
+singleton=false
+load_once=true
+symbol_prefix="godot_"
+reloadable=true
+
+[entry]
+
+Windows.64="res://assets/libraries/win64/libheatmap.dll"
+
+[dependencies]
+
+Windows.64=[  ]
