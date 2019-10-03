@@ -4,6 +4,7 @@
 #include <Viewport.hpp>
 #include <deque>
 #include <TileSet.hpp>
+#include <algorithm>
 
 namespace godot {
 	inline float lerp(const float& a, const float& b, const float& t) {
