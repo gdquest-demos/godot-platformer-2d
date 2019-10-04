@@ -7,9 +7,7 @@ towards smaller values, with 0 being the goal.
 """
 
 
-var _heatmap #should be able to do `var _heatmap :Heatmap` here because the GDNS file
-#	has `Heatmap` in class_name but it doesn't work and I get type not defined errors.
-#	Bug, or am I being dumb?
+var _heatmap
 
 var _last_point_index: int = INF
 var _last_velocity: = Vector2(0, 0)
