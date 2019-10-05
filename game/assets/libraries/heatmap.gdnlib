@@ -1,0 +1,18 @@
+[general]
+
+singleton=false
+load_once=true
+symbol_prefix="godot_"
+reloadable=true
+
+[entry]
+
+OSX.64="res://assets/libraries/osx/libheatmap.dylib"
+Windows.64="res://assets/libraries/win64/libheatmap.dll"
+X11.64="res://assets/libraries/x11/libheatmap.so"
+
+[dependencies]
+
+OSX.64=[  ]
+Windows.64=[  ]
+X11.64=[  ]

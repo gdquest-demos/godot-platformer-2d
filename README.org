@@ -133,3 +133,30 @@
 
    Persona: the learners of the premium course don't want to be spoon-fed ready-made solutions. They enjoy learning and are ready to put in some efforts to improve. They go further than watching the lessons, putting what they learned in practice. They expect quality learning material.
     
+* Building the C++ Heatmap GDNative binary
+   
+   The GDNative folder is a git submodule pointing to the godot-cpp project (pointing to the latest commits as of October 4th) for Godot 3.1. As a result, after cloning, it should be initialized with something like `git submodule update --init --recursive`, or this repo cloned with `--recursive`.
+   
+   Bindings for your OS should be generated according to https://docs.godotengine.org/en/3.1/tutorials/plugins/gdnative/gdnative-cpp-example.html
+   
+** Windows
+   
+   Requirements: Visual Studio Community 20xx with C++, `libgodot-cpp.windows.xxxxx.64.lib` files for GDNative C++ in `GDNative/bin/`, and GDNative bindings in `GDNative/include/gen/`
+   
+   Building the godot bindings:
+   1. Open the `x64 Native Tools Command Prompt for VS 20xx`.
+   2. CD into `/GDNative`
+   3. Run `scons platform=windows target=release bits=64 generate_bindings=yes`
+   
+*** Building and Debugging using Visual Studio Community 20xx
+   
+   If `Godot.exe` is in the `PATH` environment variable, the .lib files are built and located in `GDNative/bin/` and bindings in `GDNative/include/gen/`, then the Heatmap project is already configured for Godot building and debugging.
+   
+   Building will build the DLL in debug or release mode and put in `assets/libraries/win64`, and debugging the solution in debug mode will launch the project in godot and allow for breakpoints in the C++ code.
+   
+*** Scons without opening Visual Studio
+   
+   1. Open the `x64 Native Tools Command Prompt for VS 20xx`.
+   2. CD into the Heatmap source (`cd game/src/Native/Heatmap`)
+   3. `scons platform=windows bits=64 target=release`
+   4. If successful, `libheatmap.DLL` will be built into `assets/libraries/win64`
