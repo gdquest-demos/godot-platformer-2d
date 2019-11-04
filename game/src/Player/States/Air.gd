@@ -51,6 +51,7 @@ func enter(msg: Dictionary = {}) -> void:
 	_parent.enter(msg)
 	
 	_parent.acceleration.x = acceleration_x
+	_parent.snap_vector.y = 0
 	if "velocity" in msg:
 		_parent.velocity = msg.velocity 
 		_parent.max_speed.x = max(abs(msg.velocity.x), _parent.max_speed.x)

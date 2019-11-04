@@ -1,14 +1,16 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/AI/Heatmap.gdns" type="Script" id=1]
 [ext_resource path="res://assets/tilesets/valley.tres" type="TileSet" id=2]
 [ext_resource path="res://assets/tilesets/prototype.tres" type="TileSet" id=3]
 [ext_resource path="res://src/Objects/HookTarget.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/Objects/Checkpoint.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/Objects/Portal.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/AI/EnemyPassivePatrol.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/AI/HopperEnemy.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/AI/SwarmerSpawner.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Objects/MovingPlatform/MovingPlatform.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Objects/MovingPlatform/Waypoints.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Objects/Checkpoint.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Objects/Portal.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/AI/EnemyPassivePatrol.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/AI/HopperEnemy.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/AI/SwarmerSpawner.tscn" type="PackedScene" id=11]
 
 [node name="Level1" type="Node2D"]
 
@@ -42,9 +44,27 @@ position = Vector2( 1600, 630 )
 [node name="HookTarget4" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1090, 630 )
 
+[node name="MovingPlatform" parent="." instance=ExtResource( 5 )]
+
+[node name="Waypoints" parent="MovingPlatform" instance=ExtResource( 6 )]
+position = Vector2( 1760.78, -508.5 )
+mode = 1
+editor_process = true
+line_color = Color( 0.228943, 0.710254, 0.945312, 1 )
+line_width = 10.0
+triangle_color = Color( 0.722656, 0.908997, 1, 1 )
+
+[node name="Waypoint1" type="Node2D" parent="MovingPlatform/Waypoints"]
+position = Vector2( 337.735, 0 )
+
+[node name="Waypoint2" type="Node2D" parent="MovingPlatform/Waypoints"]
+
+[node name="Waypoint3" type="Node2D" parent="MovingPlatform/Waypoints"]
+position = Vector2( 0, -200 )
+
 [node name="Checkpoints" type="Node" parent="."]
 
-[node name="0" parent="Checkpoints" instance=ExtResource( 5 )]
+[node name="0" parent="Checkpoints" instance=ExtResource( 7 )]
 position = Vector2( 490, 670 )
 color = {
 "active": Color( 0.988235, 0.403922, 0.403922, 1 ),
@@ -52,7 +72,7 @@ color = {
 "portal": Color( 0.133333, 0, 0.8, 1 )
 }
 
-[node name="1" parent="Checkpoints" instance=ExtResource( 5 )]
+[node name="1" parent="Checkpoints" instance=ExtResource( 7 )]
 position = Vector2( 1844.43, 730.38 )
 color = {
 "active": Color( 0.988235, 0.403922, 0.403922, 1 ),
@@ -60,7 +80,7 @@ color = {
 "portal": Color( 0.133333, 0, 0.8, 1 )
 }
 
-[node name="2" parent="Checkpoints" instance=ExtResource( 5 )]
+[node name="2" parent="Checkpoints" instance=ExtResource( 7 )]
 position = Vector2( 2016.55, 375.01 )
 color = {
 "active": Color( 0.988235, 0.403922, 0.403922, 1 ),
@@ -70,34 +90,34 @@ color = {
 
 [node name="Portals" type="Node" parent="."]
 
-[node name="0" parent="Portals" instance=ExtResource( 6 )]
+[node name="0" parent="Portals" instance=ExtResource( 8 )]
 position = Vector2( 2721.46, 246.719 )
 next_level_file_path = "res://src/Levels/Level2.tscn"
 next_level_portal_name = ""
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="EnemyPassivePatrol" parent="Enemies" instance=ExtResource( 7 )]
+[node name="EnemyPassivePatrol" parent="Enemies" instance=ExtResource( 9 )]
 position = Vector2( 1100.16, 370.077 )
 
-[node name="EnemyPassivePatrol3" parent="Enemies" instance=ExtResource( 7 )]
+[node name="EnemyPassivePatrol3" parent="Enemies" instance=ExtResource( 9 )]
 position = Vector2( 1294.42, 370.077 )
 
-[node name="EnemyPassivePatrol2" parent="Enemies" instance=ExtResource( 7 )]
+[node name="EnemyPassivePatrol2" parent="Enemies" instance=ExtResource( 9 )]
 position = Vector2( 1567.85, -229.096 )
 direction = 0
 
-[node name="EnemyPassivePatrol7" parent="Enemies" instance=ExtResource( 7 )]
+[node name="EnemyPassivePatrol7" parent="Enemies" instance=ExtResource( 9 )]
 position = Vector2( 1412.34, -750.226 )
 direction = 0
 
-[node name="HopperEnemy" parent="Enemies" instance=ExtResource( 8 )]
+[node name="HopperEnemy" parent="Enemies" instance=ExtResource( 10 )]
 position = Vector2( 1392.78, 939.82 )
 jump_angle_left = 42
 jump_angle_right = 60
 jump_power_left = 1867
 jump_power_right = 3000
 
-[node name="SwarmerSpawner" parent="Enemies" instance=ExtResource( 9 )]
+[node name="SwarmerSpawner" parent="Enemies" instance=ExtResource( 11 )]
 position = Vector2( 1643.02, 145.752 )
 spawner_count = 500

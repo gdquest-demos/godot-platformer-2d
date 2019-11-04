@@ -13,6 +13,8 @@ export var jump_impulse: = 900.0
 var acceleration: = acceleration_default
 var max_speed: = max_speed_default
 var velocity: = Vector2.ZERO
+var snap_distance: = 32.0
+var snap_vector: = Vector2(0, 32)
 
 
 func _on_Hook_hooked_onto_target(target_global_position: Vector2) -> void:
@@ -47,7 +49,7 @@ func unhandled_input(event: InputEvent) -> void:
 
 func physics_process(delta: float) -> void:
 	velocity = calculate_velocity(velocity, max_speed, acceleration, delta, get_move_direction())
-	velocity = owner.move_and_slide(velocity, owner.FLOOR_NORMAL)
+	velocity = owner.move_and_slide_with_snap(velocity, snap_vector, owner.FLOOR_NORMAL)
 	Events.emit_signal("player_moved", owner)
 
 
