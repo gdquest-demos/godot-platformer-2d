@@ -1,4 +1,3 @@
-tool
 extends Area2D
 
 
@@ -8,12 +7,6 @@ export(String) var next_level_portal_name: = ""
 
 func _ready() -> void:
 	connect("body_entered", self, "_on_body_entered")
-
-
-func _draw() -> void:
-	var color: = Color("fb82ff")
-	var extents: Vector2 = $CollisionShape2D.shape.extents
-	draw_rect(Rect2(Vector2.ZERO - extents, extents * 2), color)
 
 
 func _get_configuration_warning() -> String:

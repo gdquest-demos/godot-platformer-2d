@@ -8,7 +8,6 @@ export var hurt_color: Color
 
 
 func enter(msg: Dictionary = {}) -> void:
-	owner.hook_target.set_color(Color(0, 0, 0, 0))
 	owner.body.set_color_fill(hurt_color)
 	var animation_player: AnimationPlayer = $AnimationPlayer
 	animation_player.play("FadeOut")

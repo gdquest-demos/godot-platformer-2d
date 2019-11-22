@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/Player/Skin.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/shadow.png" type="Texture" id=2]
+[ext_resource path="res://assets/characters/robi/shadow.png" type="Texture" id=2]
 [ext_resource path="res://src/Player/Skin/Shadow.gd" type="Script" id=3]
-[ext_resource path="res://assets/sprites/robi.png" type="Texture" id=4]
+[ext_resource path="res://assets/characters/robi/robi_shaded.png" type="Texture" id=4]
 [ext_resource path="res://src/Player/FloorDetector.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=1]
@@ -156,9 +156,9 @@ scale = Vector2( 0.374978, 0.356176 )
 texture = ExtResource( 2 )
 script = ExtResource( 3 )
 
-[node name="robi" type="Sprite" parent="."]
-position = Vector2( -5.44446, -62.6667 )
-scale = Vector2( 0.477689, 0.453737 )
+[node name="Robi" type="Sprite" parent="."]
+position = Vector2( 7.62939e-06, -63.6747 )
+scale = Vector2( 0.171399, 0.171399 )
 z_index = 10
 texture = ExtResource( 4 )
 

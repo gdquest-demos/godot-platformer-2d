@@ -1,16 +1,37 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/Objects/HookTarget.gd" type="Script" id=1]
+[ext_resource path="res://assets/environment/interactive/hookTarget03_wings.png" type="Texture" id=2]
+[ext_resource path="res://assets/environment/interactive/hookTarget02_ball.png" type="Texture" id=3]
+[ext_resource path="res://assets/environment/interactive/hookTarget01_glow.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 25.1794
+
+[sub_resource type="CanvasItemMaterial" id=2]
+blend_mode = 1
 
 [node name="HookTarget" type="Area2D"]
 collision_layer = 4
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
 shape = SubResource( 1 )
+
+[node name="Wings" type="Sprite" parent="CollisionShape2D"]
+show_behind_parent = true
+texture = ExtResource( 2 )
+
+[node name="Ball" type="Sprite" parent="CollisionShape2D"]
+show_behind_parent = true
+texture = ExtResource( 3 )
+
+[node name="Glow" type="Sprite" parent="CollisionShape2D"]
+modulate = Color( 1, 1, 1, 0.588235 )
+show_behind_parent = true
+material = SubResource( 2 )
+texture = ExtResource( 4 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

@@ -1,14 +1,64 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/Objects/Checkpoint.gd" type="Script" id=1]
+[ext_resource path="res://assets/environment/interactive/checkpoint01_bottomWingsB.png" type="Texture" id=2]
+[ext_resource path="res://assets/environment/interactive/checkpoint02_bottomWingsT.png" type="Texture" id=3]
+[ext_resource path="res://assets/environment/interactive/checkpoint03_bottom.png" type="Texture" id=4]
+[ext_resource path="res://assets/environment/interactive/checkpoint04_gradient.png" type="Texture" id=5]
+[ext_resource path="res://assets/environment/interactive/checkpoint05_headWingsB.png" type="Texture" id=6]
+[ext_resource path="res://assets/environment/interactive/checkpoint06_headWingsT.png" type="Texture" id=7]
+[ext_resource path="res://assets/environment/interactive/checkpoint07_head.png" type="Texture" id=8]
+[ext_resource path="res://assets/environment/interactive/checkpoint08_crystal.png" type="Texture" id=9]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 12.5
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 48.0
+height = 100.0
 
 [node name="Checkpoint" type="Area2D"]
+modulate = Color( 0.588235, 0.588235, 0.588235, 1 )
 collision_layer = 0
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -12.5 )
+position = Vector2( 0, -100 )
 shape = SubResource( 1 )
+
+[node name="BottomWingsB" type="Sprite" parent="CollisionShape2D"]
+show_behind_parent = true
+position = Vector2( 0, 14.5 )
+texture = ExtResource( 2 )
+
+[node name="BottomWingsT" type="Sprite" parent="CollisionShape2D"]
+show_behind_parent = true
+position = Vector2( 0, 14 )
+texture = ExtResource( 3 )
+
+[node name="Bottom" type="Sprite" parent="CollisionShape2D"]
+show_behind_parent = true
+position = Vector2( 0, 39 )
+texture = ExtResource( 4 )
+
+[node name="Gradient" type="Sprite" parent="CollisionShape2D"]
+show_behind_parent = true
+position = Vector2( 0, 35 )
+texture = ExtResource( 5 )
+
+[node name="HeadWingsB" type="Sprite" parent="CollisionShape2D"]
+show_behind_parent = true
+position = Vector2( 0, -96.5 )
+texture = ExtResource( 6 )
+
+[node name="HeadWingsT" type="Sprite" parent="CollisionShape2D"]
+show_behind_parent = true
+position = Vector2( 0, -96.5 )
+texture = ExtResource( 7 )
+
+[node name="Head" type="Sprite" parent="CollisionShape2D"]
+show_behind_parent = true
+position = Vector2( 0, -79.5 )
+texture = ExtResource( 8 )
+
+[node name="Crystal" type="Sprite" parent="CollisionShape2D"]
+show_behind_parent = true
+position = Vector2( 0, -30 )
+texture = ExtResource( 9 )

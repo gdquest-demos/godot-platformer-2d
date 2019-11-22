@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hook.png-f48a73a3018feeae7c8763f0a4929eb9.stex"
+path="res://.import/checkpoint07_head.png-f1254a7b9805deb218aa476e913e94f9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/hook.png"
-dest_files=[ "res://.import/hook.png-f48a73a3018feeae7c8763f0a4929eb9.stex" ]
+source_file="res://assets/environment/interactive/checkpoint07_head.png"
+dest_files=[ "res://.import/checkpoint07_head.png-f1254a7b9805deb218aa476e913e94f9.stex" ]
 
 [params]
 
