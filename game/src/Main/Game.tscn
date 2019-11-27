@@ -57,11 +57,9 @@ tracks/1/keys = {
 script = ExtResource( 1 )
 
 [node name="UI" type="CanvasLayer" parent="."]
-editor/display_folded = true
 layer = 100
 
 [node name="DebugDock" type="MarginContainer" parent="UI"]
-editor/display_folded = true
 anchor_bottom = 1.0
 margin_right = 440.0
 mouse_filter = 2
@@ -96,7 +94,6 @@ properties = PoolStringArray( "_state_name" )
 
 [node name="Transition" type="ColorRect" parent="UI"]
 pause_mode = 2
-editor/display_folded = true
 modulate = Color( 1, 1, 1, 0 )
 margin_right = 1920.0
 margin_bottom = 1080.0
@@ -109,7 +106,6 @@ anims/<BASE> = SubResource( 1 )
 anims/transition = SubResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
-editor/display_folded = true
 
 [node name="SkyParallaxBackground" parent="." instance=ExtResource( 6 )]
 
