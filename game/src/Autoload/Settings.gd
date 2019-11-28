@@ -74,7 +74,7 @@ to aim the hook.
 Replaces the Input map actions
 """
 func set_aim_stick(value: int) -> void:
-	assert value in [AimStick.LEFT, AimStick.RIGHT]
+	assert(value in [AimStick.LEFT, AimStick.RIGHT])
 	var setting: int = ProjectSettings.get_setting('debug/testing/controls/aim_stick')
 	if value == setting:
 		return

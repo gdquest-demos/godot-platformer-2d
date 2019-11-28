@@ -13,8 +13,8 @@ export var is_active: = true
 
 
 func _ready():
-	assert ray_top.cast_to.x >= 0
-	assert ray_bottom.cast_to.x >= 0
+	assert(ray_top.cast_to.x >= 0)
+	assert(ray_bottom.cast_to.x >= 0)
 
 
 func _unhandled_input(event: InputEvent) -> void:

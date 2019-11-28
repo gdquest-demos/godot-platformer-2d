@@ -28,7 +28,7 @@ func calculate_steering(steering: SteeringMotion2D) -> SteeringMotion2D:
 Returns the actor upon which the behaviors are acting, to access their position in space.
 """
 func get_actor() -> Node2D:
-	assert controller
+	assert(controller)
 	return controller.actor
 
 

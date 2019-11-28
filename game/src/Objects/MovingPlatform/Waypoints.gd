@@ -34,7 +34,7 @@ func _draw() -> void:
 	var triangles: = []
 	var last_point: = Vector2.ZERO
 	for child in get_children():
-		assert child is Node2D
+		assert(child is Node2D)
 		points.append(child.position)
 		if points.size() > 1:
 			var center: Vector2 = (child.position + last_point) / 2
@@ -83,5 +83,5 @@ func set_editor_process(value: bool) -> void:
 
 
 func set_mode(value: int) -> void:
-#	assert value in Mode
+#	assert(value in Mode)
 	mode = value

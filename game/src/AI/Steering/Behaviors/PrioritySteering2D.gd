@@ -21,7 +21,7 @@ var last_child_index: = 0
 Returns the child whose motion was non-zero. Returns null if no children produced an acceleration.
 """
 func get_last_selected_child() -> SteeringBehavior2D:
-	assert last_child_index >= 0
+	assert(last_child_index >= 0)
 	return get_child(last_child_index) as SteeringBehavior2D
 
 

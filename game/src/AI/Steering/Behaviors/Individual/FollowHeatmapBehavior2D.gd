@@ -15,7 +15,7 @@ var _last_velocity: = Vector2(0, 0)
 
 func _ready() -> void:
 	_heatmap = get_tree().root.find_node("Heatmap", true, false)
-	assert _heatmap
+	assert(_heatmap)
 
 
 func _calculate_steering_internal(steering: SteeringMotion2D) -> SteeringMotion2D:

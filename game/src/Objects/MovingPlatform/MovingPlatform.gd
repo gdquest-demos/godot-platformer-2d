@@ -12,7 +12,7 @@ var target_position: = Vector2()
 func _ready() -> void:
 	if not waypoints:
 		print("Missing Waypoints node for %s: %s" % [name, get_path()])
-		assert waypoints
+		assert(waypoints)
 		set_physics_process(false)
 		return
 	position = waypoints.get_start_position()

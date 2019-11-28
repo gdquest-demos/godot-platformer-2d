@@ -30,10 +30,10 @@ func play(name: String, data: Dictionary = {}) -> void:
 	"""
 	Plays the requested animation and safeguards against errors
 	"""
-	assert name in anim.get_animation_list()
+	assert(name in anim.get_animation_list())
 	anim.stop()
 	if name == "ledge":
-		assert 'from' in data
+		assert('from' in data)
 		position = data.from
 	anim.play(name)
 

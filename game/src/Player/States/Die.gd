@@ -9,7 +9,7 @@ func _on_Player_animation_finished(anim_name: String) -> void:
 
 
 func enter(msg: Dictionary = {}) -> void:
-	assert "last_checkpoint" in msg
+	assert("last_checkpoint" in msg)
 	last_checkpoint = msg.last_checkpoint
 	owner.camera_rig.is_active = true
 	owner.skin.play("die")

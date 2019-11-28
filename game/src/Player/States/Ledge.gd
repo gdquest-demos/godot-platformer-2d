@@ -10,7 +10,7 @@ func _on_Skin_animation_finished(name: String) -> void:
 
 
 func enter(msg: Dictionary = {}) -> void:
-	assert "move_state" in msg and msg.move_state is State
+	assert("move_state" in msg and msg.move_state is State)
 	
 	owner.skin.connect("animation_finished", self, "_on_Skin_animation_finished")
 	
