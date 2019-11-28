@@ -1,17 +1,36 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/Objects/Portal.gd" type="Script" id=1]
+[ext_resource path="res://assets/environment/interactive/portal01_bottom.png" type="Texture" id=2]
+[ext_resource path="res://assets/environment/interactive/portal02_wings.png" type="Texture" id=3]
+[ext_resource path="res://assets/environment/interactive/portal03_frame.png" type="Texture" id=4]
 
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 50, 100 )
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 31.0
+height = 178.0
 
 [node name="Portal" type="Area2D"]
-editor/display_folded = true
+position = Vector2( -1, 0 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -120 )
 shape = SubResource( 1 )
+
+[node name="Bottom" type="Sprite" parent="CollisionShape2D"]
+show_behind_parent = true
+position = Vector2( 0.5, 98.8891 )
+texture = ExtResource( 2 )
+
+[node name="Wings" type="Sprite" parent="CollisionShape2D"]
+show_behind_parent = true
+position = Vector2( 0.5, -26.1109 )
+texture = ExtResource( 3 )
+
+[node name="Frame" type="Sprite" parent="CollisionShape2D"]
+show_behind_parent = true
+position = Vector2( 1.5, -26.1109 )
+texture = ExtResource( 4 )

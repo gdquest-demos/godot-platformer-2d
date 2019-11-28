@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=15 format=2]
 
-[ext_resource path="res://assets/tilesets/valley.png" type="Texture" id=1]
+[ext_resource path="res://assets/tilesets/tileset.png" type="Texture" id=1]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 80, 0, 80, 80, 0, 80 )

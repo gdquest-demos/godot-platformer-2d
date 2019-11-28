@@ -64,11 +64,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/AI/Steering/Behaviors/Individual/FollowHeatmapBehavior2D.gd"
 }, {
-"base": "CanvasItem",
-"class": "HeatmapGD",
-"language": "GDScript",
-"path": "res://src/AI/Heatmap.gd"
-}, {
 "base": "Reference",
 "class": "Hit",
 "language": "GDScript",
@@ -156,7 +151,6 @@ _global_script_class_icons={
 "FleeBehavior2D": "",
 "FloorDetector": "",
 "FollowHeatmapBehavior2D": "",
-"HeatmapGD": "",
 "Hit": "",
 "Hook": "res://assets/icons/icon_hook.svg",
 "HookTarget": "",
@@ -310,4 +304,5 @@ DEBUG_die={
 
 [rendering]
 
+quality/2d/use_pixel_snap=true
 environment/default_environment="res://default_env.tres"
