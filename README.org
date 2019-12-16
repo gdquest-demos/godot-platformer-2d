@@ -1,9 +1,8 @@
-#+TITLE: 2D "Metroidvania": Godot course demo project
+#+TITLE: Godot Open 2D Platformer
 #+DESCRIPTION: A short platform/adventure demo project to teach how to create similar 2d games
-
-  # - Note taken on [2019-04-26 ven. 14:24] \\
-  #   Take the free series as an opportunity to boost the channel: "learn to create a game from scratch with Free Software" ?
     
+    [[https://repository-images.githubusercontent.com/184016714/607e8700-1fe8-11ea-87ed-52cadbdf9db8]]
+        
 * Summary
    
   A course based on a *short 2d game demo inspired by metroidvanias* split into a Free, beginner-friendly series and a paid, intermediate-level series that builds upon the Free one.
