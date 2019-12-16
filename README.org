@@ -1,7 +1,5 @@
 #+TITLE: Godot Open 2D Platformer
 #+DESCRIPTION: A short platform/adventure demo project to teach how to create similar 2d games
-    
-    [[https://repository-images.githubusercontent.com/184016714/607e8700-1fe8-11ea-87ed-52cadbdf9db8]]
         
 * Summary
    
