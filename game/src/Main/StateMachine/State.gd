@@ -14,7 +14,7 @@ var _parent: State = null
 
 func _ready() -> void:
 	yield(owner, "ready")
-	_parent = get_parent()
+	_parent = get_parent() as State
 
 
 func unhandled_input(event: InputEvent) -> void:
