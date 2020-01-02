@@ -1,15 +1,13 @@
 tool
 extends State
-"""
-Manages Air movement, including jumping and landing.
-You can pass a msg to this state, every key is optional:
-{
-	velocity: Vector2, to preserve inertia from the previous state
-	impulse: float, to make the character jump
-	wall_jump: bool, to take air control off the player for controls_freeze.wait_time seconds upon entering the state
-}
-The player can jump after falling off a ledge. See unhandled_input and jump_delay.
-"""
+# Manages Air movement, including jumping and landing.
+# You can pass a msg to this state, every key is optional:
+# {
+	# velocity: Vector2, to preserve inertia from the previous state
+	# impulse: float, to make the character jump
+	# wall_jump: bool, to take air control off the player for controls_freeze.wait_time seconds upon entering the state
+# }
+# The player can jump after falling off a ledge. See unhandled_input and jump_delay.
 
 
 signal jumped
@@ -69,9 +67,7 @@ func exit() -> void:
 	_parent.exit()
 
 
-"""
-Returns a new velocity with a vertical impulse applied to it
-"""
+# Returns a new velocity with a vertical impulse applied to it
 func calculate_jump_velocity(impulse: float = 0.0) -> Vector2:
 	return _parent.calculate_velocity(
 		_parent.velocity,

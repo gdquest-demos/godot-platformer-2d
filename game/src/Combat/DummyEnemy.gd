@@ -1,8 +1,6 @@
 extends Node2D
 
-"""
-Takes damage from a damage source, i.e. Hit, dying if health is depleated
-"""
+# Takes damage from a damage source, i.e. Hit, dying if health is depleated
 
 onready var stats: Stats = $Stats as Stats
 

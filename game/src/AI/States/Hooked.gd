@@ -1,9 +1,7 @@
 extends State
-"""
-This state is for enemy's response to being grappled with the hook.
-It simply waits until the player body collides with the hitbox, colors the body,
- then transitions to `state_when_struck`
-"""
+# This state is for enemy's response to being grappled with the hook.
+# It simply waits until the player body collides with the hitbox, colors the body,
+ # then transitions to `state_when_struck`
 
 
 export var hooked_color: Color

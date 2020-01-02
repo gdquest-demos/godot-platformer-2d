@@ -1,7 +1,5 @@
-"""
-Stats for the player or the monsters, to manage health, etc.
-Attach an instance of Stats to any object to give it health and stats.
-"""
+# Stats for the player or the monsters, to manage health, etc.
+# Attach an instance of Stats to any object to give it health and stats.
 extends Node
 
 class_name Stats

@@ -1,19 +1,18 @@
 extends SteeringBehavior2D
 class_name AlignBehavior2D
-"""Tries to rotate itself to match the target's own rotation.
+# Tries to rotate itself to match the target's own rotation.
 
-Properties:
+# # Properties:
 
-- `alignment_tolerance` is there to prevent flicker, so as to not constantly
-overshoot and start rotating back the other way.
-- `deceleration_radius` is the interval of degrees to begin slowing down the
-rotation
-- `time_to_target` is the amount of time in a fixed time scale
-to weight the amount of rotation by. It should be a small value,
-and defaults to 0.1.
+# # - `alignment_tolerance` is there to prevent flicker, so as to not constantly
+# overshoot and start rotating back the other way.
+# - `deceleration_radius` is the interval of degrees to begin slowing down the
+# rotation
+# - `time_to_target` is the amount of time in a fixed time scale
+# to weight the amount of rotation by. It should be a small value,
+# and defaults to 0.1.
 
-The only target supported is Node2D and should be fed in ahead of time.
-"""
+# # The only target supported is Node2D and should be fed in ahead of time.
 
 
 export var deceleration_radius: = 0.0
@@ -23,20 +22,16 @@ export var time_to_target: = 0.1
 var target: Node2D
 
 
-"""
-Returns a steering motion that has no linear acceleration but a angular acceleration that will
-match its own to its target's orientation.
-"""
+# Returns a steering motion that has no linear acceleration but a angular acceleration that will
+# match its own to its target's orientation.
 func _calculate_steering_internal(steering: SteeringMotion2D) -> SteeringMotion2D:
 	if not target:
 		return steering.reset_values()
 	return _align(steering, target.rotation)
 
 
-"""
-The internal function that calculates the alignment based on the radians passed into the function.
-Returns the steering motion with the angular acceleration that will match its own to the rotation value.
-"""
+# The internal function that calculates the alignment based on the radians passed into the function.
+# Returns the steering motion with the angular acceleration that will match its own to the rotation value.
 func _align(steering: SteeringMotion2D, desired_rotation: float) -> SteeringMotion2D:
 	var rotation_size: = abs(desired_rotation - get_actor().rotation)
 	var alignment_tolerance_rad: = deg2rad(alignment_tolerance)

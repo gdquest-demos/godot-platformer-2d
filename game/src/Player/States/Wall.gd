@@ -1,8 +1,6 @@
 tool
 extends State
-"""
-Handles wall movement: sliding against the wall and wall jump
-"""
+# Handles wall movement: sliding against the wall and wall jump
 
 
 export var slide_acceleration: = 1600.0

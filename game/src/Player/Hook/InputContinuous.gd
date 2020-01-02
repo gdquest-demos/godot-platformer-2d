@@ -1,7 +1,5 @@
-"""
-Generates input events continuously based on a timer
-Allows the player to hook onto a target even if they pressed the hook key before the hook was in range
-"""
+# Generates input events continuously based on a timer
+# Allows the player to hook onto a target even if they pressed the hook key before the hook was in range
 extends Node
 
 export var timer_duration: = 0.05

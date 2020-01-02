@@ -1,10 +1,8 @@
 extends SteeringBehavior2D
 class_name FollowHeatmapBehavior2D
-"""
-A 2D steering behavior that expects a heatmap to be somewhere in the scene.
-It uses that to figure out where it should be going - from large values in its cell
-towards smaller values, with 0 being the goal.
-"""
+# A 2D steering behavior that expects a heatmap to be somewhere in the scene.
+# It uses that to figure out where it should be going - from large values in its cell
+# towards smaller values, with 0 being the goal.
 
 
 var _heatmap

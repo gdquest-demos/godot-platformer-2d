@@ -1,7 +1,5 @@
 extends Node2D
-"""
-One-shot hook target with an object attached
-"""
+# One-shot hook target with an object attached
 
 onready var target: HookTarget = $HookTarget
 onready var body: RigidBody2D = $PropelledBody

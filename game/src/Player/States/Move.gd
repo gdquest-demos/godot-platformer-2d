@@ -1,8 +1,6 @@
 extends State
-"""
-Parent state that abstracts and handles basic movement
-Move-related children states can delegate movement to it, or use its utility functions
-"""
+# Parent state that abstracts and handles basic movement
+# Move-related children states can delegate movement to it, or use its utility functions
 
 const PASS_THROUGH_LAYER = 3
 

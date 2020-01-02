@@ -1,10 +1,8 @@
 tool
 extends Camera2D
-"""
-Shakes the screen when is_shaking is set to true
-To make it react to events happening in the game world, use the Events signal routing singleton
-Uses different smoothing values depending on the active controller
-"""
+# Shakes the screen when is_shaking is set to true
+# To make it react to events happening in the game world, use the Events signal routing singleton
+# Uses different smoothing values depending on the active controller
 
 onready var timer = $Timer
 

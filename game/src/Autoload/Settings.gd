@@ -1,6 +1,4 @@
-"""
-Gives access to game settings
-"""
+# Gives access to game settings
 extends Node
 
 signal controls_changed()
@@ -68,11 +66,9 @@ func set_controls(value: int) -> void:
 	emit_signal("controls_changed")
 
 
-"""
-Switch between using the gamepad's left and right joystick
-to aim the hook.
-Replaces the Input map actions
-"""
+# Switch between using the gamepad's left and right joystick
+# to aim the hook.
+# Replaces the Input map actions
 func set_aim_stick(value: int) -> void:
 	assert(value in [AimStick.LEFT, AimStick.RIGHT])
 	var setting: int = ProjectSettings.get_setting('debug/testing/controls/aim_stick')
@@ -91,11 +87,9 @@ func set_aim_stick(value: int) -> void:
 		print(action_name)
 
 
-"""
-Returns a new InputEventJoypadMotion event for aim_* input events,
-using JOYSTICK_AIM_INPUTS for the base data 
-Use AimStick.* for the stick argument
-"""
+# Returns a new InputEventJoypadMotion event for aim_* input events,
+# using JOYSTICK_AIM_INPUTS for the base data 
+# Use AimStick.* for the stick argument
 func get_joypad_motion_event(action: String, stick: int) -> InputEventJoypadMotion:
 	var event: = InputEventJoypadMotion.new()
 	var action_data: Dictionary = JOYSTICK_AIM_INPUTS[stick][action]

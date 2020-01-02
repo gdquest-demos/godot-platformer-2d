@@ -1,7 +1,5 @@
 extends State
-"""
-Player state when grappling an enemy. Waits to let player aim/take stock, then jumps up.
-"""
+# Player state when grappling an enemy. Waits to let player aim/take stock, then jumps up.
 
 
 onready var timer: Timer = $Timer

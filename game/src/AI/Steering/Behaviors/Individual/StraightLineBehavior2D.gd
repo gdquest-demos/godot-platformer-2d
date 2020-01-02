@@ -1,8 +1,6 @@
 extends SteeringBehavior2D
 class_name StraightLineBehavior2D
-"""
-2D Behavior that acts like Seek, but for a specific Vector2 position instead of an Object.
-"""
+# 2D Behavior that acts like Seek, but for a specific Vector2 position instead of an Object.
 
 export var arrival_tolerance: = 5.0
 

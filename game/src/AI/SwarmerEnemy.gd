@@ -1,8 +1,6 @@
 extends Node2D
-"""
-Basic controller for a node2D - its behavior checks the heatmap and points
-its directional vector towards the less heat (the 'goal')
-"""
+# Basic controller for a node2D - its behavior checks the heatmap and points
+# its directional vector towards the less heat (the 'goal')
 
 
 onready var behavior: FollowHeatmapBehavior2D = $BehaviorController2D/FollowHeatmapBehavior2D

@@ -1,7 +1,5 @@
 extends State
-"""
-State to make enemy fade to nothing, then get released by the scene tree.
-"""
+# State to make enemy fade to nothing, then get released by the scene tree.
 
 
 export var hurt_color: Color

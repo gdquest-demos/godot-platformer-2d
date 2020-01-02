@@ -1,7 +1,5 @@
 extends Position2D
-"""
-The player's animated skin. Provides a simple interface to play animations.
-"""
+# The player's animated skin. Provides a simple interface to play animations.
 
 signal animation_finished(name)
 
@@ -27,9 +25,7 @@ func _physics_process(delta: float) -> void:
 
 
 func play(name: String, data: Dictionary = {}) -> void:
-	"""
-	Plays the requested animation and safeguards against errors
-	"""
+	# Plays the requested animation and safeguards against errors
 	assert(name in anim.get_animation_list())
 	anim.stop()
 	if name == "ledge":

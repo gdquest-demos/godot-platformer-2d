@@ -1,8 +1,6 @@
 extends State
-"""
-State that connects to the player's signal about hopping off an entity,
- and gets knocked away before transitioning.
-"""
+# State that connects to the player's signal about hopping off an entity,
+ # and gets knocked away before transitioning.
 
 
 export var knock_back_speed: = 450.0

@@ -1,8 +1,6 @@
 extends KinematicBody2D
-"""
-A passive enemy; simply patrols side to side and bumps into the player for damage.
-Can be hooked onto, and will be damaged.
-"""
+# A passive enemy; simply patrols side to side and bumps into the player for damage.
+# Can be hooked onto, and will be damaged.
 
 
 onready var collider: CollisionShape2D = $CollisionShape2D setget ,get_collider

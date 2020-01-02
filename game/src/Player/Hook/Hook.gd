@@ -1,11 +1,9 @@
 tool
 extends Position2D
 class_name Hook, "res://assets/icons/icon_hook.svg"
-"""
-Throws a raycast that can interact with Hookable bodies and calculate a pull vector towards those bodies.
-The raycast is updated manually for greater precision with where the player is aiming
-Draws the hook's range in the editor
-"""
+# Throws a raycast that can interact with Hookable bodies and calculate a pull vector towards those bodies.
+# The raycast is updated manually for greater precision with where the player is aiming
+# Draws the hook's range in the editor
 
 
 signal hooked_onto_target(target_global_position)

@@ -1,8 +1,6 @@
 extends State
-"""
-Moves the character to the target position using the arrive_to steering behavior
-Preserves the character's inertia past the hooking point
-"""
+# Moves the character to the target position using the arrive_to steering behavior
+# Preserves the character's inertia past the hooking point
 
 
 const HOOK_MAX_SPEED: = 1600.0

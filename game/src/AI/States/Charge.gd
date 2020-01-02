@@ -1,9 +1,7 @@
 extends State
-"""
-Charge attack in a straight line.
-Controls the amount of acceleration and speed from the straight line behavior's
-desired velocity, and only charges for a set amount of time before moving to cooldown.
-"""
+# Charge attack in a straight line.
+# Controls the amount of acceleration and speed from the straight line behavior's
+# desired velocity, and only charges for a set amount of time before moving to cooldown.
 
 
 onready var _behavior: StraightLineBehavior2D = get_node(behavior)

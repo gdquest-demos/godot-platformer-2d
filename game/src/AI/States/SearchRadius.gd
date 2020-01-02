@@ -1,8 +1,6 @@
 extends State
-"""
-Detects the player entering the search area.
-Sets the target position to aim for to the straight line charge behavior.
-"""
+# Detects the player entering the search area.
+# Sets the target position to aim for to the straight line charge behavior.
 
 
 func enter(msg: Dictionary = {}) -> void:

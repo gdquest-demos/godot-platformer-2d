@@ -1,7 +1,5 @@
 extends State
-"""
-Waits for a given amount of time
-"""
+# Waits for a given amount of time
 
 export var cooldown_time: = 1.5
 

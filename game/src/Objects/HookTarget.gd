@@ -1,9 +1,7 @@
 extends Area2D
 class_name HookTarget
-"""
-Area2D the Hook can hook onto
-If is_one_shot is true, the player can only hook onto the point once
-"""
+# Area2D the Hook can hook onto
+# If is_one_shot is true, the player can only hook onto the point once
 
 
 signal hooked_onto_from(hook_position)

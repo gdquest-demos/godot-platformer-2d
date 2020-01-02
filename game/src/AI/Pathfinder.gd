@@ -1,11 +1,9 @@
-"""
-Finds the path between two points using AStar, in grid coordinates
+# Finds the path between two points using AStar, in grid coordinates
 
-Code by razcore as part of the GDQuest OpenRPG project:
-	https://github.com/GDquest/godot-open-rpg
-It's been modified and extended a little to not allow diagonals, and to allow
-tiles that lie on the negative side of the Tilemap planes.
-"""
+# # Code by razcore as part of the GDQuest OpenRPG project:
+	# https://github.com/GDquest/godot-open-rpg
+# It's been modified and extended a little to not allow diagonals, and to allow
+# tiles that lie on the negative side of the Tilemap planes.
 class_name Pathfinder
 
 
@@ -20,10 +18,8 @@ var _y_max: float
 
 
 func initialize(grid : TileMap, obstacle_tile_ids : Array) -> void:
-	"""
-	Initializes the AStar node: finds all walkable cells 
-	and connects all walkable paths
-	"""
+	# Initializes the AStar node: finds all walkable cells 
+	# and connects all walkable paths
 	# Initialize map size and obstacles array
 	_map_size = grid.get_used_rect()
 	_x_min = _map_size.position.x
@@ -77,10 +73,8 @@ func calculate_point_index(point : Vector2) -> int:
 
 
 func find_path(start : Vector2, end : Vector2) -> PoolVector3Array:
-	"""
-	Returns an array of cells that connect the start and end positions
-	in grid coordinates
-	"""
+	# Returns an array of cells that connect the start and end positions
+	# in grid coordinates
 	var start_index = calculate_point_index(start)
 	var end_index = calculate_point_index(end)
 	return astar.get_point_path(start_index, end_index)

@@ -1,7 +1,5 @@
 extends State
-"""
-Takes control away from the player and makes the character spawn
-"""
+# Takes control away from the player and makes the character spawn
 
 
 func _on_Player_animation_finished(anim_name: String) -> void:

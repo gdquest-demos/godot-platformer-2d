@@ -1,7 +1,5 @@
 extends State
-"""
-Pulls the character up a ledge, temporarily taking control away from the player
-"""
+# Pulls the character up a ledge, temporarily taking control away from the player
 
 
 func _on_Skin_animation_finished(name: String) -> void:

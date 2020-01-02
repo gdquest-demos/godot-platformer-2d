@@ -1,10 +1,8 @@
 extends State
-"""
-Moves the player freely around the world, ignoring collisions.
-This state has its own movement code so it doesn't depend on or mess with the Move state
-Use the move_* input to move the character, or click
-debug_sprint, assigned to Shift on the keyboard and B on an XBOX controller, moves the character faster
-"""
+# Moves the player freely around the world, ignoring collisions.
+# This state has its own movement code so it doesn't depend on or mess with the Move state
+# Use the move_* input to move the character, or click
+# debug_sprint, assigned to Shift on the keyboard and B on an XBOX controller, moves the character faster
 
 
 var velocity: = Vector2.ZERO

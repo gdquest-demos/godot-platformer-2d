@@ -1,7 +1,5 @@
 extends Position2D
-"""
-Rig to move a child camera based on the player's input, to give them more forward visibility
-"""
+# Rig to move a child camera based on the player's input, to give them more forward visibility
 
 
 onready var camera: Camera2D = $ShakingCamera
@@ -17,17 +15,17 @@ func _physics_process(delta: float) -> void:
 
 
 func update_position(velocity: Vector2 = Vector2.ZERO) -> void:
-	"""Updates the camera rig's position based on the player's state and controller position"""
-	if not is_active:
-		return
+	# Updates the camera rig's position based on the player's state and controller position
+	# if not is_active:
+		# return
 
-	match Settings.controls:
+# 	# match Settings.controls:
 
-		Settings.GAMEPAD:
-			var joystick_strength: = Utils.get_aim_joystick_strength()
-			camera.position = joystick_strength * offset
+# 		# Settings.GAMEPAD:
+			# var joystick_strength: = Utils.get_aim_joystick_strength()
+			# camera.position = joystick_strength * offset
 
-		Settings.KBD_MOUSE, _:
-			var mouse_position: = get_local_mouse_position()
-			var distance_ratio: = clamp(mouse_position.length(), mouse_range.x, mouse_range.y) / mouse_range.y
-			camera.position = distance_ratio * mouse_position.normalized() * offset
+# 		# Settings.KBD_MOUSE, _:
+			# var mouse_position: = get_local_mouse_position()
+			# var distance_ratio: = clamp(mouse_position.length(), mouse_range.x, mouse_range.y) / mouse_range.y
+			# camera.position = distance_ratio * mouse_position.normalized() * offset

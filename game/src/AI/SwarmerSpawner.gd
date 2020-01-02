@@ -1,8 +1,6 @@
 extends Node2D
-"""
-Spawns a number of swarmer enemies in the scene, who use the heatmap behavior
-to chase the player for economical pathfinding.
-"""
+# Spawns a number of swarmer enemies in the scene, who use the heatmap behavior
+# to chase the player for economical pathfinding.
 
 
 export var spawner_count: = 50

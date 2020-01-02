@@ -1,8 +1,6 @@
 extends Reference
 class_name SteeringMotion2D
-"""
-Data container for linear and angular steering velocities calculated by behaviors that extend SteeringBehavior2D.
-"""
+# Data container for linear and angular steering velocities calculated by behaviors that extend SteeringBehavior2D.
 
 
 var velocity: = Vector2.ZERO

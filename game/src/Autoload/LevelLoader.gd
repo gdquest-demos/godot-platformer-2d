@@ -1,7 +1,5 @@
 extends Node
-"""
-Loads and unloads levels
-"""
+# Loads and unloads levels
 
 onready var scene_tree: = get_tree()
 

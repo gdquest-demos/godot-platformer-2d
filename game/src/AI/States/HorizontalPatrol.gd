@@ -1,8 +1,6 @@
 extends State
-"""
-State for a simple patroller that goes side to side, changing direction when it bumps into walls.
-Responds to player using grappling hook.
-"""
+# State for a simple patroller that goes side to side, changing direction when it bumps into walls.
+# Responds to player using grappling hook.
 
 
 onready var _move_speed: float = owner.move_speed

@@ -1,13 +1,11 @@
 extends SteeringBehavior2D
 class_name InterceptBehavior2D
-"""
-Attempts to predict where the target is headed, and points its acceleration towards that point.
+# Attempts to predict where the target is headed, and points its acceleration towards that point.
 
-Properties:
+# # Properties:
 
-- `max_prediction_time` is how far into the future in fixed time scale the AI will use to predict
-where the target is headed
-"""
+# # - `max_prediction_time` is how far into the future in fixed time scale the AI will use to predict
+# where the target is headed
 
 
 export var max_prediction_time: = 0.0
@@ -15,11 +13,9 @@ export var max_prediction_time: = 0.0
 var target: Node2D
 
 
-"""
-Returns the steering motion filled with a linear acceleration amount that will send it on an
-intercept course with wherever the target is headed so that its arrival will cross with the
-target's.
-"""
+# Returns the steering motion filled with a linear acceleration amount that will send it on an
+# intercept course with wherever the target is headed so that its arrival will cross with the
+# target's.
 func _calculate_steering_internal(steering: SteeringMotion2D) -> SteeringMotion2D:
 	if not target:
 		return steering.reset_values()

@@ -1,10 +1,8 @@
 tool
 extends KinematicBody2D
-"""
-Simple AI agent to teach game AI programming basics.
-Patrols between two points, stopping at each point to wait for a moment.
-Detects gaps and walls, and turns around instead of getting stuck or falling in holes.
-"""
+# Simple AI agent to teach game AI programming basics.
+# Patrols between two points, stopping at each point to wait for a moment.
+# Detects gaps and walls, and turns around instead of getting stuck or falling in holes.
 
 
 const ARRIVE_THRESHOLD: = 3.0
@@ -73,9 +71,7 @@ func _on_Timer_timeout() -> void:
 	walk()
 
 
-"""
-Draws the path the agent walks in the editor
-"""
+# Draws the path the agent walks in the editor
 func _draw() -> void:
 	if not Engine.editor_hint or not $Start:
 		return

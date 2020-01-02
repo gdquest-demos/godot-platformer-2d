@@ -1,8 +1,6 @@
-"""
-Represents an attack or a hit
-Created from a DamageSource.
-See DamageSource for more information.
-"""
+# Represents an attack or a hit
+# Created from a DamageSource.
+# See DamageSource for more information.
 class_name Hit
 
 var damage: = 0

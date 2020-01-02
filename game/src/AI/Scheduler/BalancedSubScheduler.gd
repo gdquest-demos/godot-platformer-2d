@@ -1,9 +1,7 @@
 extends SchedulableJob
 class_name BalancedSubScheduler
-"""
-A scheduler that spreads its budget evenly between all jobs. It runs as a job itself on the
-priority scheduler as a low priority job. The user shouldn't interact with this directly.
-"""
+# A scheduler that spreads its budget evenly between all jobs. It runs as a job itself on the
+# priority scheduler as a low priority job. The user shouldn't interact with this directly.
 
 var _current_frame: int = 0
 var _job_list: Array = []

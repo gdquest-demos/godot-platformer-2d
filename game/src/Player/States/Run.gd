@@ -1,9 +1,7 @@
 extends State
-"""
-Horizontal movement on the ground.
-Delegates movement to its parent Move state and extends it
-with state transitions
-"""
+# Horizontal movement on the ground.
+# Delegates movement to its parent Move state and extends it
+# with state transitions
 
 onready var slow_starter: Timer = $SlowStarter
 onready var tween: Tween = $Tween

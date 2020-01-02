@@ -1,10 +1,8 @@
 tool
 extends Control
-"""
-Displays the values of properties of a given node
-You can directly change the `properties` property to display multiple values from the `reference` node
-E.g. properties = PoolStringArray(['speed', 'position', 'modulate'])
-"""
+# Displays the values of properties of a given node
+# You can directly change the `properties` property to display multiple values from the `reference` node
+# E.g. properties = PoolStringArray(['speed', 'position', 'modulate'])
 
 onready var _container: VBoxContainer = $VBoxContainer/MarginContainer/VBoxContainer
 onready var _title: Label = $VBoxContainer/ReferenceName
