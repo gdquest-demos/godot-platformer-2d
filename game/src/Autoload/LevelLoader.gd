@@ -25,7 +25,7 @@ func trigger(NewLevel: PackedScene, portal_name: String = "") -> void:
 	
 	_level = NewLevel.instance()
 	
-	var player_position_node: Area2D = (
+	var player_position_node: Node2D = (
 		_level.get_node("Checkpoints").get_child(0)
 		if portal_name.empty()
 		else _level.get_node("Portals/%s" % portal_name))
