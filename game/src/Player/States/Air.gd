@@ -15,7 +15,7 @@ signal jumped
 onready var jump_delay: Timer = $JumpDelay
 onready var controls_freeze: Timer = $ControlsFreeze
 
-export var acceleration_x: = 5000.0
+export var acceleration_x := 5000.0
 
 
 func unhandled_input(event: InputEvent) -> void:
@@ -34,7 +34,7 @@ func physics_process(delta: float) -> void:
 
 	# Landing
 	if owner.is_on_floor():
-		var target_state: = "Move/Idle" if _parent.get_move_direction().x == 0 else "Move/Run"
+		var target_state := "Move/Idle" if _parent.get_move_direction().x == 0 else "Move/Run"
 		_state_machine.transition_to(target_state)
 
 	elif owner.ledge_wall_detector.is_against_ledge():

@@ -12,7 +12,7 @@ class_name PrioritySteering2D
 # usually want to act on them. For instance, evading an obstacle to avoid impact.
 
 
-var last_child_index: = 0
+var last_child_index := 0
 
 
 # Returns the child whose motion was non-zero. Returns null if no children produced an acceleration.
@@ -25,10 +25,10 @@ func get_last_selected_child() -> SteeringBehavior2D:
 # top to bottom.
 func _calculate_steering_internal(steering: SteeringMotion2D) -> SteeringMotion2D:
 	last_child_index = -1
-	var size: = get_child_count()
+	var size := get_child_count()
 
 	for i in range(0, size):
-		var child: = get_child(i) as SteeringBehavior2D
+		var child := get_child(i) as SteeringBehavior2D
 		if child == null:
 			continue
 

@@ -10,7 +10,7 @@ func enter(msg: Dictionary = {}) -> void:
 
 	var target: HookTarget = owner.snap_detector.target
 	if not target:
-		var distance: = min(owner._radius, owner.get_local_mouse_position().length())
+		var distance := min(owner._radius, owner.get_local_mouse_position().length())
 		owner.arrow.hook_position = owner.global_position + owner.get_local_mouse_position().normalized() * distance / 2.0
 		_state_machine.transition_to("Aim")
 		return

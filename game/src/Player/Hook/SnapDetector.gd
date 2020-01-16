@@ -22,15 +22,15 @@ func _physics_process(delta: float) -> void:
 # Returns the closest target, skipping targets when there is an obstacle
 # between the player and the target.
 func find_best_target() -> HookTarget:
-	var targets: = get_overlapping_areas()
+	var targets := get_overlapping_areas()
 
 	var closest_target: HookTarget = null
-	var distance_to_closest: = 100000.0
+	var distance_to_closest := 100000.0
 	for t in targets:
 		if not t.is_active:
 			continue
 
-		var distance: = global_position.distance_to(t.global_position)
+		var distance := global_position.distance_to(t.global_position)
 		if distance > distance_to_closest:
 			continue
 
@@ -52,7 +52,7 @@ func has_target() -> bool:
 # Returns the length of the hook, from the origin to the tip of the collision shape
 # Used to draw the hook's radius in the editor
 func calculate_length() -> float:
-	var length: = -1.0
+	var length := -1.0
 	for collider in [$CapsuleH, $CapsuleV]:
 		if not collider:
 			continue

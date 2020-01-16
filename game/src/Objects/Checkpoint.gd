@@ -3,9 +3,9 @@ extends Area2D
 
 onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
-const COLOR_INACTIVE: = Color(1, 1, 1)
+const COLOR_INACTIVE := Color(1, 1, 1)
 
-var is_visited: = false setget set_is_visited
+var is_visited := false setget set_is_visited
 
 
 func _ready() -> void:

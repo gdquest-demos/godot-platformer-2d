@@ -5,10 +5,10 @@ signal controls_changed()
 
 
 enum { KBD_MOUSE, GAMEPAD }
-var controls: = KBD_MOUSE setget set_controls
+var controls := KBD_MOUSE setget set_controls
 
 enum AimStick { LEFT=0, RIGHT=1 }
-const JOYSTICK_AIM_INPUTS: = {
+const JOYSTICK_AIM_INPUTS := {
 	AimStick.LEFT: {
 		'aim_left': {
 			axis=JOY_AXIS_0,
@@ -78,11 +78,11 @@ func set_aim_stick(value: int) -> void:
 	aim_stick = value
 	ProjectSettings.set_setting('debug/testing/controls/aim_stick', value)
 
-	var action_suffixes: = ['left', 'right', 'up', 'down']
+	var action_suffixes := ['left', 'right', 'up', 'down']
 	for suffix in action_suffixes:
 		var action_name: String = 'aim_' + suffix
 		InputMap.action_erase_events(action_name)
-		var event: = get_joypad_motion_event(action_name, aim_stick)
+		var event := get_joypad_motion_event(action_name, aim_stick)
 		InputMap.action_add_event(action_name, event)
 		print(action_name)
 
@@ -91,7 +91,7 @@ func set_aim_stick(value: int) -> void:
 # using JOYSTICK_AIM_INPUTS for the base data 
 # Use AimStick.* for the stick argument
 func get_joypad_motion_event(action: String, stick: int) -> InputEventJoypadMotion:
-	var event: = InputEventJoypadMotion.new()
+	var event := InputEventJoypadMotion.new()
 	var action_data: Dictionary = JOYSTICK_AIM_INPUTS[stick][action]
 	action_data.deadzone = 0.0
 	event.axis = action_data.axis

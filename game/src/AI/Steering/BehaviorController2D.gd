@@ -10,15 +10,15 @@ class_name BehaviorController2D
 
 
 export var actor_path: NodePath
-export var max_speed: = 400.0
-export var max_acceleration: = 1000.0
-export var max_rotation_speed: = 10.0
-export var max_angular_acceleration: = 10.0
+export var max_speed := 400.0
+export var max_acceleration := 1000.0
+export var max_rotation_speed := 10.0
+export var max_angular_acceleration := 10.0
 
-var velocity: = Vector2.ZERO
-var angular_velocity: = 0.0
-var target_velocity: = Vector2.ZERO
-var target_angular_velocity: = 0.0
+var velocity := Vector2.ZERO
+var angular_velocity := 0.0
+var target_velocity := Vector2.ZERO
+var target_angular_velocity := 0.0
 
 onready var actor: Node2D = get_node(actor_path)
 

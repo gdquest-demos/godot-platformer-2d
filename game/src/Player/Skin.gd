@@ -19,7 +19,7 @@ func _on_Anim_animation_finished(name: String) -> void:
 func _physics_process(delta: float) -> void:
 	floor_detector.force_raycast_update()
 	shadow.visible = floor_detector.is_close_to_floor()
-	var ratio: = floor_detector.get_floor_distance_ratio()
+	var ratio := floor_detector.get_floor_distance_ratio()
 	shadow.scale = Vector2(ratio, ratio) * shadow.scale_start
 	shadow.global_position = floor_detector.get_floor_position()
 

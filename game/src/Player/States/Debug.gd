@@ -5,8 +5,8 @@ extends State
 # debug_sprint, assigned to Shift on the keyboard and B on an XBOX controller, moves the character faster
 
 
-var velocity: = Vector2.ZERO
-const speed: = Vector2(600.0, 600.0)
+var velocity := Vector2.ZERO
+const speed := Vector2(600.0, 600.0)
 
 
 func unhandled_input(event: InputEvent) -> void:
@@ -17,8 +17,8 @@ func unhandled_input(event: InputEvent) -> void:
 
 
 func physics_process(delta: float) -> void:
-	var direction: = get_move_direction()
-	var multiplier: = 3.0 if Input.is_action_pressed('debug_sprint') else 1.0
+	var direction := get_move_direction()
+	var multiplier := 3.0 if Input.is_action_pressed('debug_sprint') else 1.0
 	velocity = speed * direction * multiplier
 	owner.position += velocity * delta
 	Events.emit_signal("player_moved", owner)

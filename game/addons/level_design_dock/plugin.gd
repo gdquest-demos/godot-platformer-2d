@@ -1,9 +1,9 @@
 tool
 extends EditorPlugin
 
-const LevelDesignDockScene: = preload("res://addons/level_design_dock/LevelDesignDock.tscn")
-const LevelDesignDock: = preload("res://addons/level_design_dock/LevelDesignDock.gd")
-const PackedSceneButton: = preload("res://addons/level_design_dock/PackedSceneButton.gd")
+const LevelDesignDockScene := preload("res://addons/level_design_dock/LevelDesignDock.tscn")
+const LevelDesignDock := preload("res://addons/level_design_dock/LevelDesignDock.gd")
+const PackedSceneButton := preload("res://addons/level_design_dock/PackedSceneButton.gd")
 
 var _interface: LevelDesignDock
 var _current_instance: Node2D setget _set_current_instance
@@ -28,7 +28,7 @@ func handles(object: Object) -> bool:
 
 
 func forward_canvas_gui_input(event: InputEvent) -> bool:
-	var forward: = false
+	var forward := false
 	if event is InputEventMouseMotion:
 		_move_instance()
 	elif event is InputEventMouseButton:

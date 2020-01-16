@@ -3,13 +3,13 @@ extends State
 # Handles wall movement: sliding against the wall and wall jump
 
 
-export var slide_acceleration: = 1600.0
-export var max_slide_speed: = 400.0
-export (float, 0.0, 1.0) var friction_factor: = 0.15
+export var slide_acceleration := 1600.0
+export var max_slide_speed := 400.0
+export (float, 0.0, 1.0) var friction_factor := 0.15
 
-export var jump_strength: = Vector2(500.0, 400.0)
-var _wall_normal: = -1
-var _velocity: = Vector2.ZERO
+export var jump_strength := Vector2(500.0, 400.0)
+var _wall_normal := -1
+var _velocity := Vector2.ZERO
 
 
 func unhandled_input(event: InputEvent) -> void:
@@ -28,7 +28,7 @@ func physics_process(delta: float) -> void:
 	if owner.is_on_floor():
 		_state_machine.transition_to("Move/Idle")
 
-	var is_moving_away_from_wall: = sign(_parent.get_move_direction().x) == sign(_wall_normal)
+	var is_moving_away_from_wall := sign(_parent.get_move_direction().x) == sign(_wall_normal)
 	if is_moving_away_from_wall or not owner.ledge_wall_detector.is_against_wall():
 		_state_machine.transition_to("Move/Air", {"velocity":_velocity})
 
@@ -49,8 +49,8 @@ func exit() -> void:
 
 func jump() -> void:
 	# The direction vector not being normalized is intended
-	var impulse: = Vector2(_wall_normal, -1.0) * jump_strength
-	var msg: = {
+	var impulse := Vector2(_wall_normal, -1.0) * jump_strength
+	var msg := {
 		velocity = impulse,
 		wall_jump = true
 	}

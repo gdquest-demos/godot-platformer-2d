@@ -8,9 +8,9 @@ onready var hook_target: Area2D = $HookTarget
 onready var body: Node2D = $Body
 onready var hitbox: Area2D = $Hitbox
 
-export var can_be_hooked_while_stunned: = false
-export var move_speed: = 200
-export var direction: = -1
+export var can_be_hooked_while_stunned := false
+export var move_speed := 200
+export var direction := -1
 
 func _ready() -> void:
 	if can_be_hooked_while_stunned:

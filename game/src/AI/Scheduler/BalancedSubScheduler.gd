@@ -14,7 +14,7 @@ func _add_new_job(job, frequency: int, phase: int) -> void:
 
 
 func _remove_job(job: SchedulableJob) -> void:
-	var index: = _job_list.find(job)
+	var index := _job_list.find(job)
 	if index >= 0:
 		_job_list.remove(index)
 
@@ -24,9 +24,9 @@ func _run(microseconds_budget: int) -> void:
 	
 	_run_list.clear()
 	
-	var i: = _job_list.size()-1
+	var i := _job_list.size()-1
 	while i >= 0:
-		var job: = ((_job_list[i] as WeakRef).get_ref() as SchedulableJob)
+		var job := ((_job_list[i] as WeakRef).get_ref() as SchedulableJob)
 		i -= 1
 		if !job:
 			_job_list.remove(i+1)
@@ -35,17 +35,17 @@ func _run(microseconds_budget: int) -> void:
 		if (_current_frame + job.phase) % job.frequency == 0:
 			_run_list.append(job)
 	
-	var current_job: = 0
-	var usec_budget: = microseconds_budget
-	var last_time: = OS.get_ticks_usec()
+	var current_job := 0
+	var usec_budget := microseconds_budget
+	var last_time := OS.get_ticks_usec()
 	
-	var list_size: = _run_list.size()
+	var list_size := _run_list.size()
 	for i in range(0, list_size):
-		var job: = _run_list[i] as SchedulableJob
-		var current_time: = OS.get_ticks_usec()
+		var job := _run_list[i] as SchedulableJob
+		var current_time := OS.get_ticks_usec()
 		usec_budget -= current_time - last_time
 		
-		var available_time: = int(float(usec_budget) / float(_run_list.size() - current_job))
+		var available_time := int(float(usec_budget) / float(_run_list.size() - current_job))
 		job._run(available_time)
 		
 		last_time = current_time

@@ -2,11 +2,11 @@
 # extends KinematicBody2D
 
 # # onready var wait_timer: Timer = $Timer
-# onready var waypoints: = $Waypoints
+# onready var waypoints := $Waypoints
 
-# # export var speed: = 400.0
+# # export var speed := 400.0
 
-# # var target_position: = Vector2()
+# # var target_position := Vector2()
 
 # 
 # # func _ready() -> void:
@@ -20,9 +20,9 @@
 
 # 
 # # func _physics_process(delta: float) -> void:
-	# var direction: = (target_position - position).normalized()
-	# var motion: = direction * speed * delta
-	# var distance_to_target: = position.distance_to(target_position)
+	# var direction := (target_position - position).normalized()
+	# var motion := direction * speed * delta
+	# var distance_to_target := position.distance_to(target_position)
 	# if motion.length() > distance_to_target:
 		# position = target_position
 		# target_position = waypoints.get_next_point_position()
@@ -33,9 +33,9 @@
 
 # 
 # # func _draw() -> void:
-	# var shape: = $CollisionShape2D
+	# var shape := $CollisionShape2D
 	# var extents: Vector2 = shape.shape.extents * 2.0
-	# var rect: = Rect2(shape.position - extents / 2.0, extents)
+	# var rect := Rect2(shape.position - extents / 2.0, extents)
 	# draw_rect(rect, Color('fff'))
 
 # 

@@ -10,7 +10,7 @@ func _ready() -> void:
 
 
 func _on_HookTarget_hooked_onto_from(hook_position: Vector2) -> void:
-	var impulse_offset: = target.position
-	var direction: = (hook_position - target.global_position).normalized()
+	var impulse_offset := target.position
+	var direction := (hook_position - target.global_position).normalized()
 	body.propel(impulse_offset, direction)
 

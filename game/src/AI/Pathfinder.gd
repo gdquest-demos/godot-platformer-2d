@@ -33,7 +33,7 @@ func initialize(grid : TileMap, obstacle_tile_ids : Array) -> void:
 			_obstacles.append(cell)
 	
 	# Find all walkable cells and store them in an array
-	var points_array : = []
+	var points_array  := []
 	for y in range(_y_min, _y_max):
 		for x in range(_x_min, _x_max):
 			var point = Vector2(x, y)
@@ -48,12 +48,12 @@ func initialize(grid : TileMap, obstacle_tile_ids : Array) -> void:
 		var point_index = calculate_point_index(point)
 		for y in range(0, 3):
 			for x in range(0, 3):
-				var point_relative: = Vector2(point.x + x - 1, point.y + y - 1)
+				var point_relative := Vector2(point.x + x - 1, point.y + y - 1)
 				
 				#only connect south-north and west-east, no diagonals
 				if point_relative.x != point.x and point_relative.y != point.y:
 					continue
-				var point_relative_index: = calculate_point_index(point_relative)
+				var point_relative_index := calculate_point_index(point_relative)
 				
 				if (point_relative != point and not is_outside_map_bounds(point_relative) 
 						and astar.has_point(point_relative_index)):

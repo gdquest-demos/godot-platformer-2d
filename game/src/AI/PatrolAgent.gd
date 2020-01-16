@@ -5,19 +5,19 @@ extends KinematicBody2D
 # Detects gaps and walls, and turns around instead of getting stuck or falling in holes.
 
 
-const ARRIVE_THRESHOLD: = 3.0
+const ARRIVE_THRESHOLD := 3.0
 
 onready var floor_detector: RayCast2D = $Pivot/FloorDetector
 onready var pivot: Position2D = $Pivot
 onready var timer: Timer = $Timer
 
-export var speed: = 300.0
-export var gravity: = 1000.0
+export var speed := 300.0
+export var gravity := 1000.0
 
-var waypoints: = {}
+var waypoints := {}
 var _target: Vector2
 
-var _velocity: = Vector2(0, gravity)
+var _velocity := Vector2(0, gravity)
 
 
 func _ready() -> void:
@@ -76,8 +76,8 @@ func _draw() -> void:
 	if not Engine.editor_hint or not $Start:
 		return
 
-	var draw_radius: = 20.0
-	var line_thickness: = 6.0
+	var draw_radius := 20.0
+	var line_thickness := 6.0
 
 	var start: Vector2 = waypoints.start
 	var end: Vector2 = waypoints.end
@@ -88,12 +88,12 @@ func _draw() -> void:
 	draw_circle(end, draw_radius, DrawingUtils.COLOR_BLUE_DEEP)
 
 	# Arrow
-	var center: = (start + end) / 2
-	var angle: = start.angle_to(end)
+	var center := (start + end) / 2
+	var angle := start.angle_to(end)
 	DrawingUtils.draw_triangle(self, center, angle, draw_radius)
 
 func _get_configuration_warning() -> String:
-	var warning: = ""
+	var warning := ""
 	if not $Start or not $End:
 		warning += "%s requires two Position2D children named Start and End to work." % name
 	return warning

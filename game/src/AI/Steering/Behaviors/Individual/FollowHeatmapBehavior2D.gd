@@ -8,7 +8,7 @@ class_name FollowHeatmapBehavior2D
 var _heatmap
 
 var _last_point_index: int = INF
-var _last_velocity: = Vector2(0, 0)
+var _last_velocity := Vector2(0, 0)
 
 
 func _ready() -> void:

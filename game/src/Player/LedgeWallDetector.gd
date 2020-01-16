@@ -7,7 +7,7 @@ extends Position2D
 onready var ray_bottom: RayCast2D = $RayBottom
 onready var ray_top: RayCast2D = $RayTop
 
-export var is_active: = true
+export var is_active := true
 
 
 func _ready():

@@ -8,12 +8,12 @@ signal hooked_onto_from(hook_position)
 
 onready var timer: Timer = $Timer
 
-export var is_one_shot: = false
+export var is_one_shot := false
 
 const COLOR_ACTIVE: Color = Color(1, 1, 1)
 const COLOR_INACTIVE: Color = Color(0.588235, 0.588235, 0.588235)
 
-var is_active: = true setget set_is_active
+var is_active := true setget set_is_active
 
 
 func _ready() -> void:

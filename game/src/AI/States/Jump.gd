@@ -2,13 +2,13 @@ extends State
 
 
 onready var timer: Timer = $Cooldown
-onready var acceleration: = Vector2(0, owner.gravity)
-onready var move_direction: = Vector2(-owner.direction, 1)
+onready var acceleration := Vector2(0, owner.gravity)
+onready var move_direction := Vector2(-owner.direction, 1)
 onready var jump_vector_right = Vector2(cos(deg2rad(owner.jump_angle_right)), -sin(deg2rad(owner.jump_angle_right)))
 onready var jump_vector_left = Vector2(cos(deg2rad(owner.jump_angle_left)), -sin(deg2rad(owner.jump_angle_left)))
 
-var _velocity: = Vector2.ZERO
-var _jumping: = false
+var _velocity := Vector2.ZERO
+var _jumping := false
 
 
 func enter(msg: Dictionary = {}) -> void:
@@ -52,7 +52,7 @@ func _on_Cooldown_timeout() -> void:
 
 static func calculate_velocity(old_velocity: Vector2, acceleration: Vector2,
 		delta: float, move_direction: Vector2) -> Vector2:
-	var new_velocity: = old_velocity
+	var new_velocity := old_velocity
 	
 	new_velocity += move_direction * acceleration * delta
 	

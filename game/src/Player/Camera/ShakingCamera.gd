@@ -10,7 +10,7 @@ export var amplitude = 4.0
 export var duration = 0.3 setget set_duration
 export var DAMP_EASING = 1.0
 export var is_shaking = false setget set_is_shaking
-export var default_smoothing_speed: = {
+export var default_smoothing_speed := {
 	mouse=3,
 	gamepad=1
 }

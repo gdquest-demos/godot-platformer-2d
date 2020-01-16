@@ -1,8 +1,8 @@
 extends Area2D
 
 
-export(String, FILE) var next_level_file_path: = ""
-export(String) var next_level_portal_name: = ""
+export(String, FILE) var next_level_file_path := ""
+export(String) var next_level_portal_name := ""
 
 
 func _ready() -> void:

@@ -3,9 +3,9 @@ extends State
  # and gets knocked away before transitioning.
 
 
-export var knock_back_speed: = 450.0
+export var knock_back_speed := 450.0
 
-var knocked_away: = false
+var knocked_away := false
 var current_speed: float
 var knock_back_direction: Vector2
 

@@ -2,7 +2,7 @@ extends Area2D
 
 onready var collider: CollisionShape2D = $CollisionShape2D
 
-var is_active: = true setget set_is_active
+var is_active := true setget set_is_active
 
 
 func _ready() -> void:
@@ -10,7 +10,7 @@ func _ready() -> void:
 
 
 func _on_area_entered(damage_source: Area2D) -> void:
-	var hit: = Hit.new(damage_source)
+	var hit := Hit.new(damage_source)
 	owner.take_damage(hit)
 
 

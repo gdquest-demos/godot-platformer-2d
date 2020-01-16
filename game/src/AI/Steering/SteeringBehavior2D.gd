@@ -8,7 +8,7 @@ class_name SteeringBehavior2D
 # information to move the AI actor.
 
 
-var is_enabled: = true
+var is_enabled := true
 onready var controller: BehaviorController2D = _find_controller(self)
 
 

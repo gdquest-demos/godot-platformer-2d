@@ -6,7 +6,7 @@ extends State
 onready var slow_starter: Timer = $SlowStarter
 onready var tween: Tween = $Tween
 
-export var slow_duration_seconds: = 0.4
+export var slow_duration_seconds := 0.4
 
 
 func _ready() -> void:

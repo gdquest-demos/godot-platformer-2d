@@ -4,14 +4,14 @@ extends State
 
 onready var timer: Timer = $Timer
 
-export var hop_impulse: = 500.0
-export var wait_duration: = 0.6
+export var hop_impulse := 500.0
+export var wait_duration := 0.6
 
 
 func enter(msg: Dictionary = {}) -> void:
 	owner.stats.set_invulnerable_for_seconds(wait_duration*3)
 	
-	var timer: = get_tree().create_timer(wait_duration)
+	var timer := get_tree().create_timer(wait_duration)
 	yield(timer, "timeout")
 	
 	owner.emit_signal("hopped_off_entity")

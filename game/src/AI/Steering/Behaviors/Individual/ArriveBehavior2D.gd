@@ -13,9 +13,9 @@ class_name ArriveBehavior2D
 
 # 
 
-export var arrival_tolerance: = 5.0
-export var deceleration_radius: = 200.0
-export var time_to_target: = 0.1
+export var arrival_tolerance := 5.0
+export var deceleration_radius := 200.0
+export var time_to_target := 0.1
 
 var target: Node2D
 
@@ -28,16 +28,16 @@ func _calculate_steering_internal(steering: SteeringMotion2D) -> SteeringMotion2
 
 	var actor = get_actor()
 	var to_target: Vector2 = target.position - actor.position
-	var distance: = to_target.length()
+	var distance := to_target.length()
 
 	if distance <= arrival_tolerance:
 		steering.reset_values()
 	else:
-		var target_speed: = controller.max_speed
+		var target_speed := controller.max_speed
 		if distance <= deceleration_radius:
 			target_speed *= distance / deceleration_radius
 
-		var target_velocity: = to_target.normalized() * target_speed
+		var target_velocity := to_target.normalized() * target_speed
 		target_velocity = (target_velocity - controller.velocity) * (1.0 / time_to_target)
 
 		steering.velocity = target_velocity.clamped(controller.max_acceleration)

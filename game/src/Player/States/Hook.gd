@@ -3,17 +3,17 @@ extends State
 # Preserves the character's inertia past the hooking point
 
 
-const HOOK_MAX_SPEED: = 1600.0
+const HOOK_MAX_SPEED := 1600.0
 
-export var arrive_push: = 500.0
+export var arrive_push := 500.0
 
-var target_global_position: = Vector2(INF, INF)
-var velocity: = Vector2.ZERO
-var _target_is_living_entity: = false
+var target_global_position := Vector2(INF, INF)
+var velocity := Vector2.ZERO
+var _target_is_living_entity := false
 
 
 func physics_process(delta: float) -> void:
-	var new_velocity: = Steering.arrive_to(
+	var new_velocity := Steering.arrive_to(
 		velocity,
 		owner.global_position,
 		target_global_position,
@@ -25,7 +25,7 @@ func physics_process(delta: float) -> void:
 	Events.emit_signal("player_moved", owner)
 
 	var to_target: Vector2 = target_global_position - owner.global_position
-	var distance: = to_target.length()
+	var distance := to_target.length()
 
 	if distance < velocity.length() * delta:
 		velocity = velocity.normalized() * arrive_push

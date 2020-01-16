@@ -10,5 +10,5 @@ var speed: float = 250
 
 
 func _physics_process(delta: float) -> void:
-	var desired_velocity: = behavior.calculate_steering(_motion)
+	var desired_velocity := behavior.calculate_steering(_motion)
 	position += _motion.velocity.normalized() * speed * delta

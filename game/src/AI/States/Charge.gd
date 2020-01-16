@@ -7,11 +7,11 @@ extends State
 onready var _behavior: StraightLineBehavior2D = get_node(behavior)
 onready var timer: Timer = $Timer
 
-export var behavior: = NodePath()
-export var charge_time: = 1.0
+export var behavior := NodePath()
+export var charge_time := 1.0
 export var time_to_full_speed = 0.5
 
-var _steering: = SteeringMotion2D.new()
+var _steering := SteeringMotion2D.new()
 
 
 func enter(msg: Dictionary = {}) -> void:
@@ -35,7 +35,7 @@ func exit() -> void:
 
 func physics_process(delta: float) -> void:
 	_behavior.calculate_steering(_steering)
-	var velocity: = _steering.velocity
+	var velocity := _steering.velocity
 
 	var speed_proportion: float = clamp((charge_time - timer.time_left) / time_to_full_speed, 0, 1)
 	(_behavior.controller.actor as KinematicBody2D).move_and_slide(velocity * speed_proportion)

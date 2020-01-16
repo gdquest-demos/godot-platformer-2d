@@ -2,11 +2,11 @@
 # Allows the player to hook onto a target even if they pressed the hook key before the hook was in range
 extends Node
 
-export var timer_duration: = 0.05
+export var timer_duration := 0.05
 
-const ACTION_HOOK: = 'hook'
+const ACTION_HOOK := 'hook'
 
-var _action_names: = []
+var _action_names := []
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(ACTION_HOOK) and not ACTION_HOOK in _action_names:
@@ -16,7 +16,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	for action_name in _action_names:
-		var event: = InputEventAction.new()
+		var event := InputEventAction.new()
 		event.action = action_name
 		event.pressed = true
 		Input.parse_input_event(event)

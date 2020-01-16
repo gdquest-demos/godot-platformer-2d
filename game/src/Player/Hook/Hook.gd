@@ -13,8 +13,8 @@ onready var arrow: Node2D = $Arrow
 onready var snap_detector: Area2D = $SnapDetector
 onready var cooldown: Timer = $Cooldown
 
-var is_aiming: = false setget set_is_aiming
-var is_active: = true setget set_is_active
+var is_aiming := false setget set_is_aiming
+var is_active := true setget set_is_active
 
 onready var _radius: float = snap_detector.calculate_length()
 
@@ -35,7 +35,7 @@ func can_hook() -> bool:
 
 
 func get_aim_direction() -> Vector2:
-	var direction: = Vector2.ZERO
+	var direction := Vector2.ZERO
 	match Settings.controls:
 		Settings.GAMEPAD:
 			direction = Utils.get_aim_joystick_direction()

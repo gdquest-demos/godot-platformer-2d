@@ -4,15 +4,15 @@ extends State
 
 const PASS_THROUGH_LAYER = 3
 
-export var max_speed_default: = Vector2(500.0, 1500.0)
-export var acceleration_default: = Vector2(100000, 3000.0)
-export var jump_impulse: = 900.0
+export var max_speed_default := Vector2(500.0, 1500.0)
+export var acceleration_default := Vector2(100000, 3000.0)
+export var jump_impulse := 900.0
 
-var acceleration: = acceleration_default
-var max_speed: = max_speed_default
-var velocity: = Vector2.ZERO
-var snap_distance: = 32.0
-var snap_vector: = Vector2(0, 32)
+var acceleration := acceleration_default
+var max_speed := max_speed_default
+var velocity := Vector2.ZERO
+var snap_distance := 32.0
+var snap_vector := Vector2(0, 32)
 
 
 func _on_Hook_hooked_onto_target(target_global_position: Vector2) -> void:
@@ -72,7 +72,7 @@ static func calculate_velocity(
 		delta: float,
 		move_direction: Vector2
 	) -> Vector2:
-	var new_velocity: = old_velocity
+	var new_velocity := old_velocity
 
 	new_velocity += move_direction * acceleration * delta
 	new_velocity.x = clamp(new_velocity.x, -max_speed.x, max_speed.x)

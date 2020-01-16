@@ -17,25 +17,25 @@ class_name BlendedBehavior2D
 
 # # The recommended use is to have a priority steering with a set of blended behaviors, based on need.
 
-export var weights: = []
+export var weights := []
 
-var _steering: = SteeringMotion2D.new()
+var _steering := SteeringMotion2D.new()
 
 
 # Returns the steering motion with a blend of all of the behavior's children, clamped to the controller's maximum values.
 func _calculate_steering_internal(steering: SteeringMotion2D) -> SteeringMotion2D:
 	steering.reset_values()
 
-	var size: = get_child_count()
+	var size := get_child_count()
 	for i in range(0, size):
-		var child: = get_child(i) as SteeringBehavior2D
+		var child := get_child(i) as SteeringBehavior2D
 		if not child:
 			continue
 
-		var steering: = child as SteeringBehavior2D
+		var steering := child as SteeringBehavior2D
 		steering.calculate_steering(_steering)
 
-		var weight: = 1.0
+		var weight := 1.0
 		if weights.size() >= i:
 			weight = weights[i]
 

@@ -11,8 +11,8 @@ static func get_aim_joystick_direction() -> Vector2:
 # Adds a circular deadzone, as Godot's built-in system is per-axis,
 # creating a rectangular deadzone on the joystick
 static func get_aim_joystick_strength() -> Vector2:
-	var deadzone_radius: = 0.5
-	var input_strength: = Vector2(
+	var deadzone_radius := 0.5
+	var input_strength := Vector2(
 		Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left"),
 		Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")
 	)
@@ -20,7 +20,7 @@ static func get_aim_joystick_strength() -> Vector2:
 
 # Checks if two numbers are approximately equal
 static func is_equal_approx(a: float, b: float, cmp_epsilon: float = 1e-5) -> bool:
-	var tolerance: = cmp_epsilon * abs(a)
+	var tolerance := cmp_epsilon * abs(a)
 	if tolerance < cmp_epsilon:
 		tolerance = cmp_epsilon
 	return abs(a - b) < tolerance

@@ -16,17 +16,17 @@ extends Node
 # `add_new_job`. It is a priority 1 job, and it will spread its allocated part of the budget evenly.
 
 #int64_t's upper maximum, an equivalent to +infinity
-const MAX_INT: = 0x7FFFFFFFFFFFFFFF
+const MAX_INT := 0x7FFFFFFFFFFFFFFF
 
 #4 milliseconds maximum budget by default
-var microseconds_budget: = 4000
+var microseconds_budget := 4000
 
-var _sub_scheduler: = BalancedSubScheduler.new()
-var _current_frame: = 0
-var _simulation_frame_count: = 100
-var _job_list: = []
-var _run_list: = []
-var _phase_counters: = []
+var _sub_scheduler := BalancedSubScheduler.new()
+var _current_frame := 0
+var _simulation_frame_count := 100
+var _job_list := []
+var _run_list := []
+var _phase_counters := []
 
 
 func _ready() -> void:
@@ -40,9 +40,9 @@ func _process(delta) -> void:
 	_run_list.clear()
 	var total_priority: float = 0
 	
-	var i: = _job_list.size()-1
+	var i := _job_list.size()-1
 	while i >= 0:
-		var job: = ((_job_list[i] as WeakRef).get_ref() as SchedulableJob)
+		var job := ((_job_list[i] as WeakRef).get_ref() as SchedulableJob)
 		i -= 1
 		if !job:
 			_job_list.remove(i+1)
@@ -52,17 +52,17 @@ func _process(delta) -> void:
 			_run_list.append(job)
 			total_priority += job.priority
 	
-	var current_usecs_to_run: = microseconds_budget
-	var last_time: = OS.get_ticks_usec()
+	var current_usecs_to_run := microseconds_budget
+	var last_time := OS.get_ticks_usec()
 	
-	var list_size: = _run_list.size()
+	var list_size := _run_list.size()
 	for i in range(0, list_size):
 		var job:= _run_list[i] as SchedulableJob
 		
-		var current_time: = OS.get_ticks_usec()
+		var current_time := OS.get_ticks_usec()
 		current_usecs_to_run -= (current_time - last_time)
 		
-		var available_time: = int(current_usecs_to_run * job.priority / total_priority)
+		var available_time := int(current_usecs_to_run * job.priority / total_priority)
 		job._run(available_time)
 		last_time = current_time
 		total_priority -= job.priority
@@ -88,7 +88,7 @@ func add_new_job(job: SchedulableJob, frequency: int) -> void:
 # Unregisters a job from the scheduler. Note that jobs do not have to be removed when an object
 # is being erased - the scheduler only holds weak references.
 func remove_job(job: SchedulableJob) -> void:
-	var index: = _job_list.find(job)
+	var index := _job_list.find(job)
 	if index >= 0:
 		_job_list.remove(index)
 	else:
@@ -113,8 +113,8 @@ func _calculate_phase(frequency: int) -> int:
 		_phase_counters[i] = 0
 	
 	for frame in range(0, _simulation_frame_count):
-		var slot: = frame % frequency
-		var i: = _job_list.size()-1
+		var slot := frame % frequency
+		var i := _job_list.size()-1
 		while i >= 0:
 			var job = ((_job_list[i] as WeakRef).get_ref() as SchedulableJob)
 			i -= 1
@@ -125,8 +125,8 @@ func _calculate_phase(frequency: int) -> int:
 			if (frame - job.phase) % job.frequency == 0:
 				_phase_counters[slot] += 1
 	
-	var min_value: = MAX_INT
-	var min_value_at: = -1
+	var min_value := MAX_INT
+	var min_value_at := -1
 	for i in range(0, frequency):
 		if _phase_counters[i] < min_value:
 			min_value = _phase_counters[i]

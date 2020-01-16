@@ -8,7 +8,7 @@ class_name InterceptBehavior2D
 # where the target is headed
 
 
-export var max_prediction_time: = 0.0
+export var max_prediction_time := 0.0
 
 var target: Node2D
 
@@ -20,11 +20,11 @@ func _calculate_steering_internal(steering: SteeringMotion2D) -> SteeringMotion2
 	if not target:
 		return steering.reset_values()
 
-	var target_position: = target.position
-	var distance2: = (target_position - get_actor().position).length_squared()
-	var speed2: = controller.velocity.length_squared()
+	var target_position := target.position
+	var distance2 := (target_position - get_actor().position).length_squared()
+	var speed2 := controller.velocity.length_squared()
 
-	var prediction_time: = max_prediction_time
+	var prediction_time := max_prediction_time
 
 	if speed2 > 0:
 		var prediction_time2 = distance2 / speed2

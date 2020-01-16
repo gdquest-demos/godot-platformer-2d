@@ -14,5 +14,5 @@ func get_floor_position() -> Vector2:
 
 func get_floor_distance_ratio() -> float:
 	force_raycast_update()
-	var ratio: = 1.0 - abs(get_collision_point().y - global_position.y) / cast_to.y
+	var ratio := 1.0 - abs(get_collision_point().y - global_position.y) / cast_to.y
 	return ratio

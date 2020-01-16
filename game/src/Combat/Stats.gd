@@ -10,7 +10,7 @@ signal damage_taken()
 
 var modifiers = {}
 
-var invulnerable: = false
+var invulnerable := false
 
 var health: int
 export var max_health: int = 1 setget set_max_health
@@ -59,7 +59,7 @@ func remove_modifier(id: int) -> void:
 func set_invulnerable_for_seconds(time: float) -> void:
 	invulnerable = true
 	
-	var timer: = get_tree().create_timer(time)
+	var timer := get_tree().create_timer(time)
 	yield(timer, "timeout")
 	
 	invulnerable = false

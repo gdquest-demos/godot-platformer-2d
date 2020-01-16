@@ -1,7 +1,7 @@
 extends Sprite
 
 
-var scale_start: = scale
+var scale_start := scale
 
 
 func _ready() -> void:

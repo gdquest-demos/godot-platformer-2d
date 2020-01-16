@@ -1,7 +1,7 @@
 extends Node
 # Loads and unloads levels
 
-onready var scene_tree: = get_tree()
+onready var scene_tree := get_tree()
 
 var _game: Node = null
 var _player: Player = null

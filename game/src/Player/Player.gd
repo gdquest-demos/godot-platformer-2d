@@ -23,10 +23,10 @@ onready var floor_detector: RayCast2D = $FloorDetector
 onready var pass_through: Area2D = $PassThrough
 
 
-const FLOOR_NORMAL: = Vector2.UP
+const FLOOR_NORMAL := Vector2.UP
 
-var is_active: = true setget set_is_active
-var has_teleported: = false
+var is_active := true setget set_is_active
+var has_teleported := false
 var last_checkpoint: Area2D = null
 
 
