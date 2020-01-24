@@ -4,26 +4,26 @@
 [ext_resource path="res://assets/environment/background/cloud_small_1.png" type="Texture" id=2]
 [ext_resource path="res://assets/environment/background/cloud_small_2.png" type="Texture" id=3]
 [ext_resource path="res://assets/environment/background/mountains.png" type="Texture" id=4]
+[ext_resource path="res://assets/environment/background/sky.png" type="Texture" id=5]
 
-[sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0, 0.813609 )
-colors = PoolColorArray( 0.184314, 0.564706, 0.831373, 1, 0.364706, 0.705882, 0.843137, 1 )
+[sub_resource type="GDScript" id=1]
+script/source = "extends Sprite
 
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
-width = 1080
+
+func _process(delta: float) -> void:
+	global_position.y = get_viewport_transform().origin.y + get_viewport_rect().size.y
+"
 
 [node name="SkyParallaxBackground" type="ParallaxBackground"]
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
-motion_scale = Vector2( 0, 0 )
-
-[node name="SkyGradient" type="Sprite" parent="ParallaxLayer"]
-position = Vector2( -960, -540 )
-rotation = 1.5708
-scale = Vector2( 1, -1920 )
-texture = SubResource( 2 )
-centered = false
+[node name="SkyGradient" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ParallaxBackground2" type="ParallaxLayer" parent="."]
 motion_scale = Vector2( 0.08, 0.08 )
@@ -62,14 +62,16 @@ position = Vector2( 1562.91, -96.6282 )
 texture = ExtResource( 3 )
 
 [node name="ParallaxBackground3" type="ParallaxLayer" parent="."]
-motion_scale = Vector2( 0.12, 0.08 )
+motion_scale = Vector2( 0.12, 1 )
+motion_mirroring = Vector2( 1917, 0 )
 
 [node name="Mountains" type="Sprite" parent="ParallaxBackground3"]
-position = Vector2( 860, 260 )
-scale = Vector2( 2, 1.276 )
 texture = ExtResource( 4 )
+centered = false
+offset = Vector2( 0, -445 )
 region_rect = Rect2( 0, 0, 3834, 445 )
 region_filter_clip = true
+script = SubResource( 1 )
 
 [node name="ParallaxBackground4" type="ParallaxLayer" parent="."]
 motion_scale = Vector2( 0.15, 0.15 )
