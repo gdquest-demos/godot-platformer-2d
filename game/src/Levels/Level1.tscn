@@ -102,8 +102,8 @@ gravity_point = true
 position = Vector2( 308.292, 985.772 )
 
 [node name="Exit" parent="." instance=ExtResource( 4 )]
-position = Vector2( 576.472, 793.699 )
+position = Vector2( 368, 1081.39 )
 
 [node name="Exit2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 26256.7, 1535.41 )
+position = Vector2( 26256, 1648 )
 next_level_file_path = "res://src/Levels/Level2.tscn"

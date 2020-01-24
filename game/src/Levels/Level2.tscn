@@ -111,4 +111,4 @@ gravity_point = true
 position = Vector2( 300.591, 913.335 )
 
 [node name="Exit" parent="." instance=ExtResource( 3 )]
-position = Vector2( 28536.1, 1531.18 )
+position = Vector2( 28536, 1645.36 )
