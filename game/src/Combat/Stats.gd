@@ -26,7 +26,11 @@ func _ready() -> void:
 func take_damage(hit: Hit) -> void:
 	if invulnerable:
 		return
-		
+	
+	if hit.is_instakill:
+		emit_signal("health_depleted")
+		return
+
 	var old_health = health
 	health -= hit.damage
 	emit_signal("damage_taken")
@@ -58,8 +62,8 @@ func remove_modifier(id: int) -> void:
 
 func set_invulnerable_for_seconds(time: float) -> void:
 	invulnerable = true
-	
+
 	var timer := get_tree().create_timer(time)
 	yield(timer, "timeout")
-	
+
 	invulnerable = false
