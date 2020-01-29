@@ -26,9 +26,8 @@ func _ready() -> void:
 func take_damage(hit: Hit) -> void:
 	if invulnerable:
 		return
-
-	# Damages with value of -1 mean instakill
-	if hit.damage == -1:
+	
+	if hit.is_instakill:
 		emit_signal("health_depleted")
 		return
 

@@ -6,7 +6,7 @@
 
 [node name="FallLimitArea" instance=ExtResource( 1 )]
 position = Vector2( 0, -2.93628 )
-damage = -1
+is_instakill = true
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource( 1 )
