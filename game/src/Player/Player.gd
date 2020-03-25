@@ -2,6 +2,7 @@ extends KinematicBody2D
 class_name Player
 
 
+# warning-ignore:unused_signal
 signal hopped_off_entity
 
 onready var state_machine: StateMachine = $StateMachine
@@ -31,7 +32,9 @@ var last_checkpoint: Area2D = null
 
 
 func _ready() -> void:
+# warning-ignore:return_value_discarded
 	stats.connect("health_depleted", self, "_on_Player_health_depleted")
+# warning-ignore:return_value_discarded
 	Events.connect("checkpoint_visited", self, "_on_Events_checkpoint_visited")
 
 

@@ -17,6 +17,7 @@ var is_active := true setget set_is_active
 
 
 func _ready() -> void:
+# warning-ignore:return_value_discarded
 	timer.connect("timeout", self, "_on_Timer_timeout")
 
 

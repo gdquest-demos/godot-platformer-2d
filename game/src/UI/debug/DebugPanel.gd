@@ -19,7 +19,7 @@ func _ready() -> void:
 	_setup()
 
 
-func _process(delta) -> void:
+func _process(_delta) -> void:
 	_update()
 
 

@@ -5,6 +5,7 @@ onready var camera_position: Position2D = $CameraPosition
 
 
 func _ready() -> void:
+# warning-ignore:return_value_discarded
 	Events.connect("player_moved", self, "_on_Events_player_moved")
 
 

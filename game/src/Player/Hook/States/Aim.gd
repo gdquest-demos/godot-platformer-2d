@@ -8,7 +8,7 @@ func unhandled_input(event: InputEvent) -> void:
 		_state_machine.transition_to("Fire")
 
 
-func physics_process(delta: float) -> void:
+func physics_process(_delta: float) -> void:
 	var cast: Vector2 = owner.get_aim_direction() * owner._radius
 	var angle := cast.angle()
 	owner.ray_cast.cast_to = cast

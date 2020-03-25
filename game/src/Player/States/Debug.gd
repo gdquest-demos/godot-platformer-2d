@@ -24,7 +24,7 @@ func physics_process(delta: float) -> void:
 	Events.emit_signal("player_moved", owner)
 
 
-func enter(msg: Dictionary = {}):
+func enter(_msg: Dictionary = {}):
 	owner.is_active = false
 
 

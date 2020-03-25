@@ -27,7 +27,7 @@ func _on_Stats_damage_taken():
 	_state_machine.transition_to("Stagger")
 
 
-func _on_PassThrough_body_exited(body):
+func _on_PassThrough_body_exited(_body):
 	if not owner.get_collision_mask_bit(PASS_THROUGH_LAYER):
 		owner.set_collision_mask_bit(PASS_THROUGH_LAYER, true)
 
@@ -51,10 +51,11 @@ func physics_process(delta: float) -> void:
 	Events.emit_signal("player_moved", owner)
 
 
-func enter(msg: Dictionary = {}) -> void:
+func enter(_msg: Dictionary = {}) -> void:
 	owner.hook.connect("hooked_onto_target", self, "_on_Hook_hooked_onto_target")
 	owner.stats.connect("damage_taken", self, "_on_Stats_damage_taken")
 	owner.pass_through.connect("body_exited", self, "_on_PassThrough_body_exited")
+# warning-ignore:return_value_discarded
 	$Air.connect("jumped", $Idle.jump_delay, "start")
 
 

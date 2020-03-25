@@ -6,6 +6,7 @@ class_name Hook, "res://assets/icons/icon_hook.svg"
 # Draws the hook's range in the editor
 
 
+# warning-ignore:unused_signal
 signal hooked_onto_target(target_global_position)
 
 onready var ray_cast: RayCast2D = $RayCast2D

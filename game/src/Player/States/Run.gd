@@ -10,10 +10,12 @@ export var slow_duration_seconds := 0.4
 
 
 func _ready() -> void:
+# warning-ignore:return_value_discarded
 	slow_starter.connect("timeout", self, "_on_SlowDown_timeout")
 
 
 func _on_SlowDown_timeout() -> void:
+# warning-ignore:return_value_discarded
 	tween.interpolate_property(
 		_parent,
 		"max_speed",
@@ -23,6 +25,7 @@ func _on_SlowDown_timeout() -> void:
 		Tween.TRANS_LINEAR,
 		Tween.EASE_OUT
 	)
+# warning-ignore:return_value_discarded
 	tween.start()
 
 

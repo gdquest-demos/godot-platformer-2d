@@ -9,6 +9,7 @@ onready var shadow: Sprite = $Shadow
 
 
 func _ready() -> void:
+# warning-ignore:return_value_discarded
 	anim.connect("animation_finished", self, "_on_Anim_animation_finished")
 
 
@@ -16,7 +17,7 @@ func _on_Anim_animation_finished(name: String) -> void:
 	emit_signal("animation_finished", name)
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	floor_detector.force_raycast_update()
 	shadow.visible = floor_detector.is_close_to_floor()
 	var ratio := floor_detector.get_floor_distance_ratio()

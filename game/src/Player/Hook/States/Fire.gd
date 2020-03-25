@@ -5,7 +5,7 @@ func _on_Cooldown_timeout() -> void:
 	_state_machine.transition_to("Aim")
 
 
-func enter(msg: Dictionary = {}) -> void:
+func enter(_msg: Dictionary = {}) -> void:
 	owner.is_aiming = false
 
 	var target: HookTarget = owner.snap_detector.target

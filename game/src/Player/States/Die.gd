@@ -4,7 +4,7 @@ extends State
 var last_checkpoint: Area2D = null
 
 
-func _on_Player_animation_finished(anim_name: String) -> void:
+func _on_Player_animation_finished(_anim_name: String) -> void:
 	_state_machine.transition_to('Spawn', {last_checkpoint = last_checkpoint})
 
 

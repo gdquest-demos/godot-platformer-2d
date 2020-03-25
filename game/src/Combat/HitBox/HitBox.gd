@@ -6,6 +6,7 @@ var is_active := true setget set_is_active
 
 
 func _ready() -> void:
+# warning-ignore:return_value_discarded
 	connect("area_entered", self, "_on_area_entered")
 
 

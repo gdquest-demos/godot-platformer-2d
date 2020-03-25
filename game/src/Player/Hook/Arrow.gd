@@ -16,9 +16,11 @@ func set_hook_position(value: Vector2) -> void:
 	var to_target := hook_position - global_position
 	self.length = to_target.length()
 	rotation = to_target.angle()
+# warning-ignore:return_value_discarded
 	tween.interpolate_property(
 			self, 'length', length, start_length, 
 			0.25, Tween.TRANS_QUAD, Tween.EASE_OUT)
+# warning-ignore:return_value_discarded
 	tween.start()
 
 

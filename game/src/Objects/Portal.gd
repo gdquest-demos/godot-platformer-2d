@@ -6,6 +6,7 @@ export(String) var next_level_portal_name := ""
 
 
 func _ready() -> void:
+# warning-ignore:return_value_discarded
 	connect("body_entered", self, "_on_body_entered")
 
 

@@ -29,6 +29,7 @@ func reset_smoothing_speed() -> void:
 
 
 func _ready() -> void:
+# warning-ignore:return_value_discarded
 	Settings.connect('controls_changed', self, 'reset_smoothing_speed')
 	timer.connect('timeout', self, '_on_ShakeTimer_timeout')
 
@@ -37,7 +38,7 @@ func _ready() -> void:
 	set_process(false)
 
 
-func _process(delta) -> void:
+func _process(_delta) -> void:
 	var damping = ease(timer.time_left / timer.wait_time, DAMP_EASING)
 	offset = Vector2(
 		rand_range(amplitude, -amplitude) * damping,
