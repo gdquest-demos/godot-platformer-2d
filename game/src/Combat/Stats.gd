@@ -12,8 +12,8 @@ var modifiers = {}
 
 var invulnerable := false
 
-var health: int
-export var max_health: int = 1 setget set_max_health
+export var max_health := 1.0 setget set_max_health
+var health := max_health
 
 export var attack: int = 1
 export var armor: int = 1
@@ -40,13 +40,13 @@ func take_damage(hit: Hit) -> void:
 		emit_signal("health_depleted")
 
 
-func heal(amount: int) -> void:
+func heal(amount: float) -> void:
 	var old_health = health
 	health = min(health + amount, max_health)
 	emit_signal("health_changed", health, old_health)
 
 
-func set_max_health(value: int) -> void:
+func set_max_health(value: float) -> void:
 	if value == null:
 		return
 	max_health = max(1, value)
