@@ -49,10 +49,6 @@ const JOYSTICK_AIM_INPUTS := {
 var aim_stick: int = 0 setget set_aim_stick
 
 
-func _ready() -> void:
-	self.aim_stick = ProjectSettings.get_setting('debug/testing/controls/aim_stick')
-
-
 func _input(event: InputEvent) -> void:
 	if event is InputEventJoypadButton or event is InputEventJoypadMotion:
 		if controls == KBD_MOUSE:
