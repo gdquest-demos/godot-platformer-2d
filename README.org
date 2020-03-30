@@ -1,8 +1,11 @@
 #+TITLE: Godot Open 2D Platformer
 #+DESCRIPTION: A short platform/adventure demo project to teach how to create similar 2d games
-        
+
+[[./img/banner.svg]]
+
 * Summary
-   
+
+
   A course based on a *short 2d game demo inspired by metroidvanias* split into a Free, beginner-friendly series and a paid, intermediate-level series that builds upon the Free one.
    
   #+caption: Momodora, a seemingly not so well-known, yet well-designed Metroidvania, recommended by the community
@@ -48,7 +51,6 @@
    Think of this game demo as a portfolio piece. A recruiter would take but a few seconds to look at each project you've worked on and judge your abilities based on that. So will the community.
 
 ** The cornerstones of Metroidvanias
-
 
    Metroidvanias are platform games with non-linear interconnected maps or worlds that guide the player towards his goal, typically blocking the player's progression at times until they unlocked new abilities.
 
