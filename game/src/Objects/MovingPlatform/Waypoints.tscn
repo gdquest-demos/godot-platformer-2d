@@ -2,6 +2,5 @@
 
 [ext_resource path="res://src/Objects/MovingPlatform/Waypoints.gd" type="Script" id=1]
 
-
-[node name="Waypoints" type="Node2D"]
+[node name="Waypoints" type="Line2D"]
 script = ExtResource( 1 )
