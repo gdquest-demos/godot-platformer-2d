@@ -1,15 +1,19 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/Main/Game.gd" type="Script" id=1]
 [ext_resource path="res://assets/theme/gdquest.theme" type="Theme" id=2]
 [ext_resource path="res://src/UI/debug/DebugDock.gd" type="Script" id=3]
 [ext_resource path="res://src/UI/debug/DebugPanel.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/Levels/SkyParallaxBackground.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/UI/Transition.gd" type="Script" id=5]
+[ext_resource path="res://assets/UI/loading_icon.png" type="Texture" id=6]
+[ext_resource path="res://assets/UI/player_art.png" type="Texture" id=7]
+[ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Levels/SkyParallaxBackground.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Animation" id=1]
 resource_name = "<BASE>"
 length = 0.001
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
@@ -25,7 +29,47 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=2]
 resource_name = "transition"
-length = 0.6
+length = 3.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("LoadingSprite:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05, 1.2, 1.35, 1.5, 1.65, 1.8, 1.95, 2.1, 2.25, 2.4, 2.55, 2.7, 2.85, 3, 3.15, 3.3, 3.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerArtSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 350, 862 ), Vector2( 450, 832 ), Vector2( 550, 862 ), Vector2( 650, 832 ), Vector2( 750, 862 ), Vector2( 850, 832 ), Vector2( 950, 862 ), Vector2( 1050, 832 ), Vector2( 1150, 862 ), Vector2( 1250, 832 ), Vector2( 1150, 862 ), Vector2( 1050, 832 ), Vector2( 950, 862 ), Vector2( 850, 832 ), Vector2( 750, 862 ), Vector2( 650, 832 ), Vector2( 550, 862 ), Vector2( 450, 832 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerArtSprite:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "transition_finalize"
+length = 1.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
@@ -33,24 +77,110 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4, 0.6 ),
-"transitions": PoolRealArray( 0.732043, 1.51572, 1 ),
+"times": PoolRealArray( 0, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
+tracks/1/type = "value"
+tracks/1/path = NodePath("LoadingSprite:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.4 ),
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerArtSprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "transition_init"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "peaked" ],
-"method": "emit_signal"
-} ]
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("LoadingSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerArtSprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("PlayerArtSprite:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 350, 862 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("PlayerArtSprite:flip_h")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("LoadingSprite:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
 }
 
 [node name="Game" type="Node"]
@@ -94,19 +224,34 @@ properties = PoolStringArray( "_state_name" )
 
 [node name="Transition" type="ColorRect" parent="UI"]
 pause_mode = 2
-modulate = Color( 1, 1, 1, 0 )
 margin_right = 1920.0
 margin_bottom = 1080.0
 mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
+script = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Transition"]
 autoplay = "<BASE>"
 anims/<BASE> = SubResource( 1 )
 anims/transition = SubResource( 2 )
+anims/transition_finalize = SubResource( 3 )
+anims/transition_init = SubResource( 4 )
 
-[node name="Player" parent="." instance=ExtResource( 5 )]
+[node name="LoadingSprite" type="Sprite" parent="UI/Transition"]
+modulate = Color( 1, 1, 1, 0.876777 )
+position = Vector2( 1809.7, 975.4 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
+hframes = 8
 
-[node name="SkyParallaxBackground" parent="." instance=ExtResource( 6 )]
+[node name="PlayerArtSprite" type="Sprite" parent="UI/Transition"]
+modulate = Color( 1, 1, 1, 0.876777 )
+position = Vector2( 350, 862 )
+texture = ExtResource( 7 )
+
+[node name="Player" parent="." instance=ExtResource( 8 )]
+
+[node name="SkyParallaxBackground" parent="." instance=ExtResource( 9 )]
+[connection signal="animation_finished" from="UI/Transition/AnimationPlayer" to="UI/Transition" method="_on_AnimationPlayer_animation_finished"]
 
 [editable path="Player"]

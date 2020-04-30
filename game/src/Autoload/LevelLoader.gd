@@ -19,7 +19,7 @@ func trigger(NewLevel: PackedScene, portal_name: String = "") -> void:
 	
 	if _level:
 		scene_tree.paused = true
-#		_game.transition.animation_player.play("transition")
+		_game.transition.start_transition_animation()
 		_level.queue_free()
 		yield(_level, "tree_exited")
 	
@@ -36,11 +36,14 @@ func trigger(NewLevel: PackedScene, portal_name: String = "") -> void:
 		var checkpoint: Area2D = _level.get_node("Checkpoints/%s" % checkpoint_name)
 		checkpoint.is_visited = true
 	
-#	if _game.transition.animation_player.current_animation == "transition":
-#		yield(_game.transition, "peaked")
+	
 	
 	_game.level = _level
 	_game.add_child(_level)
 	_game.add_child(_player)
+	
+	if _game.transition.is_animating():
+		# This yield is surpassed 1 second before the transition animation is completed so the game can load the next level visually in the background
+		yield(_game.transition, "almost_completed")
 	
 	scene_tree.paused = false
