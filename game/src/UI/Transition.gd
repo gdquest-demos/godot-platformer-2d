@@ -1,49 +1,34 @@
 extends ColorRect
 
-
-signal almost_completed
-
-const TRANSITION_ANIM_TOTAL_LENGTH := 3.6
-const TRANSITION_ANIM_MIN_LENGTH := 1.0
-const TRANSITION_ANIM_AMP := TRANSITION_ANIM_TOTAL_LENGTH - TRANSITION_ANIM_MIN_LENGTH
+signal screen_covered
 
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+var loading_anim_started: = false
 
 
-func _ready() -> void:
-	randomize()
-
+# The level transition animations will be fade_outin->[fade_in_extras->
+# loading->fade_out_extras->]fade_out
+# [fade_in_extras->loading->fade_out_extras->] is optional and its
+# length depends on the extra time the LevelLoader takes to load the next level 
 
 func start_transition_animation() -> void:
-	# The animations will be transition_init->transition->transition_finalize
-	_change_animation("transition_init") 
+	animation_player.play("fade_in")
 
-
-func _change_animation(anim_name: String) -> void:
-	animation_player.play(anim_name)
-
-
-func _change_transition_length() -> void:
-	var aux_length: float
-	aux_length = TRANSITION_ANIM_MIN_LENGTH + rand_range(0,TRANSITION_ANIM_AMP)
-	# This while makes imposible to end the animation when flipping_h the player art sprite
-	while( (aux_length >= TRANSITION_ANIM_TOTAL_LENGTH * 0.5) and (aux_length < TRANSITION_ANIM_TOTAL_LENGTH / 0.5 + 0.2) ):
-		aux_length = TRANSITION_ANIM_MIN_LENGTH + rand_range(0,TRANSITION_ANIM_AMP)
-	animation_player.get_animation("transition").length = aux_length
+func finish_transition_animation() -> void:
+	if loading_anim_started:
+		animation_player.play("fade_out_extras")
+		loading_anim_started = false
+	else:
+		animation_player.play("fade_out")
 
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
-	if(anim_name == "transition_init"):
-		_change_transition_length()
-		_change_animation("transition")
-	elif(anim_name == "transition"):
-		_change_animation("transition_finalize")
-		# This yield gives 1 second to go to the next level in the background to keep the transition_finalize end clean.
-		yield(get_tree().create_timer( animation_player.get_animation("transition_finalize").length - 1), "timeout") 
-		emit_signal("almost_completed")
-
-
-func is_animating() -> bool: 
-	# <BASE> is the "do nothing" animation
-	return animation_player.current_animation != "<BASE>" 
+	if anim_name == "fade_in":
+		emit_signal("screen_covered")
+		animation_player.play("fade_in_extras")
+	elif anim_name == "fade_in_extras":
+		loading_anim_started = true
+		animation_player.play("loading")
+	elif anim_name == "fade_out_extras":
+		animation_player.play("fade_out")
