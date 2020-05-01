@@ -15,14 +15,18 @@ func setup(game: Node, player: Player, Level: PackedScene) -> void:
 
 
 func trigger(NewLevel: PackedScene, portal_name: String = "") -> void:
-	_game.remove_child(_player)
+	
 	
 	if _level:
 		scene_tree.paused = true
 		_game.transition.start_transition_animation()
+		# Covers the screen before changing the level to avoid visual discrepancies
+		yield(_game.transition, "screen_covered")
 		_level.queue_free()
 		yield(_level, "tree_exited")
 	
+	# The player is removed after the transition is covering the screen
+	_game.remove_child(_player)
 	_level = NewLevel.instance()
 	
 	var player_position_node: Node2D = (
@@ -42,8 +46,11 @@ func trigger(NewLevel: PackedScene, portal_name: String = "") -> void:
 	_game.add_child(_level)
 	_game.add_child(_player)
 	
-	if _game.transition.is_animating():
-		# This yield is surpassed 1 second before the transition animation is completed so the game can load the next level visually in the background
-		yield(_game.transition, "almost_completed")
+	
+	# The loading is done
+	_game.transition.finish_transition_animation()
+	
 	
 	scene_tree.paused = false
+	
+	
