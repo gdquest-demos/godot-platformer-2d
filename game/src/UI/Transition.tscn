@@ -61,7 +61,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "fade_in_extras"
 length = 0.3
 tracks/0/type = "value"
@@ -125,8 +125,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "fade_out"
+[sub_resource type="Animation" id=4]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -141,8 +140,35 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "loading"
+[sub_resource type="Animation" id=5]
+resource_name = "fade_out_extras"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("LoadingSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerArtSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
 length = 3.6
 loop = true
 tracks/0/type = "value"
@@ -182,34 +208,6 @@ tracks/2/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "transition_filler_end"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/path = NodePath("LoadingSprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("PlayerArtSprite:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-
 [node name="Transition" type="ColorRect"]
 pause_mode = 2
 modulate = Color( 1, 1, 1, 0 )
@@ -226,10 +224,10 @@ __meta__ = {
 autoplay = "<BASE>"
 anims/<BASE> = SubResource( 1 )
 anims/fade_in = SubResource( 2 )
-anims/fade_in_extras = SubResource( 5 )
-anims/fade_out = SubResource( 3 )
-anims/loading = SubResource( 4 )
-anims/transition_filler_end = SubResource( 6 )
+anims/fade_in_extras = SubResource( 3 )
+anims/fade_out = SubResource( 4 )
+anims/fade_out_extras = SubResource( 5 )
+anims/loading = SubResource( 6 )
 
 [node name="LoadingSprite" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
