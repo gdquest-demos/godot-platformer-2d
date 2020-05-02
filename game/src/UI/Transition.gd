@@ -2,7 +2,7 @@ extends ColorRect
 
 signal screen_covered
 
-var loading_anim_started := false
+var _loading_anim_started := false
 
 onready var _animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -18,9 +18,9 @@ func start_transition_animation() -> void:
 
 
 func finish_transition_animation() -> void:
-	if loading_anim_started:
+	if _loading_anim_started:
 		_animation_player.play("fade_out_extras")
-		loading_anim_started = false
+		_loading_anim_started = false
 	else:
 		_animation_player.play("fade_out")
 
@@ -30,7 +30,7 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 		emit_signal("screen_covered")
 		_animation_player.play("fade_in_extras")
 	elif anim_name == "fade_in_extras":
-		loading_anim_started = true
+		_loading_anim_started = true
 		_animation_player.play("loading")
 	elif anim_name == "fade_out_extras":
 		_animation_player.play("fade_out")
