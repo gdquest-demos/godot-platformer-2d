@@ -2,18 +2,20 @@ extends ColorRect
 
 signal screen_covered
 
-onready var animation_player: AnimationPlayer = $AnimationPlayer
+var loading_anim_started := false
 
-var loading_anim_started: = false
+onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 # The level transition animations will be fade_outin->[fade_in_extras->
 # loading->fade_out_extras->]fade_out
 # [fade_in_extras->loading->fade_out_extras->] is optional and its
-# length depends on the extra time the LevelLoader takes to load the next level 
+# length depends on the extra time the LevelLoader takes to load the next level
+
 
 func start_transition_animation() -> void:
 	animation_player.play("fade_in")
+
 
 func finish_transition_animation() -> void:
 	if loading_anim_started:
