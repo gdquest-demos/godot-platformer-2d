@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/player_art.png-7b84e8940437deef8a50bb0d84c732ca.stex"
+path="res://.import/robi_portrait.png-68ad9ce9f4cb884df10b44b5417451b8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI/player_art.png"
-dest_files=[ "res://.import/player_art.png-7b84e8940437deef8a50bb0d84c732ca.stex" ]
+source_file="res://assets/UI/robi_portrait.png"
+dest_files=[ "res://.import/robi_portrait.png-68ad9ce9f4cb884df10b44b5417451b8.stex" ]
 
 [params]
 
