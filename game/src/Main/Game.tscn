@@ -5,8 +5,8 @@
 [ext_resource path="res://src/UI/debug/DebugDock.gd" type="Script" id=3]
 [ext_resource path="res://src/UI/debug/DebugPanel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/UI/LoadingTransition.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/Levels/SkyParallaxBackground.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Levels/SkyParallaxBackground.tscn" type="PackedScene" id=7]
 
 [node name="Game" type="Node"]
 script = ExtResource( 1 )
@@ -49,8 +49,8 @@ properties = PoolStringArray( "_state_name" )
 
 [node name="Transition" parent="UI" instance=ExtResource( 5 )]
 
-[node name="Player" parent="." instance=ExtResource( 8 )]
+[node name="Player" parent="." instance=ExtResource( 6 )]
 
-[node name="SkyParallaxBackground" parent="." instance=ExtResource( 9 )]
+[node name="SkyParallaxBackground" parent="." instance=ExtResource( 7 )]
 
 [editable path="Player"]

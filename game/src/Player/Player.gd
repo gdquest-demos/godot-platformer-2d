@@ -59,6 +59,9 @@ func get_collider() -> CollisionShape2D:
 func _on_Player_health_depleted() -> void:
 	state_machine.transition_to("Die", {last_checkpoint = last_checkpoint})
 
+func _on_Body_Enter_Death_Zone() -> void:
+	state_machine.transition_to("Die", {last_checkpoint = last_checkpoint})	
+
 
 func _on_Events_checkpoint_visited(checkpoint_name: String) -> void:
 	last_checkpoint = LevelLoader._level.get_node("Checkpoints/%s" % checkpoint_name)
