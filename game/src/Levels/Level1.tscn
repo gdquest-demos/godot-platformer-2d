@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/tilesets/prototype.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/tilesets/valley.tres" type="TileSet" id=2]
 [ext_resource path="res://src/Objects/HookTarget.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/Objects/Portal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Objects/Checkpoint.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Objects/Portal.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Objects/DeathZone.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Objects/DeathZone.gd" type="Script" id=7]
 
 [node name="Level" type="Node2D"]
 
@@ -101,9 +104,16 @@ gravity_point = true
 [node name="0" type="Node2D" parent="Checkpoints"]
 position = Vector2( 308.292, 985.772 )
 
-[node name="Exit" parent="." instance=ExtResource( 4 )]
+[node name="Checkpoint" parent="Checkpoints" instance=ExtResource( 4 )]
+position = Vector2( 477.926, 1107.13 )
+
+[node name="Exit" parent="." instance=ExtResource( 5 )]
 position = Vector2( 184, 1081.39 )
 
-[node name="Exit2" parent="." instance=ExtResource( 4 )]
+[node name="Exit2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 26256, 1648 )
 next_level_file_path = "res://src/Levels/Level2.tscn"
+
+[node name="DeathZone" parent="." instance=ExtResource( 6 )]
+script = ExtResource( 7 )
+[connection signal="body_entered" from="DeathZone" to="DeathZone" method="_on_DeathZone_body_entered"]
