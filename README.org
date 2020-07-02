@@ -95,7 +95,7 @@ A course based on a *short 2d game demo inspired by metroidvanias* split into a 
    
 ** Lead development: Razvan
    
-   Reponsible for the code structure and code quality, as well as the consistency of the codebase.
+   Responsible for the code structure and code quality, as well as the consistency of the codebase.
    Tasks can include general programming, system design, code reviews, refactoring, as well as defining related tasks.
 
 ** Game development: Guilherme
@@ -104,7 +104,7 @@ A course based on a *short 2d game demo inspired by metroidvanias* split into a 
 
 ** Tool development and design: Henrique
      
-   Responsible for the design and implementation of tools to help create the game more efficiently and/or comfortably. Also, reponsible for assisting with game and world design work.
+   Responsible for the design and implementation of tools to help create the game more efficiently and/or comfortably. Also, responsible for assisting with game and world design work.
      
 ** Project management and design direction: Nathan
      
