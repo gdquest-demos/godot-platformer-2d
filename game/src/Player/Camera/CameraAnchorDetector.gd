@@ -1,7 +1,7 @@
 extends Area2D
 
 
-onready var camera_position: Position2D = $CameraPosition
+onready var camera_position := $CameraPosition
 
 
 func _ready() -> void:

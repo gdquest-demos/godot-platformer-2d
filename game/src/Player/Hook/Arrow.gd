@@ -1,8 +1,8 @@
 extends Node2D
 
 
-onready var head: Line2D = $Head
-onready var tail: Line2D = $Tail
+onready var head := $Head
+onready var tail := $Tail
 onready var tween: Tween = $Tween
 
 onready var start_length: float = head.position.x
