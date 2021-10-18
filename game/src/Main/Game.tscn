@@ -51,6 +51,14 @@ properties = PoolStringArray( "_state_name" )
 
 [node name="Player" parent="." instance=ExtResource( 8 )]
 
+[node name="ShakingCamera" parent="Player/CameraRig" index="0"]
+default_smoothing_speed = {
+"gamepad": 1,
+"mouse": 3
+}
+
 [node name="SkyParallaxBackground" parent="." instance=ExtResource( 9 )]
 
 [editable path="Player"]
+[editable path="Player/CameraAnchorDetector"]
+[editable path="Player/CameraRig"]
